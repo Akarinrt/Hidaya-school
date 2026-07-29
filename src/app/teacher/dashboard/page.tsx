@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import Link from 'next/link';
+import AnalyticsCharts from './AnalyticsCharts';
 
 const prisma = new PrismaClient();
 
@@ -30,6 +31,7 @@ export default async function TeacherDashboard() {
       </div>
 
       <div className="section-label">Tổng quan hệ thống</div>
+      <AnalyticsCharts />
       
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px', marginBottom: '28px' }}>

@@ -107,7 +107,11 @@ export default function ClassManager({ currentUser, initialStudents }: { current
                     ) : (
                       selectedClass.students?.map((enr: any) => (
                         <tr key={enr.id} style={{ borderBottom: '1px solid var(--border)' }}>
-                          <td style={{ padding: '10px' }}>{enr.student.fullName}</td>
+                          <td style={{ padding: '10px' }}>
+                            <a href={`/teacher/students/${enr.student.id}`} style={{ color: 'var(--primary)', fontWeight: 'bold', textDecoration: 'none' }}>
+                              {enr.student.fullName}
+                            </a>
+                          </td>
                           <td style={{ padding: '10px' }}>@{enr.student.username}</td>
                           <td style={{ padding: '10px' }}>{enr.student.email || 'Chưa cập nhật'}</td>
                         </tr>

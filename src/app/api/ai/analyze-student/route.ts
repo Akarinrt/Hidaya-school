@@ -1,83 +1,109 @@
-import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import { NextResponse } from 'next/server';
+import { PrismaClient } from '@prisma/client';
+import { cookies } from 'next/headers';
+import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const { studentId } = body;
+    const cookieStore = await cookies();
+    const token = cookieStore.get('token')?.value;
+    if (!token) return NextResponse.json({ message: 'Chưa đăng nhập' }, { status: 401 });
 
-    if (!studentId) {
-      return NextResponse.json({ error: "Missing studentId" }, { status: 400 });
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { id: string; role: string };
+    if (decoded.role !== 'TEACHER') {
+      return NextResponse.json({ message: 'Không có quyền' }, { status: 403 });
     }
 
-    // Lấy thông tin học sinh
+    const { studentId } = await req.json();
+    if (!studentId) return NextResponse.json({ message: 'Thiếu studentId' }, { status: 400 });
+
+    // 1. Thu thập dữ liệu học viên
     const student = await prisma.user.findUnique({
-      where: { id: studentId, role: "STUDENT" },
+      where: { id: studentId },
       include: {
+        attendances: true,
         submissions: {
-          include: { homework: true },
-          orderBy: { submittedAt: 'desc' },
-          take: 5
-        },
-        vocabScores: {
-          orderBy: { playedAt: 'desc' },
-          take: 5
+          include: { homework: true }
         }
       }
     });
 
-    if (!student) {
-      return NextResponse.json({ error: "Student not found" }, { status: 404 });
+    if (!student) return NextResponse.json({ message: 'Không tìm thấy học viên' }, { status: 404 });
+
+    // Tính toán thống kê
+    let present = 0, late = 0, absent = 0;
+    student.attendances.forEach(a => {
+      if (a.status === 'PRESENT') present++;
+      if (a.status === 'LATE') late++;
+      if (a.status === 'ABSENT') absent++;
+    });
+
+    const homeworkCount = student.submissions.length;
+    const gradedCount = student.submissions.filter(s => s.status === 'GRADED').length;
+    const avgScore = gradedCount > 0 
+      ? student.submissions.reduce((sum, s) => sum + (s.score || 0), 0) / gradedCount 
+      : 0;
+
+    const apiKey = process.env.DEEPSEEK_API_KEY;
+    
+    // Nếu chưa có API Key, dùng Mock Data
+    if (!apiKey || apiKey === 'your_key_here') {
+      const mockResult = `### Phân tích Học viên: ${student.fullName} (AI Giả lập)
+- **Chuyên cần**: Học viên có ${absent} buổi vắng và ${late} buổi đi muộn. Cần cải thiện thái độ đi học đúng giờ.
+- **Điểm số**: Điểm trung bình là ${Math.round(avgScore)}/100.
+- **Đánh giá & Đề xuất**:
+  - Học sinh có vẻ đang gặp khó khăn ở các bài kiểm tra gần đây.
+  - Giáo viên nên giao thêm bài tập phụ đạo phần Kanji hoặc Ngữ pháp cơ bản.
+*(Lưu ý: Đây là dữ liệu AI giả lập do bạn chưa điền DEEPSEEK_API_KEY trong file .env)*`;
+      
+      return NextResponse.json({ analysis: mockResult });
     }
 
-    // Format data để gửi cho AI
-    let contextData = `Học sinh: ${student.fullName}\n`;
-    contextData += `Lịch sử làm bài tập gần đây:\n`;
-    student.submissions.forEach(sub => {
-      contextData += `- Bài: ${sub.homework.title} | Điểm: ${sub.score || 'Chưa chấm'}/${sub.homework.maxScore} | Phản hồi: ${sub.feedback || 'Không có'}\n`;
-    });
-    contextData += `Lịch sử luyện từ vựng:\n`;
-    student.vocabScores.forEach(vs => {
-      contextData += `- Danh mục: ${vs.category} | Điểm: ${vs.score}/${vs.total}\n`;
+    // 2. Nếu có API Key, gọi DeepSeek API
+    const prompt = `
+Bạn là một chuyên gia giáo dục phân tích dữ liệu học sinh. Dưới đây là thông tin của học viên tiếng Nhật:
+Tên học sinh: ${student.fullName}
+Số buổi học có mặt: ${present}
+Số buổi học đi muộn: ${late}
+Số buổi học vắng mặt: ${absent}
+Số bài tập đã nộp: ${homeworkCount} (Đã chấm ${gradedCount})
+Điểm số trung bình: ${avgScore.toFixed(1)} / 100
+
+Dựa vào dữ liệu trên, hãy viết một báo cáo phân tích ngắn gọn gọn (khoảng 3-4 gạch đầu dòng) bằng tiếng Việt, bao gồm:
+1. Nhận xét thái độ học tập (chuyên cần).
+2. Nhận xét năng lực (dựa trên điểm số).
+3. Đưa ra lời khuyên cho giáo viên nên làm gì tiếp theo với học viên này.
+`;
+
+    const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        model: 'deepseek-chat',
+        messages: [
+          { role: 'system', content: 'You are a helpful education assistant.' },
+          { role: 'user', content: prompt }
+        ],
+        max_tokens: 500,
+        temperature: 0.7
+      })
     });
 
-    // Mô phỏng gọi DeepSeek API (Vì chưa có API Key thực tế trong .env)
-    // Nếu có API Key thực tế:
-    // const res = await fetch('https://api.deepseek.com/v1/chat/completions', { ... })
-    console.log("Gửi Data cho DeepSeek:", contextData);
+    const aiData = await response.json();
     
-    // Giả lập độ trễ của API AI
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    if (aiData.choices && aiData.choices.length > 0) {
+      return NextResponse.json({ analysis: aiData.choices[0].message.content });
+    } else {
+      return NextResponse.json({ message: 'Lỗi từ API DeepSeek', details: aiData }, { status: 500 });
+    }
 
-    const simulatedAIResponse = {
-      weaknesses: "Dựa trên dữ liệu, học sinh có điểm số từ vựng (Bài 46, 47) khá thấp (dưới 50%). Điểm ngữ pháp bài tập cũng thường xuyên sai ở các mẫu câu Sai Khiến (Bài 48). Khả năng ghi nhớ từ vựng chữ Hán yếu.",
-      advice: "Cần tăng cường luyện tập từ vựng chữ Hán qua flashcard. Yêu cầu học sinh ôn lại bảng chia Động từ thể Sai Khiến (Nhóm 1 và 2) và làm các bài tập phân biệt Tự Động Từ - Tha Động Từ.",
-      testCreated: true,
-      questions: [
-        { q: "Mẹ bắt con ăn rau (野菜を ___).", options: ["食べます", "食べさせます", "食べられます"], ans: 1 },
-        { q: "Giám đốc đã về (社長は もう お帰り ___).", options: ["しました", "になりました", "されました"], ans: 1 },
-      ]
-    };
-
-    // Lưu kết quả phân tích vào DB
-    const analysis = await prisma.aIAnalysis.create({
-      data: {
-        studentId: student.id,
-        weaknesses: simulatedAIResponse.weaknesses,
-        advice: simulatedAIResponse.advice,
-        testCreated: simulatedAIResponse.testCreated
-      }
-    });
-
-    return NextResponse.json({
-      analysis,
-      suggestedQuestions: simulatedAIResponse.questions
-    });
-
-  } catch (error) {
-    console.error("Lỗi AI Analysis:", error);
-    return NextResponse.json({ error: "Lỗi server" }, { status: 500 });
+  } catch (error: any) {
+    console.error('AI Analysis error:', error);
+    return NextResponse.json({ message: 'Lỗi máy chủ', error: error.message }, { status: 500 });
   }
 }
