@@ -19,8 +19,13 @@
             --bg: #F7F5F2;
         }
         body { background: var(--bg); font-family: 'Noto Sans JP', sans-serif; }
-        .title-slide h1 { color: var(--primary); font-weight: 800; font-size: 2.5em; }
+        .title-slide h1 { color: var(--primary); font-weight: 800; font-size: 2.5em; text-transform: uppercase; }
         .title-slide h3 { color: #555; font-size: 1.2em; }
+        
+        .section-title {
+            color: var(--primary); font-weight: bold; font-size: 1.8em; margin-bottom: 20px;
+            border-bottom: 3px solid var(--primary); display: inline-block; padding-bottom: 5px;
+        }
         
         .box-highlight {
             background: var(--surface);
@@ -45,117 +50,259 @@
             font-size: 1.1em;
         }
         
-        .grammar-example p { margin: 10px 0; }
-        .grammar-example .trans { color: #666; font-size: 0.9em; font-style: italic; display: block; margin-top: 5px; }
+        .grammar-example p { margin: 10px 0; font-size: 1.2em; }
+        .grammar-example .trans { color: #666; font-size: 0.85em; font-style: italic; display: block; margin-top: 5px; }
         
         .quiz-box {
             background: #FAFAFA;
-            border: 2px dashed var(--primary);
+            border: 2px dashed var(--danger);
             padding: 25px;
             border-radius: 12px;
             text-align: left;
+            margin-bottom: 20px;
         }
-        .quiz-title { font-weight: bold; color: var(--primary); margin-bottom: 15px; font-size: 1.2em; }
+        .quiz-title { font-weight: bold; color: var(--danger); margin-bottom: 15px; font-size: 1.3em; }
+        .quiz-q { font-size: 1.1em; margin-bottom: 15px; font-weight: bold; }
         
         .answer-btn {
-            background: var(--primary);
+            background: var(--danger);
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 10px 20px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.8em;
+            font-size: 0.9em;
             margin-top: 10px;
             transition: 0.2s;
+            font-weight: bold;
         }
-        .answer-btn:hover { background: #3a5bde; }
+        .answer-btn:hover { opacity: 0.8; transform: scale(1.05); }
         .answer-content {
             display: none;
             color: var(--success);
             font-weight: bold;
-            margin-top: 10px;
-            padding: 10px;
+            margin-top: 15px;
+            padding: 15px;
             background: #eef9f2;
             border-radius: 8px;
+            font-size: 1.1em;
+            border-left: 4px solid var(--success);
         }
+        
+        .vocab-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: left;
+        }
+        .vocab-item {
+            background: white; padding: 10px 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 1.1em;
+        }
+        .vocab-item strong { color: var(--primary); }
         
         ruby { font-size: 1em; }
-        rt { font-size: 0.5em; color: var(--primary); }
+        rt { font-size: 0.5em; color: var(--primary); font-weight: bold; }
         
-        /* Floating Vocab Box */
-        #vocabBox {
-            position: fixed;
-            top: 20px; right: 20px;
-            width: 250px;
-            background: rgba(255, 255, 255, 0.95);
-            border-left: 4px solid var(--primary);
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            padding: 15px;
-            z-index: 1000;
-            font-size: 0.4em;
+        .dialogue-box {
+            background: #fdfdfd;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin-bottom: 20px;
             text-align: left;
-            cursor: grab;
-            display: none;
-            backdrop-filter: blur(10px);
-            max-height: 80vh;
-            overflow-y: auto;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        #vocabBox h4 { margin: 0 0 10px 0; color: var(--primary); font-size: 1.2em; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        #vocabList { list-style: none; padding: 0; margin: 0; }
-        #vocabList li { margin-bottom: 8px; border-bottom: 1px dashed #ddd; padding-bottom: 5px; display: flex; justify-content: space-between; }
-        #vocabList li:last-child { border-bottom: none; }
-        .v-jp { font-weight: bold; color: #333; }
-        .v-vi { color: #666; font-size: 0.9em; }
+        .dialogue-p1 { color: #1976d2; font-weight: bold; margin-bottom: 5px !important; }
+        .dialogue-p2 { color: #e64a19; font-weight: bold; margin-bottom: 5px !important; }
     </style>
 </head>
 <body>
 
-    <div id="vocabBox">
-        <h4>📚 Từ vựng Slide này</h4>
-        <ul id="vocabList"></ul>
-    </div>
-
     <div class="reveal">
         <div class="slides">
             <section class="title-slide">
-                <h1>Ngữ Pháp Bài 34</h1>
-                <h3>Minna No Nihongo II - Vとおりに / Vたあとで</h3>
+                <h1>BÀI 34 - MINNA NO NIHONGO II</h1>
+                <h3>Ngữ pháp: Vとおりに & Vたあとで</h3>
+                <p>⏳ Thời lượng dự kiến: 120 Phút</p>
             </section>
             <section>
-                <h2>1. Vる / Vた / Nの + とおりに</h2>
-                <div class="box-highlight">
-                    Vる / Vた とおりに、～<br>
-                    Nの とおりに、～
+                <h2 class="section-title">🎯 Khởi động & Kiểm tra bài cũ</h2>
+                <div class="quiz-box">
+                    <p class="quiz-title">Mini Test (Bài 33)</p>
+                    <p class="quiz-q">1. Chuyển sang thể Mệnh lệnh và Cấm đoán của động từ 走る (Chạy):</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        Mệnh lệnh: <strong>走れ</strong> (Chạy đi!)<br>
+                        Cấm đoán: <strong>走るな</strong> (Cấm chạy!)
+                    </div>
                 </div>
-                <div class="grammar-example fragment">
-                    <p><strong>Cách dùng:</strong> Làm một việc gì đó ĐÚNG THEO như (ai đó đã làm, đã nói, sách hướng dẫn...).</p>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>私が言うとおりに、書いてください。</p>
-                    <span class="trans">Hãy viết đúng theo như những gì tôi nói.</span>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>線のとおりに、紙を切ってください。</p>
-                    <span class="trans">Hãy cắt giấy đúng theo đường kẻ.</span>
+                <div class="quiz-box fragment">
+                    <p class="quiz-q">2. Dịch câu: Ký hiệu này có nghĩa là "Cấm chụp ảnh".</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        このマークは「写真を撮るな」<strong>という意味です</strong>。
+                    </div>
                 </div>
             </section>
             <section>
-                <h2>2. Vた / Nの + あとで</h2>
+                <h2 class="section-title">📚 Từ vựng Trọng tâm (Bài 34)</h2>
+                <div class="vocab-grid">
+                    <div class="vocab-item"><strong>磨きます</strong> (みがきます) : Đánh (răng), mài</div>
+                    <div class="vocab-item"><strong>組み立てます</strong> (くみたてます) : Lắp ráp</div>
+                    <div class="vocab-item"><strong>折ります</strong> (おります) : Gấp, gập, bẻ gãy</div>
+                    <div class="vocab-item"><strong>気づきます</strong> (きづきます) : Nhận ra, để ý</div>
+                    <div class="vocab-item"><strong>つけます</strong> : Chấm (nước tương)</div>
+                    <div class="vocab-item"><strong>見つかります</strong> (みつかります) : Được tìm thấy</div>
+                    <div class="vocab-item"><strong>質問します</strong> (しつもんします) : Hỏi</div>
+                    <div class="vocab-item"><strong>説明書</strong> (せつめいしょ) : Sách hướng dẫn</div>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">1. ～とおりに (Theo như / Đúng như)</h2>
                 <div class="box-highlight">
-                    Vた あとで、～<br>
-                    Nの あとで、～
+                    V1 (る / た) ＋ とおりに、V2<br>
+                    N の ＋ とおりに、V2
+                </div>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> Làm V2 THEO ĐÚNG NHƯ những gì V1 / Danh từ thể hiện (không sai lệch).</p>
                 </div>
                 <div class="grammar-example fragment">
-                    <p><strong>Cách dùng:</strong> SAU KHI làm V1 thì làm V2.</p>
+                    <p>私が言う<strong>とおりに</strong>、書いてください。</p>
+                    <span class="trans">Hãy viết THEO ĐÚNG NHƯ những gì tôi nói.</span>
                 </div>
                 <div class="grammar-example fragment">
-                    <p>仕事のあとで、飲みに行きませんか。</p>
-                    <span class="trans">Sau khi xong việc, đi uống chút không?</span>
+                    <p>説明書の<strong>とおりに</strong>、組み立てました。</p>
+                    <span class="trans">Tôi đã lắp ráp THEO ĐÚNG NHƯ sách hướng dẫn.</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">🗣 Hội thoại: ～とおりに</h2>
+                <div class="dialogue-box">
+                    <p class="dialogue-p1">A：この料理、おいしいですね。どうやって作ったんですか。</p>
+                    <span class="trans">A: Món này ngon thế. Cậu làm thế nào vậy?</span>
+                    <br>
+                    <p class="dialogue-p2">B：テレビで見たとおりに、作ったんですよ。</p>
+                    <span class="trans">B: Tớ làm THEO ĐÚNG NHƯ những gì đã xem trên TV đó.</span>
+                    <br>
+                    <p class="dialogue-p1">A：すごい！まるでプロの料理ですね。</p>
+                    <span class="trans">A: Giỏi quá! Cứ như đồ ăn của đầu bếp chuyên nghiệp vậy.</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">📝 Bài tập: ～とおりに</h2>
+                <div class="quiz-box">
+                    <p class="quiz-q">1. Điền từ thích hợp vào chỗ trống:</p>
+                    <p>線の (__________), 紙を切ってください。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        線の <strong>とおりに</strong>, 紙を切ってください。<br>
+                        (Vì 線 là Danh từ nên phải có の).
+                    </div>
+                </div>
+                <div class="quiz-box fragment">
+                    <p class="quiz-q">2. Dịch: "Hãy làm đúng như tôi đã làm".</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        私が <strong>やったとおりに</strong>、やってください。<br>
+                        (Đã làm -> Vた).
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">2. ～あとで (Sau khi)</h2>
+                <div class="box-highlight">
+                    Vた ＋ あとで、V2<br>
+                    N の ＋ あとで、V2
+                </div>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> Diễn tả hành động V2 xảy ra SAU KHI hành động V1 / Danh từ kết thúc.</p>
                 </div>
                 <div class="grammar-example fragment">
-                    <p>新しい時計を買ったあとで、なくした時計が見つかりました。</p>
-                    <span class="trans">Sau khi mua đồng hồ mới xong thì lại tìm thấy cái đồng hồ bị mất.</span>
+                    <p>仕事が終わった<strong>あとで</strong>、飲みに行きませんか。</p>
+                    <span class="trans">SAU KHI công việc kết thúc, đi nhậu không?</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>食事の<strong>あとで</strong>、歯を磨きます。</p>
+                    <span class="trans">SAU BỮA ĂN (Sau khi ăn), tôi đánh răng.</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">🔍 So sánh: Vてから vs Vたあとで</h2>
+                <div class="grammar-example">
+                    <p>Cả hai đều có nghĩa là "Sau khi", nhưng:</p>
+                    <p style="color:var(--primary); font-weight:bold;">Vてから:</p>
+                    <p>Nhấn mạnh SỰ LIÊN TỤC VỀ THỜI GIAN (Làm V1 xong là làm V2 luôn). Dùng để chỉ dẫn thứ tự (Làm A rồi làm B nhé).</p>
+                </div>
+                <div class="grammar-example fragment">
+                    <p style="color:var(--danger); font-weight:bold;">Vたあとで:</p>
+                    <p>CHỈ NHẤN MẠNH MỐI QUAN HỆ TRƯỚC/SAU. Khoảng cách thời gian có thể dài. Danh từ phải dùng Nのあとで (Không có Nてから).</p>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">3. Vて / Vないで (Làm trong trạng thái kèm theo)</h2>
+                <div class="box-highlight">
+                    V1て、V2<br>
+                    V1ないで、V2
+                </div>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> Thực hiện hành động chính (V2) TRONG TRẠNG THÁI CÓ (hoặc KHÔNG CÓ) kèm theo hành động phụ (V1).</p>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>しょうゆをつけて、食べます。</p>
+                    <span class="trans">CHẤM xì dầu rồi ăn. (Ăn trong trạng thái có chấm xì dầu).</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>メガネをかけないで、本を読みます。</p>
+                    <span class="trans">Tôi đọc sách mà KHÔNG ĐEO kính.</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">4. V1ないで、V2 (Lựa chọn 1 trong 2)</h2>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> Đáng lẽ ra phải làm V1, nhưng không làm V1 mà LỰA CHỌN làm V2 thay thế.</p>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>日曜日はどこも行かないで、家で休みます。</p>
+                    <span class="trans">Chủ nhật tôi KHÔNG ĐI đâu cả MÀ CHỌN nghỉ ở nhà.</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>エレベーターに乗らないで、階段を使います。</p>
+                    <span class="trans">Tôi KHÔNG ĐI thang máy MÀ CHỌN dùng cầu thang bộ.</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">📝 Bài tập Cuối bài (Tổng hợp)</h2>
+                <div class="quiz-box">
+                    <p class="quiz-title">Quiz Tổng hợp</p>
+                    <p class="quiz-q">1. Chọn Vて hay Vないで:<br>
+                    昨夜はとても暑かったですから、エアコンを ( A. つけて / B. つけないで ) 寝ました。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        Đáp án: <strong>A. つけて</strong>.<br>
+                        (Trời nóng nên ngủ trong trạng thái CÓ bật điều hòa).
+                    </div>
+                </div>
+                
+                <div class="quiz-box fragment">
+                    <p class="quiz-q">2. Chọn đáp án đúng:<br>
+                    映画を ( A. 見た / B. 見る ) あとで、食事しましょう。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        Đáp án: <strong>A. 見た</strong><br>
+                        (Cấu trúc Vた ＋ あとで).
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">📚 Tổng kết Bài 34</h2>
+                <div class="grammar-example">
+                    <ul>
+                        <li style="margin-bottom:15px;"><strong>Vる/Vた/Nの + とおりに:</strong> Làm theo đúng như...</li>
+                        <li style="margin-bottom:15px;"><strong>Vた/Nの + あとで:</strong> Sau khi...</li>
+                        <li style="margin-bottom:15px;"><strong>Vて + Hành động chính:</strong> Làm trong trạng thái CÓ kèm theo...</li>
+                        <li style="margin-bottom:15px;"><strong>Vないで + Hành động chính:</strong> Làm trong trạng thái KHÔNG kèm theo... (hoặc: Chọn làm V2 thay vì V1).</li>
+                    </ul>
+                </div>
+                <div class="box-highlight fragment" style="text-align:center;">
+                    🏆 CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI 34! 🏆
                 </div>
             </section>
         </div>
@@ -166,13 +313,17 @@
         Reveal.initialize({
             hash: true,
             slideNumber: true,
-            transition: 'slide'
+            transition: 'fade',
+            backgroundTransition: 'fade',
+            width: 1080,
+            height: 720,
+            margin: 0.1
         });
 
-        const furiganaDict = {"言う": "<ruby>言<rt>い</rt></ruby>う", "書いて": "<ruby>書<rt>か</rt></ruby>いて", "線": "<ruby>線<rt>せん</rt></ruby>", "紙": "<ruby>紙<rt>かみ</rt></ruby>", "切って": "<ruby>切<rt>き</rt></ruby>って", "仕事": "<ruby>仕事<rt>しごと</rt></ruby>", "飲み": "<ruby>飲<rt>の</rt></ruby>み", "行きませんか": "<ruby>行<rt>い</rt></ruby>きませんか", "新しい": "<ruby>新<rt>あたら</rt></ruby>しい", "時計": "<ruby>時計<rt>とけい</rt></ruby>", "買った": "<ruby>買<rt>か</rt></ruby>った", "見つかりました": "<ruby>見<rt>み</rt></ruby>つかりました"};
-        const vocabDict = {"線": "Đường thẳng, đường kẻ", "紙": "Giấy", "切ります": "Cắt", "仕事": "Công việc", "時計": "Đồng hồ", "見つかります": "Được tìm thấy"};
+        const furiganaDict = {"走る": "<ruby>走<rt>はし</rt></ruby>る", "走れ": "<ruby>走<rt>はし</rt></ruby>れ", "写真": "<ruby>写真<rt>しゃしん</rt></ruby>", "撮るな": "<ruby>撮<rt>と</rt></ruby>るな", "意味": "<ruby>意味<rt>いみ</rt></ruby>", "磨きます": "<ruby>磨<rt>みが</rt></ruby>きます", "組み立てます": "<ruby>組<rt>く</rt></ruby>み<ruby>立<rt>た</rt></ruby>てます", "折ります": "<ruby>折<rt>お</rt></ruby>ります", "気づきます": "<ruby>気<rt>き</rt></ruby>づきます", "見つかります": "<ruby>見<rt>み</rt></ruby>つかります", "質問": "<ruby>質問<rt>しつもん</rt></ruby>", "説明書": "<ruby>説明書<rt>せつめいしょ</rt></ruby>", "私": "<ruby>私<rt>わたし</rt></ruby>", "言う": "<ruby>言<rt>い</rt></ruby>う", "書いて": "<ruby>書<rt>か</rt></ruby>いて", "料理": "<ruby>料理<rt>りょうり</rt></ruby>", "作った": "<ruby>作<rt>つく</rt></ruby>った", "見": "<ruby>見<rt>み</rt></ruby>", "線": "<ruby>線<rt>せん</rt></ruby>", "紙": "<ruby>紙<rt>かみ</rt></ruby>", "切って": "<ruby>切<rt>き</rt></ruby>って", "仕事": "<ruby>仕事<rt>しごと</rt></ruby>", "終わった": "<ruby>終<rt>お</rt></ruby>わった", "飲み": "<ruby>飲<rt>の</rt></ruby>み", "行きません": "<ruby>行<rt>い</rt></ruby>きません", "食事": "<ruby>食事<rt>しょくじ</rt></ruby>", "歯": "<ruby>歯<rt>は</rt></ruby>", "食べます": "<ruby>食<rt>た</rt></ruby>べます", "本": "<ruby>本<rt>ほん</rt></ruby>", "読みます": "<ruby>読<rt>よ</rt></ruby>みます", "日曜日": "<ruby>日曜日<rt>にちようび</rt></ruby>", "家": "<ruby>家<rt>いえ</rt></ruby>", "休みます": "<ruby>休<rt>やす</rt></ruby>みます", "乗らない": "<ruby>乗<rt>の</rt></ruby>らない", "階段": "<ruby>階段<rt>かいだん</rt></ruby>", "使います": "<ruby>使<rt>つか</rt></ruby>います", "昨夜": "<ruby>昨夜<rt>ゆうべ</rt></ruby>", "暑かった": "<ruby>暑<rt>あつ</rt></ruby>かった", "寝ました": "<ruby>寝<rt>ね</rt></ruby>ました", "映画": "<ruby>映画<rt>えいが</rt></ruby>"};
 
-        document.querySelectorAll('p, .trans, .box-highlight, .answer-content, h1, h3').forEach(el => {
+        // Add furigana dynamically
+        document.querySelectorAll('p, .trans, .box-highlight, .answer-content, h1, h2, h3, li, strong, .vocab-item').forEach(el => {
             let html = el.innerHTML;
             for (let kanji in furiganaDict) {
                 let re = new RegExp(kanji, "g");
@@ -185,76 +336,13 @@
             let content = btn.nextElementSibling;
             if (content.style.display === "block") {
                 content.style.display = "none";
-                btn.innerText = "Xem đáp án";
+                btn.innerText = "Kiểm tra đáp án";
+                btn.style.background = "var(--danger)";
             } else {
                 content.style.display = "block";
                 btn.innerText = "Ẩn đáp án";
+                btn.style.background = "var(--success)";
             }
-        }
-
-        const vocabBox = document.getElementById('vocabBox');
-        const vocabList = document.getElementById('vocabList');
-        
-        Reveal.on('slidechanged', event => {
-            updateVocab(event.currentSlide);
-        });
-        Reveal.on('ready', event => {
-            updateVocab(event.currentSlide);
-        });
-
-        function updateVocab(slide) {
-            let text = slide.innerText;
-            let found = false;
-            vocabList.innerHTML = '';
-            
-            for (let word in vocabDict) {
-                if (text.includes(word)) {
-                    found = true;
-                    let li = document.createElement('li');
-                    li.innerHTML = `<span class="v-jp">${word}</span> <span class="v-vi">${vocabDict[word]}</span>`;
-                    vocabList.appendChild(li);
-                }
-            }
-            
-            vocabBox.style.display = found ? 'block' : 'none';
-        }
-
-        let isDragging = false;
-        let currentX;
-        let currentY;
-        let initialX;
-        let initialY;
-        let xOffset = 0;
-        let yOffset = 0;
-
-        vocabBox.addEventListener("mousedown", dragStart);
-        document.addEventListener("mouseup", dragEnd);
-        document.addEventListener("mousemove", drag);
-
-        function dragStart(e) {
-            initialX = e.clientX - xOffset;
-            initialY = e.clientY - yOffset;
-            if (e.target === vocabBox || vocabBox.contains(e.target)) {
-                isDragging = true;
-            }
-        }
-        function dragEnd(e) {
-            initialX = currentX;
-            initialY = currentY;
-            isDragging = false;
-        }
-        function drag(e) {
-            if (isDragging) {
-                e.preventDefault();
-                currentX = e.clientX - initialX;
-                currentY = e.clientY - initialY;
-                xOffset = currentX;
-                yOffset = currentY;
-                setTranslate(currentX, currentY, vocabBox);
-            }
-        }
-        function setTranslate(xPos, yPos, el) {
-            el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
         }
     </script>
 </body>
