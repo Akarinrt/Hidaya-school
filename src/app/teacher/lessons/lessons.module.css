@@ -1,0 +1,54 @@
+.container { max-width: 1100px; }
+
+.header {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; margin-bottom: 28px; flex-wrap: wrap; gap: 16px;
+}
+
+.title { font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.subtitle { color: var(--text-muted); }
+
+.addBtn {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: #fff; text-decoration: none; padding: 12px 20px; border-radius: 10px;
+  font-weight: 600; font-size: 0.9rem; transition: transform 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+.addBtn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(255,152,0,0.4); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: var(--glass-bg); border: 1px solid var(--glass-border);
+  border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 10px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.card:hover { transform: translateY(-3px); border-color: var(--primary-color); }
+
+.cardTop { display: flex; justify-content: space-between; align-items: center; }
+
+.level {
+  font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 20px;
+}
+
+.badge { font-size: 0.72rem; padding: 3px 10px; border-radius: 20px; }
+.public { background: rgba(102, 187, 106, 0.15); color: #66bb6a; }
+.private { background: rgba(239, 83, 80, 0.15); color: #ef5350; }
+
+.cardTitle { font-size: 1rem; font-weight: 700; color: #fff; line-height: 1.4; }
+.cardLesson { font-size: 0.8rem; color: var(--primary-color); font-weight: 600; }
+.cardDesc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; flex: 1; }
+
+.cardFooter { display: flex; justify-content: space-between; align-items: center; margin-top: 4px; }
+.teacher { font-size: 0.78rem; color: var(--text-muted); }
+
+.downloadBtn {
+  font-size: 0.78rem; font-weight: 600; color: #42a5f5; text-decoration: none;
+  background: rgba(66, 165, 245, 0.15); padding: 5px 10px; border-radius: 8px;
+  transition: background 0.2s;
+}
+.downloadBtn:hover { background: rgba(66, 165, 245, 0.3); }

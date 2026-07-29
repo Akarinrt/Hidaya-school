@@ -1,39 +1,91 @@
+import { PrismaClient } from '@prisma/client';
+import styles from './dashboard.module.css';
 import Link from 'next/link';
-import '../../globals.css';
 
-export default function TeacherDashboard() {
+const prisma = new PrismaClient();
+
+export default async function TeacherDashboard() {
+  const [teachers, students, homeworks, submissions, schedules] = await Promise.all([
+    prisma.user.count({ where: { role: 'TEACHER' } }),
+    prisma.user.count({ where: { role: 'STUDENT' } }),
+    prisma.homework.count(),
+    prisma.submission.count({ where: { status: 'PENDING' } }),
+    prisma.schedule.findMany({ orderBy: { dayOfWeek: 'asc' }, take: 3, include: { teacher: true } }),
+  ]);
+
+  const dayNames = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
+
   return (
-    <div className="min-h-screen p-6">
-      <div className="max-w-4xl mx-auto glass-panel p-8 animate-fade-in">
-        <h1 className="text-3xl font-bold text-[var(--primary-color)] mb-4">
-          👨‍🏫 Bảng Điều Khiển Giáo Viên
-        </h1>
-        <p className="text-[var(--text-muted)] mb-8">
-          Chào mừng bạn quay lại. Tại đây bạn có thể quản lý bài giảng, giao bài tập và chấm điểm học viên.
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="glass-panel p-6 hover:shadow-[0_4px_15px_rgba(255,152,0,0.4)] transition-shadow cursor-pointer">
-            <h2 className="text-xl font-semibold mb-2">📚 Quản lý Khóa học</h2>
-            <p className="text-sm text-[var(--text-muted)]">Tạo bài học mới, đăng tải video và tài liệu PDF.</p>
-          </div>
-          
-          <div className="glass-panel p-6 hover:shadow-[0_4px_15px_rgba(255,152,0,0.4)] transition-shadow cursor-pointer">
-            <h2 className="text-xl font-semibold mb-2">📝 Chấm điểm Bài tập</h2>
-            <p className="text-sm text-[var(--text-muted)]">Xem và nhận xét các bài nộp của học viên.</p>
-          </div>
-          
-          <div className="glass-panel p-6 hover:shadow-[0_4px_15px_rgba(255,152,0,0.4)] transition-shadow cursor-pointer">
-            <h2 className="text-xl font-semibold mb-2">👥 Quản lý Học viên</h2>
-            <p className="text-sm text-[var(--text-muted)]">Xem tiến độ học tập và quản lý danh sách lớp.</p>
-          </div>
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <div>
+          <h1 className={styles.title}>Xin chào, Giáo viên! 👋</h1>
+          <p className={styles.subtitle}>Đây là bảng tổng quan hoạt động của Hidaya School hôm nay.</p>
         </div>
+      </div>
 
-        <div className="mt-8 text-center">
-          <Link href="/" className="text-[var(--primary-color)] hover:underline">
-            Đăng xuất
+      {/* Stats Cards */}
+      <div className={styles.statsGrid}>
+        <div className={`${styles.statCard} ${styles.orange}`}>
+          <div className={styles.statIcon}>👩‍🏫</div>
+          <div className={styles.statValue}>{teachers}</div>
+          <div className={styles.statLabel}>Giáo viên</div>
+        </div>
+        <div className={`${styles.statCard} ${styles.blue}`}>
+          <div className={styles.statIcon}>👨‍🎓</div>
+          <div className={styles.statValue}>{students}</div>
+          <div className={styles.statLabel}>Học viên</div>
+        </div>
+        <div className={`${styles.statCard} ${styles.green}`}>
+          <div className={styles.statIcon}>📝</div>
+          <div className={styles.statValue}>{homeworks}</div>
+          <div className={styles.statLabel}>Bài tập / Bài test</div>
+        </div>
+        <div className={`${styles.statCard} ${styles.red}`}>
+          <div className={styles.statIcon}>✅</div>
+          <div className={styles.statValue}>{submissions}</div>
+          <div className={styles.statLabel}>Bài chờ chấm</div>
+        </div>
+      </div>
+
+      {/* Quick links */}
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>⚡ Thao tác nhanh</h2>
+        <div className={styles.quickLinks}>
+          <Link href="/teacher/homework/new" className={styles.quickCard}>
+            <span>📝</span>
+            <span>Giao bài tập mới</span>
+          </Link>
+          <Link href="/teacher/grading" className={styles.quickCard}>
+            <span>✅</span>
+            <span>Chấm bài nộp</span>
+          </Link>
+          <Link href="/teacher/lessons" className={styles.quickCard}>
+            <span>📂</span>
+            <span>Kho giáo án</span>
+          </Link>
+          <Link href="/teacher/schedule" className={styles.quickCard}>
+            <span>📅</span>
+            <span>Lịch dạy tuần này</span>
           </Link>
         </div>
+      </div>
+
+      {/* Upcoming schedule */}
+      <div className={styles.section}>
+        <h2 className={styles.sectionTitle}>📅 Lịch dạy sắp tới</h2>
+        <div className={styles.scheduleList}>
+          {schedules.map(s => (
+            <div key={s.id} className={styles.scheduleItem} style={{ borderLeftColor: s.color || '#ff9800' }}>
+              <div className={styles.scheduleDay}>{dayNames[s.dayOfWeek]}</div>
+              <div className={styles.scheduleInfo}>
+                <div className={styles.scheduleTitle}>{s.title}</div>
+                <div className={styles.scheduleMeta}>{s.startTime} – {s.endTime} · {s.location}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <Link href="/teacher/schedule" className={styles.viewAll}>Xem toàn bộ lịch →</Link>
       </div>
     </div>
   );

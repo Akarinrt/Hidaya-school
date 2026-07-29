@@ -1,0 +1,39 @@
+import { NextResponse } from 'next/server';
+import { PrismaClient } from '@prisma/client';
+import { cookies } from 'next/headers';
+import jwt from 'jsonwebtoken';
+
+const prisma = new PrismaClient();
+
+export async function POST(
+  req: Request,
+  { params }: { params: { submissionId: string } }
+) {
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('token')?.value;
+    if (!token) return NextResponse.json({ message: 'Chưa đăng nhập' }, { status: 401 });
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { id: string; role: string };
+    if (decoded.role !== 'TEACHER') return NextResponse.json({ message: 'Không có quyền' }, { status: 403 });
+
+    const formData = await req.formData();
+    const score = parseInt(formData.get('score') as string);
+    const feedback = formData.get('feedback') as string;
+
+    const updated = await prisma.submission.update({
+      where: { id: params.submissionId },
+      data: {
+        score,
+        feedback,
+        status: 'GRADED',
+        gradedById: decoded.id,
+        gradedAt: new Date(),
+      },
+    });
+
+    return NextResponse.json(updated);
+  } catch (error: any) {
+    return NextResponse.json({ message: 'Lỗi', error: error.message }, { status: 500 });
+  }
+}

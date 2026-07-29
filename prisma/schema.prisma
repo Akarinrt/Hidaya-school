@@ -8,11 +8,82 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  username  String   @unique
-  password  String
-  role      String   @default("STUDENT") // TEACHER or STUDENT
-  fullName  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(uuid())
+  username    String   @unique
+  password    String
+  role        String   @default("STUDENT") // TEACHER or STUDENT
+  fullName    String
+  email       String?
+  phone       String?
+  avatar      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  schedules       Schedule[]
+  lessonPlans     LessonPlan[]
+  homeworks       Homework[]
+  submissions     Submission[]
+  gradedSubmissions Submission[] @relation("GradedBy")
+}
+
+model Schedule {
+  id          String   @id @default(uuid())
+  title       String
+  dayOfWeek   Int      // 0=Sun, 1=Mon, ... 6=Sat
+  startTime   String   // e.g. "08:00"
+  endTime     String   // e.g. "10:00"
+  location    String?  // e.g. "Phòng A1" or "Google Meet"
+  meetLink    String?
+  color       String?  @default("#ff9800")
+  teacherId   String
+  teacher     User     @relation(fields: [teacherId], references: [id])
+  createdAt   DateTime @default(now())
+}
+
+model LessonPlan {
+  id          String   @id @default(uuid())
+  title       String
+  lesson      String   // e.g. "Bài 28"
+  level       String   // e.g. "N4", "N5"
+  description String?
+  fileUrl     String?
+  isPublic    Boolean  @default(false) // share to students
+  teacherId   String
+  teacher     User     @relation(fields: [teacherId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Homework {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  type        String   @default("HOMEWORK") // HOMEWORK or TEST
+  fileUrl     String?
+  deadline    DateTime?
+  maxScore    Int      @default(100)
+  isPublished Boolean  @default(true)
+  teacherId   String
+  teacher     User     @relation(fields: [teacherId], references: [id])
+  submissions Submission[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Submission {
+  id           String   @id @default(uuid())
+  content      String?  // text answer
+  fileUrl      String?  // uploaded image
+  score        Int?
+  feedback     String?
+  status       String   @default("PENDING") // PENDING, GRADED
+  homeworkId   String
+  homework     Homework @relation(fields: [homeworkId], references: [id])
+  studentId    String
+  student      User     @relation(fields: [studentId], references: [id])
+  gradedById   String?
+  gradedBy     User?    @relation("GradedBy", fields: [gradedById], references: [id])
+  submittedAt  DateTime @default(now())
+  gradedAt     DateTime?
 }
