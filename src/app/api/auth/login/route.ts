@@ -44,8 +44,8 @@ export async function POST(req: Request) {
 
     return response;
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('Login error:', error);
-    return NextResponse.json({ message: 'Lỗi máy chủ' }, { status: 500 });
+    return NextResponse.json({ message: 'Lỗi máy chủ', error: error.message, stack: error.stack }, { status: 500 });
   }
 }
