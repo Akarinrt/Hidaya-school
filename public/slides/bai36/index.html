@@ -19,8 +19,13 @@
             --bg: #F7F5F2;
         }
         body { background: var(--bg); font-family: 'Noto Sans JP', sans-serif; }
-        .title-slide h1 { color: var(--primary); font-weight: 800; font-size: 2.5em; }
+        .title-slide h1 { color: var(--primary); font-weight: 800; font-size: 2.5em; text-transform: uppercase; }
         .title-slide h3 { color: #555; font-size: 1.2em; }
+        
+        .section-title {
+            color: var(--primary); font-weight: bold; font-size: 1.8em; margin-bottom: 20px;
+            border-bottom: 3px solid var(--primary); display: inline-block; padding-bottom: 5px;
+        }
         
         .box-highlight {
             background: var(--surface);
@@ -45,133 +50,231 @@
             font-size: 1.1em;
         }
         
-        .grammar-example p { margin: 10px 0; }
-        .grammar-example .trans { color: #666; font-size: 0.9em; font-style: italic; display: block; margin-top: 5px; }
+        .grammar-example p { margin: 10px 0; font-size: 1.2em; }
+        .grammar-example .trans { color: #666; font-size: 0.85em; font-style: italic; display: block; margin-top: 5px; }
         
         .quiz-box {
             background: #FAFAFA;
-            border: 2px dashed var(--primary);
+            border: 2px dashed var(--danger);
             padding: 25px;
             border-radius: 12px;
             text-align: left;
+            margin-bottom: 20px;
         }
-        .quiz-title { font-weight: bold; color: var(--primary); margin-bottom: 15px; font-size: 1.2em; }
+        .quiz-title { font-weight: bold; color: var(--danger); margin-bottom: 15px; font-size: 1.3em; }
+        .quiz-q { font-size: 1.1em; margin-bottom: 15px; font-weight: bold; }
         
         .answer-btn {
-            background: var(--primary);
+            background: var(--danger);
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 10px 20px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.8em;
+            font-size: 0.9em;
             margin-top: 10px;
             transition: 0.2s;
+            font-weight: bold;
         }
-        .answer-btn:hover { background: #3a5bde; }
+        .answer-btn:hover { opacity: 0.8; transform: scale(1.05); }
         .answer-content {
             display: none;
             color: var(--success);
             font-weight: bold;
-            margin-top: 10px;
-            padding: 10px;
+            margin-top: 15px;
+            padding: 15px;
             background: #eef9f2;
             border-radius: 8px;
+            font-size: 1.1em;
+            border-left: 4px solid var(--success);
         }
+        
+        .vocab-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: left;
+        }
+        .vocab-item {
+            background: white; padding: 10px 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 1.1em;
+        }
+        .vocab-item strong { color: var(--primary); }
         
         ruby { font-size: 1em; }
-        rt { font-size: 0.5em; color: var(--primary); }
+        rt { font-size: 0.5em; color: var(--primary); font-weight: bold; }
         
-        /* Floating Vocab Box */
-        #vocabBox {
-            position: fixed;
-            top: 20px; right: 20px;
-            width: 250px;
-            background: rgba(255, 255, 255, 0.95);
-            border-left: 4px solid var(--primary);
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            padding: 15px;
-            z-index: 1000;
-            font-size: 0.4em;
+        .dialogue-box {
+            background: #fdfdfd;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin-bottom: 20px;
             text-align: left;
-            cursor: grab;
-            display: none;
-            backdrop-filter: blur(10px);
-            max-height: 80vh;
-            overflow-y: auto;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        #vocabBox h4 { margin: 0 0 10px 0; color: var(--primary); font-size: 1.2em; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        #vocabList { list-style: none; padding: 0; margin: 0; }
-        #vocabList li { margin-bottom: 8px; border-bottom: 1px dashed #ddd; padding-bottom: 5px; display: flex; justify-content: space-between; }
-        #vocabList li:last-child { border-bottom: none; }
-        .v-jp { font-weight: bold; color: #333; }
-        .v-vi { color: #666; font-size: 0.9em; }
+        .dialogue-p1 { color: #1976d2; font-weight: bold; margin-bottom: 5px !important; }
+        .dialogue-p2 { color: #e64a19; font-weight: bold; margin-bottom: 5px !important; }
     </style>
 </head>
 <body>
 
-    <div id="vocabBox">
-        <h4>📚 Từ vựng Slide này</h4>
-        <ul id="vocabList"></ul>
-    </div>
-
     <div class="reveal">
         <div class="slides">
             <section class="title-slide">
-                <h1>Ngữ Pháp Bài 36</h1>
-                <h3>Minna No Nihongo II - Vようになります / Vるようにしています</h3>
+                <h1>BÀI 36 - MINNA NO NIHONGO II</h1>
+                <h3>Ngữ pháp: ようにする (Cố gắng) & ようになる (Trở nên)</h3>
+                <p>⏳ Thời lượng dự kiến: 120 Phút</p>
             </section>
             <section>
-                <h2>1. V1(khả năng) ように、V2(mục đích)</h2>
-                <div class="box-highlight">
-                    Vる / Vない ように、～
+                <h2 class="section-title">🎯 Khởi động & Kiểm tra bài cũ</h2>
+                <div class="quiz-box">
+                    <p class="quiz-title">Mini Test (Bài 35)</p>
+                    <p class="quiz-q">1. Chuyển sang thể Điều kiện (ば):<br>
+                    ① 急ぎます (Nhanh lên) ➔ _________________<br>
+                    ② 安い (Rẻ) ➔ _________________</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        ① <strong>急げば</strong> (Nếu nhanh lên)<br>
+                        ② <strong>安ければ</strong> (Nếu rẻ)
+                    </div>
                 </div>
-                <div class="grammar-example fragment">
-                    <p><strong>Cách dùng:</strong> ĐỂ (có thể) làm được V1 thì làm V2.</p>
-                    <p><em>*Chú ý: V1 thường là Động từ chỉ Khả năng (Vえる), Tự động từ hoặc Vない.</em></p>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>早く泳げるように、毎日練習しています。</p>
-                    <span class="trans">Để có thể bơi nhanh được, ngày nào tôi cũng luyện tập.</span>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>忘れないように、メモします。</p>
-                    <span class="trans">Để không bị quên, tôi sẽ ghi chú lại.</span>
-                </div>
-            </section>
-            <section>
-                <h2>2. Vる ように なりました</h2>
-                <div class="box-highlight">
-                    Vる(khả năng) ようになります
-                </div>
-                <div class="grammar-example fragment">
-                    <p><strong>Cách dùng:</strong> Sự biến đổi trạng thái từ KHÔNG THỂ thành CÓ THỂ (hoặc thói quen chưa có thành có).</p>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>毎日練習して、泳げるようになりました。</p>
-                    <span class="trans">Mỗi ngày tôi đều luyện tập nên đã có thể bơi được rồi.</span>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>日本へ来てから、刺身を食べるようになりました。</p>
-                    <span class="trans">Từ sau khi đến Nhật, tôi đã bắt đầu ăn Sashimi. (Trước đây không ăn)</span>
+                <div class="quiz-box fragment">
+                    <p class="quiz-q">2. Chọn đáp án đúng:<br>
+                    明日、雨 ( A. なら / B. ければ ) 試合はありません。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        Đáp án: <strong>A. なら</strong><br>
+                        (Vì 雨 là Danh từ, đi với なら).
+                    </div>
                 </div>
             </section>
             <section>
-                <h2>3. Vる ように しています</h2>
+                <h2 class="section-title">📚 Từ vựng Trọng tâm (Bài 36)</h2>
+                <div class="vocab-grid">
+                    <div class="vocab-item"><strong>届きます</strong> (とどきます) : Đến nơi, được giao đến</div>
+                    <div class="vocab-item"><strong>出ます</strong> (でます) : Tham gia (trận đấu)</div>
+                    <div class="vocab-item"><strong>打ちます</strong> (うちます) : Đánh (máy chữ, đàn)</div>
+                    <div class="vocab-item"><strong>貯金します</strong> (ちょきんします) : Tiết kiệm tiền</div>
+                    <div class="vocab-item"><strong>太ります</strong> (ふとります) : Béo lên</div>
+                    <div class="vocab-item"><strong>やせます</strong> : Gầy đi</div>
+                    <div class="vocab-item"><strong>硬い</strong> (かたい) : Cứng</div>
+                    <div class="vocab-item"><strong>軟らかい</strong> (やわらかい) : Mềm</div>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">1. Vる / Vない + ように しています</h2>
                 <div class="box-highlight">
-                    Vる / Vない ようにしています。
+                    Vる / Vない ように しています
+                </div>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> "Cố gắng làm (hoặc không làm) việc gì đó đều đặn". Diễn tả một nỗ lực, thói quen tốt mà người nói đang duy trì hàng ngày.</p>
                 </div>
                 <div class="grammar-example fragment">
-                    <p><strong>Cách dùng:</strong> Cố gắng (duy trì) làm một việc gì đó như một thói quen.</p>
+                    <p>毎日、運動する<strong>ようにしています</strong>。</p>
+                    <span class="trans">Mỗi ngày tôi ĐỀU CỐ GẮNG vận động.</span>
                 </div>
                 <div class="grammar-example fragment">
-                    <p>毎日運動するようにしています。</p>
-                    <span class="trans">Tôi đang cố gắng mỗi ngày đều vận động.</span>
+                    <p>甘い物を食べない<strong>ようにしています</strong>。</p>
+                    <span class="trans">Tôi ĐANG CỐ GẮNG không ăn đồ ngọt.</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">2. Vる / Vない + ように してください</h2>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> Lời yêu cầu, khuyên bảo nhẹ nhàng nhưng mang tính chất dài hạn. "Xin hãy cố gắng làm / không làm V (từ nay về sau)".</p>
                 </div>
                 <div class="grammar-example fragment">
-                    <p>甘い物を食べないようにしています。</p>
-                    <span class="trans">Tôi đang cố gắng không ăn đồ ngọt.</span>
+                    <p>もっと野菜を食べる<strong>ようにしてください</strong>。</p>
+                    <span class="trans">Xin hãy cố gắng ăn nhiều rau hơn. (Lời khuyên của bác sĩ).</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>絶対にパスポートをなくさない<strong>ようにしてください</strong>。</p>
+                    <span class="trans">Tuyệt đối hãy cố gắng đừng làm mất hộ chiếu nhé.</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">🗣 Hội thoại: Khuyên bảo</h2>
+                <div class="dialogue-box">
+                    <p class="dialogue-p1">医者：最近、疲れやすいですか。</p>
+                    <span class="trans">Bác sĩ: Dạo này anh dễ bị mệt à?</span>
+                    <br>
+                    <p class="dialogue-p2">患者：ええ、少し太りましたし…。</p>
+                    <span class="trans">Bệnh nhân: Vâng, với lại cũng béo lên chút...</span>
+                    <br>
+                    <p class="dialogue-p1">医者：じゃ、毎日少し運動する<strong>ようにしてください</strong>。</p>
+                    <span class="trans">Bác sĩ: Vậy thì mỗi ngày hãy CỐ GẮNG vận động một chút đi.</span>
+                    <br>
+                    <p class="dialogue-p2">患者：はい、明日から歩く<strong>ようにします</strong>。</p>
+                    <span class="trans">Bệnh nhân: Vâng, từ mai tôi sẽ CỐ GẮNG đi bộ.</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">3. V(Khả năng) ように なります</h2>
+                <div class="box-highlight">
+                    Động từ Thể Khả năng + ように なります
+                </div>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> Diễn tả SỰ THAY ĐỔI trạng thái. Từ chỗ "Không thể" trở thành "CÓ THỂ" làm được việc gì đó.</p>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>日本へ来てから、刺身が食べられる<strong>ようになりました</strong>。</p>
+                    <span class="trans">Từ sau khi đến Nhật, tôi ĐÃ CÓ THỂ ăn được sashimi. (Ngày xưa không ăn được).</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>毎日練習すれば、泳げる<strong>ようになりますよ</strong>。</p>
+                    <span class="trans">Nếu luyện tập mỗi ngày, bạn SẼ CÓ THỂ bơi được đấy.</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">4. Vなくなります (Không thể làm được nữa)</h2>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> Trái ngược với 出来るようになる, mẫu này diễn tả việc từ chỗ "Có thể" biến thành "KHÔNG THỂ" (hoặc từ hay làm thành không hay làm nữa).</p>
+                    <p style="color:var(--danger)">Cách chia: Vない → Bỏ ない + なります</p>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>年を取ると、小さい字が読め<strong>なくなります</strong>。</p>
+                    <span class="trans">Khi có tuổi, sẽ KHÔNG THỂ đọc được chữ nhỏ nữa.</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>最近、忙しくて、テレビを見<strong>なくなりました</strong>。</p>
+                    <span class="trans">Dạo này bận quá, tôi KHÔNG CÒN xem TV nữa.</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">📝 Bài tập Cuối bài (Tổng hợp)</h2>
+                <div class="quiz-box">
+                    <p class="quiz-title">Quiz Tổng hợp</p>
+                    <p class="quiz-q">1. Điền ようにしています hay ようにしてください:<br>
+                    A: 先生、薬はいつ飲みますか。<br>
+                    B: 食事のあとで飲む (_______________)。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        Đáp án: <strong>ようにしてください</strong>.<br>
+                        (Đây là lời dặn dò của bác sĩ dành cho bệnh nhân).
+                    </div>
+                </div>
+                
+                <div class="quiz-box fragment">
+                    <p class="quiz-q">2. Chia động từ trong ngoặc (Thể khả năng):<br>
+                    日本語が ( 話す ) ______________ ようになりました。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        Đáp án: 日本語が <strong>話せる</strong> ようになりました。<br>
+                        (Đã có thể nói được tiếng Nhật).
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">📚 Tổng kết Bài 36</h2>
+                <div class="grammar-example">
+                    <ul>
+                        <li style="margin-bottom:15px;"><strong>Vる/Vない ように しています:</strong> Đang cố gắng (duy trì) làm / không làm V.</li>
+                        <li style="margin-bottom:15px;"><strong>Vる/Vない ように してください:</strong> Yêu cầu ai đó cố gắng làm / không làm V.</li>
+                        <li style="margin-bottom:15px;"><strong>V(Khả năng) ように なります:</strong> Trở nên có thể làm được.</li>
+                        <li style="margin-bottom:15px;"><strong>V-なくなります:</strong> Không thể / Không còn làm V nữa.</li>
+                    </ul>
+                </div>
+                <div class="box-highlight fragment" style="text-align:center;">
+                    🏆 CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI 36! 🏆<br>
+                    <span style="font-size:0.7em; font-weight:normal;">Nhớ phân biệt ようにします (cố gắng) và ようになります (trở nên có thể) nhé!</span>
                 </div>
             </section>
         </div>
@@ -182,13 +285,17 @@
         Reveal.initialize({
             hash: true,
             slideNumber: true,
-            transition: 'slide'
+            transition: 'fade',
+            backgroundTransition: 'fade',
+            width: 1080,
+            height: 720,
+            margin: 0.1
         });
 
-        const furiganaDict = {"早く": "<ruby>早<rt>はや</rt></ruby>く", "泳げる": "<ruby>泳<rt>およ</rt></ruby>げる", "毎日": "<ruby>毎日<rt>まいにち</rt></ruby>", "練習": "<ruby>練習<rt>れんしゅう</rt></ruby>", "忘れない": "<ruby>忘<rt>わす</rt></ruby>れない", "日本": "<ruby>日本<rt>にほん</rt></ruby>", "来て": "<ruby>来<rt>き</rt></ruby>て", "刺身": "<ruby>刺身<rt>さしみ</rt></ruby>", "食べる": "<ruby>食<rt>た</rt></ruby>べる", "運動する": "<ruby>運動<rt>うんどう</rt></ruby>する", "甘い": "<ruby>甘<rt>あま</rt></ruby>い", "物": "<ruby>物<rt>もの</rt></ruby>"};
-        const vocabDict = {"泳ぎます": "Bơi", "練習": "Luyện tập", "忘れます": "Quên", "刺身": "Cá sống, sashimi", "甘い": "Ngọt", "運動します": "Vận động"};
+        const furiganaDict = {"急ぎます": "<ruby>急<rt>いそ</rt></ruby>ぎます", "急げば": "<ruby>急<rt>いそ</rt></ruby>げば", "安い": "<ruby>安<rt>やす</rt></ruby>い", "安ければ": "<ruby>安<rt>やす</rt></ruby>ければ", "明日": "<ruby>明日<rt>あした</rt></ruby>", "雨": "<ruby>雨<rt>あめ</rt></ruby>", "試合": "<ruby>試合<rt>しあい</rt></ruby>", "届きます": "<ruby>届<rt>とど</rt></ruby>きます", "出ます": "<ruby>出<rt>で</rt></ruby>ます", "打ちます": "<ruby>打<rt>う</rt></ruby>ちます", "貯金": "<ruby>貯金<rt>ちょきん</rt></ruby>", "太ります": "<ruby>太<rt>ふと</rt></ruby>ります", "硬い": "<ruby>硬<rt>かた</rt></ruby>い", "軟らかい": "<ruby>軟<rt>やわ</rt></ruby>らかい", "毎日": "<ruby>毎日<rt>まいにち</rt></ruby>", "運動": "<ruby>運動<rt>うんどう</rt></ruby>", "甘い": "<ruby>甘<rt>あま</rt></ruby>い", "物": "<ruby>物<rt>もの</rt></ruby>", "食べない": "<ruby>食<rt>た</rt></ruby>べない", "野菜": "<ruby>野菜<rt>やさい</rt></ruby>", "食べる": "<ruby>食<rt>た</rt></ruby>べる", "絶対": "<ruby>絶対<rt>ぜったい</rt></ruby>", "医者": "<ruby>医者<rt>いしゃ</rt></ruby>", "最近": "<ruby>最近<rt>さいきん</rt></ruby>", "疲れ": "<ruby>疲<rt>つか</rt></ruby>れ", "患者": "<ruby>患者<rt>かんじゃ</rt></ruby>", "太り": "<ruby>太<rt>ふと</rt></ruby>り", "歩く": "<ruby>歩<rt>ある</rt></ruby>く", "日本": "<ruby>日本<rt>にほん</rt></ruby>", "来て": "<ruby>来<rt>き</rt></ruby>て", "刺身": "<ruby>刺身<rt>さしみ</rt></ruby>", "食べられる": "<ruby>食<rt>た</rt></ruby>べられる", "練習": "<ruby>練習<rt>れんしゅう</rt></ruby>", "泳げる": "<ruby>泳<rt>およ</rt></ruby>げる", "年": "<ruby>年<rt>とし</rt></ruby>", "取ると": "<ruby>取<rt>と</rt></ruby>ると", "小さい": "<ruby>小<rt>ちい</rt></ruby>さい", "字": "<ruby>字<rt>じ</rt></ruby>", "読め": "<ruby>読<rt>よ</rt></ruby>め", "忙しくて": "<ruby>忙<rt>いそが</rt></ruby>しくて", "見": "<ruby>見<rt>み</rt></ruby>", "先生": "<ruby>先生<rt>せんせい</rt></ruby>", "薬": "<ruby>薬<rt>くすり</rt></ruby>", "飲みます": "<ruby>飲<rt>の</rt></ruby>みます", "食事": "<ruby>食事<rt>しょくじ</rt></ruby>", "飲む": "<ruby>飲<rt>の</rt></ruby>む", "日本語": "<ruby>日本語<rt>にほんご</rt></ruby>", "話す": "<ruby>話<rt>はな</rt></ruby>す", "話せる": "<ruby>話<rt>はな</rt></ruby>せる"};
 
-        document.querySelectorAll('p, .trans, .box-highlight, .answer-content, h1, h3').forEach(el => {
+        // Add furigana dynamically
+        document.querySelectorAll('p, .trans, .box-highlight, .answer-content, h1, h2, h3, li, strong, .vocab-item').forEach(el => {
             let html = el.innerHTML;
             for (let kanji in furiganaDict) {
                 let re = new RegExp(kanji, "g");
@@ -201,76 +308,13 @@
             let content = btn.nextElementSibling;
             if (content.style.display === "block") {
                 content.style.display = "none";
-                btn.innerText = "Xem đáp án";
+                btn.innerText = "Kiểm tra đáp án";
+                btn.style.background = "var(--danger)";
             } else {
                 content.style.display = "block";
                 btn.innerText = "Ẩn đáp án";
+                btn.style.background = "var(--success)";
             }
-        }
-
-        const vocabBox = document.getElementById('vocabBox');
-        const vocabList = document.getElementById('vocabList');
-        
-        Reveal.on('slidechanged', event => {
-            updateVocab(event.currentSlide);
-        });
-        Reveal.on('ready', event => {
-            updateVocab(event.currentSlide);
-        });
-
-        function updateVocab(slide) {
-            let text = slide.innerText;
-            let found = false;
-            vocabList.innerHTML = '';
-            
-            for (let word in vocabDict) {
-                if (text.includes(word)) {
-                    found = true;
-                    let li = document.createElement('li');
-                    li.innerHTML = `<span class="v-jp">${word}</span> <span class="v-vi">${vocabDict[word]}</span>`;
-                    vocabList.appendChild(li);
-                }
-            }
-            
-            vocabBox.style.display = found ? 'block' : 'none';
-        }
-
-        let isDragging = false;
-        let currentX;
-        let currentY;
-        let initialX;
-        let initialY;
-        let xOffset = 0;
-        let yOffset = 0;
-
-        vocabBox.addEventListener("mousedown", dragStart);
-        document.addEventListener("mouseup", dragEnd);
-        document.addEventListener("mousemove", drag);
-
-        function dragStart(e) {
-            initialX = e.clientX - xOffset;
-            initialY = e.clientY - yOffset;
-            if (e.target === vocabBox || vocabBox.contains(e.target)) {
-                isDragging = true;
-            }
-        }
-        function dragEnd(e) {
-            initialX = currentX;
-            initialY = currentY;
-            isDragging = false;
-        }
-        function drag(e) {
-            if (isDragging) {
-                e.preventDefault();
-                currentX = e.clientX - initialX;
-                currentY = e.clientY - initialY;
-                xOffset = currentX;
-                yOffset = currentY;
-                setTranslate(currentX, currentY, vocabBox);
-            }
-        }
-        function setTranslate(xPos, yPos, el) {
-            el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
         }
     </script>
 </body>

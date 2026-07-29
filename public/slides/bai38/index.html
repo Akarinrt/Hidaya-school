@@ -19,8 +19,13 @@
             --bg: #F7F5F2;
         }
         body { background: var(--bg); font-family: 'Noto Sans JP', sans-serif; }
-        .title-slide h1 { color: var(--primary); font-weight: 800; font-size: 2.5em; }
+        .title-slide h1 { color: var(--primary); font-weight: 800; font-size: 2.5em; text-transform: uppercase; }
         .title-slide h3 { color: #555; font-size: 1.2em; }
+        
+        .section-title {
+            color: var(--primary); font-weight: bold; font-size: 1.8em; margin-bottom: 20px;
+            border-bottom: 3px solid var(--primary); display: inline-block; padding-bottom: 5px;
+        }
         
         .box-highlight {
             background: var(--surface);
@@ -45,135 +50,231 @@
             font-size: 1.1em;
         }
         
-        .grammar-example p { margin: 10px 0; }
-        .grammar-example .trans { color: #666; font-size: 0.9em; font-style: italic; display: block; margin-top: 5px; }
+        .grammar-example p { margin: 10px 0; font-size: 1.2em; }
+        .grammar-example .trans { color: #666; font-size: 0.85em; font-style: italic; display: block; margin-top: 5px; }
         
         .quiz-box {
             background: #FAFAFA;
-            border: 2px dashed var(--primary);
+            border: 2px dashed var(--danger);
             padding: 25px;
             border-radius: 12px;
             text-align: left;
+            margin-bottom: 20px;
         }
-        .quiz-title { font-weight: bold; color: var(--primary); margin-bottom: 15px; font-size: 1.2em; }
+        .quiz-title { font-weight: bold; color: var(--danger); margin-bottom: 15px; font-size: 1.3em; }
+        .quiz-q { font-size: 1.1em; margin-bottom: 15px; font-weight: bold; }
         
         .answer-btn {
-            background: var(--primary);
+            background: var(--danger);
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 10px 20px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.8em;
+            font-size: 0.9em;
             margin-top: 10px;
             transition: 0.2s;
+            font-weight: bold;
         }
-        .answer-btn:hover { background: #3a5bde; }
+        .answer-btn:hover { opacity: 0.8; transform: scale(1.05); }
         .answer-content {
             display: none;
             color: var(--success);
             font-weight: bold;
-            margin-top: 10px;
-            padding: 10px;
+            margin-top: 15px;
+            padding: 15px;
             background: #eef9f2;
             border-radius: 8px;
+            font-size: 1.1em;
+            border-left: 4px solid var(--success);
         }
+        
+        .vocab-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: left;
+        }
+        .vocab-item {
+            background: white; padding: 10px 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 1.1em;
+        }
+        .vocab-item strong { color: var(--primary); }
         
         ruby { font-size: 1em; }
-        rt { font-size: 0.5em; color: var(--primary); }
+        rt { font-size: 0.5em; color: var(--primary); font-weight: bold; }
         
-        /* Floating Vocab Box */
-        #vocabBox {
-            position: fixed;
-            top: 20px; right: 20px;
-            width: 250px;
-            background: rgba(255, 255, 255, 0.95);
-            border-left: 4px solid var(--primary);
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            padding: 15px;
-            z-index: 1000;
-            font-size: 0.4em;
+        .dialogue-box {
+            background: #fdfdfd;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin-bottom: 20px;
             text-align: left;
-            cursor: grab;
-            display: none;
-            backdrop-filter: blur(10px);
-            max-height: 80vh;
-            overflow-y: auto;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        #vocabBox h4 { margin: 0 0 10px 0; color: var(--primary); font-size: 1.2em; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        #vocabList { list-style: none; padding: 0; margin: 0; }
-        #vocabList li { margin-bottom: 8px; border-bottom: 1px dashed #ddd; padding-bottom: 5px; display: flex; justify-content: space-between; }
-        #vocabList li:last-child { border-bottom: none; }
-        .v-jp { font-weight: bold; color: #333; }
-        .v-vi { color: #666; font-size: 0.9em; }
+        .dialogue-p1 { color: #1976d2; font-weight: bold; margin-bottom: 5px !important; }
+        .dialogue-p2 { color: #e64a19; font-weight: bold; margin-bottom: 5px !important; }
     </style>
 </head>
 <body>
 
-    <div id="vocabBox">
-        <h4>📚 Từ vựng Slide này</h4>
-        <ul id="vocabList"></ul>
-    </div>
-
     <div class="reveal">
         <div class="slides">
             <section class="title-slide">
-                <h1>Ngữ Pháp Bài 38</h1>
-                <h3>Minna No Nihongo II - Danh Từ Hóa với "の"</h3>
+                <h1>BÀI 38 - MINNA NO NIHONGO II</h1>
+                <h3>Ngữ pháp: Danh từ hóa Động từ (Vる + の)</h3>
+                <p>⏳ Thời lượng dự kiến: 120 Phút</p>
             </section>
             <section>
-                <h2>1. Danh Từ Hóa Động Từ (Vるのは / Vるのが)</h2>
-                <div class="box-highlight">
-                    Vる の は Adj です。<br>
-                    Vる の が Adj です。
+                <h2 class="section-title">🎯 Khởi động & Kiểm tra bài cũ</h2>
+                <div class="quiz-box">
+                    <p class="quiz-title">Mini Test (Bài 37)</p>
+                    <p class="quiz-q">1. Chuyển sang thể Bị Động:<br>
+                    ① 母が私をしかりました。➔ 私は母 (____) _________________。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        私は母 <strong>に</strong> <strong>しかられました</strong>。<br>
+                    </div>
                 </div>
-                <div class="grammar-example fragment">
-                    <p><strong>Ý nghĩa:</strong> Biến một cụm Động từ thành Danh từ để làm Chủ ngữ trong câu. Dùng "の" thay thế cho "こと".</p>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>音楽を聞くのは楽しいです。</p>
-                    <span class="trans">Việc nghe nhạc thì vui.</span>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>私は絵を描くのが好きです。</p>
-                    <span class="trans">Tôi thích việc vẽ tranh.</span>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>星を見るのが好きです。</p>
-                    <span class="trans">Tôi thích ngắm sao.</span>
-                </div>
-            </section>
-            <section>
-                <h2>2. Vる のを 忘れました (Quên làm việc gì)</h2>
-                <div class="box-highlight">
-                    Vる のを 忘れました。
-                </div>
-                <div class="grammar-example fragment">
-                    <p><strong>Cách dùng:</strong> Diễn tả việc lỡ quên thực hiện một hành động nào đó.</p>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>薬を飲むのを忘れました。</p>
-                    <span class="trans">Tôi đã quên uống thuốc mất rồi.</span>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>窓を閉めるのを忘れました。</p>
-                    <span class="trans">Tôi quên đóng cửa sổ rồi.</span>
+                <div class="quiz-box fragment">
+                    <p class="quiz-q">2. Chọn trợ từ đúng:<br>
+                    この本は 山田さん ( A. に / B. によって ) 書かれました。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        Đáp án: <strong>B. によって</strong><br>
+                        (Vì Yamada là tác giả của tác phẩm "Quyển sách").
+                    </div>
                 </div>
             </section>
             <section>
-                <h2>3. Thể Thông Thường + のを 知っていますか</h2>
+                <h2 class="section-title">📚 Từ vựng Trọng tâm (Bài 38)</h2>
+                <div class="vocab-grid">
+                    <div class="vocab-item"><strong>参加します</strong> (さんかします) : Tham gia</div>
+                    <div class="vocab-item"><strong>育てます</strong> (そだてます) : Nuôi dưỡng</div>
+                    <div class="vocab-item"><strong>運びます</strong> (はこびます) : Vận chuyển</div>
+                    <div class="vocab-item"><strong>入院します</strong> (にゅういんします) : Nhập viện</div>
+                    <div class="vocab-item"><strong>退院します</strong> (たいいんします) : Xuất viện</div>
+                    <div class="vocab-item"><strong>整理します</strong> (せいりします) : Sắp xếp</div>
+                    <div class="vocab-item"><strong>うそ</strong> : Lời nói dối</div>
+                    <div class="vocab-item"><strong>気分がいい</strong> (きぶんがいい) : Tâm trạng tốt</div>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">1. Vる ＋ のは ＋ Tính từ</h2>
                 <div class="box-highlight">
-                    Thể thông thường + のを知っていますか。
+                    Vる ＋ の は ＋ Tính từ
+                </div>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> Bằng cách thêm <strong>の</strong> sau Vる, ta biến Cụm động từ đó thành Chủ ngữ (Danh từ). Phía sau thường đi với các tính từ như: 楽しい, 難しい, 面白い, 危険だ...</p>
                 </div>
                 <div class="grammar-example fragment">
-                    <p><strong>Cách dùng:</strong> Hỏi xem đối phương có biết thông tin/sự việc gì đó không.</p>
+                    <p>音楽を聞く<strong>のは</strong>楽しいです。</p>
+                    <span class="trans">VIỆC nghe nhạc <strong>THÌ</strong> rất vui. (Biến "nghe nhạc" thành danh từ làm chủ ngữ).</span>
                 </div>
                 <div class="grammar-example fragment">
-                    <p>鈴木さんが結婚したのを知っていますか。</p>
-                    <span class="trans">Bạn có biết chuyện anh Suzuki đã kết hôn không?</span>
-                    <p>いいえ、知りませんでした。</p>
-                    <span class="trans">Không, tôi không biết.</span>
+                    <p>日本語を勉強する<strong>のは</strong>難しいです。</p>
+                    <span class="trans">VIỆC học tiếng Nhật <strong>THÌ</strong> rất khó.</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">2. Vる ＋ のが ＋ Tính từ</h2>
+                <div class="box-highlight">
+                    Vる ＋ の が ＋ Tính từ (Chỉ Sở thích / Khả năng)
+                </div>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> Dùng để nói về Sở thích (好き, 嫌い) hoặc Khả năng (上手, 下手, 早い, 遅い) đối với một hành động nào đó.</p>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>私は絵を描く<strong>のが</strong>好きです。</p>
+                    <span class="trans">Tôi thích VIỆC vẽ tranh.</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>田中さんは走る<strong>のが</strong>速いです。</p>
+                    <span class="trans">Anh Tanaka THÌ VIỆC chạy rất nhanh. (Anh ấy chạy nhanh).</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">🗣 Hội thoại: Sở thích</h2>
+                <div class="dialogue-box">
+                    <p class="dialogue-p1">A：木村さんはスポーツを見る<strong>のが</strong>好きですか。</p>
+                    <span class="trans">A: Anh Kimura có thích XEM thể thao không?</span>
+                    <br>
+                    <p class="dialogue-p2">B：いいえ。見る<strong>のは</strong>好きじゃありませんが、する<strong>のは</strong>好きです。</p>
+                    <span class="trans">B: Không. Việc XEM thì tôi không thích, nhưng việc CHƠI thì tôi thích.</span>
+                    <br>
+                    <p class="dialogue-p1">A：そうですか。どんなスポーツをする<strong>のが</strong>上手ですか。</p>
+                    <span class="trans">A: Ra vậy. Anh CHƠI giỏi môn thể thao nào?</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">3. Vる ＋ のを 忘れました (Quên mất việc...)</h2>
+                <div class="box-highlight">
+                    Vる ＋ の を 忘れました
+                </div>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> Dùng để diễn tả việc bản thân ĐÃ QUÊN MẤT không làm một hành động nào đó đáng lẽ phải làm.</p>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>薬を飲む<strong>のを</strong>忘れました。</p>
+                    <span class="trans">Tôi đã quên mất VIỆC uống thuốc.</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>車の窓を閉める<strong>のを</strong>忘れました。</p>
+                    <span class="trans">Tôi đã quên VIỆC đóng cửa sổ xe ô tô.</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">4. ～ のを 知っていますか (Có biết việc... không?)</h2>
+                <div class="box-highlight">
+                    Câu (Thể thông thường) ＋ の を 知っていますか
+                </div>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> Hỏi xem đối phương CÓ BIẾT về một thông tin / sự việc nào đó hay không.</p>
+                    <p style="color:var(--danger)">*Chú ý: Danh từ / Tính từ な ➔ Bỏ だ ＋ な</p>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>田中さんが結婚した<strong>のを</strong>知っていますか。</p>
+                    <span class="trans">Bạn CÓ BIẾT (VIỆC) anh Tanaka đã kết hôn không?</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>A：いいえ、知りませんでした。</p>
+                    <span class="trans">A: Không, tôi ĐÃ không biết. (Lưu ý trả lời bằng 知りませんでした, không dùng 知っていません).</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">📝 Bài tập Cuối bài (Tổng hợp)</h2>
+                <div class="quiz-box">
+                    <p class="quiz-title">Quiz Tổng hợp</p>
+                    <p class="quiz-q">1. Điền は / が / を vào chỗ trống:<br>
+                    私は 漢字を覚える (____) 下手です。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        Đáp án: <strong>のが</strong>.<br>
+                        (Vì "下手" chỉ khả năng kém, nên dùng のが).
+                    </div>
+                </div>
+                
+                <div class="quiz-box fragment">
+                    <p class="quiz-q">2. Sắp xếp câu:<br>
+                    [ 忘れました / のを / 買う / 牛乳を ]</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        <strong>牛乳を買うのを忘れました。</strong><br>
+                        (Tôi đã quên việc mua sữa).
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">📚 Tổng kết Bài 38</h2>
+                <div class="grammar-example">
+                    <ul>
+                        <li style="margin-bottom:15px;"><strong>Vるのは ＋ Tính từ:</strong> Việc V thì... (Nhấn mạnh chủ ngữ).</li>
+                        <li style="margin-bottom:15px;"><strong>Vるのが ＋ 好き/嫌い/上手/下手:</strong> Thích/Ghét/Giỏi/Kém việc làm V.</li>
+                        <li style="margin-bottom:15px;"><strong>Vるのを 忘れました:</strong> Quên mất việc làm V.</li>
+                        <li style="margin-bottom:15px;"><strong>～のを 知っていますか:</strong> Có biết việc... không? (Trả lời KHÔNG: いいえ、知りませんでした).</li>
+                    </ul>
+                </div>
+                <div class="box-highlight fragment" style="text-align:center;">
+                    🏆 CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI 38! 🏆<br>
+                    <span style="font-size:0.7em; font-weight:normal;">Từ giờ bạn đã có thể biến Động từ thành Danh từ bằng chữ "の" rồi đấy!</span>
                 </div>
             </section>
         </div>
@@ -184,13 +285,17 @@
         Reveal.initialize({
             hash: true,
             slideNumber: true,
-            transition: 'slide'
+            transition: 'fade',
+            backgroundTransition: 'fade',
+            width: 1080,
+            height: 720,
+            margin: 0.1
         });
 
-        const furiganaDict = {"音楽": "<ruby>音楽<rt>おんがく</rt></ruby>", "聞く": "<ruby>聞<rt>き</rt></ruby>く", "楽しい": "<ruby>楽<rt>たの</rt></ruby>しい", "絵": "<ruby>絵<rt>え</rt></ruby>", "描く": "<ruby>描<rt>か</rt></ruby>く", "好き": "<ruby>好<rt>す</rt></ruby>き", "星": "<ruby>星<rt>ほし</rt></ruby>", "見る": "<ruby>見<rt>み</rt></ruby>る", "薬": "<ruby>薬<rt>くすり</rt></ruby>", "飲む": "<ruby>飲<rt>の</rt></ruby>む", "忘れました": "<ruby>忘<rt>わす</rt></ruby>れました", "窓": "<ruby>窓<rt>まど</rt></ruby>", "閉める": "<ruby>閉<rt>し</rt></ruby>める", "結婚した": "<ruby>結婚<rt>けっこん</rt></ruby>した", "知って": "<ruby>知<rt>し</rt></ruby>って"};
-        const vocabDict = {"音楽": "Âm nhạc", "楽しい": "Vui vẻ", "描きます": "Vẽ", "星": "Ngôi sao", "忘れます": "Quên", "知っています": "Biết (trạng thái)"};
+        const furiganaDict = {"母": "<ruby>母<rt>はは</rt></ruby>", "私": "<ruby>私<rt>わたし</rt></ruby>", "本": "<ruby>本<rt>ほん</rt></ruby>", "書かれました": "<ruby>書<rt>か</rt></ruby>かれました", "参加": "<ruby>参加<rt>さんか</rt></ruby>", "育てます": "<ruby>育<rt>そだ</rt></ruby>てます", "運びます": "<ruby>運<rt>はこ</rt></ruby>びます", "入院": "<ruby>入院<rt>にゅういん</rt></ruby>", "退院": "<ruby>退院<rt>たいいん</rt></ruby>", "整理": "<ruby>整理<rt>せいり</rt></ruby>", "気分": "<ruby>気分<rt>きぶん</rt></ruby>", "音楽": "<ruby>音楽<rt>おんがく</rt></ruby>", "聞く": "<ruby>聞<rt>き</rt></ruby>く", "楽しい": "<ruby>楽<rt>たの</rt></ruby>しい", "日本語": "<ruby>日本語<rt>にほんご</rt></ruby>", "勉強": "<ruby>勉強<rt>べんきょう</rt></ruby>", "難しい": "<ruby>難<rt>むずか</rt></ruby>しい", "絵": "<ruby>絵<rt>え</rt></ruby>", "描く": "<ruby>描<rt>か</rt></ruby>く", "好き": "<ruby>好<rt>す</rt></ruby>き", "走る": "<ruby>走<rt>はし</rt></ruby>る", "速い": "<ruby>速<rt>はや</rt></ruby>い", "見る": "<ruby>見<rt>み</rt></ruby>る", "上手": "<ruby>上手<rt>じょうず</rt></ruby>", "薬": "<ruby>薬<rt>くすり</rt></ruby>", "飲む": "<ruby>飲<rt>の</rt></ruby>む", "忘れました": "<ruby>忘<rt>わす</rt></ruby>れました", "車": "<ruby>車<rt>くるま</rt></ruby>", "窓": "<ruby>窓<rt>まど</rt></ruby>", "閉める": "<ruby>閉<rt>し</rt></ruby>める", "結婚": "<ruby>結婚<rt>けっこん</rt></ruby>", "知って": "<ruby>知<rt>し</rt></ruby>って", "知りませんでした": "<ruby>知<rt>し</rt></ruby>りませんでした", "漢字": "<ruby>漢字<rt>かんじ</rt></ruby>", "覚える": "<ruby>覚<rt>おぼ</rt></ruby>える", "下手": "<ruby>下手<rt>へた</rt></ruby>", "買う": "<ruby>買<rt>か</rt></ruby>う", "牛乳": "<ruby>牛乳<rt>ぎゅうにゅう</rt></ruby>"};
 
-        document.querySelectorAll('p, .trans, .box-highlight, .answer-content, h1, h3').forEach(el => {
+        // Add furigana dynamically
+        document.querySelectorAll('p, .trans, .box-highlight, .answer-content, h1, h2, h3, li, strong, .vocab-item').forEach(el => {
             let html = el.innerHTML;
             for (let kanji in furiganaDict) {
                 let re = new RegExp(kanji, "g");
@@ -203,76 +308,13 @@
             let content = btn.nextElementSibling;
             if (content.style.display === "block") {
                 content.style.display = "none";
-                btn.innerText = "Xem đáp án";
+                btn.innerText = "Kiểm tra đáp án";
+                btn.style.background = "var(--danger)";
             } else {
                 content.style.display = "block";
                 btn.innerText = "Ẩn đáp án";
+                btn.style.background = "var(--success)";
             }
-        }
-
-        const vocabBox = document.getElementById('vocabBox');
-        const vocabList = document.getElementById('vocabList');
-        
-        Reveal.on('slidechanged', event => {
-            updateVocab(event.currentSlide);
-        });
-        Reveal.on('ready', event => {
-            updateVocab(event.currentSlide);
-        });
-
-        function updateVocab(slide) {
-            let text = slide.innerText;
-            let found = false;
-            vocabList.innerHTML = '';
-            
-            for (let word in vocabDict) {
-                if (text.includes(word)) {
-                    found = true;
-                    let li = document.createElement('li');
-                    li.innerHTML = `<span class="v-jp">${word}</span> <span class="v-vi">${vocabDict[word]}</span>`;
-                    vocabList.appendChild(li);
-                }
-            }
-            
-            vocabBox.style.display = found ? 'block' : 'none';
-        }
-
-        let isDragging = false;
-        let currentX;
-        let currentY;
-        let initialX;
-        let initialY;
-        let xOffset = 0;
-        let yOffset = 0;
-
-        vocabBox.addEventListener("mousedown", dragStart);
-        document.addEventListener("mouseup", dragEnd);
-        document.addEventListener("mousemove", drag);
-
-        function dragStart(e) {
-            initialX = e.clientX - xOffset;
-            initialY = e.clientY - yOffset;
-            if (e.target === vocabBox || vocabBox.contains(e.target)) {
-                isDragging = true;
-            }
-        }
-        function dragEnd(e) {
-            initialX = currentX;
-            initialY = currentY;
-            isDragging = false;
-        }
-        function drag(e) {
-            if (isDragging) {
-                e.preventDefault();
-                currentX = e.clientX - initialX;
-                currentY = e.clientY - initialY;
-                xOffset = currentX;
-                yOffset = currentY;
-                setTranslate(currentX, currentY, vocabBox);
-            }
-        }
-        function setTranslate(xPos, yPos, el) {
-            el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
         }
     </script>
 </body>
