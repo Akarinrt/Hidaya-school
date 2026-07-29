@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ngữ Pháp Bài 30</title>
+    <title>Ngữ Pháp Bài 30 (Chi tiết)</title>
     
     <!-- Reveal.js & Theme -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
@@ -45,8 +45,8 @@
             font-size: 1.1em;
         }
         
-        .grammar-example p { margin: 10px 0; }
-        .grammar-example .trans { color: #666; font-size: 0.9em; font-style: italic; display: block; margin-top: 5px; }
+        .grammar-example p { margin: 10px 0; font-size: 1.2em; }
+        .grammar-example .trans { color: #666; font-size: 0.85em; font-style: italic; display: block; margin-top: 5px; }
         
         .quiz-box {
             background: #FAFAFA;
@@ -54,33 +54,38 @@
             padding: 25px;
             border-radius: 12px;
             text-align: left;
+            margin-bottom: 20px;
         }
         .quiz-title { font-weight: bold; color: var(--primary); margin-bottom: 15px; font-size: 1.2em; }
+        .quiz-q { font-size: 1.1em; margin-bottom: 15px; }
         
         .answer-btn {
             background: var(--primary);
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 10px 20px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.8em;
+            font-size: 0.9em;
             margin-top: 10px;
             transition: 0.2s;
+            font-weight: bold;
         }
         .answer-btn:hover { background: #3a5bde; }
         .answer-content {
             display: none;
             color: var(--success);
             font-weight: bold;
-            margin-top: 10px;
-            padding: 10px;
+            margin-top: 15px;
+            padding: 15px;
             background: #eef9f2;
             border-radius: 8px;
+            font-size: 1.1em;
+            border-left: 4px solid var(--success);
         }
         
         ruby { font-size: 1em; }
-        rt { font-size: 0.5em; color: var(--primary); }
+        rt { font-size: 0.5em; color: var(--primary); font-weight: bold; }
         
         /* Floating Vocab Box */
         #vocabBox {
@@ -107,6 +112,18 @@
         #vocabList li:last-child { border-bottom: none; }
         .v-jp { font-weight: bold; color: #333; }
         .v-vi { color: #666; font-size: 0.9em; }
+        
+        .dialogue-box {
+            background: #fdfdfd;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .dialogue-p1 { color: #1976d2; font-weight: bold; margin-bottom: 5px !important; }
+        .dialogue-p2 { color: #e64a19; font-weight: bold; margin-bottom: 5px !important; }
     </style>
 </head>
 <body>
@@ -120,75 +137,94 @@
         <div class="slides">
             <section class="title-slide">
                 <h1>Ngữ Pháp Bài 30</h1>
-                <h3>Minna No Nihongo II - Vてあります & Vておきます</h3>
+                <h3>Minna No Nihongo II - Vて あります & Vて おきます</h3>
+                <p>💡 Phiên bản nâng cấp - Tương tác siêu cấp!</p>
             </section>
             <section>
-                <h2>1. Vて あります</h2>
+                <h2>1. Vて あります (Trạng thái có mục đích)</h2>
                 <div class="box-highlight">
-                    N が V(tha động từ) て あります。
+                    N が Tha động từ + て あります
                 </div>
                 <div class="grammar-example fragment">
-                    <p><strong>Khái niệm:</strong> Diễn tả một trạng thái là kết quả của một hành động có chủ ý của ai đó (thường để chuẩn bị cho việc gì).</p>
-                    <p><em>*Chú ý: Luôn dùng với Tha động từ.</em></p>
+                    <p><strong>Cách dùng:</strong> Diễn tả trạng thái của sự vật là KẾT QUẢ của một hành động CÓ CHỦ ĐÍCH do ai đó đã làm.</p>
                 </div>
                 <div class="grammar-example fragment">
                     <p>机の上に本が置いてあります。</p>
-                    <span class="trans">Trên bàn có đặt quyển sách. (Ai đó đã cố tình đặt nó ở đó)</span>
+                    <span class="trans">Trên bàn CÓ ĐẶT (sẵn) quyển sách.</span>
                 </div>
                 <div class="grammar-example fragment">
-                    <p>カレンダーに予定が書いてあります。</p>
-                    <span class="trans">Trên lịch có ghi sẵn lịch trình.</span>
+                    <p>壁にカレンダーが掛けてあります。</p>
+                    <span class="trans">Trên tường CÓ TREO (sẵn) tờ lịch.</span>
                 </div>
             </section>
             <section>
-                <h2>2. So sánh Vて います & Vて あります</h2>
+                <h2>Phân biệt: Vています vs Vてあります</h2>
                 <div class="grammar-example fragment">
-                    <p><strong>Vて います (Tự động từ):</strong> Nhấn mạnh VÀO TRẠNG THÁI HIỆN TẠI, không quan tâm ai làm.</p>
-                    <p>窓が閉まっています。</p>
-                    <span class="trans">Cửa sổ đang đóng. (Nhìn thấy nó đóng thì nói, có thể gió thổi đóng)</span>
+                    <p><strong>Vています (Tự động từ):</strong> Chỉ nói về trạng thái khách quan trước mắt.</p>
+                    <p>窓が開いています。 (Cửa sổ đang mở - Không rõ ai mở, chỉ thấy nó đang mở).</p>
                 </div>
                 <div class="grammar-example fragment">
-                    <p><strong>Vて あります (Tha động từ):</strong> Nhấn mạnh VÀO MỤC ĐÍCH/KẾT QUẢ HÀNH ĐỘNG CÓ CHỦ Ý.</p>
-                    <p>窓が閉めてあります。</p>
-                    <span class="trans">Cửa sổ (đã được ai đó cố tình) đóng lại. (Ví dụ: để bật điều hòa)</span>
+                    <p><strong>Vてあります (Tha động từ):</strong> Có yếu tố con người tác động vào.</p>
+                    <p>窓が開けてあります。 (Cửa sổ được mở sẵn - Do ai đó cố tình mở để cho mát mẻ, thoáng khí).</p>
                 </div>
             </section>
             <section>
-                <h2>3. Vて おきます</h2>
-                <div class="box-highlight">
-                    Vて おきます。
-                </div>
-                <div class="grammar-example fragment">
-                    <p><strong>Nghĩa 1: Làm trước để chuẩn bị</strong></p>
-                    <p>旅行の前に、切符を買っておきます。</p>
-                    <span class="trans">Trước khi đi du lịch, tôi sẽ mua vé sẵn.</span>
-                </div>
-                <div class="grammar-example fragment">
-                    <p><strong>Nghĩa 2: Xử lý tạm thời sau một hành động khác</strong></p>
-                    <p>はさみを使ったら、元の所に戻しておいてください。</p>
-                    <span class="trans">Dùng kéo xong thì hãy để lại vị trí cũ nhé.</span>
-                </div>
-                <div class="grammar-example fragment">
-                    <p><strong>Nghĩa 3: Giữ nguyên trạng thái (Cứ để đó)</strong></p>
-                    <p>明日会議がありますから、いすはこのままにしておいてください。</p>
-                    <span class="trans">Ngày mai có cuộc họp nên ghế cứ để nguyên như vậy đi.</span>
+                <h2>🗣 Hội thoại ứng dụng (Kaiwa)</h2>
+                <div class="dialogue-box">
+                    <p class="dialogue-p1">A：パーティーの準備はもう終わりましたか。</p>
+                    <span class="trans">A: Chuẩn bị tiệc xong chưa?</span>
+                    <br>
+                    <p class="dialogue-p2">B：はい、飲み物はもう冷蔵庫に入れてあります。</p>
+                    <span class="trans">B: Vâng, đồ uống tôi đã (cho người) cất sẵn vào tủ lạnh rồi.</span>
+                    <br>
+                    <p class="dialogue-p1">A：そうですか。グラスも並べてありますね。</p>
+                    <span class="trans">A: Ra vậy. Cốc cũng được xếp sẵn rồi nhỉ.</span>
                 </div>
             </section>
             <section>
-                <h2>4. Luyện tập (Quiz)</h2>
-                <div class="quiz-box fragment">
-                    <div class="quiz-title">✍️ Chọn đúng Vて います hay Vて あります:</div>
-                    <div class="fragment" style="margin-bottom: 15px;">
-                        <p>1. 壁にカレンダーが ( 掛かっています / 掛けてあります )。</p>
-                        <p><em>Gợi ý: Lịch thì phải có ai đó cố tình treo lên.</em></p>
-                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
-                        <div class="answer-content">→ 掛けてあります (Vてあります)</div>
+                <h2>📝 Bài tập Trắc nghiệm (Quiz)</h2>
+                <div class="quiz-box">
+                    <p class="quiz-q">1. Chọn đáp án ĐÚNG điền vào chỗ trống:</p>
+                    <p>壁に絵が _________________。</p>
+                    <p>A. 掛かっています</p>
+                    <p>B. 掛けてあります</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        <strong>Cả 2 đều đúng!</strong><br>
+                        A: Bức tranh đang treo (Khách quan).<br>
+                        B: Bức tranh được treo sẵn (Có ai đó cố tình treo để trang trí).
                     </div>
-                    <div class="fragment" style="margin-bottom: 15px;">
-                        <p>2. Khách sắp đến nên tôi đã dọn dẹp phòng sẵn.</p>
-                        <p>お客さんが来ますから、部屋を掃除して ( _______ )。</p>
-                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
-                        <div class="answer-content">→ おきます (掃除しておきます)</div>
+                </div>
+            </section>
+            <section>
+                <h2>2. Vて おきます (Chuẩn bị trước)</h2>
+                <div class="box-highlight">
+                    Vて おきます
+                </div>
+                <div class="grammar-example fragment">
+                    <p><strong>Cách dùng 1:</strong> Chuẩn bị sẵn sàng trước một việc gì đó.</p>
+                    <p>旅行の前に、切符を買っておきます。</p>
+                    <span class="trans">Trước khi đi du lịch, tôi sẽ mua sẵn vé.</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p><strong>Cách dùng 2:</strong> Xử lý công việc sau khi hoàn thành.</p>
+                    <p>ハサミを使ったら、元の所に戻しておいてください。</p>
+                    <span class="trans">Sau khi dùng kéo xong, hãy để lại chỗ cũ.</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p><strong>Cách dùng 3:</strong> Giữ nguyên trạng thái (Cứ để đó).</p>
+                    <p>窓を開けておいてください。</p>
+                    <span class="trans">Hãy cứ để cửa sổ mở sẵn như thế.</span>
+                </div>
+            </section>
+            <section>
+                <h2>📝 Bài tập Trắc nghiệm (Quiz)</h2>
+                <div class="quiz-box">
+                    <p class="quiz-q">Dịch câu sau sang tiếng Nhật:</p>
+                    <p>Ngày mai tôi có bài kiểm tra nên tối nay tôi sẽ học bài sẵn.</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        明日はテストがありますから、今晩勉強しておきます。
                     </div>
                 </div>
             </section>
@@ -200,14 +236,15 @@
         Reveal.initialize({
             hash: true,
             slideNumber: true,
-            transition: 'slide'
+            transition: 'fade',
+            backgroundTransition: 'fade'
         });
 
-        const furiganaDict = {"机": "<ruby>机<rt>つくえ</rt></ruby>", "上": "<ruby>上<rt>うえ</rt></ruby>", "本": "<ruby>本<rt>ほん</rt></ruby>", "置いて": "<ruby>置<rt>お</rt></ruby>いて", "予定": "<ruby>予定<rt>よてい</rt></ruby>", "書いて": "<ruby>書<rt>か</rt></ruby>いて", "閉まって": "<ruby>閉<rt>し</rt></ruby>まって", "閉めて": "<ruby>閉<rt>し</rt></ruby>めて", "旅行": "<ruby>旅行<rt>りょこう</rt></ruby>", "前": "<ruby>前<rt>まえ</rt></ruby>", "切符": "<ruby>切符<rt>きっぷ</rt></ruby>", "買って": "<ruby>買<rt>か</rt></ruby>って", "使ったら": "<ruby>使<rt>つか</rt></ruby>ったら", "元": "<ruby>元<rt>もと</rt></ruby>", "所": "<ruby>所<rt>ところ</rt></ruby>", "戻して": "<ruby>戻<rt>もど</rt></ruby>して", "明日": "<ruby>明日<rt>あした</rt></ruby>", "会議": "<ruby>会議<rt>かいぎ</rt></ruby>", "壁": "<ruby>壁<rt>かべ</rt></ruby>", "掛かって": "<ruby>掛<rt>か</rt></ruby>かって", "掛けて": "<ruby>掛<rt>か</rt></ruby>けて", "客": "<ruby>客<rt>きゃく</rt></ruby>", "来ます": "<ruby>来<rt>き</rt></ruby>ます", "部屋": "<ruby>部屋<rt>へや</rt></ruby>", "掃除": "<ruby>掃除<rt>そうじ</rt></ruby>"};
-        const vocabDict = {"置きます": "Đặt, để", "予定": "Dự định, kế hoạch", "閉まります": "Đóng (Tự động từ)", "閉めます": "Đóng (Tha động từ)", "切符": "Vé", "戻します": "Để lại, trả lại", "会議": "Cuộc họp", "壁": "Bức tường", "掃除": "Dọn dẹp"};
+        const furiganaDict = {"机": "<ruby>机<rt>つくえ</rt></ruby>", "上": "<ruby>上<rt>うえ</rt></ruby>", "本": "<ruby>本<rt>ほん</rt></ruby>", "置いて": "<ruby>置<rt>お</rt></ruby>いて", "壁": "<ruby>壁<rt>かべ</rt></ruby>", "掛けて": "<ruby>掛<rt>か</rt></ruby>けて", "窓": "<ruby>窓<rt>まど</rt></ruby>", "開いて": "<ruby>開<rt>あ</rt></ruby>いて", "開けて": "<ruby>開<rt>あ</rt></ruby>けて", "準備": "<ruby>準備<rt>じゅんび</rt></ruby>", "終わりました": "<ruby>終<rt>お</rt></ruby>わりました", "飲み物": "<ruby>飲<rt>の</rt></ruby>み<ruby>物<rt>もの</rt></ruby>", "冷蔵庫": "<ruby>冷蔵庫<rt>れいぞうこ</rt></ruby>", "入れて": "<ruby>入<rt>い</rt></ruby>れて", "並べて": "<ruby>並<rt>なら</rt></ruby>べて", "絵": "<ruby>絵<rt>え</rt></ruby>", "掛かって": "<ruby>掛<rt>か</rt></ruby>かって", "旅行": "<ruby>旅行<rt>りょこう</rt></ruby>", "前": "<ruby>前<rt>まえ</rt></ruby>", "切符": "<ruby>切符<rt>きっぷ</rt></ruby>", "買って": "<ruby>買<rt>か</rt></ruby>って", "使ったら": "<ruby>使<rt>つか</rt></ruby>ったら", "元": "<ruby>元<rt>もと</rt></ruby>", "所": "<ruby>所<rt>ところ</rt></ruby>", "戻して": "<ruby>戻<rt>もど</rt></ruby>して", "明日": "<ruby>明日<rt>あした</rt></ruby>", "今晩": "<ruby>今晩<rt>こんばん</rt></ruby>", "勉強": "<ruby>勉強<rt>べんきょう</rt></ruby>"};
+        const vocabDict = {"置きます": "Đặt, để", "掛けます": "Treo", "冷蔵庫": "Tủ lạnh", "並べます": "Xếp hàng, bày biện", "戻します": "Để lại (chỗ cũ)", "切符": "Vé", "準備": "Chuẩn bị"};
 
-        // Auto apply Furigana
-        document.querySelectorAll('p, .trans, .box-highlight, .answer-content, h1, h3').forEach(el => {
+        // Add furigana dynamically
+        document.querySelectorAll('p, .trans, .box-highlight, .answer-content, h1, h2, h3, li').forEach(el => {
             let html = el.innerHTML;
             for (let kanji in furiganaDict) {
                 let re = new RegExp(kanji, "g");
@@ -220,14 +257,15 @@
             let content = btn.nextElementSibling;
             if (content.style.display === "block") {
                 content.style.display = "none";
-                btn.innerText = "Xem đáp án";
+                btn.innerText = "Kiểm tra đáp án";
+                btn.style.background = "var(--primary)";
             } else {
                 content.style.display = "block";
                 btn.innerText = "Ẩn đáp án";
+                btn.style.background = "var(--danger)";
             }
         }
 
-        // Floating Vocab logic
         const vocabBox = document.getElementById('vocabBox');
         const vocabList = document.getElementById('vocabList');
         

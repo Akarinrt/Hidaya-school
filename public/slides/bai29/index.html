@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ngữ Pháp Bài 29</title>
+    <title>Ngữ Pháp Bài 29 (Chi tiết)</title>
     
     <!-- Reveal.js & Theme -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
@@ -45,8 +45,8 @@
             font-size: 1.1em;
         }
         
-        .grammar-example p { margin: 10px 0; }
-        .grammar-example .trans { color: #666; font-size: 0.9em; font-style: italic; display: block; margin-top: 5px; }
+        .grammar-example p { margin: 10px 0; font-size: 1.2em; }
+        .grammar-example .trans { color: #666; font-size: 0.85em; font-style: italic; display: block; margin-top: 5px; }
         
         .quiz-box {
             background: #FAFAFA;
@@ -54,33 +54,38 @@
             padding: 25px;
             border-radius: 12px;
             text-align: left;
+            margin-bottom: 20px;
         }
         .quiz-title { font-weight: bold; color: var(--primary); margin-bottom: 15px; font-size: 1.2em; }
+        .quiz-q { font-size: 1.1em; margin-bottom: 15px; }
         
         .answer-btn {
             background: var(--primary);
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 10px 20px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.8em;
+            font-size: 0.9em;
             margin-top: 10px;
             transition: 0.2s;
+            font-weight: bold;
         }
         .answer-btn:hover { background: #3a5bde; }
         .answer-content {
             display: none;
             color: var(--success);
             font-weight: bold;
-            margin-top: 10px;
-            padding: 10px;
+            margin-top: 15px;
+            padding: 15px;
             background: #eef9f2;
             border-radius: 8px;
+            font-size: 1.1em;
+            border-left: 4px solid var(--success);
         }
         
         ruby { font-size: 1em; }
-        rt { font-size: 0.5em; color: var(--primary); }
+        rt { font-size: 0.5em; color: var(--primary); font-weight: bold; }
         
         /* Floating Vocab Box */
         #vocabBox {
@@ -107,6 +112,18 @@
         #vocabList li:last-child { border-bottom: none; }
         .v-jp { font-weight: bold; color: #333; }
         .v-vi { color: #666; font-size: 0.9em; }
+        
+        .dialogue-box {
+            background: #fdfdfd;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .dialogue-p1 { color: #1976d2; font-weight: bold; margin-bottom: 5px !important; }
+        .dialogue-p2 { color: #e64a19; font-weight: bold; margin-bottom: 5px !important; }
     </style>
 </head>
 <body>
@@ -120,78 +137,144 @@
         <div class="slides">
             <section class="title-slide">
                 <h1>Ngữ Pháp Bài 29</h1>
-                <h3>Minna No Nihongo II - Tự động từ & Trạng thái</h3>
+                <h3>Minna No Nihongo II - Tự Động Từ & Vて しまいました</h3>
+                <p>💡 Phiên bản nâng cấp - Tương tác siêu cấp!</p>
             </section>
             <section>
-                <h2>1. Tự động từ & Tha động từ</h2>
+                <h2>1. Ôn tập: Tự Động Từ & Tha Động Từ</h2>
+                <div class="grammar-example fragment">
+                    <p><strong>Tha động từ (他動詞 - Tadoushi):</strong> Hành động có chủ đích tác động lên tân ngữ (Dùng trợ từ を).</p>
+                    <p style="color:var(--primary)">例：私が窓を開けます。(Tôi mở cửa sổ)</p>
+                </div>
+                <div class="grammar-example fragment">
+                    <p><strong>Tự động từ (自動詞 - Jidoushi):</strong> Trạng thái tự nhiên xảy ra, không có tác động có ý thức (Dùng trợ từ が).</p>
+                    <p style="color:var(--primary)">例：風で窓が開きます。(Cửa sổ tự mở do gió)</p>
+                </div>
+                <div class="box-highlight fragment">
+                    🔑 Mẹo nhớ: Tha động từ đi với を (Người làm). Tự động từ đi với が (Vật tự nó thế).
+                </div>
+            </section>
+            <section>
+                <h2>2. Tự động từ + て います (Trạng thái)</h2>
                 <div class="box-highlight">
-                    [Danh từ] が [Tự động từ]
+                    N が Tự động từ + て います
                 </div>
                 <div class="grammar-example fragment">
-                    <p><strong>Khái niệm:</strong> Tự động từ (Jidoushi) diễn tả hành động tự thân nó xảy ra, hoặc một trạng thái tự nhiên, không có sự tác động trực tiếp của ai đó.</p>
+                    <p><strong>Cách dùng:</strong> Diễn tả trạng thái của một sự vật sau khi hành động đã xảy ra và kết quả vẫn đang tồn tại trước mắt.</p>
                 </div>
                 <div class="grammar-example fragment">
-                    <p>ドアが開きます。</p>
-                    <span class="trans">Cửa mở. (Tự động từ - Không rõ ai mở, chỉ mô tả trạng thái cửa đang mở ra)</span>
+                    <p>窓が開いています。</p>
+                    <span class="trans">Cửa sổ đang mở. (Trạng thái cửa mở vẫn đang duy trì)</span>
                 </div>
                 <div class="grammar-example fragment">
-                    <p>私がドアを開けます。</p>
-                    <span class="trans">Tôi mở cửa. (Tha động từ - Rõ chủ thể hành động là "Tôi")</span>
+                    <p>パソコンが壊れています。</p>
+                    <span class="trans">Máy tính đang bị hỏng.</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>このコップは割れています。</p>
+                    <span class="trans">Cái cốc này bị vỡ rồi.</span>
                 </div>
             </section>
             <section>
-                <h2>2. Vて います (Trạng thái)</h2>
-                <div class="box-highlight">
-                    N が V(tự động từ) て います。
-                </div>
-                <div class="grammar-example fragment">
-                    <p><strong>Cách dùng:</strong> Diễn tả một trạng thái là kết quả của một hành động đã xảy ra và hiện tại vẫn đang lưu giữ kết quả đó.</p>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>窓が割れています。</p>
-                    <span class="trans">Cửa sổ đang bị vỡ. (Ai đó đã làm vỡ hoặc tự vỡ, nhưng giờ trạng thái là "đang vỡ")</span>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>電気がついています。</p>
-                    <span class="trans">Điện đang sáng.</span>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>このパソコンは壊れています。</p>
-                    <span class="trans">Cái máy tính này đang bị hỏng.</span>
+                <h2>🗣 Hội thoại ứng dụng (Kaiwa)</h2>
+                <div class="dialogue-box">
+                    <p class="dialogue-p1">田中：あっ、あそこのスーパー、電気が消えていますね。</p>
+                    <span class="trans">Tanaka: A, cái siêu thị đằng kia, điện đang tắt kìa.</span>
+                    <br>
+                    <p class="dialogue-p2">佐藤：本当ですね。もう閉まっていますよ。</p>
+                    <span class="trans">Satou: Thật nhỉ. Nó đóng cửa mất rồi.</span>
+                    <br>
+                    <p class="dialogue-p1">田中：残念ですね。じゃ、コンビニへ行きましょう。</p>
+                    <span class="trans">Tanaka: Tiếc quá. Vậy đi combini thôi.</span>
                 </div>
             </section>
             <section>
-                <h2>3. Vて しまいました / しまいます</h2>
-                <div class="box-highlight">
-                    Vて しまいました。<br>
-                    Vて しまいます。
-                </div>
-                <div class="grammar-example fragment">
-                    <p><strong>Nghĩa 1:</strong> Đã hoàn thành xong hoàn toàn một việc gì đó (nhấn mạnh sự hoàn tất).</p>
-                    <p>漢字の宿題はもうしてしまいました。</p>
-                    <span class="trans">Bài tập Kanji thì tôi đã làm xong hết rồi.</span>
-                </div>
-                <div class="grammar-example fragment">
-                    <p><strong>Nghĩa 2:</strong> Thể hiện sự nuối tiếc, hối hận hoặc một việc lỡ xảy ra ngoài ý muốn.</p>
-                    <p>パスポートを落としてしまいました。</p>
-                    <span class="trans">Tôi lỡ đánh rơi mất hộ chiếu rồi.</span>
-                </div>
-            </section>
-            <section>
-                <h2>4. Luyện tập (Quiz)</h2>
-                <div class="quiz-box fragment">
-                    <div class="quiz-title">✍️ Điền từ vào chỗ trống:</div>
-                    <div class="fragment" style="margin-bottom: 15px;">
-                        <p>1. Cửa sổ đang mở. (Tự động từ: 開く - あく)</p>
-                        <p>窓が ( _____ ) います。</p>
-                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
-                        <div class="answer-content">→ 窓が開いています。 (あいています)</div>
+                <h2>📝 Bài tập Trắc nghiệm (Quiz)</h2>
+                <div class="quiz-box">
+                    <p class="quiz-q">1. Điền trợ từ và chia động từ thích hợp vào chỗ trống:</p>
+                    <p>「ドア ___ （閉まる）__________。」 (Cửa đang đóng)</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        Đáp án: ドア <strong>が</strong> <strong>閉まっています</strong>。<br>
+                        (Dùng trợ từ が đi với tự động từ 閉まる).
                     </div>
-                    <div class="fragment" style="margin-bottom: 15px;">
-                        <p>2. Tôi lỡ làm hỏng điện thoại mất rồi. (壊す - こわす)</p>
-                        <p>スマホを ( _____ )。</p>
-                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
-                        <div class="answer-content">→ スマホを壊してしまいました。</div>
+                </div>
+                
+                <div class="quiz-box fragment">
+                    <p class="quiz-q">2. Chọn câu ĐÚNG:</p>
+                    <p>A. コップを割れています。</p>
+                    <p>B. コップが割れています。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        Đáp án: <strong>B</strong>.<br>
+                        "Cái cốc đang bị vỡ" là trạng thái, dùng tự động từ 割れる đi với が.
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2>3. Vて しまいました (Lỡ / Hoàn thành)</h2>
+                <div class="box-highlight">
+                    Vて しまいました<br>
+                    Vて しまいます
+                </div>
+                <div class="grammar-example fragment">
+                    <p><strong>Cách dùng 1 (Tiếc nuối):</strong> Diễn tả việc lỡ làm sai, gây ra kết quả xấu, mang tâm trạng hối hận, tiếc nuối.</p>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>パスポートを落としてしまいました。</p>
+                    <span class="trans">Tôi lỡ làm rơi hộ chiếu mất rồi. 😭</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>電車に傘を忘れてしまいました。</p>
+                    <span class="trans">Tôi lỡ để quên ô trên tàu điện mất rồi.</span>
+                </div>
+            </section>
+            <section>
+                <h2>3. Vて しまいました (Tiếp)</h2>
+                <div class="grammar-example">
+                    <p><strong>Cách dùng 2 (Hoàn thành):</strong> Diễn tả việc làm xong toàn bộ một việc gì đó (nhấn mạnh sự hoàn tất).</p>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>漢字の宿題はもうやってしまいました。</p>
+                    <span class="trans">Bài tập chữ Hán thì tôi đã làm XONG HẾT rồi.</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>この本は全部読んでしまいました。</p>
+                    <span class="trans">Cuốn sách này tôi đã đọc xong toàn bộ rồi.</span>
+                </div>
+            </section>
+            <section>
+                <h2>🗣 Hội thoại ứng dụng (Kaiwa)</h2>
+                <div class="dialogue-box">
+                    <p class="dialogue-p1">A：どうしたんですか。</p>
+                    <span class="trans">A: Có chuyện gì thế?</span>
+                    <br>
+                    <p class="dialogue-p2">B：昨日買ったばかりのスマホを落としてしまったんです。</p>
+                    <span class="trans">B: Tôi lỡ làm rơi mất cái điện thoại vừa mua hôm qua.</span>
+                    <br>
+                    <p class="dialogue-p1">A：えっ、それは大変ですね。交番へ行きましたか。</p>
+                    <span class="trans">A: Ế, vậy gay to nhỉ. Cậu đã đến đồn cảnh sát chưa?</span>
+                </div>
+            </section>
+            <section>
+                <h2>📝 Bài tập Trắc nghiệm (Quiz)</h2>
+                <div class="quiz-box">
+                    <p class="quiz-q">1. Dịch câu sau sang tiếng Nhật:</p>
+                    <p>Tôi lỡ uống hết rượu của bố mất rồi.</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        父のお酒を飲んでしまいました。
+                    </div>
+                </div>
+                
+                <div class="quiz-box fragment">
+                    <p class="quiz-q">2. Chọn câu ĐÚNG:</p>
+                    <p>A. レポートは明日までに書いてしまいます。</p>
+                    <p>B. レポートは明日までに書いてしまいました。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        Đáp án: <strong>A</strong>.<br>
+                        (Việc sẽ hoàn thành trong tương lai dùng Vてしまいます).
                     </div>
                 </div>
             </section>
@@ -203,14 +286,15 @@
         Reveal.initialize({
             hash: true,
             slideNumber: true,
-            transition: 'slide'
+            transition: 'fade',
+            backgroundTransition: 'fade'
         });
 
-        const furiganaDict = {"開きます": "<ruby>開<rt>あ</rt></ruby>きます", "開けます": "<ruby>開<rt>あ</rt></ruby>けます", "割れています": "<ruby>割<rt>わ</rt></ruby>れています", "電気": "<ruby>電気<rt>でんき</rt></ruby>", "壊れています": "<ruby>壊<rt>こわ</rt></ruby>れています", "漢字": "<ruby>漢字<rt>かんじ</rt></ruby>", "宿題": "<ruby>宿題<rt>しゅくだい</rt></ruby>", "落として": "<ruby>落<rt>お</rt></ruby>として", "壊して": "<ruby>壊<rt>こわ</rt></ruby>して"};
-        const vocabDict = {"開きます": "Mở (Tự động từ)", "開けます": "Mở (Tha động từ)", "割れます": "Vỡ", "壊れます": "Hỏng", "落とします": "Làm rơi, đánh rơi", "窓": "Cửa sổ", "電気": "Điện, đèn điện"};
+        const furiganaDict = {"窓": "<ruby>窓<rt>まど</rt></ruby>", "開け": "<ruby>開<rt>あ</rt></ruby>け", "風": "<ruby>風<rt>かぜ</rt></ruby>", "開いて": "<ruby>開<rt>あ</rt></ruby>いて", "開きます": "<ruby>開<rt>あ</rt></ruby>きます", "壊れて": "<ruby>壊<rt>こわ</rt></ruby>れて", "割れて": "<ruby>割<rt>わ</rt></ruby>れて", "電気": "<ruby>電気<rt>でんき</rt></ruby>", "消えて": "<ruby>消<rt>き</rt></ruby>えて", "本当": "<ruby>本当<rt>ほんとう</rt></ruby>", "閉まって": "<ruby>閉<rt>し</rt></ruby>まって", "残念": "<ruby>残念<rt>ざんねん</rt></ruby>", "行きましょう": "<ruby>行<rt>い</rt></ruby>きましょう", "落として": "<ruby>落<rt>お</rt></ruby>して", "電車": "<ruby>電車<rt>でんしゃ</rt></ruby>", "傘": "<ruby>傘<rt>かさ</rt></ruby>", "忘れて": "<ruby>忘<rt>わす</rt></ruby>れて", "漢字": "<ruby>漢字<rt>かんじ</rt></ruby>", "宿題": "<ruby>宿題<rt>しゅくだい</rt></ruby>", "本": "<ruby>本<rt>ほん</rt></ruby>", "全部": "<ruby>全部<rt>ぜんぶ</rt></ruby>", "読んで": "<ruby>読<rt>よ</rt></ruby>んで", "昨日": "<ruby>昨日<rt>きのう</rt></ruby>", "買った": "<ruby>買<rt>か</rt></ruby>った", "大変": "<ruby>大変<rt>たいへん</rt></ruby>", "交番": "<ruby>交番<rt>こうばん</rt></ruby>", "行きました": "<ruby>行<rt>い</rt></ruby>きました", "父": "<ruby>父<rt>ちち</rt></ruby>", "酒": "<ruby>酒<rt>さけ</rt></ruby>", "飲んで": "<ruby>飲<rt>の</rt></ruby>んで", "明日": "<ruby>明日<rt>あした</rt></ruby>", "書いて": "<ruby>書<rt>か</rt></ruby>いて"};
+        const vocabDict = {"開きます": "Mở (tự động)", "閉まります": "Đóng (tự động)", "消えます": "Tắt (tự động)", "壊れます": "Hỏng", "割れます": "Vỡ", "落とします": "Làm rơi", "交番": "Đồn cảnh sát", "傘": "Cái ô"};
 
-        // Auto apply Furigana
-        document.querySelectorAll('p, .trans, .box-highlight, .answer-content, h1, h3').forEach(el => {
+        // Add furigana dynamically
+        document.querySelectorAll('p, .trans, .box-highlight, .answer-content, h1, h2, h3, li').forEach(el => {
             let html = el.innerHTML;
             for (let kanji in furiganaDict) {
                 let re = new RegExp(kanji, "g");
@@ -223,14 +307,15 @@
             let content = btn.nextElementSibling;
             if (content.style.display === "block") {
                 content.style.display = "none";
-                btn.innerText = "Xem đáp án";
+                btn.innerText = "Kiểm tra đáp án";
+                btn.style.background = "var(--primary)";
             } else {
                 content.style.display = "block";
                 btn.innerText = "Ẩn đáp án";
+                btn.style.background = "var(--danger)";
             }
         }
 
-        // Floating Vocab logic
         const vocabBox = document.getElementById('vocabBox');
         const vocabList = document.getElementById('vocabList');
         

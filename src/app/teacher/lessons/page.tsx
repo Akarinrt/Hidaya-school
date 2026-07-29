@@ -27,22 +27,26 @@ export default async function LessonsPage() {
         <Link href="/teacher/lessons/new" className={styles.addBtn}>+ Thêm giáo án DB</Link>
       </div>
 
-      <h2 style={{ marginTop: '30px', marginBottom: '15px', color: 'var(--primary)', borderBottom: '2px solid var(--primary)', display: 'inline-block' }}>
+      <h2 style={{ marginTop: '30px', marginBottom: '15px', color: 'var(--primary-color)', borderBottom: '2px solid var(--primary-color)', display: 'inline-block' }}>
         ✨ Bài giảng tương tác (N4 - Minna no Nihongo)
       </h2>
       
       <div className={styles.grid}>
         {interactiveLessons.map(lessonNumber => (
-          <div key={`bai${lessonNumber}`} className={styles.card} style={{ borderLeft: '4px solid var(--primary)' }}>
+          <div key={`bai${lessonNumber}`} className={styles.card} style={{ borderLeft: '4px solid var(--primary-color)' }}>
             <div className={styles.cardTop}>
-              <span className={styles.level} style={{ background: '#e3f2fd', color: '#1976d2' }}>N4</span>
-              <span className={`${styles.badge} ${styles.public}`}>✨ Tương tác</span>
+              <span className={styles.level} style={{ background: 'rgba(66, 165, 245, 0.22)', color: '#42a5f5' }}>
+                N4
+              </span>
+              <span className={`${styles.badge} ${styles.public}`}>
+                ✨ Tương tác
+              </span>
             </div>
             <h3 className={styles.cardTitle}>Bài {lessonNumber}</h3>
             <p className={styles.cardLesson}>Ngữ pháp Minna II - Bài {lessonNumber}</p>
             <div className={styles.cardFooter}>
               <span className={styles.teacher}>🤖 Auto-generated</span>
-              <a href={`/slides/bai${lessonNumber}/index.html`} target="_blank" rel="noreferrer" className={styles.downloadBtn} style={{ background: 'var(--primary)', border: 'none', color: 'white' }}>
+              <a href={`/slides/bai${lessonNumber}/index.html`} target="_blank" rel="noreferrer" className={styles.downloadBtn}>
                 ▶️ Trình chiếu
               </a>
             </div>
