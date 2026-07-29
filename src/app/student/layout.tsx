@@ -71,7 +71,7 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
         <header className={styles.topHeader}>
           <button className={styles.menuBtn} onClick={() => setIsMobileMenuOpen(true)}>☰</button>
           <div className={styles.headerTitle}>
-            <span className={styles.pageTitle}>Daruma LMS</span>
+            <span className={styles.pageTitle}>Hidaya School</span>
             <span className={styles.pageSub}>Hệ thống học tập trực tuyến</span>
           </div>
           <div className={styles.headerActions} style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>

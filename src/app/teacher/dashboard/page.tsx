@@ -25,7 +25,7 @@ export default async function TeacherDashboard() {
         <div style={{ fontSize: '42px' }}>🏮</div>
         <div>
           <div style={{ fontSize: '22px', fontWeight: '800', color: 'var(--text-main)', marginBottom: '2px' }}>Xin chào, Giáo viên!</div>
-          <div style={{ fontSize: '14px', color: 'var(--text-muted)' }}>Quản lý hệ thống giảng dạy Daruma LMS</div>
+          <div style={{ fontSize: '14px', color: 'var(--text-muted)' }}>Quản lý hệ thống giảng dạy Hidaya School</div>
         </div>
       </div>
 
