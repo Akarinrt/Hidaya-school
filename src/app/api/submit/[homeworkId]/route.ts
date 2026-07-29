@@ -5,8 +5,9 @@ import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
 
-export async function POST(req: Request, { params }: { params: { homeworkId: string } }) {
+export async function POST(req: Request, { params }: { params: Promise<{ homeworkId: string }> }) {
   try {
+    const { homeworkId } = await params;
     const cookieStore = await cookies();
     const token = cookieStore.get('token')?.value;
     if (!token) return NextResponse.json({ message: 'Chưa đăng nhập' }, { status: 401 });
@@ -25,16 +26,16 @@ export async function POST(req: Request, { params }: { params: { homeworkId: str
     }
 
     const existing = await prisma.submission.findFirst({
-      where: { homeworkId: params.homeworkId, studentId: decoded.id }
+      where: { homeworkId: homeworkId, studentId: decoded.id }
     });
     if (existing) return NextResponse.json({ message: 'Bạn đã nộp bài này rồi' }, { status: 400 });
 
     const submission = await prisma.submission.create({
-      data: { content, homeworkId: params.homeworkId, studentId: decoded.id },
+      data: { content, homeworkId: homeworkId, studentId: decoded.id },
     });
 
     // Notify teacher
-    const hw = await prisma.homework.findUnique({ where: { id: params.homeworkId }, include: { teacher: true } });
+    const hw = await prisma.homework.findUnique({ where: { id: homeworkId }, include: { teacher: true } });
     if (hw) {
       const student = await prisma.user.findUnique({ where: { id: decoded.id } });
       await prisma.notification.create({

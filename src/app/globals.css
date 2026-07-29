@@ -38,8 +38,8 @@ html, body {
   background: var(--bg);
   color: var(--text-main);
   font-family: 'Inter', 'Noto Sans JP', sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -52,12 +52,12 @@ input, select, textarea, button { font-family: inherit; }
 
 /* === SECTION HEADER === */
 .section-label {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--text-sub);
   text-transform: uppercase;
   letter-spacing: 0.6px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -85,9 +85,9 @@ input, select, textarea, button { font-family: inherit; }
   border-left: 3px solid var(--primary);
   box-shadow: var(--shadow-sm);
 }
-.kpi-label { font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 8px; }
-.kpi-value { font-size: 28px; font-weight: 800; color: var(--text-main); line-height: 1; letter-spacing: -1px; }
-.kpi-sub   { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+.kpi-label { font-size: 13px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 10px; }
+.kpi-value { font-size: 32px; font-weight: 800; color: var(--text-main); line-height: 1; letter-spacing: -1px; }
+.kpi-sub   { font-size: 14px; color: var(--text-muted); margin-top: 6px; }
 
 /* === BADGE === */
 .badge {
@@ -109,12 +109,12 @@ input, select, textarea, button { font-family: inherit; }
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 9px 18px;
+  padding: 10px 20px;
   background: var(--primary);
   color: #fff;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s;
@@ -126,12 +126,12 @@ input, select, textarea, button { font-family: inherit; }
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 9px 18px;
+  padding: 10px 20px;
   background: #fff;
   color: var(--text-sub);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.15s;
@@ -142,19 +142,19 @@ input, select, textarea, button { font-family: inherit; }
 /* === FORM ELEMENTS === */
 .form-label {
   display: block;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--text-sub);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 0.4px;
 }
 .form-input {
   width: 100%;
-  padding: 11px 14px;
+  padding: 13px 16px;
   border: 1px solid rgba(0,0,0,0.10);
   border-radius: var(--radius-sm);
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text-main);
   background: #FAFCFF;
   outline: none;
@@ -183,15 +183,15 @@ input, select, textarea, button { font-family: inherit; }
 .data-table th {
   background: #F8FAFC;
   color: var(--text-muted);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  padding: 12px 16px;
+  padding: 14px 18px;
   text-align: left;
   border-bottom: 1px solid var(--border);
 }
-.data-table td { padding: 12px 16px; border-bottom: 1px solid var(--border-subtle); color: var(--text-sub); }
+.data-table td { padding: 14px 18px; border-bottom: 1px solid var(--border-subtle); color: var(--text-sub); font-size: 14px; }
 .data-table tr:hover td { background: rgba(37,99,235,0.02); }
 .data-table tr:last-child td { border-bottom: none; }
 
@@ -235,14 +235,14 @@ input, select, textarea, button { font-family: inherit; }
 }
 .quick-link-card:hover { border-color: rgba(37,99,235,0.25); box-shadow: var(--shadow-md); transform: translateY(-2px); }
 .quick-link-icon {
-  width: 44px; height: 44px;
+  width: 48px; height: 48px;
   border-radius: var(--radius-md);
   background: var(--primary-light);
   display: flex; align-items: center; justify-content: center;
-  font-size: 20px; flex-shrink: 0;
+  font-size: 24px; flex-shrink: 0;
 }
-.quick-link-title { font-size: 14px; font-weight: 700; color: var(--text-main); margin-bottom: 2px; }
-.quick-link-desc  { font-size: 12px; color: var(--text-muted); }
+.quick-link-title { font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
+.quick-link-desc  { font-size: 13px; color: var(--text-muted); }
 
 /* === NOTIFICATION ITEM === */
 .notif-item {
@@ -258,8 +258,8 @@ input, select, textarea, button { font-family: inherit; }
 }
 .notif-item:hover { background: var(--primary-light); }
 .notif-item.unread { background: #FAFCFF; border-left: 3px solid var(--primary); }
-.notif-title { font-size: 14px; font-weight: 600; color: var(--text-main); }
-.notif-body  { font-size: 12px; color: var(--text-muted); margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.notif-title { font-size: 15px; font-weight: 600; color: var(--text-main); }
+.notif-body  { font-size: 13px; color: var(--text-muted); margin-top: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 /* === MESSAGE BUBBLE === */
 .bubble-mine    { background: var(--primary); color: #fff; border-radius: 16px 16px 4px 16px; }

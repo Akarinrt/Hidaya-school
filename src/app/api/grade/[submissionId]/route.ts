@@ -7,9 +7,10 @@ const prisma = new PrismaClient();
 
 export async function POST(
   req: Request,
-  { params }: { params: { submissionId: string } }
+  { params }: { params: Promise<{ submissionId: string }> }
 ) {
   try {
+    const { submissionId } = await params;
     const cookieStore = await cookies();
     const token = cookieStore.get('token')?.value;
     if (!token) return NextResponse.json({ message: 'Chưa đăng nhập' }, { status: 401 });
@@ -22,7 +23,7 @@ export async function POST(
     const feedback = formData.get('feedback') as string;
 
     const updated = await prisma.submission.update({
-      where: { id: params.submissionId },
+      where: { id: submissionId },
       data: {
         score,
         feedback,
