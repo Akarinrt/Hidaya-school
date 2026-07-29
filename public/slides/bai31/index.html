@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ngữ Pháp Bài 31 (Chi tiết)</title>
+    <title>Ngữ Pháp Bài 31</title>
     
     <!-- Reveal.js & Theme -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
@@ -19,8 +19,13 @@
             --bg: #F7F5F2;
         }
         body { background: var(--bg); font-family: 'Noto Sans JP', sans-serif; }
-        .title-slide h1 { color: var(--primary); font-weight: 800; font-size: 2.5em; }
+        .title-slide h1 { color: var(--primary); font-weight: 800; font-size: 2.5em; text-transform: uppercase; }
         .title-slide h3 { color: #555; font-size: 1.2em; }
+        
+        .section-title {
+            color: var(--primary); font-weight: bold; font-size: 1.8em; margin-bottom: 20px;
+            border-bottom: 3px solid var(--primary); display: inline-block; padding-bottom: 5px;
+        }
         
         .box-highlight {
             background: var(--surface);
@@ -50,17 +55,17 @@
         
         .quiz-box {
             background: #FAFAFA;
-            border: 2px dashed var(--primary);
+            border: 2px dashed var(--danger);
             padding: 25px;
             border-radius: 12px;
             text-align: left;
             margin-bottom: 20px;
         }
-        .quiz-title { font-weight: bold; color: var(--primary); margin-bottom: 15px; font-size: 1.2em; }
-        .quiz-q { font-size: 1.1em; margin-bottom: 15px; }
+        .quiz-title { font-weight: bold; color: var(--danger); margin-bottom: 15px; font-size: 1.3em; }
+        .quiz-q { font-size: 1.1em; margin-bottom: 15px; font-weight: bold; }
         
         .answer-btn {
-            background: var(--primary);
+            background: var(--danger);
             color: white;
             border: none;
             padding: 10px 20px;
@@ -71,7 +76,7 @@
             transition: 0.2s;
             font-weight: bold;
         }
-        .answer-btn:hover { background: #3a5bde; }
+        .answer-btn:hover { opacity: 0.8; transform: scale(1.05); }
         .answer-content {
             display: none;
             color: var(--success);
@@ -84,34 +89,17 @@
             border-left: 4px solid var(--success);
         }
         
+        .vocab-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: left;
+        }
+        .vocab-item {
+            background: white; padding: 10px 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 1.1em;
+        }
+        .vocab-item strong { color: var(--primary); }
+        
         ruby { font-size: 1em; }
         rt { font-size: 0.5em; color: var(--primary); font-weight: bold; }
-        
-        /* Floating Vocab Box */
-        #vocabBox {
-            position: fixed;
-            top: 20px; right: 20px;
-            width: 250px;
-            background: rgba(255, 255, 255, 0.95);
-            border-left: 4px solid var(--primary);
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            padding: 15px;
-            z-index: 1000;
-            font-size: 0.4em;
-            text-align: left;
-            cursor: grab;
-            display: none;
-            backdrop-filter: blur(10px);
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-        #vocabBox h4 { margin: 0 0 10px 0; color: var(--primary); font-size: 1.2em; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        #vocabList { list-style: none; padding: 0; margin: 0; }
-        #vocabList li { margin-bottom: 8px; border-bottom: 1px dashed #ddd; padding-bottom: 5px; display: flex; justify-content: space-between; }
-        #vocabList li:last-child { border-bottom: none; }
-        .v-jp { font-weight: bold; color: #333; }
-        .v-vi { color: #666; font-size: 0.9em; }
         
         .dialogue-box {
             background: #fdfdfd;
@@ -128,44 +116,80 @@
 </head>
 <body>
 
-    <div id="vocabBox">
-        <h4>📚 Từ vựng Slide này</h4>
-        <ul id="vocabList"></ul>
-    </div>
-
     <div class="reveal">
         <div class="slides">
             <section class="title-slide">
-                <h1>Ngữ Pháp Bài 31</h1>
-                <h3>Minna No Nihongo II - Thể Ý Định (Vよう) & つもりです</h3>
-                <p>💡 Phiên bản nâng cấp - Tương tác siêu cấp!</p>
+                <h1>BÀI 31 - MINNA NO NIHONGO II</h1>
+                <h3>Ngữ pháp: Thể Ý Định (Vよう) & つもりです</h3>
+                <p>⏳ Thời lượng dự kiến: 120 Phút</p>
             </section>
             <section>
-                <h2>1. Thể Ý Định (意向形 - Ikoukei)</h2>
-                <div class="grammar-example fragment">
+                <h2 class="section-title">🎯 Khởi động & Kiểm tra bài cũ</h2>
+                <div class="quiz-box">
+                    <p class="quiz-title">Mini Test (Bài 30)</p>
+                    <p class="quiz-q">1. Điền thể đúng của động từ: 窓が ( 閉める ) ________________ あります。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        窓が <strong>閉めて</strong> あります。<br>
+                        (Cửa sổ được đóng sẵn có mục đích).
+                    </div>
+                </div>
+                <div class="quiz-box fragment">
+                    <p class="quiz-q">2. Chọn đáp án đúng:<br>
+                    明日会議がありますから、今日 イスを 並べて ( A. あります / B. おきます )。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        Đáp án: <strong>B. おきます</strong><br>
+                        (Hành động "xếp ghế" được chuẩn bị TRƯỚC cho ngày mai).
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">📚 Từ vựng Trọng tâm (Bài 31)</h2>
+                <div class="vocab-grid">
+                    <div class="vocab-item"><strong>始まります</strong> (はじまります) : Bắt đầu</div>
+                    <div class="vocab-item"><strong>続けます</strong> (つづけます) : Tiếp tục</div>
+                    <div class="vocab-item"><strong>見つけます</strong> (みつけます) : Tìm thấy</div>
+                    <div class="vocab-item"><strong>受けます</strong> (うけます) : Nhận, thi (kỳ thi)</div>
+                    <div class="vocab-item"><strong>入学します</strong> (にゅうがくします) : Nhập học</div>
+                    <div class="vocab-item"><strong>卒業します</strong> (そつぎょうします) : Tốt nghiệp</div>
+                    <div class="vocab-item"><strong>出席します</strong> (しゅっせきします) : Tham dự</div>
+                    <div class="vocab-item"><strong>休憩します</strong> (きゅうけいします) : Giải lao</div>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">1. Thể Ý Định (意向形 - Ikoukei)</h2>
+                <p style="font-size: 1.2em; margin-bottom: 20px;">Cách chia từ Thể ます sang Thể Ý định:</p>
+                <div class="grammar-example">
                     <p><strong>Nhóm 1 (Cột I → Cột O + う):</strong></p>
-                    <p>行きます → 行こう</p>
-                    <p>飲みます → 飲もう</p>
-                    <p>買います → 買おう</p>
+                    <ul style="font-size: 1.1em; line-height: 1.5;">
+                        <li>行きます → <span style="color:var(--primary); font-weight:bold;">行こう</span></li>
+                        <li>飲みます → <span style="color:var(--primary); font-weight:bold;">飲もう</span></li>
+                        <li>急ぎます → <span style="color:var(--primary); font-weight:bold;">急ごう</span></li>
+                    </ul>
                 </div>
                 <div class="grammar-example fragment">
                     <p><strong>Nhóm 2 (Bỏ ます + よう):</strong></p>
-                    <p>食べます → 食べよう</p>
-                    <p>見ます → 見よう</p>
+                    <ul style="font-size: 1.1em; line-height: 1.5;">
+                        <li>食べます → <span style="color:var(--primary); font-weight:bold;">食べよう</span></li>
+                        <li>見ます → <span style="color:var(--primary); font-weight:bold;">見よう</span></li>
+                    </ul>
                 </div>
                 <div class="grammar-example fragment">
                     <p><strong>Nhóm 3:</strong></p>
-                    <p>します → しよう</p>
-                    <p>来ます → 来よう（こよう）</p>
+                    <ul style="font-size: 1.1em; line-height: 1.5;">
+                        <li>します → <span style="color:var(--primary); font-weight:bold;">しよう</span></li>
+                        <li>来ます → <span style="color:var(--primary); font-weight:bold;">来よう（こよう）</span></li>
+                    </ul>
                 </div>
             </section>
             <section>
-                <h2>2. Ứng dụng Thể Ý Định</h2>
+                <h2 class="section-title">2. Ứng dụng: Dùng để Rủ rê</h2>
                 <div class="box-highlight">
-                    Vよう (Rủ rê trong văn nói thân mật)
+                    Vよう (Văn nói thân mật)
                 </div>
-                <div class="grammar-example fragment">
-                    <p>Cách nói thân mật của "~ましょう".</p>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> Đây là cách nói thông thường, suồng sã của "～ましょう". Dùng với bạn bè, người trong gia đình.</p>
                 </div>
                 <div class="grammar-example fragment">
                     <p>疲れたから、ちょっと休もう。</p>
@@ -177,7 +201,7 @@
                 </div>
             </section>
             <section>
-                <h2>🗣 Hội thoại ứng dụng (Kaiwa)</h2>
+                <h2 class="section-title">🗣 Hội thoại: Rủ rê</h2>
                 <div class="dialogue-box">
                     <p class="dialogue-p1">A：今週末、海へ行かない？</p>
                     <span class="trans">A: Cuối tuần này đi biển không?</span>
@@ -186,16 +210,19 @@
                     <span class="trans">B: Tuyệt đấy. Đi thôi!</span>
                     <br>
                     <p class="dialogue-p1">A：じゃ、弁当を作って行こうね。</p>
-                    <span class="trans">A: Vậy làm bento rồi đi nhé.</span>
+                    <span class="trans">A: Vậy làm bento rồi mang đi nhé.</span>
+                    <br>
+                    <p class="dialogue-p2">B：うん、そうしよう。</p>
+                    <span class="trans">B: Ừ, quyết định vậy đi.</span>
                 </div>
             </section>
             <section>
-                <h2>3. Vよう と思っています (Dự định)</h2>
+                <h2 class="section-title">3. Vよう と思っています (Dự định)</h2>
                 <div class="box-highlight">
                     Vよう と思っています。
                 </div>
-                <div class="grammar-example fragment">
-                    <p><strong>Cách dùng:</strong> Tôi dự định... (Dự định này đã được nhen nhóm từ trước và hiện tại vẫn đang nghĩ về nó).</p>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> Tôi dự định... (Thể hiện dự định đã được nhen nhóm từ trước và tại thời điểm nói vẫn đang nghĩ về nó).</p>
                 </div>
                 <div class="grammar-example fragment">
                     <p>将来、自分の会社を作ろうと思っています。</p>
@@ -205,46 +232,64 @@
                     <p>週末はデパートへ行こうと思っています。</p>
                     <span class="trans">Cuối tuần tôi định đi bách hóa.</span>
                 </div>
+                <div class="box-highlight fragment" style="font-size: 0.9em; padding: 10px 20px;">
+                    * Lưu ý: Khác với "Vよう と思います" (Dự định bộc phát ngay lúc nói).
+                </div>
             </section>
             <section>
-                <h2>4. つもりです (Dự định chắc chắn)</h2>
+                <h2 class="section-title">4. つもりです (Dự định chắc chắn)</h2>
                 <div class="box-highlight">
                     Vる つもりです。<br>
                     Vない つもりです。
                 </div>
-                <div class="grammar-example fragment">
-                    <p><strong>Cách dùng:</strong> Dự định chắc chắn, quyết tâm cao hơn "Vよう と思っています".</p>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> Dự định chắc chắn, sự quyết tâm thực hiện một việc gì đó (Mức độ chắc chắn cao hơn so với Vようと思っています).</p>
                 </div>
                 <div class="grammar-example fragment">
                     <p>来年、結婚するつもりです。</p>
                     <span class="trans">Tôi dự định sẽ kết hôn vào năm sau.</span>
                 </div>
                 <div class="grammar-example fragment">
-                    <p>タバコを吸わないつもりです。</p>
-                    <span class="trans">Tôi định sẽ không hút thuốc.</span>
+                    <p>明日からはタバコを吸わないつもりです。</p>
+                    <span class="trans">Từ ngày mai tôi định sẽ không hút thuốc nữa.</span>
                 </div>
             </section>
             <section>
-                <h2>📝 Bài tập Trắc nghiệm (Quiz)</h2>
+                <h2 class="section-title">📝 Bài tập Cuối bài (Tổng hợp)</h2>
                 <div class="quiz-box">
-                    <p class="quiz-q">1. Chọn phương án chia đúng Thể ý định:</p>
-                    <p>頑張ります ➔ _________________。</p>
-                    <p>A. 頑張ろう</p>
-                    <p>B. 頑張よう</p>
-                    <p>C. 頑張ろ</p>
+                    <p class="quiz-title">Quiz Tổng hợp</p>
+                    <p class="quiz-q">1. Chuyển câu rủ rê sau sang văn nói thân mật (dùng thể Ý định):<br>
+                    「一緒に帰りましょう。」</p>
                     <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
                     <div class="answer-content">
-                        Đáp án: <strong>A</strong> (頑張ろう). Vì đây là động từ nhóm 1 (Cột I đổi sang Cột O + う).
+                        一緒に<strong>帰ろう</strong>。<br>
+                        (帰ります thuộc nhóm 1 -> 帰ろう).
                     </div>
                 </div>
                 
                 <div class="quiz-box fragment">
-                    <p class="quiz-q">2. Dịch câu sau:</p>
-                    <p>Kỳ nghỉ hè năm nay, tôi định sẽ không đi đâu cả.</p>
+                    <p class="quiz-q">2. Chọn đáp án đúng:<br>
+                    国へ帰っても、日本語の勉強を ( A. 続ける / B. 続けよう ) つもりです。</p>
                     <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
                     <div class="answer-content">
-                        今年の夏休みはどこも行かないつもりです。
+                        Đáp án: <strong>A. 続ける</strong><br>
+                        (Cấu trúc là Vる つもりです, không dùng thể Ý định với つもり).
                     </div>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">📚 Tổng kết Bài 31</h2>
+                <div class="grammar-example">
+                    <ul>
+                        <li style="margin-bottom:15px;"><strong>Cách chia Vよう (Thể ý định):</strong> Nhóm 1 (おう), Nhóm 2 (よう), Nhóm 3 (しよう / こよう).</li>
+                        <li style="margin-bottom:15px;"><strong>Vよう:</strong> Rủ rê bạn bè thân thiết.</li>
+                        <li style="margin-bottom:15px;"><strong>Vようと思っています:</strong> Dự định đã nhen nhóm từ trước.</li>
+                        <li style="margin-bottom:15px;"><strong>Vる / Vない + つもりです:</strong> Dự định chắc chắn (Kế hoạch vững vàng).</li>
+                    </ul>
+                </div>
+                <div class="box-highlight fragment" style="text-align:center;">
+                    🏆 CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI 31! 🏆<br>
+                    <span style="font-size:0.7em; font-weight:normal;">Đã qua giai đoạn khởi đầu của Minna II rồi, tiếp tục phát huy nhé!</span>
                 </div>
             </section>
         </div>
@@ -256,14 +301,16 @@
             hash: true,
             slideNumber: true,
             transition: 'fade',
-            backgroundTransition: 'fade'
+            backgroundTransition: 'fade',
+            width: 1080,
+            height: 720,
+            margin: 0.1
         });
 
-        const furiganaDict = {"行きます": "<ruby>行<rt>い</rt></ruby>きます", "行こう": "<ruby>行<rt>い</rt></ruby>こう", "飲みます": "<ruby>飲<rt>の</rt></ruby>みます", "飲もう": "<ruby>飲<rt>の</rt></ruby>もう", "買います": "<ruby>買<rt>か</rt></ruby>います", "買おう": "<ruby>買<rt>か</rt></ruby>おう", "食べます": "<ruby>食<rt>た</rt></ruby>べます", "食べよう": "<ruby>食<rt>た</rt></ruby>べよう", "見ます": "<ruby>見<rt>み</rt></ruby>ます", "見よう": "<ruby>見<rt>み</rt></ruby>よう", "来ます": "<ruby>来<rt>き</rt></ruby>ます", "来よう": "<ruby>来<rt>こ</rt></ruby>よう", "疲れた": "<ruby>疲<rt>つか</rt></ruby>れた", "休もう": "<ruby>休<rt>やす</rt></ruby>もう", "一緒に": "<ruby>一緒<rt>いっしょ</rt></ruby>に", "今週末": "<ruby>今週末<rt>こんしゅうまつ</rt></ruby>", "海": "<ruby>海<rt>うみ</rt></ruby>", "行かない": "<ruby>行<rt>い</rt></ruby>かない", "弁当": "<ruby>弁当<rt>べんとう</rt></ruby>", "作って": "<ruby>作<rt>つく</rt></ruby>って", "思っています": "<ruby>思<rt>おも</rt></ruby>っています", "将来": "<ruby>将来<rt>しょうらい</rt></ruby>", "自分": "<ruby>自分<rt>じぶん</rt></ruby>", "会社": "<ruby>会社<rt>かいしゃ</rt></ruby>", "週末": "<ruby>週末<rt>しゅうまつ</rt></ruby>", "来年": "<ruby>来年<rt>らいねん</rt></ruby>", "結婚する": "<ruby>結婚<rt>けっこん</rt></ruby>する", "吸わない": "<ruby>吸<rt>す</rt></ruby>わない", "頑張ります": "<ruby>頑張<rt>がんば</rt></ruby>ります", "頑張ろう": "<ruby>頑張<rt>がんば</rt></ruby>ろう", "今年": "<ruby>今年<rt>ことし</rt></ruby>", "夏休み": "<ruby>夏休み<rt>なつやすみ</rt></ruby>"};
-        const vocabDict = {"疲れます": "Mệt mỏi", "将来": "Tương lai", "自分": "Tự bản thân", "結婚します": "Kết hôn", "吸います": "Hút", "頑張ります": "Cố gắng"};
+        const furiganaDict = {"窓": "<ruby>窓<rt>まど</rt></ruby>", "閉める": "<ruby>閉<rt>し</rt></ruby>める", "明日": "<ruby>明日<rt>あした</rt></ruby>", "会議": "<ruby>会議<rt>かいぎ</rt></ruby>", "今日": "<ruby>今日<rt>きょう</rt></ruby>", "並べて": "<ruby>並<rt>なら</rt></ruby>べて", "始まります": "<ruby>始<rt>はじ</rt></ruby>まります", "続けます": "<ruby>続<rt>つづ</rt></ruby>けます", "見つけます": "<ruby>見<rt>み</rt></ruby>つけます", "受けます": "<ruby>受<rt>う</rt></ruby>けます", "入学": "<ruby>入学<rt>にゅうがく</rt></ruby>", "卒業": "<ruby>卒業<rt>そつぎょう</rt></ruby>", "出席": "<ruby>出席<rt>しゅっせき</rt></ruby>", "休憩": "<ruby>休憩<rt>きゅうけい</rt></ruby>", "行きます": "<ruby>行<rt>い</rt></ruby>きます", "行こう": "<ruby>行<rt>い</rt></ruby>こう", "飲みます": "<ruby>飲<rt>の</rt></ruby>みます", "飲もう": "<ruby>飲<rt>の</rt></ruby>もう", "急ぎます": "<ruby>急<rt>いそ</rt></ruby>きます", "急ごう": "<ruby>急<rt>いそ</rt></ruby>ごう", "食べます": "<ruby>食<rt>た</rt></ruby>べます", "食べよう": "<ruby>食<rt>た</rt></ruby>べよう", "見ます": "<ruby>見<rt>み</rt></ruby>ます", "見よう": "<ruby>見<rt>み</rt></ruby>よう", "来ます": "<ruby>来<rt>き</rt></ruby>ます", "疲れた": "<ruby>疲<rt>つか</rt></ruby>れた", "休もう": "<ruby>休<rt>やす</rt></ruby>もう", "一緒に": "<ruby>一緒<rt>いっしょ</rt></ruby>に", "今週末": "<ruby>今週末<rt>こんしゅうまつ</rt></ruby>", "海": "<ruby>海<rt>うみ</rt></ruby>", "弁当": "<ruby>弁当<rt>べんとう</rt></ruby>", "作って": "<ruby>作<rt>つく</rt></ruby>って", "思って": "<ruby>思<rt>おも</rt></ruby>って", "将来": "<ruby>将来<rt>しょうらい</rt></ruby>", "自分": "<ruby>自分<rt>じぶん</rt></ruby>", "会社": "<ruby>会社<rt>かいしゃ</rt></ruby>", "週末": "<ruby>週末<rt>しゅうまつ</rt></ruby>", "来年": "<ruby>来年<rt>らいねん</rt></ruby>", "結婚": "<ruby>結婚<rt>けっこん</rt></ruby>", "吸わない": "<ruby>吸<rt>す</rt></ruby>わない", "帰りましょう": "<ruby>帰<rt>かえ</rt></ruby>りましょう", "国": "<ruby>国<rt>くに</rt></ruby>", "帰って": "<ruby>帰<rt>かえ</rt></ruby>って", "勉強": "<ruby>勉強<rt>べんきょう</rt></ruby>"};
 
         // Add furigana dynamically
-        document.querySelectorAll('p, .trans, .box-highlight, .answer-content, h1, h2, h3, li').forEach(el => {
+        document.querySelectorAll('p, .trans, .box-highlight, .answer-content, h1, h2, h3, li, strong, .vocab-item').forEach(el => {
             let html = el.innerHTML;
             for (let kanji in furiganaDict) {
                 let re = new RegExp(kanji, "g");
@@ -277,78 +324,12 @@
             if (content.style.display === "block") {
                 content.style.display = "none";
                 btn.innerText = "Kiểm tra đáp án";
-                btn.style.background = "var(--primary)";
+                btn.style.background = "var(--danger)";
             } else {
                 content.style.display = "block";
                 btn.innerText = "Ẩn đáp án";
-                btn.style.background = "var(--danger)";
+                btn.style.background = "var(--success)";
             }
-        }
-
-        const vocabBox = document.getElementById('vocabBox');
-        const vocabList = document.getElementById('vocabList');
-        
-        Reveal.on('slidechanged', event => {
-            updateVocab(event.currentSlide);
-        });
-        Reveal.on('ready', event => {
-            updateVocab(event.currentSlide);
-        });
-
-        function updateVocab(slide) {
-            let text = slide.innerText;
-            let found = false;
-            vocabList.innerHTML = '';
-            
-            for (let word in vocabDict) {
-                if (text.includes(word)) {
-                    found = true;
-                    let li = document.createElement('li');
-                    li.innerHTML = `<span class="v-jp">${word}</span> <span class="v-vi">${vocabDict[word]}</span>`;
-                    vocabList.appendChild(li);
-                }
-            }
-            
-            vocabBox.style.display = found ? 'block' : 'none';
-        }
-
-        // Draggable Vocab Box
-        let isDragging = false;
-        let currentX;
-        let currentY;
-        let initialX;
-        let initialY;
-        let xOffset = 0;
-        let yOffset = 0;
-
-        vocabBox.addEventListener("mousedown", dragStart);
-        document.addEventListener("mouseup", dragEnd);
-        document.addEventListener("mousemove", drag);
-
-        function dragStart(e) {
-            initialX = e.clientX - xOffset;
-            initialY = e.clientY - yOffset;
-            if (e.target === vocabBox || vocabBox.contains(e.target)) {
-                isDragging = true;
-            }
-        }
-        function dragEnd(e) {
-            initialX = currentX;
-            initialY = currentY;
-            isDragging = false;
-        }
-        function drag(e) {
-            if (isDragging) {
-                e.preventDefault();
-                currentX = e.clientX - initialX;
-                currentY = e.clientY - initialY;
-                xOffset = currentX;
-                yOffset = currentY;
-                setTranslate(currentX, currentY, vocabBox);
-            }
-        }
-        function setTranslate(xPos, yPos, el) {
-            el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
         }
     </script>
 </body>
