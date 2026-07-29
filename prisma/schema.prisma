@@ -28,6 +28,7 @@ model User {
   receivedMessages  Message[]    @relation("ReceivedMessages")
   notifications     Notification[]
   vocabScores       VocabScore[]
+  aiAnalyses        AIAnalysis[]
 }
 
 model Schedule {
@@ -123,4 +124,14 @@ model VocabScore {
   score     Int      @default(0)
   total     Int      @default(0)
   playedAt  DateTime @default(now())
+}
+
+model AIAnalysis {
+  id          String   @id @default(uuid())
+  studentId   String
+  student     User     @relation(fields: [studentId], references: [id])
+  weaknesses  String   
+  advice      String   
+  testCreated Boolean  @default(false)
+  createdAt   DateTime @default(now())
 }
