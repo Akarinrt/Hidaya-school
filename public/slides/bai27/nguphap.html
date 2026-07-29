@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ngữ pháp Bài 27</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Enable scroll on long slides */
+        .reveal .slides section { max-height: 95vh; overflow-y: auto; padding-right: 15px; }
+        
+        .quiz-box { background: #fffde7; border: 2px dashed #fbc02d; padding: 15px; border-radius: 8px; margin-top: 15px; }
+        .quiz-title { font-weight: bold; color: #f57f17; font-size: 1.3rem; margin-bottom: 10px; }
+        .answer-btn { background: #1976d2; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.85rem; margin-top: 5px; }
+        .answer-content { display: none; color: #d32f2f; font-weight: bold; margin-top: 5px; font-size: 1.1rem; }
+        .answer-content.show { display: block; animation: fadeIn 0.3s; }
+        .box-note { background: #e3f2fd; padding: 15px; border-left: 5px solid #1976d2; text-align: left; margin-top: 15px; font-size: 1.1rem; line-height: 1.5; }
+        .grammar-example { text-align: left; background: #fafafa; padding: 15px; border-radius: 8px; border: 1px solid #ddd; margin-top: 15px; font-size: 1.2rem; }
+        .trans { color: #555; font-size: 1rem; font-style: italic; display: block; margin-top: 5px; }
+        table.grammar-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 1.1rem; }
+        table.grammar-table th, table.grammar-table td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        table.grammar-table th { background: #1976d2; color: white; text-align: center; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        /* Furigana Style */
+        ruby { font-family: 'Noto Sans JP', sans-serif; }
+        rt { font-size: 0.6em; color: #1976d2; font-weight: bold; }
+        
+        /* Vocab Box */
+        .vocab-box {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid #ff9800;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            text-align: left;
+            max-width: 250px;
+        }
+        .vocab-title { font-weight: bold; color: #ff9800; margin-bottom: 5px; font-size: 1rem; border-bottom: 1px solid #ff9800; padding-bottom: 5px; }
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        .audio-btn {
+            background: none; border: none; cursor: pointer; font-size: 1.2rem; margin-left: 10px;
+            transition: transform 0.2s; vertical-align: middle;
+        }
+        .audio-btn:hover { transform: scale(1.3); }
+        .audio-btn:active { transform: scale(0.9); }
+            </style>
+
+    <style>
+        /* Animated Gradient Background */
+        body {
+            background: linear-gradient(-45deg, #ffffff, #f0f4f8, #e0f2fe, #f8fafc) !important;
+            background-size: 400% 400% !important;
+            animation: gradientBG 15s ease infinite !important;
+        }
+        .reveal { font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif !important; }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Premium Typography for Headings */
+        .reveal h1, .reveal h2, .reveal h3 {
+            font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif !important;
+            background: -webkit-linear-gradient(45deg, #1a237e, #0277bd, #00838f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.05); /* very subtle shadow */
+        }
+        
+        /* Glassmorphism for Vocab Box */
+        .vocab-box {
+            background: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.8) !important;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
+            border-radius: 16px !important;
+        }
+        #vocab-header {
+            background: rgba(255, 243, 224, 0.4) !important;
+            border-bottom: 1px solid rgba(255, 152, 0, 0.2) !important;
+            border-radius: 14px 14px 0 0 !important;
+        }
+        
+        /* Vocab hover micro-animation */
+        #vocab-list div {
+            transition: all 0.3s ease;
+            padding: 6px;
+            border-radius: 8px;
+            margin-bottom: 2px !important;
+        }
+        #vocab-list div:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateX(8px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            color: #1976d2;
+        }
+        
+        /* Quiz box glassmorphism */
+        .quiz-box {
+            background: rgba(255, 253, 231, 0.6) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(251, 192, 45, 0.3) !important;
+            box-shadow: 0 8px 24px rgba(251, 192, 45, 0.15) !important;
+            border-radius: 16px !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .quiz-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(251, 192, 45, 0.25) !important;
+        }
+        
+        /* Audio button pulse */
+        .audio-btn {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+            background: rgba(25, 118, 210, 0.08) !important;
+            border-radius: 50% !important;
+            padding: 4px 8px !important;
+            text-decoration: none !important;
+        }
+        .audio-btn:hover {
+            transform: scale(1.25) rotate(5deg) !important;
+            background: rgba(25, 118, 210, 0.2) !important;
+            box-shadow: 0 0 15px rgba(25, 118, 210, 0.3) !important;
+        }
+        
+        /* Grammar Example Box */
+        .grammar-example {
+            background: rgba(250, 250, 250, 0.8) !important;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(221, 221, 221, 0.5) !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03) !important;
+            border-radius: 12px !important;
+            transition: border-color 0.3s ease;
+        }
+        .grammar-example:hover {
+            border-color: #1976d2 !important;
+        }
+    
+        /* Elegance & Readability Overrides */
+        .reveal p, .reveal li {
+            font-size: 1.3rem !important;
+            line-height: 1.6 !important;
+            color: #2c3e50 !important; /* Mute black to an elegant dark slate */
+        }
+        .grammar-example {
+            font-size: 1.5rem !important;
+            padding: 20px !important;
+            border-left: 6px solid #1976d2 !important;
+            background: rgba(255, 255, 255, 0.85) !important;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06) !important;
+        }
+        .box-highlight {
+            font-size: 1.6rem !important;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%) !important;
+            border: none !important;
+            border-radius: 12px !important;
+            padding: 20px !important;
+            color: #0d47a1 !important;
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.15) !important;
+        }
+        .trans {
+            font-size: 1.1rem !important;
+            color: #607d8b !important;
+        }
+        h2 {
+            font-size: 2.2rem !important;
+            margin-bottom: 30px !important;
+            padding-bottom: 15px !important;
+            border-bottom: 2px dashed rgba(25, 118, 210, 0.3) !important;
+        }
+    
+        /* --- VIBRANT & CRISP UI --- */
+        body {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%) !important;
+        }
+        .reveal p, .reveal li {
+            font-size: 1.6rem !important;
+            line-height: 1.6 !important;
+            color: #0b1f38 !important; /* Deep Navy */
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            background: none !important;
+            -webkit-text-fill-color: #0052cc !important; /* Vibrant Blue */
+            text-shadow: none !important;
+            font-weight: 800 !important;
+        }
+        
+        .box-highlight {
+            font-size: 1.8rem !important;
+            background: #ffffff !important;
+            border-left: 8px solid #0052cc !important;
+            border-radius: 12px !important;
+            padding: 25px !important;
+            color: #0052cc !important;
+            box-shadow: 0 15px 35px rgba(0, 82, 204, 0.1) !important;
+            font-weight: bold;
+        }
+        
+        .grammar-example {
+            font-size: 1.8rem !important;
+            padding: 25px !important;
+            background: #ffffff !important;
+            border: 2px solid #e1efff !important;
+            border-radius: 16px !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
+        }
+        
+        .trans {
+            font-size: 1.4rem !important;
+            color: #5c728a !important;
+            display: block;
+            margin-top: 10px;
+        }
+        
+        /* Kanji Cards 3D */
+        .kanji-grid { gap: 25px !important; margin-top: 30px !important;}
+        .kanji-card {
+            background: #ffffff !important;
+            border-radius: 20px !important;
+            padding: 20px !important;
+            box-shadow: 0 10px 30px rgba(0, 82, 204, 0.1) !important;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease !important;
+            border: none !important;
+        }
+        .kanji-card:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: 0 20px 40px rgba(0, 82, 204, 0.2) !important;
+        }
+        .kanji-svg-container {
+            width: 100px !important; height: 100px !important;
+            background: #f0f7ff !important;
+            border: 2px solid #cce4ff !important;
+            border-radius: 16px !important;
+        }
+        .kanji-char-box span { font-size: 4rem !important; }
+        .kanji-details { font-size: 1.4rem !important; line-height: 1.5 !important; }
+        
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .badge.on { background: #ff6b6b; box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3); }
+        .badge.kun { background: #20c997; box-shadow: 0 4px 10px rgba(32, 201, 151, 0.3); }
+        
+        .kanji-ex {
+            font-size: 1.3rem !important;
+            background: #f8fbff !important;
+            border-left: 4px solid #0052cc !important;
+            padding: 15px !important;
+            border-radius: 0 12px 12px 0 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating Dynamic Vocabulary Box -->
+    <div id="vocab-box" class="vocab-box" style="resize: both; overflow: auto; min-width: 200px; min-height: 100px;">
+        <div id="vocab-header" class="vocab-title" style="cursor: move; background: #fff3e0; padding: 8px; margin: -15px -15px 10px -15px; border-bottom: 2px solid #ff9800; border-radius: 6px 6px 0 0; display: flex; justify-content: space-between; align-items: center;">
+            <span>🌟 Từ vựng (Kéo thả)</span>
+            <span style="font-size: 0.8rem; color: #ff9800; cursor: se-resize;">↘ Góc dưới để kéo to</span>
+        </div>
+        <div id="vocab-list">
+            <!-- Dynamic content will be injected here -->
+        </div>
+    </div>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <section class="title-slide">
+                <h1>Ngữ Pháp Bài 27</h1>
+                <h3>Tiếng Nhật N4</h3>
+                <p class="fragment" style="color:#d32f2f; font-size:1.1rem; margin-top:30px;">(Nhấn phím Mũi tên hoặc Space để bắt đầu)</p>
+            </section>
+
+            <!-- PHẦN I -->
+            <section>
+                <h2>I. Động từ khả năng (可能動詞)</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px;">
+                    <p style="font-size: 1.6rem; color: #0052cc; font-weight:bold;">1. Ôn tập (Bài 18)</p>
+                    <div class="grammar-example fragment">
+                        <p>Danh từ (N) <strong>が できます</strong></p>
+                        <p>ピアノができます。</p>
+                        <span class="trans">Tôi có thể chơi piano.</span>
+                    </div>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>Động từ (V-thể từ điển) <strong>こと が できます</strong></p>
+                        <p>日本語を話すことができます。</p>
+                        <span class="trans">Tôi có thể nói tiếng Nhật.</span>
+                    </div>
+                    <p class="fragment" style="margin-top:20px; font-style:italic; font-size: 1.4rem;">👉 Ở Bài 27, chúng ta học cách rút gọn để câu nói tự nhiên hơn!</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>I. Cách chia Động từ khả năng (Nhóm 1)</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px;">
+                    <div class="box-highlight">
+                        Nhóm I: Đổi âm hàng <strong>[い]</strong> sang hàng <strong>[え]</strong> <br>
+                        (Thêm ます cho thể lịch sự, hoặc る cho thể thông thường)
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-top: 20px; text-align:center;">
+                        <div class="grammar-example fragment" style="width:48%;">
+                            <p style="color:#388e3c; font-weight:bold;">Thể ます</p>
+                            <p>書きます → 書けます</p>
+                            <p>話します → 話せます</p>
+                        </div>
+                        <div class="grammar-example fragment" style="width:48%;">
+                            <p style="color:#d32f2f; font-weight:bold;">Thể thông thường</p>
+                            <p>書く → 書ける</p>
+                            <p>話す → 話せる</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>I. Luyện tập chia Động từ (Nhóm 1)</h2>
+                <div class="quiz-box fragment" style="text-align: left;">
+                    <div class="quiz-title">✍️ Đổi các động từ sau sang khả năng:</div>
+                    <div class="fragment" style="margin-bottom: 10px;">
+                        <p>1. 読みます / 読む</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem</button>
+                        <div class="answer-content">→ 読めます / 読める</div>
+                    </div>
+                    <div class="fragment" style="margin-bottom: 10px;">
+                        <p>2. 泳ぎます / 泳ぐ</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem</button>
+                        <div class="answer-content">→ 泳げます / 泳げる</div>
+                    </div>
+                    <div class="fragment" style="margin-bottom: 10px;">
+                        <p>3. 待ちます / 待つ</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem</button>
+                        <div class="answer-content">→ 待てます / 待てる</div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>I. Động từ khả năng (Nhóm 2 & 3)</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px;">
+                    <div class="box-highlight">
+                        Nhóm II: Bỏ ます / る, thêm <strong>られます / られる</strong> <br>
+                        Nhóm III: します → <strong>できます</strong> | 来ます → <strong>来られます</strong>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-top: 20px; text-align:center;">
+                        <div class="grammar-example fragment" style="width:48%;">
+                            <p style="color:#388e3c; font-weight:bold;">Nhóm II</p>
+                            <p>食べます → 食べられます</p>
+                            <p>見ます → 見られます</p>
+                            <p>起きます → 起きられます</p>
+                        </div>
+                        <div class="grammar-example fragment" style="width:48%;">
+                            <p style="color:#d32f2f; font-weight:bold;">Nhóm III</p>
+                            <p>します → できます</p>
+                            <p>来ます → 来られます</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>⚠️ Lưu ý đặc biệt</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px;">
+                    <div class="grammar-example">
+                        <p style="font-size: 1.8rem; color:#d32f2f;">Động từ 分かります</p>
+                        <p>Bản thân nó đã mang nghĩa là "có thể hiểu được" (trạng thái), nên <strong>KHÔNG</strong> chia sang thể khả năng.</p>
+                        <p>❌ 分かれます</p>
+                        <p>⭕ 分かります</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- INTERACTIVE BREAK -->
+            <section data-background-color="#e0f2fe">
+                <h2 style="color: #0052cc;">💡 Giải lao nhẹ nhàng!</h2>
+                <h3 style="margin-top: 30px;">Dùng bút vẽ để nối Động từ với Thể khả năng của nó nhé!</h3>
+                <div style="display: flex; justify-content: space-around; margin-top: 50px; font-size: 2rem; font-weight: bold;">
+                    <div style="text-align: right; line-height: 2;">
+                        <p>1. 飲む</p>
+                        <p>2. 来る</p>
+                        <p>3. 借りる</p>
+                    </div>
+                    <div style="text-align: left; line-height: 2;">
+                        <p>A. 借りられる</p>
+                        <p>B. 飲める</p>
+                        <p>C. 来られる</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PHẦN II -->
+            <section>
+                <h2>II. Câu Động từ khả năng</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px;">
+                    <div class="box-highlight">
+                        Tân ngữ đi với <strong>を</strong> thường đổi thành <strong>が</strong>. <br>
+                        Các trợ từ khác (に, へ, で, と...) giữ nguyên.
+                    </div>
+                    <div class="grammar-example fragment" style="margin-top: 20px;">
+                        <p>わたしは 日本語<strong>を</strong>話します。 <span class="trans" style="display:inline;">(Hành động nói)</span></p>
+                        <p>わたしは 日本語<strong>が</strong>話せます。 <span class="trans" style="display:inline;">(Khả năng nói)</span></p>
+                    </div>
+                    <div class="grammar-example fragment" style="margin-top: 20px;">
+                        <p>一人で 病院<strong>へ</strong>行けますか。</p>
+                        <span class="trans">Anh có thể tự mình đi đến bệnh viện được không? (へ giữ nguyên)</span>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>II. Ý nghĩa cách dùng</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px;">
+                    <div class="grammar-example fragment">
+                        <p style="color:#0052cc;"><strong>1. Năng lực của bản thân:</strong></p>
+                        <p>ミラーさんは漢字が読めます。</p>
+                        <span class="trans">Anh Miller có thể đọc chữ Hán. (Anh ấy học và biết đọc)</span>
+                    </div>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p style="color:#0052cc;"><strong>2. Điều kiện hoàn cảnh cho phép:</strong></p>
+                        <p>この銀行でドルが換えられます。</p>
+                        <span class="trans">Có thể đổi đô la ở ngân hàng này. (Ngân hàng có dịch vụ đó)</span>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>II. Luyện tập (Dịch câu)</h2>
+                <div class="quiz-box fragment" style="text-align: left;">
+                    <div class="quiz-title">✍️ Dịch sang tiếng Nhật:</div>
+                    <div class="fragment" style="margin-bottom: 10px;">
+                        <p>1. Tôi (đã) không gặp được anh Tanaka.</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem</button>
+                        <div class="answer-content">→ 田中さんに 会えませんでした。</div>
+                    </div>
+                    <div class="fragment" style="margin-bottom: 10px;">
+                        <p>2. Bạn biết bơi không? / Không, tôi không biết.</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem</button>
+                        <div class="answer-content">→ 泳げますか。/ いいえ、泳げません。</div>
+                    </div>
+                    <div class="fragment" style="margin-bottom: 10px;">
+                        <p>3. Bạn có đến trường trước 8h được không?</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem</button>
+                        <div class="answer-content">→ 8時までに 学校に来られますか。</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PHẦN III -->
+            <section>
+                <h2>III. 見えます và 聞こえます</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px;">
+                    <div class="box-highlight" style="font-size: 1.5rem !important;">
+                        Dùng khi hình ảnh/âm thanh tự nhiên lọt vào mắt/tai (Không chủ động).<br>
+                        Luôn đi kèm với trợ từ <strong>が</strong>.
+                    </div>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>新幹線から 富士山<strong>が 見えます</strong>。</p>
+                        <span class="trans">Từ tàu Shinkansen có thể nhìn thấy núi Phú Sĩ.</span>
+                    </div>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>ラジオの音<strong>が 聞こえます</strong>。</p>
+                        <span class="trans">Có thể nghe thấy tiếng radio.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>III. Phân biệt (Chủ động vs Tự nhiên)</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px;">
+                    <p style="font-size: 1.6rem; color: #d32f2f; font-weight: bold;">Khi Chủ động muốn xem/nghe → Dùng Động từ khả năng!</p>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>新宿で ベトナムの映画が <strong>見られます</strong>。</p>
+                        <span class="trans">Ở Shinjuku có thể xem phim Việt Nam. (Chủ động đi xem chiếu rạp)</span>
+                    </div>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>電話で 天気予報が <strong>聞けます</strong>。</p>
+                        <span class="trans">Có thể nghe dự báo thời tiết qua điện thoại. (Chủ động gọi để nghe)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PHẦN IV -->
+            <section>
+                <h2>IV. Các ý nghĩa của できます</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px;">
+                    <p style="font-size: 1.5rem; color:#5c728a;">Ngoài nghĩa "có thể", <strong>できます</strong> còn có 3 ý nghĩa:</p>
+                    <div class="grammar-example fragment" style="margin-bottom: 10px; padding: 15px !important;">
+                        <p style="color:#0052cc;"><strong>1. Phát sinh ra (kết bạn, có bầu, xuất hiện):</strong></p>
+                        <p>友達が できました。</p>
+                        <span class="trans">Tôi đã có (kết thêm) một người bạn.</span>
+                    </div>
+                    <div class="grammar-example fragment" style="margin-bottom: 10px; padding: 15px !important;">
+                        <p style="color:#0052cc;"><strong>2. Được xây lên, làm ra (tòa nhà, đồ vật):</strong></p>
+                        <p>駅の前に 大きいスーパーが できました。</p>
+                        <span class="trans">Trước ga, đã có 1 siêu thị lớn được xây lên.</span>
+                    </div>
+                    <div class="grammar-example fragment" style="padding: 15px !important;">
+                        <p style="color:#0052cc;"><strong>3. Hoàn thành (làm xong):</strong></p>
+                        <p>時計の修理は いつできますか。</p>
+                        <span class="trans">Khi nào thì sửa xong đồng hồ?</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PHẦN V -->
+            <section>
+                <h2>V. Mẫu câu ～しか</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px;">
+                    <div class="box-highlight">
+                        Danh từ / Lượng từ + <strong>しか</strong> + <strong>Động từ (Phủ định)</strong><br>
+                        Ý nghĩa: Chỉ (chỉ có cái đó, ngoài ra không có)
+                    </div>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>ローマ字が書けます。 → ローマ字<strong>しか</strong>書けません。</p>
+                        <span class="trans">Tôi chỉ biết viết chữ Romaji (Bỏ が/を thay bằng しか).</span>
+                    </div>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>母と行きます。 → 母<strong>としか</strong>行きません。</p>
+                        <span class="trans">Tôi chỉ đi với mẹ (Giữ nguyên các trợ từ khác, thêm しか).</span>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>V. Luyện tập mẫu câu ～しか</h2>
+                <div class="quiz-box fragment" style="text-align: left;">
+                    <div class="quiz-title">✍️ Chuyển đổi sang câu dùng しか:</div>
+                    <div class="fragment" style="margin-bottom: 15px;">
+                        <p>朝ごはんに、パンを食べます。</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
+                        <div class="answer-content">→ 朝ごはんに、パンしか食べません。<br><span class="trans">Tôi chỉ ăn bánh mì vào bữa sáng.</span></div>
+                    </div>
+                    <div class="fragment" style="margin-bottom: 15px;">
+                        <p>日本で食べられます。</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
+                        <div class="answer-content">→ 日本でしか食べられません。<br><span class="trans">Chỉ có thể ăn ở Nhật Bản.</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PHẦN VI & VII -->
+            <section>
+                <h2>VI & VII. Trợ từ は (Đối sánh & Nhấn mạnh)</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px;">
+                    <div class="grammar-example fragment">
+                        <p style="color:#0052cc;"><strong>1. Dùng để Đối sánh (Cái này thì có, cái kia thì không)</strong></p>
+                        <p>コーヒー<strong>は</strong>飲みますが、お茶<strong>は</strong>飲みません。</p>
+                        <span class="trans">Cà phê thì tôi uống, còn trà thì tôi không uống.</span>
+                    </div>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p style="color:#0052cc;"><strong>2. Dùng để Nhấn mạnh (Đứng sau trợ từ khác)</strong></p>
+                        <p>ここから<strong>は</strong> 富士山が見えます。</p>
+                        <span class="trans">Từ đây thì có thể nhìn thấy núi Phú Sĩ. (Hàm ý từ chỗ khác chưa chắc đã nhìn được)</span>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                
+            <!-- KỸ NĂNG: HỘI THOẠI -->
+            <section data-background-color="#fff3e0">
+                <h2 style="color: #e65100;">🗣️ 会話: 何でも 作れるんですね</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px; font-size: 1.1rem; line-height: 1.6;">
+                    <p><strong>鈴木：</strong>明るくて、いい 部屋ですね。</p>
+                    <p><strong>ミラー：</strong>ええ。 天気が いい 日には 海が 見えるんです。</p>
+                    <p><strong>鈴木：</strong>この テーブルは おもしろい デザインですね。どこで 買ったんですか。</p>
+                    <p><strong>ミラー：</strong>これですか。私が 作ったんです。</p>
+                    <p><strong>鈴木：</strong>ええっ、ほんとうですか。</p>
+                    <p><strong>ミラー：</strong>ええ。 日曜大工が 趣味なんです。</p>
+                    <p><strong>鈴木：</strong>へえ。 じゃ、あの 本棚も 作ったんですか。</p>
+                    <p><strong>ミラー：</strong>ええ。</p>
+                    <p><strong>鈴木：</strong>すごいですね。ミラーさん、何でも 作れるんですね。</p>
+                    <p><strong>ミラー：</strong>わたしの 夢は いつか 自分で 家を 建てる ことなんです。</p>
+                    <p><strong>鈴木：</strong>すばらしい 夢ですね。</p>
+                </div>
+            </section>
+
+            <!-- ROLE-PLAY HỘI THOẠI -->
+            <section data-background-color="#fff3e0">
+                <h2 style="color: #e65100;">🎭 Role-play (Phân vai)</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px; font-size: 1.1rem; line-height: 1.6;">
+                    <p><strong>鈴木：</strong>明るくて、いい 部屋ですね。</p>
+                    <p><strong>ミラー：</strong>ええ。 天気が いい 日には [_____] が 見えるんです。</p>
+                    <p><strong>鈴木：</strong>この テーブルは おもしろい デザインですね。どこで 買ったんですか。</p>
+                    <p><strong>ミラー：</strong>これですか。私が [_____]んです。</p>
+                    <p><strong>鈴木：</strong>ええっ、ほんとうですか。</p>
+                    <p><strong>ミラー：</strong>ええ。 [_____]が 趣味なんです。</p>
+                    <p><strong>鈴木：</strong>へえ。 じゃ、あの [_____]も 作ったんですか。</p>
+                    <p><strong>ミラー：</strong>ええ。</p>
+                    <p><strong>鈴木：</strong>すごいですね。ミラーさん、何でも [_____]んですね。</p>
+                    <p><strong>ミラー：</strong>わたしの [_____]は いつか 自分で [_____]を 建てる ことなんです。</p>
+                    <p><strong>鈴木：</strong>すばらしい 夢ですね。</p>
+                </div>
+            </section>
+
+            <!-- KỸ NĂNG: ĐỌC HIỂU -->
+            <section data-background-color="#e8f5e9">
+                <h2 style="color: #1b5e20;">📖 読み物: ドラえもん</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px; font-size: 1.1rem; line-height: 1.8; padding: 20px; background: white; border-radius: 8px; border: 1px solid #c8e6c9;">
+                    <p>　皆さんは 「ドラえもん」を 知っていますか。「ドラえもん」は 日本の 子どもたちが 大好きな 漫画の 主人公です。猫の 形を した ロボットですが、不思議な ポケットを 持っています。</p>
+                    <p>　例えば、空を 自由に 飛びたい ときは、「タケコプター」を 頭に 付けます。タケコプターを 付けると、自分 で 空が 飛べます。それから、「どこでもドア」を 開けると、どこでも 好きな 所へ 行けます。</p>
+                    <p>　「ドラえもん」の 漫画は 世界の いろいろな 国で 読まれています。子どもたちは みんな 「ドラえもん」の ような 友達が 欲しいと 思っています。私も 将来 「ドラえもん」の ような ロボットが 買えたら いいなあ と 思っています。</p>
+                </div>
+            </section>
+
+            <!-- ĐỌC HIỂU QUIZ -->
+            <section data-background-color="#e8f5e9">
+                <h2 style="color: #1b5e20;">✅ Đọc hiểu (True / False)</h2>
+                <div class="quiz-box fragment" style="text-align: left; margin-top: 20px;">
+                    <div class="fragment" style="margin-bottom: 15px;">
+                        <p>1. ドラえもんは 犬の ロボットです。</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
+                        <div class="answer-content">→ ❌ (猫の ロボットです)</div>
+                    </div>
+                    <div class="fragment" style="margin-bottom: 15px;">
+                        <p>2. 「タケコプター」を 頭に 付けると、空が 飛べます。</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
+                        <div class="answer-content">→ ⭕</div>
+                    </div>
+                    <div class="fragment" style="margin-bottom: 15px;">
+                        <p>3. 私も ドラえもんを 買いたいです。</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
+                        <div class="answer-content">→ ⭕</div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Ôn tập cuối bài!</h2>
+                <div class="quiz-box fragment" style="text-align: left;">
+                    <div class="quiz-title">✍️ Tổng kết:</div>
+                    <div class="fragment" style="margin-bottom: 15px;">
+                        <p>Hôm kia thì (đã) có thể nhìn thấy núi, còn hôm nay thì không nhìn thấy.</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
+                        <div class="answer-content">→ おとといは山が見えましたが、きょうは見えません。</div>
+                    </div>
+                    <div class="fragment" style="margin-bottom: 15px;">
+                        <p>Ở Nhật Bản thì có thể đi tàu Shinkansen, còn ở Việt Nam thì không.</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
+                        <div class="answer-content">→ 日本では、新幹線に乗れますが、ベトナムでは乗れません。</div>
+                    </div>
+                </div>
+                <h3 class="fragment" style="margin-top:40px; text-align:center; color:#d32f2f;">Chúc mừng bạn đã hoàn thành Bài 27! 🎉</h3>
+            </section>
+
+

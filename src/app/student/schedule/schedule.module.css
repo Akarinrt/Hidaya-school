@@ -1,0 +1,15 @@
+.container { max-width: 1200px; }
+.title { font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.subtitle { color: var(--text-muted); margin-bottom: 24px; }
+.weekGrid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
+.dayColumn { display: flex; flex-direction: column; gap: 8px; }
+.todayCol .classCard { box-shadow: 0 0 12px rgba(100,180,255,0.3); }
+.dayHeader { text-align: center; font-size: 0.72rem; font-weight: 700; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 8px 4px; border-radius: 8px; }
+.todayHeader { background: rgba(100,180,255,0.2); color: #64b4ff; }
+.noClass { text-align: center; font-size: 0.68rem; color: rgba(255,255,255,0.2); padding: 16px 4px; }
+.classCard { background: var(--glass-bg); border: 1px solid var(--glass-border); border-top: 3px solid #64b4ff; border-radius: 10px; padding: 10px 8px; display: flex; flex-direction: column; gap: 4px; }
+.className { font-size: 0.75rem; font-weight: 700; color: #fff; }
+.classTime { font-size: 0.7rem; color: #64b4ff; font-weight: 600; }
+.classLoc { font-size: 0.65rem; color: var(--text-muted); }
+.joinBtn { display: block; margin-top: 6px; font-size: 0.68rem; font-weight: 700; color: #42a5f5; text-decoration: none; background: rgba(66,165,245,0.15); padding: 4px 6px; border-radius: 6px; text-align: center; }
+@media (max-width: 768px) { .weekGrid { grid-template-columns: repeat(3, 1fr); } }

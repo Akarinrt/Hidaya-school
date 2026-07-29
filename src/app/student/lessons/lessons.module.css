@@ -1,0 +1,17 @@
+.container { max-width: 900px; }
+.title { font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.subtitle { color: var(--text-muted); margin-bottom: 28px; }
+.section { margin-bottom: 32px; }
+.levelHeader { display: flex; align-items: center; gap: 12px; border-left: 4px solid #42a5f5; padding-left: 14px; margin-bottom: 14px; }
+.levelBadge { font-size: 0.8rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
+.levelTitle { font-size: 1rem; font-weight: 700; color: #fff; }
+.grid { display: flex; flex-direction: column; gap: 10px; }
+.card { display: flex; align-items: center; gap: 14px; padding: 16px 18px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 14px; transition: all 0.2s; }
+.card:hover { border-color: #64b4ff; transform: translateX(4px); }
+.cardIcon { font-size: 1.8rem; flex-shrink: 0; }
+.cardInfo { flex: 1; }
+.cardLesson { font-size: 0.75rem; color: #64b4ff; font-weight: 600; margin-bottom: 2px; }
+.cardTitle { font-size: 0.95rem; font-weight: 600; color: #fff; }
+.viewBtn { background: linear-gradient(135deg, #64b4ff, #1565c0); color: #fff; text-decoration: none; padding: 8px 16px; border-radius: 10px; font-size: 0.82rem; font-weight: 600; white-space: nowrap; transition: transform 0.2s; }
+.viewBtn:hover { transform: scale(1.05); }
+.comingSoon { font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; }

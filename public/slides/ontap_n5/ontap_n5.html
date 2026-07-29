@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tổng Ôn N5</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Enable scroll on long slides */
+        .reveal .slides section { max-height: 95vh; overflow-y: auto; padding-right: 15px; }
+        
+        .quiz-box { background: #fffde7; border: 2px dashed #fbc02d; padding: 15px; border-radius: 8px; margin-top: 15px; }
+        .quiz-title { font-weight: bold; color: #f57f17; font-size: 1.3rem; margin-bottom: 10px; }
+        .answer-btn { background: #1976d2; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.85rem; margin-top: 5px; }
+        .answer-content { display: none; color: #d32f2f; font-weight: bold; margin-top: 5px; font-size: 1.1rem; }
+        .answer-content.show { display: block; animation: fadeIn 0.3s; }
+        .box-note { background: #e3f2fd; padding: 15px; border-left: 5px solid #1976d2; text-align: left; margin-top: 15px; font-size: 1.1rem; line-height: 1.5; }
+        .grammar-example { text-align: left; background: #fafafa; padding: 15px; border-radius: 8px; border: 1px solid #ddd; margin-top: 15px; font-size: 1.2rem; }
+        .trans { color: #555; font-size: 1rem; font-style: italic; display: block; margin-top: 5px; }
+        table.grammar-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 1.1rem; }
+        table.grammar-table th, table.grammar-table td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        table.grammar-table th { background: #1976d2; color: white; text-align: center; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        /* Furigana Style */
+        ruby { font-family: 'Noto Sans JP', sans-serif; }
+        rt { font-size: 0.6em; color: #1976d2; font-weight: bold; }
+        
+        /* Vocab Box */
+        .vocab-box {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid #ff9800;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            text-align: left;
+            max-width: 250px;
+        }
+        .vocab-title { font-weight: bold; color: #ff9800; margin-bottom: 5px; font-size: 1rem; border-bottom: 1px solid #ff9800; padding-bottom: 5px; }
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        .audio-btn {
+            background: none; border: none; cursor: pointer; font-size: 1.2rem; margin-left: 10px;
+            transition: transform 0.2s; vertical-align: middle;
+        }
+        .audio-btn:hover { transform: scale(1.3); }
+        .audio-btn:active { transform: scale(0.9); }
+            </style>
+
+    <style>
+        /* Animated Gradient Background */
+        body {
+            background: linear-gradient(-45deg, #ffffff, #f0f4f8, #e0f2fe, #f8fafc) !important;
+            background-size: 400% 400% !important;
+            animation: gradientBG 15s ease infinite !important;
+        }
+        .reveal { font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif !important; }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Premium Typography for Headings */
+        .reveal h1, .reveal h2, .reveal h3 {
+            font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif !important;
+            background: -webkit-linear-gradient(45deg, #1a237e, #0277bd, #00838f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.05); /* very subtle shadow */
+        }
+        
+        /* Glassmorphism for Vocab Box */
+        .vocab-box {
+            background: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.8) !important;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
+            border-radius: 16px !important;
+        }
+        #vocab-header {
+            background: rgba(255, 243, 224, 0.4) !important;
+            border-bottom: 1px solid rgba(255, 152, 0, 0.2) !important;
+            border-radius: 14px 14px 0 0 !important;
+        }
+        
+        /* Vocab hover micro-animation */
+        #vocab-list div {
+            transition: all 0.3s ease;
+            padding: 6px;
+            border-radius: 8px;
+            margin-bottom: 2px !important;
+        }
+        #vocab-list div:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateX(8px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            color: #1976d2;
+        }
+        
+        /* Quiz box glassmorphism */
+        .quiz-box {
+            background: rgba(255, 253, 231, 0.6) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(251, 192, 45, 0.3) !important;
+            box-shadow: 0 8px 24px rgba(251, 192, 45, 0.15) !important;
+            border-radius: 16px !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .quiz-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(251, 192, 45, 0.25) !important;
+        }
+        
+        /* Audio button pulse */
+        .audio-btn {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+            background: rgba(25, 118, 210, 0.08) !important;
+            border-radius: 50% !important;
+            padding: 4px 8px !important;
+            text-decoration: none !important;
+        }
+        .audio-btn:hover {
+            transform: scale(1.25) rotate(5deg) !important;
+            background: rgba(25, 118, 210, 0.2) !important;
+            box-shadow: 0 0 15px rgba(25, 118, 210, 0.3) !important;
+        }
+        
+        /* Grammar Example Box */
+        .grammar-example {
+            background: rgba(250, 250, 250, 0.8) !important;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(221, 221, 221, 0.5) !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03) !important;
+            border-radius: 12px !important;
+            transition: border-color 0.3s ease;
+        }
+        .grammar-example:hover {
+            border-color: #1976d2 !important;
+        }
+    
+        /* Elegance & Readability Overrides */
+        .reveal p, .reveal li {
+            font-size: 1.3rem !important;
+            line-height: 1.6 !important;
+            color: #2c3e50 !important; /* Mute black to an elegant dark slate */
+        }
+        .grammar-example {
+            font-size: 1.5rem !important;
+            padding: 20px !important;
+            border-left: 6px solid #1976d2 !important;
+            background: rgba(255, 255, 255, 0.85) !important;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06) !important;
+        }
+        .box-highlight {
+            font-size: 1.6rem !important;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%) !important;
+            border: none !important;
+            border-radius: 12px !important;
+            padding: 20px !important;
+            color: #0d47a1 !important;
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.15) !important;
+        }
+        .trans {
+            font-size: 1.1rem !important;
+            color: #607d8b !important;
+        }
+        h2 {
+            font-size: 2.2rem !important;
+            margin-bottom: 30px !important;
+            padding-bottom: 15px !important;
+            border-bottom: 2px dashed rgba(25, 118, 210, 0.3) !important;
+        }
+    
+        /* --- VIBRANT & CRISP UI --- */
+        body {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%) !important;
+        }
+        .reveal p, .reveal li {
+            font-size: 1.6rem !important;
+            line-height: 1.6 !important;
+            color: #0b1f38 !important; /* Deep Navy */
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            background: none !important;
+            -webkit-text-fill-color: #0052cc !important; /* Vibrant Blue */
+            text-shadow: none !important;
+            font-weight: 800 !important;
+        }
+        
+        .box-highlight {
+            font-size: 1.8rem !important;
+            background: #ffffff !important;
+            border-left: 8px solid #0052cc !important;
+            border-radius: 12px !important;
+            padding: 25px !important;
+            color: #0052cc !important;
+            box-shadow: 0 15px 35px rgba(0, 82, 204, 0.1) !important;
+            font-weight: bold;
+        }
+        
+        .grammar-example {
+            font-size: 1.8rem !important;
+            padding: 25px !important;
+            background: #ffffff !important;
+            border: 2px solid #e1efff !important;
+            border-radius: 16px !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
+        }
+        
+        .trans {
+            font-size: 1.4rem !important;
+            color: #5c728a !important;
+            display: block;
+            margin-top: 10px;
+        }
+        
+        /* Kanji Cards 3D */
+        .kanji-grid { gap: 25px !important; margin-top: 30px !important;}
+        .kanji-card {
+            background: #ffffff !important;
+            border-radius: 20px !important;
+            padding: 20px !important;
+            box-shadow: 0 10px 30px rgba(0, 82, 204, 0.1) !important;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease !important;
+            border: none !important;
+        }
+        .kanji-card:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: 0 20px 40px rgba(0, 82, 204, 0.2) !important;
+        }
+        .kanji-svg-container {
+            width: 100px !important; height: 100px !important;
+            background: #f0f7ff !important;
+            border: 2px solid #cce4ff !important;
+            border-radius: 16px !important;
+        }
+        .kanji-char-box span { font-size: 4rem !important; }
+        .kanji-details { font-size: 1.4rem !important; line-height: 1.5 !important; }
+        
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .badge.on { background: #ff6b6b; box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3); }
+        .badge.kun { background: #20c997; box-shadow: 0 4px 10px rgba(32, 201, 151, 0.3); }
+        
+        .kanji-ex {
+            font-size: 1.3rem !important;
+            background: #f8fbff !important;
+            border-left: 4px solid #0052cc !important;
+            padding: 15px !important;
+            border-radius: 0 12px 12px 0 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating Dynamic Vocabulary Box -->
+    <div id="vocab-box" class="vocab-box" style="resize: both; overflow: auto; min-width: 200px; min-height: 100px;">
+        <div id="vocab-header" class="vocab-title" style="cursor: move; background: #fff3e0; padding: 8px; margin: -15px -15px 10px -15px; border-bottom: 2px solid #ff9800; border-radius: 6px 6px 0 0; display: flex; justify-content: space-between; align-items: center;">
+            <span>🌟 Từ vựng (Kéo thả)</span>
+            <span style="font-size: 0.8rem; color: #ff9800; cursor: se-resize;">↘ Góc dưới để kéo to</span>
+        </div>
+        <div id="vocab-list">
+            <!-- Dynamic content will be injected here -->
+        </div>
+    </div>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <section class="title-slide">
+                <h1>TỔNG ÔN N5 (Bài 1 - 25)</h1>
+                <h3>Ôn tập thần tốc ngữ pháp Minna No Nihongo I</h3>
+                <p class="fragment" style="color:#d32f2f; font-size:1.1rem; margin-top:30px;">(Sẵn sàng chiến đấu chưa? Bấm phím mũi tên để bắt đầu!)</p>
+            </section>
+
+            <!-- PHẦN 1: TRỢ TỪ -->
+            <section data-background-color="#e3f2fd">
+                <h2>1. Trận chiến Trợ từ (助詞)</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px;">
+                    <table class="grammar-table">
+                        <tr><th>Trợ từ</th><th>Chức năng chính (N5)</th><th>Ví dụ</th></tr>
+                        <tr><td><strong>は</strong></td><td>Chủ đề câu</td><td>わたし<strong>は</strong> 学生です。</td></tr>
+                        <tr><td><strong>が</strong></td><td>Chủ ngữ phụ, Tồn tại, Sở thích</td><td>犬<strong>が</strong> います / 猫<strong>が</strong> 好きです</td></tr>
+                        <tr><td><strong>を</strong></td><td>Tân ngữ (Hành động tác động vào)</td><td>ごはん<strong>を</strong> 食べます</td></tr>
+                        <tr><td><strong>に</strong></td><td>Thời gian cụ thể, Điểm đến, Tồn tại</td><td>7時<strong>に</strong> 起きます / 日本<strong>に</strong> 行きます</td></tr>
+                        <tr><td><strong>で</strong></td><td>Nơi xảy ra hành động, Phương tiện</td><td>学校<strong>で</strong> 勉強します / 車<strong>で</strong> 行きます</td></tr>
+                        <tr><td><strong>へ</strong></td><td>Phương hướng di chuyển (Đi, Đến, Về)</td><td>東京<strong>へ</strong> 行きます</td></tr>
+                        <tr><td><strong>と</strong></td><td>Cùng với ai, Và (Liệt kê)</td><td>友達<strong>と</strong> 遊びます / 犬<strong>と</strong> 猫</td></tr>
+                        <tr><td><strong>も</strong></td><td>Cũng</td><td>わたし<strong>も</strong> 学生です。</td></tr>
+                    </table>
+                </div>
+            </section>
+
+            <section data-background-color="#e3f2fd">
+                <h2>1. Trận chiến Trợ từ (助詞)</h2>
+                <div class="quiz-box fragment" style="text-align: left;">
+                    <div class="quiz-title">✍️ Dùng bút vẽ điền trợ từ thích hợp vào ô trống:</div>
+                    <div style="font-size: 1.2rem; line-height: 2;">
+                        <p class="fragment">1. わたし [____] ベトナム人です。</p>
+                        <p class="fragment">2. きのう、スーパー [____] パン [____] 買いました。</p>
+                        <p class="fragment">3. 毎朝 6時 [____] 起きます。</p>
+                        <p class="fragment">4. 自転車 [____] 会社 [____] 行きます。</p>
+                        <p class="fragment">5. 教室に 先生 [____] 学生 [____] います。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PHẦN 2: CHIA ĐỘNG TỪ -->
+            <section data-background-color="#fff3e0">
+                <h2>2. Ác mộng Chia Động từ</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px;">
+                    <p style="font-size: 1.3rem;">Bí kíp 4 thể "thần thánh" của N5:</p>
+                    <table class="grammar-table">
+                        <tr><th>V-ます</th><th>V-て (Te)</th><th>V-ない (Nai)</th><th>V-る (Ru)</th><th>V-た (Ta)</th></tr>
+                        <tr><td>食べます</td><td>食べて</td><td>食べない</td><td>食べる</td><td>食べた</td></tr>
+                        <tr><td>飲みます</td><td>飲んで</td><td>飲まない</td><td>飲む</td><td>飲んだ</td></tr>
+                        <tr><td>書きます</td><td>書いて</td><td>書かない</td><td>書く</td><td>書いた</td></tr>
+                        <tr><td>行きます</td><td>行って</td><td>行かない</td><td>行く</td><td>行った</td></tr>
+                        <tr><td>します</td><td>して</td><td>しない</td><td>する</td><td>した</td></tr>
+                        <tr><td>来ます</td><td>来て</td><td>来ない</td><td>来る</td><td>来た</td></tr>
+                    </table>
+                </div>
+            </section>
+            
+            <section data-background-color="#fff3e0">
+                <h2>2. Ác mộng Chia Động từ</h2>
+                <div class="quiz-box fragment" style="text-align: left;">
+                    <div class="quiz-title">⚡ Phản xạ siêu tốc! (Đọc to 4 thể)</div>
+                    <div style="display:flex; flex-wrap: wrap; gap: 20px; font-size: 1.5rem; margin-top:20px; justify-content:center;">
+                        <span class="fragment" style="padding:10px 20px; background:#fff; border: 2px solid #ff9800; border-radius: 8px;">読みます</span>
+                        <span class="fragment" style="padding:10px 20px; background:#fff; border: 2px solid #ff9800; border-radius: 8px;">泳ぎます</span>
+                        <span class="fragment" style="padding:10px 20px; background:#fff; border: 2px solid #ff9800; border-radius: 8px;">遊びます</span>
+                        <span class="fragment" style="padding:10px 20px; background:#fff; border: 2px solid #ff9800; border-radius: 8px;">買います</span>
+                        <span class="fragment" style="padding:10px 20px; background:#fff; border: 2px solid #ff9800; border-radius: 8px;">待ちます</span>
+                        <span class="fragment" style="padding:10px 20px; background:#fff; border: 2px solid #ff9800; border-radius: 8px;">話します</span>
+                        <span class="fragment" style="padding:10px 20px; background:#fff; border: 2px solid #ff9800; border-radius: 8px;">借ります</span>
+                        <span class="fragment" style="padding:10px 20px; background:#fff; border: 2px solid #ff9800; border-radius: 8px;">見ます</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PHẦN 3: NGỮ PHÁP THEO THỂ -->
+            <section>
+                <h2>3. Các Mẫu Câu "Đinh" N5</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px;">
+                    <h3 style="color:#d32f2f;">A. Gia đình Thể て (Te)</h3>
+                    <div class="box-highlight">
+                        <p><strong>1. Vています:</strong> Đang làm gì / Trạng thái (ご飯を 食べています)</p>
+                        <p><strong>2. Vてください:</strong> Xin hãy làm gì (ここで 待ってください)</p>
+                        <p><strong>3. Vても いいです:</strong> Làm ~ cũng được (Xin phép) (写真を 撮っても いいですか)</p>
+                        <p><strong>4. Vては いけません:</strong> Cấm làm ~ (ここで たばこを 吸っては いけません)</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>3. Các Mẫu Câu "Đinh" N5</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px;">
+                    <h3 style="color:#1976d2;">B. Gia đình Thể ない (Nai)</h3>
+                    <div class="box-highlight">
+                        <p><strong>1. Vないで ください:</strong> Xin đừng làm gì (忘れないで ください)</p>
+                        <p><strong>2. Vなければ なりません:</strong> Phải làm gì (薬を 飲まなければ なりません)</p>
+                        <p><strong>3. Vなくても いいです:</strong> Không làm ~ cũng được (明日 来なくても いいです)</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2>3. Các Mẫu Câu "Đinh" N5</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px;">
+                    <h3 style="color:#388e3c;">C. Gia đình Thể る (Từ điển) & Thể た (Quá khứ)</h3>
+                    <div class="box-highlight">
+                        <p><strong>1. Vることが できます:</strong> Có thể làm gì (日本語を 話すことが できます)</p>
+                        <p><strong>2. Vる 前に:</strong> Trước khi làm gì (寝る 前に、本を 読みます)</p>
+                        <p><strong>3. Vた ことが あります:</strong> Đã từng làm gì (日本へ 行った ことが あります)</p>
+                        <p><strong>4. Vたり、Vたり します:</strong> Nào là... nào là... (週末は 映画を 見たり、本を 読んだり します)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PHẦN 4: MỆNH ĐỀ BỔ NGHĨA -->
+            <section>
+                <h2>4. Mệnh đề Bổ nghĩa cho Danh từ</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px;">
+                    <div class="box-highlight">
+                        <strong>V(Thể thông thường) + Danh Từ</strong><br>
+                        Biến một câu dài thành một cụm danh từ để bổ nghĩa.
+                    </div>
+                    <div class="grammar-example fragment" style="margin-top: 20px;">
+                        <p>あそこで 新聞を 読んでいる 人は ミラーさんです。</p>
+                        <span class="trans">Người [mà đang đọc báo đằng kia] là anh Miller.</span>
+                    </div>
+                    <div class="grammar-example fragment" style="margin-top: 20px;">
+                        <p>これは 私が 撮った 写真です。</p>
+                        <span class="trans">Đây là bức ảnh [mà tôi đã chụp]. (Chú ý: Chủ ngữ trong mệnh đề phụ dùng が)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PHẦN 5: ĐỌC HIỂU -->
+            <section data-background-color="#e8f5e9">
+                <h2 style="color: #1b5e20;">📖 Đọc hiểu: 自己紹介 (Tự giới thiệu)</h2>
+                <div class="fragment" style="text-align: left; margin-top: 20px; font-size: 1.2rem; line-height: 1.8; padding: 20px; background: white; border-radius: 8px; border: 1px solid #c8e6c9;">
+                    <p>はじめまして。わたしは カリナです。インドネシアから 来ました。富士大学の 学生です。</p>
+                    <p>わたしの 趣味は 映画を 見ることです。週末は よく 友達と 映画館へ 行ったり、買い物したり します。</p>
+                    <p>日本へ 来る 前に、インドネシアで 半年 日本語を 勉強しました。でも、まだ 上手に 話すことが できません。もっと 練習しなければ なりません。</p>
+                    <p>日本の 生活は 忙しいですが、とても 楽しいです。どうぞ よろしく お願いします。</p>
+                </div>
+            </section>
+
+            <section data-background-color="#e8f5e9">
+                <h2 style="color: #1b5e20;">✅ Đọc hiểu (Câu hỏi)</h2>
+                <div class="quiz-box fragment" style="text-align: left; margin-top: 20px;">
+                    <div class="fragment" style="margin-bottom: 15px;">
+                        <p>1. カリナさんの 趣味は 何ですか。</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
+                        <div class="answer-content">→ 映画を 見ることです。</div>
+                    </div>
+                    <div class="fragment" style="margin-bottom: 15px;">
+                        <p>2. 日本語が 上手ですか。</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
+                        <div class="answer-content">→ いいえ、まだ 上手に 話すことが できません。</div>
+                    </div>
+                    <div class="fragment" style="margin-bottom: 15px;">
+                        <p>3. どこで 日本語を 勉強しましたか。</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
+                        <div class="answer-content">→ インドネシアで 勉強しました。</div>
+                    </div>
+                </div>
+                <h3 class="fragment" style="margin-top:40px; text-align:center; color:#d32f2f;">Chúc mừng bạn đã chinh phục N5! Lên N4 thôi! 🎉</h3>
+            </section>
+
+</div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            width: 1400,
+            height: 900,
+            margin: 0.12,
+            minScale: 0.2,
+            maxScale: 1.5, hash: true, transition: 'slide', fragments: true, slideNumber: true, margin: 0.1 });
+        
+        
+        function playAudio(text) {
+            // Remove html tags if any
+            let cleanText = text.replace(/<rt>.*?<\/rt>/g, '').replace(/<[^>]+>/g, '');
+            let utterance = new SpeechSynthesisUtterance(cleanText);
+            utterance.lang = 'ja-JP';
+            utterance.rate = 0.9;
+            speechSynthesis.speak(utterance);
+        }
+    function toggleAnswer(btn) {
+            var answerDiv = btn.nextElementSibling;
+            if(answerDiv.classList.contains('show')) {
+                answerDiv.classList.remove('show');
+                btn.innerText = 'Xem đáp án';
+            } else {
+                answerDiv.classList.add('show');
+                confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+                btn.innerText = 'Ẩn đáp án';
+            }
+        }
+    </script>
+
+    <script>
+        const vocabDict = {
+            "学生": "Học sinh, sinh viên",
+            "犬": "Con chó",
+            "猫": "Con mèo",
+            "食べます": "Ăn",
+            "起きます": "Thức dậy",
+            "行きます": "Đi",
+            "日本": "Nhật Bản",
+            "東京": "Tokyo",
+            "学校": "Trường học",
+            "勉強": "Học tập",
+            "車": "Ô tô",
+            "友達": "Bạn bè",
+            "遊びます": "Chơi",
+            "毎朝": "Mỗi sáng",
+            "自転車": "Xe đạp",
+            "会社": "Công ty",
+            "教室": "Phòng học",
+            "先生": "Giáo viên",
+            "飲みます": "Uống",
+            "書きます": "Viết",
+            "来ます": "Đến",
+            "読みます": "Đọc",
+            "泳ぎます": "Bơi",
+            "待ちます": "Đợi",
+            "話します": "Nói chuyện",
+            "借ります": "Mượn",
+            "見ます": "Nhìn, xem",
+            "写真": "Bức ảnh",
+            "撮る": "Chụp ảnh",
+            "吸う": "Hút (thuốc)",
+            "忘れる": "Quên",
+            "薬": "Thuốc",
+            "明日": "Ngày mai",
+            "前": "Trước",
+            "週末": "Cuối tuần",
+            "映画": "Phim",
+            "新聞": "Tờ báo",
+            "人": "Người",
+            "私": "Tôi",
+            "自己紹介": "Tự giới thiệu",
+            "富士大学": "Đại học Fuji",
+            "趣味": "Sở thích",
+            "映画館": "Rạp chiếu phim",
+            "買い物": "Mua sắm",
+            "半年": "Nửa năm",
+            "上手": "Giỏi",
+            "練習": "Luyện tập",
+            "生活": "Cuộc sống",
+            "忙しい": "Bận rộn",
+            "楽しい": "Vui vẻ"
+        };
+
+        // Make draggable
+        const vocabBox = document.getElementById('vocab-box');
+        const vocabHeader = document.getElementById('vocab-header');
+        let isDragging = false, startX, startY, initialX, initialY;
+
+        vocabHeader.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            const rect = vocabBox.getBoundingClientRect();
+            initialX = rect.left;
+            initialY = rect.top;
+            
+            // Convert right/bottom to left/top fixed positioning
+            vocabBox.style.right = 'auto';
+            vocabBox.style.bottom = 'auto';
+            vocabBox.style.left = initialX + 'px';
+            vocabBox.style.top = initialY + 'px';
+            vocabBox.style.transition = 'none'; // prevent lag
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+            vocabBox.style.left = (initialX + dx) + 'px';
+            vocabBox.style.top = (initialY + dy) + 'px';
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        // Update content on slide change
+        
+        const furiganaDict = {
+            "学生": "<ruby>学生<rt>がくせい</rt></ruby>",
+            "犬": "<ruby>犬<rt>いぬ</rt></ruby>",
+            "猫": "<ruby>猫<rt>ねこ</rt></ruby>",
+            "好き": "<ruby>好<rt>す</rt></ruby>き",
+            "食べます": "<ruby>食<rt>た</rt></ruby>べます",
+            "食べて": "<ruby>食<rt>た</rt></ruby>べて",
+            "食べない": "<ruby>食<rt>た</rt></ruby>べない",
+            "食べる": "<ruby>食<rt>た</rt></ruby>べる",
+            "食べた": "<ruby>食<rt>た</rt></ruby>べた",
+            "起きます": "<ruby>起<rt>お</rt></ruby>きます",
+            "行きます": "<ruby>行<rt>い</rt></ruby>きます",
+            "行って": "<ruby>行<rt>い</rt></ruby>って",
+            "行かない": "<ruby>行<rt>い</rt></ruby>かない",
+            "行く": "<ruby>行<rt>い</rt></ruby>く",
+            "行った": "<ruby>行<rt>い</rt></ruby>った",
+            "日本": "<ruby>日本<rt>にほん</rt></ruby>",
+            "東京": "<ruby>東京<rt>とうきょう</rt></ruby>",
+            "学校": "<ruby>学校<rt>がっこう</rt></ruby>",
+            "勉強": "<ruby>勉強<rt>べんきょう</rt></ruby>",
+            "車": "<ruby>車<rt>くるま</rt></ruby>",
+            "友達": "<ruby>友達<rt>ともだち</rt></ruby>",
+            "遊びます": "<ruby>遊<rt>あそ</rt></ruby>びます",
+            "買い": "<ruby>買<rt>か</rt></ruby>い",
+            "毎朝": "<ruby>毎朝<rt>まいあさ</rt></ruby>",
+            "自転車": "<ruby>自転車<rt>じてんしゃ</rt></ruby>",
+            "会社": "<ruby>会社<rt>かいしゃ</rt></ruby>",
+            "教室": "<ruby>教室<rt>きょうしつ</rt></ruby>",
+            "先生": "<ruby>先生<rt>せんせい</rt></ruby>",
+            "飲みます": "<ruby>飲<rt>の</rt></ruby>みます",
+            "飲んで": "<ruby>飲<rt>の</rt></ruby>んで",
+            "飲まない": "<ruby>飲<rt>の</rt></ruby>まない",
+            "飲む": "<ruby>飲<rt>の</rt></ruby>む",
+            "飲んだ": "<ruby>飲<rt>の</rt></ruby>んだ",
+            "書きます": "<ruby>書<rt>か</rt></ruby>きます",
+            "書いて": "<ruby>書<rt>か</rt></ruby>いて",
+            "書かない": "<ruby>書<rt>か</rt></ruby>かない",
+            "書く": "<ruby>書<rt>か</rt></ruby>く",
+            "書いた": "<ruby>書<rt>か</rt></ruby>いた",
+            "来ます": "<ruby>来<rt>き</rt></ruby>ます",
+            "来て": "<ruby>来<rt>き</rt></ruby>て",
+            "来ない": "<ruby>来<rt>こ</rt></ruby>ない",
+            "来る": "<ruby>来<rt>く</rt></ruby>る",
+            "来た": "<ruby>来<rt>き</rt></ruby>た",
+            "読みます": "<ruby>読<rt>よ</rt></ruby>みます",
+            "泳ぎます": "<ruby>泳<rt>およ</rt></ruby>ぎます",
+            "待ちます": "<ruby>待<rt>ま</rt></ruby>ちます",
+            "話します": "<ruby>話<rt>はな</rt></ruby>します",
+            "借ります": "<ruby>借<rt>か</rt></ruby>ります",
+            "見ます": "<ruby>見<rt>み</rt></ruby>ます",
+            "待って": "<ruby>待<rt>ま</rt></ruby>って",
+            "写真": "<ruby>写真<rt>しゃしん</rt></ruby>",
+            "撮って": "<ruby>撮<rt>と</rt></ruby>って",
+            "吸って": "<ruby>吸<rt>す</rt></ruby>って",
+            "忘れないで": "<ruby>忘<rt>わす</rt></ruby>れないで",
+            "薬": "<ruby>薬<rt>くすり</rt></ruby>",
+            "明日": "<ruby>明日<rt>あした</rt></ruby>",
+            "前": "<ruby>前<rt>まえ</rt></ruby>",
+            "週末": "<ruby>週末<rt>しゅうまつ</rt></ruby>",
+            "映画": "<ruby>映画<rt>えいが</rt></ruby>",
+            "新聞": "<ruby>新聞<rt>しんぶん</rt></ruby>",
+            "読んでいる": "<ruby>読<rt>よ</rt></ruby>んでいる",
+            "人": "<ruby>人<rt>ひと</rt></ruby>",
+            "私": "<ruby>私<rt>わたし</rt></ruby>",
+            "自己紹介": "<ruby>自己紹介<rt>じこしょうかい</rt></ruby>",
+            "富士大学": "<ruby>富士大学<rt>ふじだいがく</rt></ruby>",
+            "趣味": "<ruby>趣味<rt>しゅみ</rt></ruby>",
+            "見ること": "<ruby>見<rt>み</rt></ruby>ること",
+            "映画館": "<ruby>映画館<rt>えいがかん</rt></ruby>",
+            "買い物": "<ruby>買<rt>か</rt></ruby>い<ruby>物<rt>もの</rt></ruby>",
+            "半年": "<ruby>半年<rt>はんとし</rt></ruby>",
+            "上手": "<ruby>上手<rt>じょうず</rt></ruby>",
+            "練習": "<ruby>練習<rt>れんしゅう</rt></ruby>",
+            "生活": "<ruby>生活<rt>せいかつ</rt></ruby>",
+            "忙しい": "<ruby>忙<rt>いそが</rt></ruby>しい",
+            "楽しい": "<ruby>楽<rt>たの</rt></ruby>しい"
+        };
+
+        // Dynamic font resizing based on container width
+        const resizeObserver = new ResizeObserver(entries => {
+            for (let entry of entries) {
+                // Base width is 200px -> base font size 0.9rem
+                // If width becomes 400px, font size becomes 1.8rem
+                let newWidth = entry.contentRect.width;
+                let scale = Math.max(1, newWidth / 200);
+                vocabBox.style.fontSize = (0.9 * scale) + 'rem';
+                
+                // Also scale the title font size to keep it proportionate
+                document.getElementById('vocab-header').style.fontSize = (1 * scale) + 'rem';
+            }
+        });
+        resizeObserver.observe(vocabBox);
+
+        function updateVocab() {
+            const currentSlide = Reveal.getCurrentSlide();
+            if (!currentSlide) return;
+            
+            let rawHtml = currentSlide.innerHTML;
+            
+            const list = document.getElementById('vocab-list');
+            list.innerHTML = '';
+            let foundAny = false;
+            
+            let keys = Object.keys(vocabDict).sort((a, b) => b.length - a.length);
+            
+            for (let key of keys) {
+                let cleanText = rawHtml.replace(/<rt>.*?<\/rt>/g, '').replace(/<[^>]+>/g, '');
+                
+                if (cleanText.includes(key)) {
+                    let div = document.createElement('div');
+                    div.style.marginBottom = '4px';
+                    // Use furigana if available
+                    let displayWord = furiganaDict[key] || key;
+                    div.innerHTML = `<strong>* ${displayWord}:</strong> ${vocabDict[key]}`;
+                    list.appendChild(div);
+                    foundAny = true;
+                }
+            }
+            
+            if (!foundAny) {
+                list.innerHTML = '<div style="color:#aaa; font-style:italic;">Không có từ vựng ở trang này</div>';
+            }
+        }
+
+        Reveal.on('slidechanged', updateVocab);
+
+        
+
+        Reveal.on('ready', updateVocab);
+    </script>
+
+    
+    <!-- Nút toàn màn hình (Subtle) -->
+    <button id="fs-btn" onclick="toggleFullScreen()" title="Toàn màn hình" style="position:fixed; bottom:15px; left:15px; z-index:9999; background:rgba(0,0,0,0.1); color:#333; border:none; width:35px; height:35px; border-radius:50%; font-weight:bold; cursor:pointer; transition: all 0.2s; opacity: 0.5; display: flex; justify-content: center; align-items: center;" onmouseover="this.style.opacity='1'; this.style.background='rgba(0,0,0,0.2)'" onmouseout="this.style.opacity='0.5'; this.style.background='rgba(0,0,0,0.1)'">
+        <span style="font-size:1.2rem; line-height: 1;">⛶</span>
+    </button>
+    <script>
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+                document.querySelector('#fs-btn span').innerText = '✖';
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                    document.querySelector('#fs-btn span').innerText = '⛶';
+                }
+            }
+        }
+    </script>
+    
+    <!-- Whiteboard Script -->
+    <script src="whiteboard.js"></script>
+</body>
+
+
+
+</html>
