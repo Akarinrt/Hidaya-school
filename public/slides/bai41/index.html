@@ -19,8 +19,13 @@
             --bg: #F7F5F2;
         }
         body { background: var(--bg); font-family: 'Noto Sans JP', sans-serif; }
-        .title-slide h1 { color: var(--primary); font-weight: 800; font-size: 2.5em; }
+        .title-slide h1 { color: var(--primary); font-weight: 800; font-size: 2.5em; text-transform: uppercase; }
         .title-slide h3 { color: #555; font-size: 1.2em; }
+        
+        .section-title {
+            color: var(--primary); font-weight: bold; font-size: 1.8em; margin-bottom: 20px;
+            border-bottom: 3px solid var(--primary); display: inline-block; padding-bottom: 5px;
+        }
         
         .box-highlight {
             background: var(--surface);
@@ -45,135 +50,234 @@
             font-size: 1.1em;
         }
         
-        .grammar-example p { margin: 10px 0; }
-        .grammar-example .trans { color: #666; font-size: 0.9em; font-style: italic; display: block; margin-top: 5px; }
+        .grammar-example p { margin: 10px 0; font-size: 1.2em; }
+        .grammar-example .trans { color: #666; font-size: 0.85em; font-style: italic; display: block; margin-top: 5px; }
         
         .quiz-box {
             background: #FAFAFA;
-            border: 2px dashed var(--primary);
+            border: 2px dashed var(--danger);
             padding: 25px;
             border-radius: 12px;
             text-align: left;
+            margin-bottom: 20px;
         }
-        .quiz-title { font-weight: bold; color: var(--primary); margin-bottom: 15px; font-size: 1.2em; }
+        .quiz-title { font-weight: bold; color: var(--danger); margin-bottom: 15px; font-size: 1.3em; }
+        .quiz-q { font-size: 1.1em; margin-bottom: 15px; font-weight: bold; }
         
         .answer-btn {
-            background: var(--primary);
+            background: var(--danger);
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 10px 20px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.8em;
+            font-size: 0.9em;
             margin-top: 10px;
             transition: 0.2s;
+            font-weight: bold;
         }
-        .answer-btn:hover { background: #3a5bde; }
+        .answer-btn:hover { opacity: 0.8; transform: scale(1.05); }
         .answer-content {
             display: none;
             color: var(--success);
             font-weight: bold;
-            margin-top: 10px;
-            padding: 10px;
+            margin-top: 15px;
+            padding: 15px;
             background: #eef9f2;
             border-radius: 8px;
+            font-size: 1.1em;
+            border-left: 4px solid var(--success);
         }
+        
+        .vocab-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: left;
+        }
+        .vocab-item {
+            background: white; padding: 10px 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 1.1em;
+        }
+        .vocab-item strong { color: var(--primary); }
         
         ruby { font-size: 1em; }
-        rt { font-size: 0.5em; color: var(--primary); }
+        rt { font-size: 0.5em; color: var(--primary); font-weight: bold; }
         
-        /* Floating Vocab Box */
-        #vocabBox {
-            position: fixed;
-            top: 20px; right: 20px;
-            width: 250px;
-            background: rgba(255, 255, 255, 0.95);
-            border-left: 4px solid var(--primary);
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            padding: 15px;
-            z-index: 1000;
-            font-size: 0.4em;
+        .dialogue-box {
+            background: #fdfdfd;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin-bottom: 20px;
             text-align: left;
-            cursor: grab;
-            display: none;
-            backdrop-filter: blur(10px);
-            max-height: 80vh;
-            overflow-y: auto;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        #vocabBox h4 { margin: 0 0 10px 0; color: var(--primary); font-size: 1.2em; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        #vocabList { list-style: none; padding: 0; margin: 0; }
-        #vocabList li { margin-bottom: 8px; border-bottom: 1px dashed #ddd; padding-bottom: 5px; display: flex; justify-content: space-between; }
-        #vocabList li:last-child { border-bottom: none; }
-        .v-jp { font-weight: bold; color: #333; }
-        .v-vi { color: #666; font-size: 0.9em; }
+        .dialogue-p1 { color: #1976d2; font-weight: bold; margin-bottom: 5px !important; }
+        .dialogue-p2 { color: #e64a19; font-weight: bold; margin-bottom: 5px !important; }
     </style>
 </head>
 <body>
 
-    <div id="vocabBox">
-        <h4>📚 Từ vựng Slide này</h4>
-        <ul id="vocabList"></ul>
-    </div>
-
     <div class="reveal">
         <div class="slides">
             <section class="title-slide">
-                <h1>Ngữ Pháp Bài 41</h1>
-                <h3>Minna No Nihongo II - Cho và Nhận (Kính ngữ)</h3>
+                <h1>BÀI 41 - MINNA NO NIHONGO II</h1>
+                <h3>Ngữ pháp: Cho & Nhận (Tôn kính / Khiêm nhường)</h3>
+                <p>⏳ Thời lượng dự kiến: 120 Phút</p>
             </section>
             <section>
-                <h2>1. Tôn kính ngữ (Nhận từ bề trên)</h2>
-                <div class="box-highlight">
-                    私 は Người bề trên に N を いただきます。<br>
-                    私 は Người bề trên に Vて いただきます。
+                <h2 class="section-title">🎯 Khởi động & Kiểm tra bài cũ</h2>
+                <div class="quiz-box">
+                    <p class="quiz-title">Mini Test (Bài 40)</p>
+                    <p class="quiz-q">1. Điền từ thích hợp: このりんごがおいしい (__________)、食べてみます。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        おいしい <strong>かどうか</strong>、食べてみます。<br>
+                        (Vì không có nghi vấn từ).
+                    </div>
                 </div>
-                <div class="grammar-example fragment">
-                    <p><strong>Cách dùng:</strong> Thay thế cho もらいます khi nhận cái gì đó/nhận hành động từ người bề trên (Giám đốc, Thầy giáo...).</p>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>私は社長に時計をいただきました。</p>
-                    <span class="trans">Tôi đã nhận được cái đồng hồ từ Giám đốc.</span>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>私は先生に漢字を教えていただきました。</p>
-                    <span class="trans">Tôi đã được thầy giáo dạy Kanji cho.</span>
-                </div>
-            </section>
-            <section>
-                <h2>2. Tôn kính ngữ (Bề trên cho tôi)</h2>
-                <div class="box-highlight">
-                    Người bề trên は 私 に N を くださいます。<br>
-                    Người bề trên は 私 に Vて くださいます。
-                </div>
-                <div class="grammar-example fragment">
-                    <p><strong>Cách dùng:</strong> Thay thế cho くれます. (Ai đó bề trên cho tôi / làm gì cho tôi).</p>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>部長が私にお土産をくださいました。</p>
-                    <span class="trans">Trưởng phòng đã cho tôi quà lưu niệm.</span>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>先生が手紙を直してくださいました。</p>
-                    <span class="trans">Thầy giáo đã sửa bức thư cho tôi.</span>
+                <div class="quiz-box fragment">
+                    <p class="quiz-q">2. Sửa lỗi sai: どこへ行くかどうか、分かりません。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        Sửa lại: どこへ行く <strong>か</strong>、分かりません。<br>
+                        (Vì có "どこ" là nghi vấn từ, chỉ dùng "か").
+                    </div>
                 </div>
             </section>
             <section>
-                <h2>3. Khiêm nhường (Cho người bề dưới / Động vật)</h2>
+                <h2 class="section-title">📚 Từ vựng Trọng tâm (Bài 41)</h2>
+                <div class="vocab-grid">
+                    <div class="vocab-item"><strong>いただきます</strong> : Nhận (Khiêm nhường của もらいます)</div>
+                    <div class="vocab-item"><strong>くださいます</strong> : Cho tôi (Tôn kính của くれます)</div>
+                    <div class="vocab-item"><strong>やります</strong> : Cho (Dùng cho người dưới, động vật, thực vật)</div>
+                    <div class="vocab-item"><strong>上げます</strong> (あげます) : Tăng lên</div>
+                    <div class="vocab-item"><strong>下げます</strong> (さげます) : Giảm xuống</div>
+                    <div class="vocab-item"><strong>親切にします</strong> (しんせつにします) : Đối xử tử tế</div>
+                    <div class="vocab-item"><strong>お祝い</strong> (おいわい) : Quà mừng</div>
+                    <div class="vocab-item"><strong>お年玉</strong> (おとしだま) : Tiền mừng tuổi</div>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">1. Tôi nhận: いただきます</h2>
                 <div class="box-highlight">
-                    私 は Người bề dưới (hoặc Động vật/Cây) に N を やります。<br>
-                    私 は Người bề dưới (hoặc Động vật/Cây) に Vて やります。
+                    私 は Người bề trên に N を いただきます
+                </div>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> Tôi nhận từ ai đó (Người bề trên: Giám đốc, giáo viên, người lớn tuổi...). Đây là cách nói khiêm nhường của もらいます.</p>
                 </div>
                 <div class="grammar-example fragment">
-                    <p><strong>Cách dùng:</strong> Thay cho あげます khi đối tượng là em trai/gái, thú cưng hoặc cây cối.</p>
+                    <p>私は社長<strong>に</strong>時計を<strong>いただきました</strong>。</p>
+                    <span class="trans">Tôi ĐÃ NHẬN chiếc đồng hồ từ Giám đốc.</span>
                 </div>
                 <div class="grammar-example fragment">
-                    <p>私は犬にえさをやります。</p>
-                    <span class="trans">Tôi cho chó ăn (cho đồ ăn).</span>
+                    <p>私は先生<strong>に</strong>本を<strong>いただきました</strong>。</p>
+                    <span class="trans">Tôi ĐÃ NHẬN quyển sách từ thầy giáo.</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">2. Ai đó cho tôi: くださいます</h2>
+                <div class="box-highlight">
+                    Người bề trên は 私 に N を くださいます
+                </div>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> Ai đó (Người bề trên) CHO tôi. Đây là cách nói tôn kính của くれます.</p>
+                    <p style="color:var(--danger)">Lưu ý: Chủ ngữ phải là Người bề trên.</p>
                 </div>
                 <div class="grammar-example fragment">
-                    <p>私は妹に宿題を手伝ってやりました。</p>
-                    <span class="trans">Tôi đã giúp em gái làm bài tập.</span>
+                    <p>社長は私<strong>に</strong>時計を<strong>くださいました</strong>。</p>
+                    <span class="trans">Giám đốc ĐÃ CHO tôi chiếc đồng hồ.</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>先生は妹<strong>に</strong>お菓子を<strong>くださいました</strong>。</p>
+                    <span class="trans">Thầy giáo ĐÃ CHO em gái tôi bánh kẹo. (Em gái được coi như phe của "Tôi").</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">3. Tôi cho (người dưới): やります</h2>
+                <div class="box-highlight">
+                    私 は (Người dưới / Động vật / Thực vật) に N を やります
+                </div>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> Tôi CHO ai đó ở bậc thấp hơn hẳn (con cái, em út), hoặc cho động vật ăn, tưới nước cho cây.</p>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>私は息子<strong>に</strong>おもちゃを<strong>やりました</strong>。</p>
+                    <span class="trans">Tôi đã cho con trai đồ chơi.</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>私は犬<strong>に</strong>えさを<strong>やります</strong>。</p>
+                    <span class="trans">Tôi CHO chó ăn (Cho đồ ăn).</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>私は花<strong>に</strong>水を<strong>やります</strong>。</p>
+                    <span class="trans">Tôi tưới nước CHO hoa.</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">🗣 Hội thoại: Quà tặng</h2>
+                <div class="dialogue-box">
+                    <p class="dialogue-p1">A：きれいなお皿ですね。</p>
+                    <span class="trans">A: Cái đĩa đẹp quá nhỉ.</span>
+                    <br>
+                    <p class="dialogue-p2">B：ええ、結婚のお祝いに 部長が <strong>くださった</strong>んです。</p>
+                    <span class="trans">B: Vâng, trưởng phòng đã CHO tôi làm quà mừng kết hôn đấy.</span>
+                    <br>
+                    <p class="dialogue-p1">A：そうですか。よかったですね。</p>
+                    <span class="trans">A: Vậy à. Tuyệt quá nhỉ.</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">4. Vて いただきます / くださいます / やります</h2>
+                <div class="grammar-example">
+                    <p>Áp dụng tương tự cho hành động (Làm V cho ai):</p>
+                    <ul style="line-height:1.6;">
+                        <li><strong>Vて いただきます:</strong> Được bề trên làm V cho (Tôi được Giám đốc chỉ lỗi sai cho).<br>
+                            ➔ 私は社長に間違いを直していただきました。
+                        </li>
+                        <li class="fragment"><strong>Vて くださいます:</strong> Bề trên làm V cho tôi (Cô giáo giải thích cho tôi).<br>
+                            ➔ 先生は私に説明してくださいました。
+                        </li>
+                        <li class="fragment"><strong>Vて やります:</strong> Làm V cho người dưới (Tôi đọc sách cho con gái).<br>
+                            ➔ 私は娘に本を読んでやります。
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">📝 Bài tập Cuối bài (Tổng hợp)</h2>
+                <div class="quiz-box">
+                    <p class="quiz-title">Quiz Tổng hợp</p>
+                    <p class="quiz-q">1. Chọn động từ đúng:<br>
+                    私は 課長に 京都へ 連れて行って ( A. いただきました / B. くださいました )。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        Đáp án: <strong>A. いただきました</strong>.<br>
+                        (Vì Chủ ngữ là "私 は" - Tôi NHẬN ĐƯỢC hành động).
+                    </div>
+                </div>
+                
+                <div class="quiz-box fragment">
+                    <p class="quiz-q">2. Chọn động từ đúng:<br>
+                    孫の誕生日に 本を買って ( A. あげました / B. やりました )。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        Đáp án: <strong>B. やりました</strong><br>
+                        (孫 - Cháu, là người dưới hẳn, nên dùng やります).
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">📚 Tổng kết Bài 41</h2>
+                <div class="grammar-example">
+                    <p style="font-weight:bold; color:var(--primary);">Hệ thống Tôn kính / Khiêm nhường của CHO & NHẬN:</p>
+                    <ul>
+                        <li style="margin-bottom:15px;"><strong>もらいます ➔ いただきます</strong> (Tôi nhận từ bề trên)</li>
+                        <li style="margin-bottom:15px;"><strong>くれます ➔ くださいます</strong> (Bề trên cho tôi)</li>
+                        <li style="margin-bottom:15px;"><strong>あげます ➔ やります</strong> (Tôi cho người dưới / động, thực vật)</li>
+                    </ul>
+                </div>
+                <div class="box-highlight fragment" style="text-align:center;">
+                    🏆 CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI 41! 🏆<br>
+                    <span style="font-size:0.7em; font-weight:normal;">Luôn chú ý Chủ ngữ là "Ai" để chọn từ cho đúng nhé!</span>
                 </div>
             </section>
         </div>
@@ -184,13 +288,17 @@
         Reveal.initialize({
             hash: true,
             slideNumber: true,
-            transition: 'slide'
+            transition: 'fade',
+            backgroundTransition: 'fade',
+            width: 1080,
+            height: 720,
+            margin: 0.1
         });
 
-        const furiganaDict = {"私": "<ruby>私<rt>わたし</rt></ruby>", "社長": "<ruby>社長<rt>しゃちょう</rt></ruby>", "時計": "<ruby>時計<rt>とけい</rt></ruby>", "先生": "<ruby>先生<rt>せんせい</rt></ruby>", "漢字": "<ruby>漢字<rt>かんじ</rt></ruby>", "教えて": "<ruby>教<rt>おし</rt></ruby>えて", "部長": "<ruby>部長<rt>ぶちょう</rt></ruby>", "土産": "<ruby>土産<rt>みやげ</rt></ruby>", "手紙": "<ruby>手紙<rt>てがみ</rt></ruby>", "直して": "<ruby>直<rt>なお</rt></ruby>して", "犬": "<ruby>犬<rt>いぬ</rt></ruby>", "妹": "<ruby>妹<rt>いもうと</rt></ruby>", "宿題": "<ruby>宿題<rt>しゅくだい</rt></ruby>", "手伝って": "<ruby>手伝<rt>てつだ</rt></ruby>って"};
-        const vocabDict = {"いただきます": "Nhận (khiêm nhường của もらいます)", "くださいます": "Cho tôi (tôn kính của くれます)", "やります": "Cho (bề dưới, động vật)", "社長": "Giám đốc", "部長": "Trưởng phòng", "直します": "Sửa chữa", "手伝います": "Giúp đỡ", "えさ": "Thức ăn cho động vật"};
+        const furiganaDict = {"食べる": "<ruby>食<rt>た</rt></ruby>べる", "行く": "<ruby>行<rt>い</rt></ruby>く", "分かりません": "<ruby>分<rt>わ</rt></ruby>かりません", "上げます": "<ruby>上<rt>あ</rt></ruby>げます", "下げます": "<ruby>下<rt>さ</rt></ruby>げます", "親切": "<ruby>親切<rt>しんせつ</rt></ruby>", "祝い": "<ruby>祝<rt>いわ</rt></ruby>い", "年玉": "<ruby>年玉<rt>としだま</rt></ruby>", "私": "<ruby>私<rt>わたし</rt></ruby>", "社長": "<ruby>社長<rt>しゃちょう</rt></ruby>", "時計": "<ruby>時計<rt>とけい</rt></ruby>", "先生": "<ruby>先生<rt>せんせい</rt></ruby>", "本": "<ruby>本<rt>ほん</rt></ruby>", "妹": "<ruby>妹<rt>いもうと</rt></ruby>", "菓子": "<ruby>菓子<rt>かし</rt></ruby>", "息子": "<ruby>息子<rt>むすこ</rt></ruby>", "犬": "<ruby>犬<rt>いぬ</rt></ruby>", "花": "<ruby>花<rt>はな</rt></ruby>", "水": "<ruby>水<rt>みず</rt></ruby>", "皿": "<ruby>皿<rt>さら</rt></ruby>", "結婚": "<ruby>結婚<rt>けっこん</rt></ruby>", "部長": "<ruby>部長<rt>ぶちょう</rt></ruby>", "間違い": "<ruby>間違<rt>まちが</rt></ruby>い", "直して": "<ruby>直<rt>なお</rt></ruby>して", "説明して": "<ruby>説明<rt>せつめい</rt></ruby>して", "娘": "<ruby>娘<rt>むすめ</rt></ruby>", "読んで": "<ruby>読<rt>よ</rt></ruby>んで", "課長": "<ruby>課長<rt>かちょう</rt></ruby>", "京都": "<ruby>京都<rt>きょうと</rt></ruby>", "連れて": "<ruby>連<rt>つ</rt></ruby>れて", "行って": "<ruby>行<rt>い</rt></ruby>って", "孫": "<ruby>孫<rt>まご</rt></ruby>", "誕生日": "<ruby>誕生日<rt>たんじょうび</rt></ruby>", "買って": "<ruby>買<rt>か</rt></ruby>って"};
 
-        document.querySelectorAll('p, .trans, .box-highlight, .answer-content, h1, h3').forEach(el => {
+        // Add furigana dynamically
+        document.querySelectorAll('p, .trans, .box-highlight, .answer-content, h1, h2, h3, li, strong, .vocab-item').forEach(el => {
             let html = el.innerHTML;
             for (let kanji in furiganaDict) {
                 let re = new RegExp(kanji, "g");
@@ -203,76 +311,13 @@
             let content = btn.nextElementSibling;
             if (content.style.display === "block") {
                 content.style.display = "none";
-                btn.innerText = "Xem đáp án";
+                btn.innerText = "Kiểm tra đáp án";
+                btn.style.background = "var(--danger)";
             } else {
                 content.style.display = "block";
                 btn.innerText = "Ẩn đáp án";
+                btn.style.background = "var(--success)";
             }
-        }
-
-        const vocabBox = document.getElementById('vocabBox');
-        const vocabList = document.getElementById('vocabList');
-        
-        Reveal.on('slidechanged', event => {
-            updateVocab(event.currentSlide);
-        });
-        Reveal.on('ready', event => {
-            updateVocab(event.currentSlide);
-        });
-
-        function updateVocab(slide) {
-            let text = slide.innerText;
-            let found = false;
-            vocabList.innerHTML = '';
-            
-            for (let word in vocabDict) {
-                if (text.includes(word)) {
-                    found = true;
-                    let li = document.createElement('li');
-                    li.innerHTML = `<span class="v-jp">${word}</span> <span class="v-vi">${vocabDict[word]}</span>`;
-                    vocabList.appendChild(li);
-                }
-            }
-            
-            vocabBox.style.display = found ? 'block' : 'none';
-        }
-
-        let isDragging = false;
-        let currentX;
-        let currentY;
-        let initialX;
-        let initialY;
-        let xOffset = 0;
-        let yOffset = 0;
-
-        vocabBox.addEventListener("mousedown", dragStart);
-        document.addEventListener("mouseup", dragEnd);
-        document.addEventListener("mousemove", drag);
-
-        function dragStart(e) {
-            initialX = e.clientX - xOffset;
-            initialY = e.clientY - yOffset;
-            if (e.target === vocabBox || vocabBox.contains(e.target)) {
-                isDragging = true;
-            }
-        }
-        function dragEnd(e) {
-            initialX = currentX;
-            initialY = currentY;
-            isDragging = false;
-        }
-        function drag(e) {
-            if (isDragging) {
-                e.preventDefault();
-                currentX = e.clientX - initialX;
-                currentY = e.clientY - initialY;
-                xOffset = currentX;
-                yOffset = currentY;
-                setTranslate(currentX, currentY, vocabBox);
-            }
-        }
-        function setTranslate(xPos, yPos, el) {
-            el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
         }
     </script>
 </body>
