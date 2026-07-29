@@ -1,164 +1,249 @@
-.wrapper {
+.appShell {
   display: flex;
   min-height: 100vh;
-  background: var(--bg-color);
 }
 
-/* ---- SIDEBAR (Desktop) ---- */
 .sidebar {
-  width: 240px;
-  min-height: 100vh;
-  background: rgba(255, 255, 255, 0.05);
-  border-right: 1px solid var(--glass-border);
+  width: 260px;
+  background: #fff;
+  border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
-  padding: 24px 16px;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  z-index: 320;
+  transition: transform 0.3s ease;
+}
+
+.sidebarHeader {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  gap: 11px;
   flex-shrink: 0;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0 8px 28px;
-  border-bottom: 1px solid var(--glass-border);
-  margin-bottom: 20px;
-}
-
 .logoIcon {
-  font-size: 2rem;
-  line-height: 1;
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 19px;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.18);
 }
 
 .logoTitle {
-  font-weight: 700;
-  font-size: 1rem;
-  color: var(--primary-color);
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.3px;
 }
 
 .logoSub {
-  font-size: 0.75rem;
+  font-size: 11px;
   color: var(--text-muted);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.closeBtn {
+  display: none;
+  margin-left: auto;
+  background: none; border: none;
+  font-size: 16px; color: var(--text-sub);
+  cursor: pointer;
 }
 
 .nav {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
   flex: 1;
+  padding: 12px 0;
+  overflow-y: auto;
+}
+
+.navGroupLabel {
+  padding: 8px 20px 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
 
 .navItem {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
-  border-radius: 10px;
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 0.9rem;
+  gap: 10px;
+  padding: 10px 20px;
+  width: 100%;
+  color: var(--text-sub);
+  font-size: 14px;
   font-weight: 500;
-  transition: all 0.2s ease;
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition: all 0.12s;
 }
 
 .navItem:hover {
-  background: rgba(255, 152, 0, 0.1);
-  color: var(--primary-color);
+  background: var(--bg);
+  color: var(--text-main);
 }
 
 .navItem.active {
-  background: rgba(255, 152, 0, 0.2);
-  color: var(--primary-color);
+  background: var(--primary-light);
+  color: var(--primary-dark);
   font-weight: 600;
+  border-left-color: var(--primary);
 }
 
 .navIcon {
-  font-size: 1.2rem;
-  width: 24px;
+  font-size: 16px;
+  width: 22px;
   text-align: center;
+  flex-shrink: 0;
 }
 
-.logoutWrapper {
-  padding-top: 16px;
-  border-top: 1px solid var(--glass-border);
-}
-
-.logout {
+.sidebarFooter {
+  padding: 14px 16px;
+  border-top: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 14px;
-  border-radius: 10px;
-  color: #ef5350;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: background 0.2s;
+  flex-shrink: 0;
 }
 
-.logout:hover {
-  background: rgba(239, 83, 80, 0.1);
-}
-
-/* ---- MAIN CONTENT ---- */
-.main {
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   flex: 1;
-  padding: 32px;
-  overflow-y: auto;
-  padding-bottom: 80px; /* space for mobile bottom nav */
+  min-width: 0;
 }
 
-/* ---- BOTTOM NAV (Mobile only) ---- */
-.bottomNav {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(26, 26, 46, 0.95);
-  backdrop-filter: blur(16px);
-  border-top: 1px solid var(--glass-border);
-  z-index: 100;
-  padding: 8px 0 env(safe-area-inset-bottom);
+.userDetails {
+  flex: 1;
+  min-width: 0;
 }
 
-.bottomNavItem {
+.userName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.userRole {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.logoutBtn {
+  background: none; border: none;
+  color: var(--text-muted);
+  font-size: 16px;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.logoutBtn:hover {
+  color: var(--danger);
+}
+
+.mainContent {
+  margin-left: 260px;
+  flex: 1;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+}
+
+.topHeader {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  padding: 0 28px;
+  height: 60px;
+  display: flex;
   align-items: center;
-  gap: 2px;
-  flex: 1;
-  text-decoration: none;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  flex-shrink: 0;
+}
+
+.menuBtn {
+  display: none;
+  background: none; border: none;
+  font-size: 20px;
+  color: var(--text-main);
+  cursor: pointer;
+  margin-right: 16px;
+}
+
+.headerTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pageTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.pageSub {
+  font-size: 13px;
   color: var(--text-muted);
-  padding: 4px 0;
-  transition: color 0.2s;
+  display: none;
 }
 
-.bottomNavItem.activeBottom {
-  color: var(--primary-color);
+.pageWrapper {
+  padding: 28px;
+  flex: 1;
+  animation: fadeUp 0.3s ease;
 }
 
-.bottomNavIcon {
-  font-size: 1.4rem;
-  line-height: 1;
+.overlay {
+  display: none;
 }
 
-.bottomNavLabel {
-  font-size: 0.65rem;
-  font-weight: 500;
+@media (min-width: 769px) {
+  .pageSub { display: block; }
 }
 
-/* ---- RESPONSIVE ---- */
 @media (max-width: 768px) {
   .sidebar {
-    display: none;
+    transform: translateX(-100%);
   }
-
-  .bottomNav {
-    display: flex;
+  .sidebar.mobileOpen {
+    transform: translateX(0);
   }
-
-  .main {
-    padding: 20px 16px;
+  .closeBtn {
+    display: block;
+  }
+  .mainContent {
+    margin-left: 0;
+  }
+  .menuBtn {
+    display: block;
+  }
+  .topHeader {
+    padding: 0 16px;
+  }
+  .pageWrapper {
+    padding: 16px;
+  }
+  .overlay {
+    display: block;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 310;
   }
 }

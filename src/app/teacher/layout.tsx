@@ -1,9 +1,8 @@
 'use client';
-
-import { useState } from 'react';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import styles from './layout.module.css';
+import { useState } from 'react';
 
 const navItems = [
   { href: '/teacher/dashboard', icon: '🏠', label: 'Tổng quan' },
@@ -11,58 +10,78 @@ const navItems = [
   { href: '/teacher/lessons', icon: '📂', label: 'Kho giáo án' },
   { href: '/teacher/homework', icon: '📝', label: 'Bài tập' },
   { href: '/teacher/grading', icon: '✅', label: 'Chấm bài' },
-  { href: '/teacher/students', icon: '👥', label: 'Học viên' },
+  { href: '/teacher/students', icon: '👥', label: 'Lớp học' },
 ];
 
 export default function TeacherLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className={styles.wrapper}>
-      {/* Sidebar (Desktop) */}
-      <aside className={styles.sidebar}>
-        <div className={styles.logo}>
-          <span className={styles.logoIcon}>桜</span>
+    <div className={styles.appShell}>
+      {/* Sidebar */}
+      <aside className={`${styles.sidebar} ${isMobileMenuOpen ? styles.mobileOpen : ''}`}>
+        <div className={styles.sidebarHeader}>
+          <div className={styles.logoIcon}>🌸</div>
           <div>
             <div className={styles.logoTitle}>Hidaya School</div>
-            <div className={styles.logoSub}>Giáo viên</div>
+            <div className={styles.logoSub}>Teacher Portal</div>
           </div>
+          <button className={styles.closeBtn} onClick={() => setIsMobileMenuOpen(false)}>✕</button>
         </div>
+
         <nav className={styles.nav}>
-          {navItems.map(item => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`${styles.navItem} ${pathname === item.href ? styles.active : ''}`}
-            >
-              <span className={styles.navIcon}>{item.icon}</span>
-              <span>{item.label}</span>
-            </Link>
-          ))}
+          <div className={styles.navGroupLabel}>Menu chính</div>
+          {navItems.map(item => {
+            const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`${styles.navItem} ${isActive ? styles.active : ''}`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <span className={styles.navIcon}>{item.icon}</span>
+                <span>{item.label}</span>
+              </Link>
+            );
+          })}
         </nav>
-        <div className={styles.logoutWrapper}>
-          <Link href="/" className={styles.logout}>🚪 Đăng xuất</Link>
+
+        <div className={styles.sidebarFooter}>
+          <div className={styles.userInfo}>
+            <div className="avatar">👩‍🏫</div>
+            <div className={styles.userDetails}>
+              <div className={styles.userName}>Hồng Khuông</div>
+              <div className={styles.userRole}>Giáo viên</div>
+            </div>
+          </div>
+          <Link href="/" className={styles.logoutBtn} title="Đăng xuất">🚪</Link>
         </div>
       </aside>
 
-      {/* Main Content */}
-      <main className={styles.main}>
-        {children}
+      {/* Main Content Area */}
+      <main className={styles.mainContent}>
+        <header className={styles.topHeader}>
+          <button className={styles.menuBtn} onClick={() => setIsMobileMenuOpen(true)}>☰</button>
+          <div className={styles.headerTitle}>
+            <span className={styles.pageTitle}>Daruma LMS</span>
+            <span className={styles.pageSub}>Hệ thống quản lý giảng dạy</span>
+          </div>
+          <div className={styles.headerActions}>
+            <button className="btn-primary">Tạo mới</button>
+          </div>
+        </header>
+        
+        <div className={styles.pageWrapper}>
+          {children}
+        </div>
       </main>
 
-      {/* Bottom Nav (Mobile) */}
-      <nav className={styles.bottomNav}>
-        {navItems.map(item => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className={`${styles.bottomNavItem} ${pathname === item.href ? styles.activeBottom : ''}`}
-          >
-            <span className={styles.bottomNavIcon}>{item.icon}</span>
-            <span className={styles.bottomNavLabel}>{item.label}</span>
-          </Link>
-        ))}
-      </nav>
+      {/* Overlay for mobile sidebar */}
+      {isMobileMenuOpen && (
+        <div className={styles.overlay} onClick={() => setIsMobileMenuOpen(false)}></div>
+      )}
     </div>
   );
 }
