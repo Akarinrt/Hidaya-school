@@ -119,6 +119,7 @@ model Homework {
   teacher     User      @relation(fields: [teacherId], references: [id])
   classId     String?
   class       Class?    @relation(fields: [classId], references: [id])
+  quizData    String?   // JSON string lưu câu hỏi trắc nghiệm
   submissions Submission[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt

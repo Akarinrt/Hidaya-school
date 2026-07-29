@@ -9,6 +9,10 @@ export default function NewHomeworkPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [classes, setClasses] = useState<any[]>([]);
+  const [type, setType] = useState('HOMEWORK');
+
+  // Quiz state
+  const [questions, setQuestions] = useState([{ q: '', options: ['', '', '', ''], correct: 0 }]);
 
   useEffect(() => {
     fetch('/api/classes')
@@ -19,11 +23,34 @@ export default function NewHomeworkPage() {
       .catch(console.error);
   }, []);
 
+  const handleAddQuestion = () => {
+    setQuestions([...questions, { q: '', options: ['', '', '', ''], correct: 0 }]);
+  };
+
+  const updateQuestion = (index: number, field: string, value: any, optionIndex?: number) => {
+    const newQs = [...questions];
+    if (field === 'q') newQs[index].q = value;
+    if (field === 'correct') newQs[index].correct = value;
+    if (field === 'option' && optionIndex !== undefined) {
+      newQs[index].options[optionIndex] = value;
+    }
+    setQuestions(newQs);
+  };
+
+  const removeQuestion = (index: number) => {
+    setQuestions(questions.filter((_, i) => i !== index));
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form));
+
+    // Append quiz data if applicable
+    if (type === 'QUIZ') {
+      data.quizData = JSON.stringify(questions);
+    }
 
     try {
       const res = await fetch('/api/homework', {
@@ -53,12 +80,16 @@ export default function NewHomeworkPage() {
           <label>Loại</label>
           <div className={styles.typeToggle}>
             <label className={styles.radio}>
-              <input type="radio" name="type" value="HOMEWORK" defaultChecked />
-              <span>📝 Bài tập về nhà</span>
+              <input type="radio" name="type" value="HOMEWORK" checked={type === 'HOMEWORK'} onChange={() => setType('HOMEWORK')} />
+              <span>📝 Bài tập tự luận</span>
             </label>
             <label className={styles.radio}>
-              <input type="radio" name="type" value="TEST" />
-              <span>📋 Bài kiểm tra</span>
+              <input type="radio" name="type" value="TEST" checked={type === 'TEST'} onChange={() => setType('TEST')} />
+              <span>📋 Kiểm tra tự luận</span>
+            </label>
+            <label className={styles.radio}>
+              <input type="radio" name="type" value="QUIZ" checked={type === 'QUIZ'} onChange={() => setType('QUIZ')} />
+              <span>🎯 Trắc nghiệm (Tự chấm)</span>
             </label>
           </div>
         </div>
@@ -75,22 +106,71 @@ export default function NewHomeworkPage() {
 
         <div className={styles.field}>
           <label>Tiêu đề *</label>
-          <input name="title" placeholder="VD: Bài tập Bài 28 - Chia động từ bị động" required className={styles.input} />
+          <input name="title" placeholder="VD: Bài tập Bài 28" required className={styles.input} />
         </div>
 
         <div className={styles.field}>
           <label>Mô tả / Đề bài</label>
-          <textarea name="description" placeholder="Mô tả yêu cầu bài tập..." className={styles.textarea} rows={4} />
+          <textarea name="description" placeholder="Mô tả yêu cầu bài tập..." className={styles.textarea} rows={3} />
         </div>
 
-        <div className={styles.field}>
-          <label>Hạn nộp bài</label>
-          <input name="deadline" type="datetime-local" className={styles.input} />
-        </div>
+        {type === 'QUIZ' && (
+          <div style={{ background: 'var(--surface-hover)', padding: '20px', borderRadius: '10px', marginBottom: '20px' }}>
+            <h3 style={{ marginTop: 0, marginBottom: '15px', color: 'var(--primary)' }}>Tạo câu hỏi Trắc nghiệm</h3>
+            {questions.map((q, idx) => (
+              <div key={idx} style={{ background: 'var(--surface)', padding: '15px', borderRadius: '8px', marginBottom: '15px', border: '1px solid var(--border)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+                  <strong>Câu {idx + 1}</strong>
+                  {questions.length > 1 && (
+                    <button type="button" onClick={() => removeQuestion(idx)} style={{ color: 'var(--danger)', background: 'none', border: 'none', cursor: 'pointer' }}>✖ Xóa câu này</button>
+                  )}
+                </div>
+                <input 
+                  placeholder="Nhập nội dung câu hỏi..." 
+                  value={q.q} 
+                  onChange={(e) => updateQuestion(idx, 'q', e.target.value)} 
+                  className={styles.input} 
+                  style={{ marginBottom: '10px' }} 
+                  required 
+                />
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                  {q.options.map((opt, oIdx) => (
+                    <div key={oIdx} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <input 
+                        type="radio" 
+                        name={`correct-${idx}`} 
+                        checked={q.correct === oIdx} 
+                        onChange={() => updateQuestion(idx, 'correct', oIdx)}
+                        title="Tick nếu đây là đáp án đúng"
+                      />
+                      <input 
+                        placeholder={`Đáp án ${String.fromCharCode(65 + oIdx)}`} 
+                        value={opt} 
+                        onChange={(e) => updateQuestion(idx, 'option', e.target.value, oIdx)} 
+                        className={styles.input} 
+                        style={{ padding: '8px' }} 
+                        required 
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+            <button type="button" onClick={handleAddQuestion} style={{ background: 'var(--primary-light)', color: 'var(--primary)', border: 'none', padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold' }}>
+              + Thêm câu hỏi
+            </button>
+          </div>
+        )}
 
-        <div className={styles.field}>
-          <label>Điểm tối đa</label>
-          <input name="maxScore" type="number" defaultValue={100} min={0} max={100} className={styles.input} />
+        <div style={{ display: 'flex', gap: '20px' }}>
+          <div className={styles.field} style={{ flex: 1 }}>
+            <label>Hạn nộp bài</label>
+            <input name="deadline" type="datetime-local" className={styles.input} />
+          </div>
+          <div className={styles.field} style={{ flex: 1 }}>
+            <label>Điểm tối đa</label>
+            <input name="maxScore" type="number" defaultValue={100} min={0} max={100} className={styles.input} />
+          </div>
         </div>
 
         {error && <div className={styles.error}>{error}</div>}
@@ -98,7 +178,7 @@ export default function NewHomeworkPage() {
         <div className={styles.actions}>
           <button type="button" onClick={() => router.back()} className={styles.cancelBtn}>Hủy</button>
           <button type="submit" disabled={loading} className={styles.submitBtn}>
-            {loading ? 'Đang lưu...' : '💾 Tạo bài tập'}
+            {loading ? 'Đang lưu...' : '💾 Tạo bài'}
           </button>
         </div>
       </form>

@@ -14,15 +14,38 @@ export async function POST(req: Request, { params }: { params: Promise<{ homewor
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { id: string; role: string };
     if (decoded.role !== 'STUDENT') return NextResponse.json({ message: 'Không có quyền' }, { status: 403 });
 
-    // Form data for file upload support
+    const hw = await prisma.homework.findUnique({ where: { id: homeworkId }, include: { teacher: true } });
+    if (!hw) return NextResponse.json({ message: 'Không tìm thấy bài tập' }, { status: 404 });
+
+    // Handle quiz auto-grading
+    let finalScore = null;
+    let finalStatus = 'PENDING';
+    let finalContent = '';
+
     const contentType = req.headers.get('content-type') || '';
-    let content = '';
     if (contentType.includes('application/json')) {
       const body = await req.json();
-      content = body.content;
+      
+      if (body.answers && hw.type === 'QUIZ' && hw.quizData) {
+        let questions = [];
+        try { questions = JSON.parse(hw.quizData); } catch (e) {}
+        
+        let correctCount = 0;
+        questions.forEach((q: any, idx: number) => {
+          if (body.answers[idx] === q.correct) {
+            correctCount++;
+          }
+        });
+
+        finalScore = Math.round((correctCount / questions.length) * hw.maxScore);
+        finalStatus = 'GRADED';
+        finalContent = JSON.stringify(body.answers); // save selected options
+      } else {
+        finalContent = body.content || '';
+      }
     } else {
       const formData = await req.formData();
-      content = formData.get('content') as string || '';
+      finalContent = formData.get('content') as string || '';
     }
 
     const existing = await prisma.submission.findFirst({
@@ -31,12 +54,20 @@ export async function POST(req: Request, { params }: { params: Promise<{ homewor
     if (existing) return NextResponse.json({ message: 'Bạn đã nộp bài này rồi' }, { status: 400 });
 
     const submission = await prisma.submission.create({
-      data: { content, homeworkId: homeworkId, studentId: decoded.id },
+      data: { 
+        content: finalContent, 
+        homeworkId: homeworkId, 
+        studentId: decoded.id,
+        status: finalStatus,
+        score: finalScore,
+        gradedById: finalStatus === 'GRADED' ? hw.teacherId : null,
+        gradedAt: finalStatus === 'GRADED' ? new Date() : null,
+        feedback: finalStatus === 'GRADED' ? '🤖 Hệ thống tự động chấm điểm' : null
+      },
     });
 
     // Notify teacher
-    const hw = await prisma.homework.findUnique({ where: { id: homeworkId }, include: { teacher: true } });
-    if (hw) {
+    if (finalStatus === 'PENDING') {
       const student = await prisma.user.findUnique({ where: { id: decoded.id } });
       await prisma.notification.create({
         data: {

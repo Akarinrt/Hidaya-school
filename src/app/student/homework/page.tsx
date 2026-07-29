@@ -71,12 +71,14 @@ export default async function StudentHomeworkPage() {
                 </div>
               )}
               {!submission && studentId && (
-                <form action={`/api/submit/${hw.id}`} method="POST" className={styles.submitForm} encType="multipart/form-data">
-                  <textarea name="content" placeholder="Nhập câu trả lời của bạn..." className={styles.textarea} rows={3} />
-                  <button type="submit" className={styles.submitBtn}>
-                    {hw.type === 'TEST' ? '🚀 Nộp bài kiểm tra' : '📤 Nộp bài tập'}
-                  </button>
-                </form>
+                <a href={`/student/homework/${hw.id}`} style={{ display: 'block', textAlign: 'center', background: 'var(--primary)', color: 'white', padding: '10px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', marginTop: '15px' }}>
+                  {hw.type === 'TEST' || hw.type === 'QUIZ' ? '🚀 Làm bài kiểm tra' : '📤 Xem và nộp bài'}
+                </a>
+              )}
+              {submission && (
+                <a href={`/student/homework/${hw.id}`} style={{ display: 'block', textAlign: 'center', background: 'var(--surface-hover)', color: 'var(--text-main)', padding: '10px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', marginTop: '15px', border: '1px solid var(--border)' }}>
+                  📄 Xem chi tiết bài đã nộp
+                </a>
               )}
             </div>
           );

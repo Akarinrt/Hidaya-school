@@ -14,7 +14,7 @@ export async function POST(req: Request) {
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { id: string; role: string };
     if (decoded.role !== 'TEACHER') return NextResponse.json({ message: 'Không có quyền' }, { status: 403 });
 
-    const { title, description, type, deadline, maxScore, classId } = await req.json();
+    const { title, description, type, deadline, maxScore, classId, quizData } = await req.json();
     if (!title) return NextResponse.json({ message: 'Vui lòng nhập tiêu đề' }, { status: 400 });
 
     const homework = await prisma.homework.create({
@@ -25,7 +25,8 @@ export async function POST(req: Request) {
         deadline: deadline ? new Date(deadline) : null,
         maxScore: parseInt(maxScore) || 100,
         teacherId: decoded.id,
-        classId: classId || null
+        classId: classId || null,
+        quizData: quizData || null
       },
     });
 
