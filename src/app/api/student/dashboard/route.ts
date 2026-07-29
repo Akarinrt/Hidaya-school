@@ -27,7 +27,7 @@ export async function GET(req: Request) {
     const classIds = enrollments.map(e => e.classId);
 
     // 2. Tính Leaderboard cho từng lớp
-    const leaderboards: Record<string, any[]> = {};
+    const leaderboards: Record<string, any> = {};
     
     for (const cls of enrollments) {
       const classId = cls.classId;

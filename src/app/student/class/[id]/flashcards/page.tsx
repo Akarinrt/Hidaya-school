@@ -3,7 +3,7 @@ import FlashcardClient from './FlashcardClient';
 
 const prisma = new PrismaClient();
 
-export default async function ClassFlashcardsPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function ClassFlashcardsPage({ params }: { params: any }) {
   const { id } = await params;
 
   const decks = await prisma.flashcardDeck.findMany({

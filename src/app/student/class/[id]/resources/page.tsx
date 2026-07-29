@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export default async function ClassResourcesPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function ClassResourcesPage({ params }: { params: any }) {
   const { id } = await params;
 
   const resources = await prisma.resource.findMany({

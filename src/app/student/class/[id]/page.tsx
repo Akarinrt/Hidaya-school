@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
 
-export default async function ClassFeedPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function ClassFeedPage({ params }: { params: any }) {
   const { id } = await params;
   
   // Lấy dữ liệu học sinh trong lớp để làm Bảng xếp hạng

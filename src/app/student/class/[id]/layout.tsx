@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation';
 
 const prisma = new PrismaClient();
 
-export default async function ClassLayout({ children, params }: { children: React.ReactNode, params: Promise<{ id: string }> }) {
+export default async function ClassLayout({ children, params }: { children: React.ReactNode, params: any }) {
   const { id } = await params;
   
   const classData = await prisma.class.findUnique({

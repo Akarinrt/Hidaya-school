@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const prisma = new PrismaClient();
 
-export default async function ClassHomeworkPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function ClassHomeworkPage({ params }: { params: any }) {
   const { id } = await params;
   
   const cookieStore = await cookies();
