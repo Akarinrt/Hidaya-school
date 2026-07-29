@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ngữ Pháp Bài 48</title>
+    
+    <!-- Reveal.js & Theme -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/simple.min.css">
+    
+    <style>
+        :root {
+            --primary: #4A6CF7;
+            --danger: #DC3D3D;
+            --success: #1D9A5C;
+            --surface: #ffffff;
+            --bg: #F7F5F2;
+        }
+        body { background: var(--bg); font-family: 'Noto Sans JP', sans-serif; }
+        .title-slide h1 { color: var(--primary); font-weight: 800; font-size: 2.5em; }
+        .title-slide h3 { color: #555; font-size: 1.2em; }
+        
+        .box-highlight {
+            background: var(--surface);
+            border-left: 8px solid var(--primary);
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .grammar-example {
+            background: var(--surface);
+            border: 1px solid rgba(0,0,0,0.05);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            text-align: left;
+            font-size: 1.1em;
+        }
+        
+        .grammar-example p { margin: 10px 0; }
+        .grammar-example .trans { color: #666; font-size: 0.9em; font-style: italic; display: block; margin-top: 5px; }
+        
+        .quiz-box {
+            background: #FAFAFA;
+            border: 2px dashed var(--primary);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: left;
+        }
+        .quiz-title { font-weight: bold; color: var(--primary); margin-bottom: 15px; font-size: 1.2em; }
+        
+        .answer-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8em;
+            margin-top: 10px;
+            transition: 0.2s;
+        }
+        .answer-btn:hover { background: #3a5bde; }
+        .answer-content {
+            display: none;
+            color: var(--success);
+            font-weight: bold;
+            margin-top: 10px;
+            padding: 10px;
+            background: #eef9f2;
+            border-radius: 8px;
+        }
+        
+        ruby { font-size: 1em; }
+        rt { font-size: 0.5em; color: var(--primary); }
+        
+        /* Floating Vocab Box */
+        #vocabBox {
+            position: fixed;
+            top: 20px; right: 20px;
+            width: 250px;
+            background: rgba(255, 255, 255, 0.95);
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            padding: 15px;
+            z-index: 1000;
+            font-size: 0.4em;
+            text-align: left;
+            cursor: grab;
+            display: none;
+            backdrop-filter: blur(10px);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        #vocabBox h4 { margin: 0 0 10px 0; color: var(--primary); font-size: 1.2em; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        #vocabList { list-style: none; padding: 0; margin: 0; }
+        #vocabList li { margin-bottom: 8px; border-bottom: 1px dashed #ddd; padding-bottom: 5px; display: flex; justify-content: space-between; }
+        #vocabList li:last-child { border-bottom: none; }
+        .v-jp { font-weight: bold; color: #333; }
+        .v-vi { color: #666; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+    <div id="vocabBox">
+        <h4>📚 Từ vựng Slide này</h4>
+        <ul id="vocabList"></ul>
+    </div>
+
+    <div class="reveal">
+        <div class="slides">
+            <section class="title-slide">
+                <h1>Ngữ Pháp Bài 48</h1>
+                <h3>Minna No Nihongo II - Thể Sai Khiến (使役形)</h3>
+            </section>
+            <section>
+                <h2>1. Cách chia Động từ Thể Sai Khiến</h2>
+                <div class="grammar-example fragment">
+                    <p><strong>Nhóm 1 (Cột I → Cột A + せます):</strong></p>
+                    <p>書きます → 書かせます</p>
+                    <p>急ぎます → 急がせます</p>
+                </div>
+                <div class="grammar-example fragment">
+                    <p><strong>Nhóm 2 (Bỏ ます + させます):</strong></p>
+                    <p>食べます → 食べさせます</p>
+                    <p>調べます → 調べさせます</p>
+                </div>
+                <div class="grammar-example fragment">
+                    <p><strong>Nhóm 3:</strong></p>
+                    <p>します → させます</p>
+                    <p>来ます → 来させます（こさせます）</p>
+                </div>
+            </section>
+            <section>
+                <h2>2. Câu Sai Khiến (Bắt/Cho phép ai đó làm gì)</h2>
+                <div class="box-highlight">
+                    Tự động từ: A は B を V(sai khiến)<br>
+                    Tha động từ: A は B に N を V(sai khiến)
+                </div>
+                <div class="grammar-example fragment">
+                    <p><strong>Tự động từ (Dùng を):</strong></p>
+                    <p>部長は私を大阪へ出張させました。</p>
+                    <span class="trans">Trưởng phòng đã bắt tôi đi công tác Osaka.</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p><strong>Tha động từ (Dùng に):</strong></p>
+                    <p>先生は学生に宿題をさせました。</p>
+                    <span class="trans">Thầy giáo đã bắt học sinh làm bài tập.</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>母は娘にピアノを習わせます。</p>
+                    <span class="trans">Mẹ cho phép/bắt con gái học piano.</span>
+                </div>
+            </section>
+            <section>
+                <h2>3. Xin phép (Cho tôi làm... có được không?)</h2>
+                <div class="box-highlight">
+                    V(sai khiến)て いただけませんか。
+                </div>
+                <div class="grammar-example fragment">
+                    <p><strong>Cách dùng:</strong> Xin phép người đối diện cho mình làm việc gì đó một cách lịch sự.</p>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>すみません、明日は休ませていただけませんか。</p>
+                    <span class="trans">Xin lỗi, ngày mai cho phép tôi nghỉ được không ạ?</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>早く帰らせていただけませんか。</p>
+                    <span class="trans">Xin cho phép tôi về sớm có được không?</span>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: true,
+            transition: 'slide'
+        });
+
+        const furiganaDict = {"書かせます": "<ruby>書<rt>か</rt></ruby>かせます", "急がせます": "<ruby>急<rt>いそ</rt></ruby>がせます", "食べさせます": "<ruby>食<rt>た</rt></ruby>べさせます", "調べさせます": "<ruby>調<rt>しら</rt></ruby>べさせます", "来させます": "<ruby>来<rt>こ</rt></ruby>させます", "部長": "<ruby>部長<rt>ぶちょう</rt></ruby>", "私": "<ruby>私<rt>わたし</rt></ruby>", "大阪": "<ruby>大阪<rt>おおさか</rt></ruby>", "出張": "<ruby>出張<rt>しゅっちょう</rt></ruby>", "先生": "<ruby>先生<rt>せんせい</rt></ruby>", "学生": "<ruby>学生<rt>がくせい</rt></ruby>", "宿題": "<ruby>宿題<rt>しゅくだい</rt></ruby>", "母": "<ruby>母<rt>はは</rt></ruby>", "娘": "<ruby>娘<rt>むすめ</rt></ruby>", "習わせます": "<ruby>習<rt>なら</rt></ruby>わせます", "明日": "<ruby>明日<rt>あした</rt></ruby>", "休ませて": "<ruby>休<rt>やす</rt></ruby>ませて", "早く": "<ruby>早<rt>はや</rt></ruby>く", "帰らせて": "<ruby>帰<rt>かえ</rt></ruby>らせて"};
+        const vocabDict = {"急ぎます": "Vội vàng, gấp", "出張します": "Đi công tác", "習います": "Học (có người dạy)", "休ませます": "Cho phép nghỉ", "帰らせます": "Cho phép về"};
+
+        document.querySelectorAll('p, .trans, .box-highlight, .answer-content, h1, h3').forEach(el => {
+            let html = el.innerHTML;
+            for (let kanji in furiganaDict) {
+                let re = new RegExp(kanji, "g");
+                html = html.replace(re, furiganaDict[kanji]);
+            }
+            el.innerHTML = html;
+        });
+
+        function toggleAnswer(btn) {
+            let content = btn.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                btn.innerText = "Xem đáp án";
+            } else {
+                content.style.display = "block";
+                btn.innerText = "Ẩn đáp án";
+            }
+        }
+
+        const vocabBox = document.getElementById('vocabBox');
+        const vocabList = document.getElementById('vocabList');
+        
+        Reveal.on('slidechanged', event => {
+            updateVocab(event.currentSlide);
+        });
+        Reveal.on('ready', event => {
+            updateVocab(event.currentSlide);
+        });
+
+        function updateVocab(slide) {
+            let text = slide.innerText;
+            let found = false;
+            vocabList.innerHTML = '';
+            
+            for (let word in vocabDict) {
+                if (text.includes(word)) {
+                    found = true;
+                    let li = document.createElement('li');
+                    li.innerHTML = `<span class="v-jp">${word}</span> <span class="v-vi">${vocabDict[word]}</span>`;
+                    vocabList.appendChild(li);
+                }
+            }
+            
+            vocabBox.style.display = found ? 'block' : 'none';
+        }
+
+        let isDragging = false;
+        let currentX;
+        let currentY;
+        let initialX;
+        let initialY;
+        let xOffset = 0;
+        let yOffset = 0;
+
+        vocabBox.addEventListener("mousedown", dragStart);
+        document.addEventListener("mouseup", dragEnd);
+        document.addEventListener("mousemove", drag);
+
+        function dragStart(e) {
+            initialX = e.clientX - xOffset;
+            initialY = e.clientY - yOffset;
+            if (e.target === vocabBox || vocabBox.contains(e.target)) {
+                isDragging = true;
+            }
+        }
+        function dragEnd(e) {
+            initialX = currentX;
+            initialY = currentY;
+            isDragging = false;
+        }
+        function drag(e) {
+            if (isDragging) {
+                e.preventDefault();
+                currentX = e.clientX - initialX;
+                currentY = e.clientY - initialY;
+                xOffset = currentX;
+                yOffset = currentY;
+                setTranslate(currentX, currentY, vocabBox);
+            }
+        }
+        function setTranslate(xPos, yPos, el) {
+            el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+        }
+    </script>
+</body>
+</html>
