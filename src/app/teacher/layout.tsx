@@ -12,8 +12,9 @@ const navItems = [
   { href: '/teacher/homework', icon: '📝', label: 'Bài tập' },
   { href: '/teacher/grading', icon: '✅', label: 'Chấm bài' },
   { href: '/teacher/students', icon: '👥', label: 'Lớp học' },
+  { href: '/teacher/resources', icon: '📚', label: 'Tài liệu' },
+  { href: '/teacher/flashcards', icon: '🃏', label: 'Flashcard AI' },
   { href: '/teacher/users', icon: '🔐', label: 'Tài khoản' },
-  { href: '/teacher/ai-analytics', icon: '🤖', label: 'Trợ lý AI' },
 ];
 
 export default function TeacherLayout({ children }: { children: React.ReactNode }) {
