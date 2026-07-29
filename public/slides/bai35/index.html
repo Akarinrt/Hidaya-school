@@ -159,10 +159,10 @@
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
             border-radius: 16px !important;
             padding: 15px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             z-index: 1000;
             text-align: left;
-            max-width: 250px;
+            max-width: 250px; max-height: 70vh;
         }
         .vocab-title { font-weight: bold; color: #ff9800; margin-bottom: 5px; font-size: 1rem; border-bottom: 1px solid #ff9800; padding-bottom: 5px; }
         #vocab-list div {
@@ -374,8 +374,8 @@
             slideNumber: true,
             transition: 'fade',
             backgroundTransition: 'fade',
-            width: 1080,
-            height: 720,
+            width: 1600,
+            height: 900,
             margin: 0.1
         });
 
@@ -438,13 +438,38 @@
             }
         }
 
-        // Populate Vocab Box
-        const vocabList = document.getElementById("vocab-list");
-        for (let kanji in furiganaDict) {
-            let div = document.createElement("div");
-            div.innerHTML = furiganaDict[kanji] + " : " + kanji;
-            vocabList.appendChild(div);
+        // Populate Vocab Box dynamically per slide
+        function updateVocabBox(currentSlide) {
+            const vocabList = document.getElementById("vocab-list");
+            vocabList.innerHTML = "";
+            let addedCount = 0;
+            const slideText = currentSlide.innerText || currentSlide.textContent;
+            
+            for (let kanji in furiganaDict) {
+                // If kanji is exactly found in the slide text, we add it to the box
+                if (slideText.includes(kanji)) {
+                    let div = document.createElement("div");
+                    div.innerHTML = furiganaDict[kanji] + " : " + kanji;
+                    vocabList.appendChild(div);
+                    addedCount++;
+                }
+            }
+            if (addedCount === 0) {
+                let div = document.createElement("div");
+                div.style.color = "#777";
+                div.style.fontStyle = "italic";
+                div.innerHTML = "Không có kanji mới";
+                vocabList.appendChild(div);
+            }
         }
+        
+        Reveal.on('slidechanged', event => {
+            updateVocabBox(event.currentSlide);
+        });
+        
+        Reveal.on('ready', event => {
+            updateVocabBox(event.currentSlide);
+        });
     </script>
 </body>
 </html>
