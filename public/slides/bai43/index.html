@@ -10,16 +10,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/simple.min.css">
     
+    
     <style>
+        /* Animated Gradient Background */
+        body {
+            background: linear-gradient(-45deg, #ffffff, #f0f4f8, #e0f2fe, #f8fafc) !important;
+            background-size: 400% 400% !important;
+            animation: gradientBG 15s ease infinite !important;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         :root {
-            --primary: #4A6CF7;
+            --primary: #0052cc;
             --danger: #DC3D3D;
             --success: #1D9A5C;
-            --surface: #ffffff;
-            --bg: #F7F5F2;
+            --surface: rgba(255, 255, 255, 0.85);
+            --bg: transparent;
         }
-        body { background: var(--bg); font-family: 'Noto Sans JP', sans-serif; }
-        .title-slide h1 { color: var(--primary); font-weight: 800; font-size: 2.5em; text-transform: uppercase; }
+
+        /* FIX OVERFLOW */
+        .reveal .slides section { 
+            max-height: 95vh !important; 
+            overflow-y: auto !important; 
+            padding-right: 15px !important; 
+        }
+
+        .title-slide h1 { color: var(--primary); font-weight: 800; font-size: 2.5em; text-transform: uppercase; text-shadow: 2px 2px 10px rgba(0,0,0,0.05); }
         .title-slide h3 { color: #555; font-size: 1.2em; }
         
         .section-title {
@@ -27,45 +47,57 @@
             border-bottom: 3px solid var(--primary); display: inline-block; padding-bottom: 5px;
         }
         
+        /* Glassmorphism */
         .box-highlight {
-            background: var(--surface);
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%) !important;
             border-left: 8px solid var(--primary);
             padding: 20px 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.15);
             font-size: 1.3em;
             font-weight: bold;
             margin-bottom: 30px;
             text-align: left;
+            color: #0d47a1 !important;
         }
         
         .grammar-example {
-            background: var(--surface);
-            border: 1px solid rgba(0,0,0,0.05);
+            background: rgba(250, 250, 250, 0.8) !important;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(221, 221, 221, 0.5) !important;
+            border-left: 6px solid #1976d2 !important;
             padding: 20px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
             margin-bottom: 20px;
             text-align: left;
-            font-size: 1.1em;
+            font-size: 1.3em !important;
         }
         
-        .grammar-example p { margin: 10px 0; font-size: 1.2em; }
-        .grammar-example .trans { color: #666; font-size: 0.85em; font-style: italic; display: block; margin-top: 5px; }
+        .grammar-example p { margin: 10px 0; font-size: 1.2em; color: #2c3e50; }
+        .grammar-example .trans { color: #607d8b !important; font-size: 0.95em; font-style: italic; display: block; margin-top: 5px; }
         
         .quiz-box {
-            background: #FAFAFA;
-            border: 2px dashed var(--danger);
+            background: rgba(255, 253, 231, 0.6) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(251, 192, 45, 0.3) !important;
+            box-shadow: 0 8px 24px rgba(251, 192, 45, 0.15) !important;
             padding: 25px;
-            border-radius: 12px;
+            border-radius: 16px !important;
             text-align: left;
             margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .quiz-title { font-weight: bold; color: var(--danger); margin-bottom: 15px; font-size: 1.3em; }
-        .quiz-q { font-size: 1.1em; margin-bottom: 15px; font-weight: bold; }
+        .quiz-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(251, 192, 45, 0.25) !important;
+        }
+
+        .quiz-title { font-weight: bold; color: #f57f17; margin-bottom: 15px; font-size: 1.3em; }
+        .quiz-q { font-size: 1.1em; margin-bottom: 15px; font-weight: bold; color: #2c3e50; }
         
         .answer-btn {
-            background: var(--danger);
+            background: #1976d2;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -93,16 +125,19 @@
             display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: left;
         }
         .vocab-item {
-            background: white; padding: 10px 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            font-size: 1.1em;
+            background: rgba(255, 255, 255, 0.9); padding: 10px 15px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            font-size: 1.1em; transition: all 0.3s ease;
+        }
+        .vocab-item:hover {
+            transform: translateX(8px); color: #1976d2;
         }
         .vocab-item strong { color: var(--primary); }
         
         ruby { font-size: 1em; }
-        rt { font-size: 0.5em; color: var(--primary); font-weight: bold; }
+        rt { font-size: 0.6em; color: #1976d2; font-weight: bold; }
         
         .dialogue-box {
-            background: #fdfdfd;
+            background: rgba(253, 253, 253, 0.9);
             border-left: 5px solid #ff9800;
             padding: 20px;
             margin-bottom: 20px;
@@ -110,11 +145,54 @@
             border-radius: 0 12px 12px 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        .dialogue-p1 { color: #1976d2; font-weight: bold; margin-bottom: 5px !important; }
-        .dialogue-p2 { color: #e64a19; font-weight: bold; margin-bottom: 5px !important; }
+        .dialogue-p1 { color: #1976d2; font-weight: bold; margin-bottom: 5px !important; font-size: 1.2em; }
+        .dialogue-p2 { color: #e64a19; font-weight: bold; margin-bottom: 5px !important; font-size: 1.2em; }
+
+        /* Vocab Box */
+        .vocab-box {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(16px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.8) !important;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
+            border-radius: 16px !important;
+            padding: 15px;
+            font-size: 0.9rem;
+            z-index: 1000;
+            text-align: left;
+            max-width: 250px;
+        }
+        .vocab-title { font-weight: bold; color: #ff9800; margin-bottom: 5px; font-size: 1rem; border-bottom: 1px solid #ff9800; padding-bottom: 5px; }
+        #vocab-list div {
+            transition: all 0.3s ease;
+            padding: 6px;
+            border-radius: 8px;
+            margin-bottom: 2px !important;
+        }
+        #vocab-list div:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateX(8px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            color: #1976d2;
+        }
     </style>
+
 </head>
+
 <body>
+    <!-- Floating Dynamic Vocabulary Box -->
+    <div id="vocab-box" class="vocab-box" style="resize: both; overflow: auto; min-width: 200px; min-height: 100px;">
+        <div id="vocab-header" class="vocab-title" style="cursor: move; background: #fff3e0; padding: 8px; margin: -15px -15px 10px -15px; border-bottom: 2px solid #ff9800; border-radius: 6px 6px 0 0; display: flex; justify-content: space-between; align-items: center;">
+            <span>🌟 Bảng Kanji</span>
+            <span style="font-size: 0.8rem; color: #ff9800; cursor: se-resize;">↘ Kéo to</span>
+        </div>
+        <div id="vocab-list">
+            <!-- Dynamic content will be injected here -->
+        </div>
+    </div>
+
 
     <div class="reveal">
         <div class="slides">
@@ -301,6 +379,49 @@
                 btn.style.background = "var(--success)";
             }
         }
+    
+        // Draggable Vocab Box
+        const vocabBox = document.getElementById("vocab-box");
+        const vocabHeader = document.getElementById("vocab-header");
+        let isDragging = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+        
+        vocabHeader.addEventListener("mousedown", dragStart);
+        window.addEventListener("mouseup", dragEnd);
+        window.addEventListener("mousemove", drag);
+        
+        function dragStart(e) {
+            initialX = e.clientX - xOffset;
+            initialY = e.clientY - yOffset;
+            if (e.target === vocabHeader || e.target.parentNode === vocabHeader) {
+                isDragging = true;
+            }
+        }
+        
+        function dragEnd(e) {
+            initialX = currentX;
+            initialY = currentY;
+            isDragging = false;
+        }
+        
+        function drag(e) {
+            if (isDragging) {
+                e.preventDefault();
+                currentX = e.clientX - initialX;
+                currentY = e.clientY - initialY;
+                xOffset = currentX;
+                yOffset = currentY;
+                vocabBox.style.transform = "translate3d(" + currentX + "px, " + currentY + "px, 0)";
+            }
+        }
+
+        // Populate Vocab Box
+        const vocabList = document.getElementById("vocab-list");
+        for (let kanji in furiganaDict) {
+            let div = document.createElement("div");
+            div.innerHTML = furiganaDict[kanji] + " : " + kanji;
+            vocabList.appendChild(div);
+        }
     </script>
 </body>
 </html>
+
