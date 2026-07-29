@@ -7,9 +7,8 @@ import styles from './layout.module.css';
 
 const navItems = [
   { href: '/student/dashboard', icon: '🏠', label: 'Tổng quan' },
+  { href: '/student/classes', icon: '🏫', label: 'Lớp học của tôi' },
   { href: '/student/schedule', icon: '📅', label: 'Lịch học' },
-  { href: '/student/vocab', icon: '🎮', label: 'Luyện tập' },
-  { href: '/student/homework', icon: '📝', label: 'Bài tập' },
   { href: '/student/messages', icon: '💬', label: 'Tin nhắn' },
 ];
 
@@ -74,7 +73,11 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
             <span className={styles.pageTitle}>Hidaya School</span>
             <span className={styles.pageSub}>Hệ thống học tập trực tuyến</span>
           </div>
-          <div className={styles.headerActions} style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+          <div className={styles.headerActions} style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+            <div style={{ position: 'relative', cursor: 'pointer', fontSize: '20px' }} title="Thông báo">
+              🔔
+              <div style={{ position: 'absolute', top: '-5px', right: '-5px', background: 'var(--danger)', color: 'white', borderRadius: '50%', width: '16px', height: '16px', fontSize: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold' }}>3</div>
+            </div>
             {mounted && (
               <button 
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
