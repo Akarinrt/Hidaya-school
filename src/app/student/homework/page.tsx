@@ -15,8 +15,18 @@ async function getStudentId() {
 
 export default async function StudentHomeworkPage() {
   const studentId = await getStudentId();
+  // Lấy danh sách lớp học sinh đang tham gia
+  const enrollments = studentId ? await prisma.classEnrollment.findMany({ where: { studentId } }) : [];
+  const classIds = enrollments.map(e => e.classId);
+
   const homeworks = await prisma.homework.findMany({
-    where: { isPublished: true },
+    where: { 
+      isPublished: true,
+      OR: [
+        { classId: { in: classIds } },
+        { classId: null }
+      ]
+    },
     orderBy: { deadline: 'asc' },
     include: {
       submissions: studentId ? { where: { studentId } } : false,

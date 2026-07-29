@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './new.module.css';
 
@@ -8,6 +8,16 @@ export default function NewHomeworkPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [classes, setClasses] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch('/api/classes')
+      .then(r => r.json())
+      .then(data => {
+        if (Array.isArray(data)) setClasses(data);
+      })
+      .catch(console.error);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -51,6 +61,16 @@ export default function NewHomeworkPage() {
               <span>📋 Bài kiểm tra</span>
             </label>
           </div>
+        </div>
+
+        <div className={styles.field}>
+          <label>Lớp học (Tùy chọn)</label>
+          <select name="classId" className={styles.input}>
+            <option value="">-- Giao cho toàn bộ học sinh --</option>
+            {classes.map(c => (
+              <option key={c.id} value={c.id}>{c.name}</option>
+            ))}
+          </select>
         </div>
 
         <div className={styles.field}>

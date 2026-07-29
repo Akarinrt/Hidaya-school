@@ -14,7 +14,7 @@ export async function POST(req: Request) {
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { id: string; role: string };
     if (decoded.role !== 'TEACHER') return NextResponse.json({ message: 'Không có quyền' }, { status: 403 });
 
-    const { title, description, type, deadline, maxScore } = await req.json();
+    const { title, description, type, deadline, maxScore, classId } = await req.json();
     if (!title) return NextResponse.json({ message: 'Vui lòng nhập tiêu đề' }, { status: 400 });
 
     const homework = await prisma.homework.create({
@@ -25,6 +25,7 @@ export async function POST(req: Request) {
         deadline: deadline ? new Date(deadline) : null,
         maxScore: parseInt(maxScore) || 100,
         teacherId: decoded.id,
+        classId: classId || null
       },
     });
 
@@ -35,10 +36,37 @@ export async function POST(req: Request) {
   }
 }
 
-export async function GET() {
-  const homeworks = await prisma.homework.findMany({
-    orderBy: { createdAt: 'desc' },
-    include: { teacher: true, _count: { select: { submissions: true } } },
-  });
-  return NextResponse.json(homeworks);
+export async function GET(req: Request) {
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('token')?.value;
+    if (!token) return NextResponse.json({ message: 'Chưa đăng nhập' }, { status: 401 });
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { id: string; role: string };
+
+    let whereClause = {};
+    if (decoded.role === 'TEACHER') {
+      whereClause = { teacherId: decoded.id };
+    } else if (decoded.role === 'STUDENT') {
+      // Find classes student is enrolled in
+      const enrollments = await prisma.classEnrollment.findMany({ where: { studentId: decoded.id } });
+      const classIds = enrollments.map(e => e.classId);
+      
+      whereClause = {
+        OR: [
+          { classId: { in: classIds } },
+          { classId: null } // Backward compatibility: if no class assigned, everyone sees it
+        ]
+      };
+    }
+
+    const homeworks = await prisma.homework.findMany({
+      where: whereClause,
+      orderBy: { createdAt: 'desc' },
+      include: { teacher: true, class: true, _count: { select: { submissions: true } } },
+    });
+    return NextResponse.json(homeworks);
+  } catch (error: any) {
+    return NextResponse.json({ message: 'Lỗi máy chủ', error: error.message }, { status: 500 });
+  }
 }
