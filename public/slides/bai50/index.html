@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ngữ Pháp Bài 50</title>
+    <title>Ngữ Pháp Bài 50 (BÀI CUỐI)</title>
     
     <!-- Reveal.js & Theme -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
@@ -19,8 +19,13 @@
             --bg: #F7F5F2;
         }
         body { background: var(--bg); font-family: 'Noto Sans JP', sans-serif; }
-        .title-slide h1 { color: var(--primary); font-weight: 800; font-size: 2.5em; }
+        .title-slide h1 { color: var(--primary); font-weight: 800; font-size: 2.5em; text-transform: uppercase; }
         .title-slide h3 { color: #555; font-size: 1.2em; }
+        
+        .section-title {
+            color: var(--primary); font-weight: bold; font-size: 1.8em; margin-bottom: 20px;
+            border-bottom: 3px solid var(--primary); display: inline-block; padding-bottom: 5px;
+        }
         
         .box-highlight {
             background: var(--surface);
@@ -45,127 +50,244 @@
             font-size: 1.1em;
         }
         
-        .grammar-example p { margin: 10px 0; }
-        .grammar-example .trans { color: #666; font-size: 0.9em; font-style: italic; display: block; margin-top: 5px; }
+        .grammar-example p { margin: 10px 0; font-size: 1.2em; }
+        .grammar-example .trans { color: #666; font-size: 0.85em; font-style: italic; display: block; margin-top: 5px; }
         
         .quiz-box {
             background: #FAFAFA;
-            border: 2px dashed var(--primary);
+            border: 2px dashed var(--danger);
             padding: 25px;
             border-radius: 12px;
             text-align: left;
+            margin-bottom: 20px;
         }
-        .quiz-title { font-weight: bold; color: var(--primary); margin-bottom: 15px; font-size: 1.2em; }
+        .quiz-title { font-weight: bold; color: var(--danger); margin-bottom: 15px; font-size: 1.3em; }
+        .quiz-q { font-size: 1.1em; margin-bottom: 15px; font-weight: bold; }
         
         .answer-btn {
-            background: var(--primary);
+            background: var(--danger);
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 10px 20px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.8em;
+            font-size: 0.9em;
             margin-top: 10px;
             transition: 0.2s;
+            font-weight: bold;
         }
-        .answer-btn:hover { background: #3a5bde; }
+        .answer-btn:hover { opacity: 0.8; transform: scale(1.05); }
         .answer-content {
             display: none;
             color: var(--success);
             font-weight: bold;
-            margin-top: 10px;
-            padding: 10px;
+            margin-top: 15px;
+            padding: 15px;
             background: #eef9f2;
             border-radius: 8px;
+            font-size: 1.1em;
+            border-left: 4px solid var(--success);
         }
+        
+        .vocab-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: left;
+        }
+        .vocab-item {
+            background: white; padding: 10px 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 1.1em;
+        }
+        .vocab-item strong { color: var(--primary); }
         
         ruby { font-size: 1em; }
-        rt { font-size: 0.5em; color: var(--primary); }
+        rt { font-size: 0.5em; color: var(--primary); font-weight: bold; }
         
-        /* Floating Vocab Box */
-        #vocabBox {
-            position: fixed;
-            top: 20px; right: 20px;
-            width: 250px;
-            background: rgba(255, 255, 255, 0.95);
-            border-left: 4px solid var(--primary);
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            padding: 15px;
-            z-index: 1000;
-            font-size: 0.4em;
+        .dialogue-box {
+            background: #fdfdfd;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin-bottom: 20px;
             text-align: left;
-            cursor: grab;
-            display: none;
-            backdrop-filter: blur(10px);
-            max-height: 80vh;
-            overflow-y: auto;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        #vocabBox h4 { margin: 0 0 10px 0; color: var(--primary); font-size: 1.2em; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        #vocabList { list-style: none; padding: 0; margin: 0; }
-        #vocabList li { margin-bottom: 8px; border-bottom: 1px dashed #ddd; padding-bottom: 5px; display: flex; justify-content: space-between; }
-        #vocabList li:last-child { border-bottom: none; }
-        .v-jp { font-weight: bold; color: #333; }
-        .v-vi { color: #666; font-size: 0.9em; }
+        .dialogue-p1 { color: #1976d2; font-weight: bold; margin-bottom: 5px !important; }
+        .dialogue-p2 { color: #e64a19; font-weight: bold; margin-bottom: 5px !important; }
     </style>
 </head>
 <body>
 
-    <div id="vocabBox">
-        <h4>📚 Từ vựng Slide này</h4>
-        <ul id="vocabList"></ul>
-    </div>
-
     <div class="reveal">
         <div class="slides">
             <section class="title-slide">
-                <h1>Ngữ Pháp Bài 50</h1>
-                <h3>Minna No Nihongo II - Khiêm Nhường Ngữ (謙譲語)</h3>
+                <h1>BÀI 50 - MINNA NO NIHONGO II</h1>
+                <h3>Ngữ pháp: Khiêm Nhường Ngữ (謙譲語)</h3>
+                <p>⏳ Thời lượng dự kiến: 120 Phút</p>
+                <h4 style="color:var(--danger); margin-top:20px;">🎉 BÀI HỌC CUỐI CÙNG 🎉</h4>
             </section>
             <section>
-                <h2>1. Khiêm nhường ngữ - Động từ đặc biệt</h2>
-                <div class="grammar-example fragment">
-                    <p>行きます / 来ます ➔ 参ります（まいります）</p>
-                    <p>います ➔ おります</p>
-                    <p>食べます / 飲みます / もらいます ➔ いただきます</p>
-                    <p>言います ➔ 申します（もうします）</p>
-                    <p>します ➔ いたします</p>
-                    <p>見ます ➔ 拝見します（はいけんします）</p>
-                    <p>知っています ➔ 存じております（ぞんじております）</p>
-                    <p>会います ➔ お目にかかります（おめにかかります）</p>
+                <h2 class="section-title">🎯 Khởi động & Kiểm tra bài cũ</h2>
+                <div class="quiz-box">
+                    <p class="quiz-title">Mini Test (Bài 49)</p>
+                    <p class="quiz-q">1. Chọn Tôn kính ngữ đúng của 食べます:<br>
+                    社長は もう 昼ごはんを ( A. お食べになりました / B. 召し上がりました )。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        Đáp án: <strong>B. 召し上がりました</strong><br>
+                        (Vì "Ăn" có động từ đặc biệt, phải ưu tiên dùng từ đặc biệt).
+                    </div>
+                </div>
+                <div class="quiz-box fragment">
+                    <p class="quiz-q">2. Dịch: "Xin vui lòng đợi một chút." (Sử dụng お～ください)</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        少々 <strong>お待ちください</strong>。
+                    </div>
                 </div>
             </section>
             <section>
-                <h2>2. Khiêm nhường ngữ (お/ご ～ します)</h2>
+                <h2 class="section-title">📚 Khiêm Nhường Ngữ Đặc Biệt (Bài 50)</h2>
+                <div class="vocab-grid">
+                    <div class="vocab-item"><strong>参ります</strong> (まいります) : Đi, đến (行きます, 来ます)</div>
+                    <div class="vocab-item"><strong>おります</strong> : Ở (います)</div>
+                    <div class="vocab-item"><strong>いただきます</strong> : Ăn, uống, nhận (食べます, 飲みます, もらいます)</div>
+                    <div class="vocab-item"><strong>申します</strong> (もうします) : Nói, tên là (言います)</div>
+                    <div class="vocab-item"><strong>いたします</strong> : Làm (します)</div>
+                    <div class="vocab-item"><strong>拝見します</strong> (はいけんします) : Xem (見ます)</div>
+                    <div class="vocab-item"><strong>存じております</strong> (ぞんじております) : Biết (知っています)</div>
+                    <div class="vocab-item"><strong>伺います</strong> (うかがいます) : Hỏi, đến thăm (聞きます, 行きます)</div>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">1. Khiêm Nhường Ngữ là gì?</h2>
+                <div class="grammar-example">
+                    <p><strong>Khái niệm:</strong> Khiêm Nhường Ngữ (謙譲語 - Kenjougo) là cách nói <strong>HẠ THẤP HÀNH ĐỘNG CỦA BẢN THÂN MÌNH XUỐNG</strong>, qua đó gián tiếp tôn trọng người đối diện.</p>
+                    <p style="color:var(--danger)">*TUYỆT ĐỐI CHỈ DÙNG cho hành động của "TÔI" hoặc người trong nhóm của mình (Gia đình, Công ty mình).</p>
+                </div>
+                
+                <div class="grammar-example fragment">
+                    <p style="font-weight:bold; color:var(--primary);">Cách 1: Dùng các Động từ Đặc biệt (Xem slide trước)</p>
+                    <p>私 は ベトナムから <strong>参りました</strong>。</p>
+                    <span class="trans">TÔI ĐẾN từ Việt Nam. (Khiêm nhường của 来ました).</span>
+                    <br>
+                    <p>私 は マイクと <strong>申します</strong>。</p>
+                    <span class="trans">TÔI TÊN LÀ (nói) Mike. (Khiêm nhường của 言います).</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">2. Cách 2: お V(bỏ ます) します</h2>
                 <div class="box-highlight">
-                    お V(bỏ ます) します<br>
-                    ご N(Hán Việt) します
+                    お ＋ V (Bỏ ます) ＋ します<br>
+                    ご ＋ Danh từ (Nhóm 3) ＋ します
+                </div>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> Dùng cho những động từ không có dạng đặc biệt. Hành động NÀY CỦA TÔI là làm cho/ảnh hưởng đến ĐỐI TÁC.</p>
                 </div>
                 <div class="grammar-example fragment">
-                    <p><strong>Cách dùng:</strong> Hạ mình xuống khi người thực hiện hành động là BẢN THÂN MÌNH, và hành động đó tác động tới người bề trên.</p>
+                    <p>重そうですね。私が <strong>お持ち します</strong>。</p>
+                    <span class="trans">Trông nặng nhỉ. Để TÔI CẦM GIÚP cho. (持ちます ➔ お持ちします).</span>
                 </div>
                 <div class="grammar-example fragment">
-                    <p>重いですね。私がお持ちします。</p>
-                    <span class="trans">Nặng quá nhỉ. Để tôi cầm giúp cho ạ. (持ちます → お持ちします)</span>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>明日、社長をご案内します。</p>
-                    <span class="trans">Ngày mai, tôi sẽ hướng dẫn cho Giám đốc.</span>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>今日の予定をご説明します。</p>
-                    <span class="trans">Tôi xin phép giải thích về lịch trình hôm nay.</span>
+                    <p>明日の 予定を <strong>ご説明 します</strong>。</p>
+                    <span class="trans">TÔI XIN GIẢI THÍCH lịch trình ngày mai. (説明します ➔ ご説明します).</span>
                 </div>
             </section>
             <section>
-                <h2>🎉 CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH 🎉</h2>
-                <div class="box-highlight" style="text-align: center; border-left: none; border-bottom: 8px solid var(--primary); background: #eef9f2;">
-                    <h3 style="color: var(--success); font-weight: bold;">MINNA NO NIHONGO II (BÀI 50)</h3>
-                    <p>Bạn đã hoàn thành chặng đường gian nan nhất của N4!</p>
+                <h2 class="section-title">🔍 Tổng hợp Tôn Kính vs Khiêm Nhường</h2>
+                <div class="grammar-example">
+                    <p style="text-align:center; font-weight:bold; color:var(--primary); font-size:1.3em;">BẢNG SO SÁNH ĐỐI CHIẾU</p>
+                    <table style="width:100%; font-size:0.9em; border-collapse: collapse; text-align:left;">
+                        <tr style="background:#4A6CF7; color:white;">
+                            <th style="padding:10px; border:1px solid #ccc;">Động từ thường</th>
+                            <th style="padding:10px; border:1px solid #ccc;">Tôn Kính (Ngài làm)</th>
+                            <th style="padding:10px; border:1px solid #ccc;">Khiêm Nhường (Tôi làm)</th>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px; border:1px solid #ccc;">行きます / 来ます</td>
+                            <td style="padding:10px; border:1px solid #ccc;">いらっしゃいます</td>
+                            <td style="padding:10px; border:1px solid #ccc;">参ります</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px; border:1px solid #ccc;">います (Ở)</td>
+                            <td style="padding:10px; border:1px solid #ccc;">いらっしゃいます</td>
+                            <td style="padding:10px; border:1px solid #ccc;">おります</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px; border:1px solid #ccc;">食べます / 飲みます</td>
+                            <td style="padding:10px; border:1px solid #ccc;">召し上がります</td>
+                            <td style="padding:10px; border:1px solid #ccc;">いただきます</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px; border:1px solid #ccc;">言います (Nói)</td>
+                            <td style="padding:10px; border:1px solid #ccc;">おっしゃいます</td>
+                            <td style="padding:10px; border:1px solid #ccc;">申します</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px; border:1px solid #ccc;">見ます (Xem)</td>
+                            <td style="padding:10px; border:1px solid #ccc;">ご覧になります</td>
+                            <td style="padding:10px; border:1px solid #ccc;">拝見します</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px; border:1px solid #ccc;">知っています</td>
+                            <td style="padding:10px; border:1px solid #ccc;">ご存じです</td>
+                            <td style="padding:10px; border:1px solid #ccc;">存じております</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:10px; border:1px solid #ccc;">します (Làm)</td>
+                            <td style="padding:10px; border:1px solid #ccc;">なさいます</td>
+                            <td style="padding:10px; border:1px solid #ccc;">いたします</td>
+                        </tr>
+                    </table>
                 </div>
-                <div class="grammar-example fragment" style="text-align: center;">
-                    <p>これから、N3の勉強も頑張ってください！</p>
-                    <p>Hãy tiếp tục cố gắng trên con đường chinh phục N3 nhé!</p>
+            </section>
+            <section>
+                <h2 class="section-title">🗣 Hội thoại: Điện thoại Công việc</h2>
+                <div class="dialogue-box">
+                    <p class="dialogue-p1">A：はい、IMCで <strong>ございます</strong>。</p>
+                    <span class="trans">A: Vâng, đây là công ty IMC. (ございます là Thể lịch sự của です).</span>
+                    <br>
+                    <p class="dialogue-p2">B：パワー電気の シュミットと <strong>申します</strong>。ミラーさん は <strong>いらっしゃいます</strong>か。</p>
+                    <span class="trans">B: TÔI TÊN LÀ Schmidt của Điện lực Power. Anh Miller CÓ Ở ĐÓ không ạ? (Tôn kính).</span>
+                    <br>
+                    <p class="dialogue-p1">A：申し訳ありません。ミラーは 今 外出 して<strong>おります</strong>。</p>
+                    <span class="trans">A: Xin lỗi anh. Anh Miller hiện TÔI ĐANG ĐI VẮNG ạ. (Nhân viên dùng Khiêm nhường 'おります' cho Miller vì cùng phe công ty).</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">📝 Bài tập Cuối bài (Tổng hợp)</h2>
+                <div class="quiz-box">
+                    <p class="quiz-title">Quiz Tổng hợp</p>
+                    <p class="quiz-q">1. Chọn từ Khiêm nhường đúng:<br>
+                    初めまして。山田と ( A. おっしゃいます / B. 申します )。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        Đáp án: <strong>B. 申します</strong>.<br>
+                        (Vì nói về TÊN CỦA MÌNH nên phải dùng Khiêm nhường).
+                    </div>
+                </div>
+                
+                <div class="quiz-box fragment">
+                    <p class="quiz-q">2. Chuyển sang Khiêm nhường ngữ:<br>
+                    先生の写真を ( 見ました ) ___________________。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        先生の写真を <strong>拝見しました</strong>。<br>
+                        (Tôi đã vinh hạnh được XEM ảnh của thầy).
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">📚 Tổng kết Bài 50</h2>
+                <div class="grammar-example">
+                    <p><strong>Khiêm Nhường Ngữ (Hạ TÔI xuống để Tôn trọng NGÀI):</strong></p>
+                    <ul>
+                        <li style="margin-bottom:15px;"><strong>C1: Từ đặc biệt:</strong> 参る(Đi/Đến), おる(Ở), 申す(Nói), 拝見する(Xem), 伺う(Hỏi/Thăm)...</li>
+                        <li style="margin-bottom:15px;"><strong>C2: お V(bỏ ます) します:</strong> Dùng cho động từ thường (お持ちします - Để tôi cầm cho).</li>
+                        <li style="margin-bottom:15px;"><strong>Thể lịch sự của です/あります:</strong> でございます / ございます.</li>
+                    </ul>
+                </div>
+                <div class="box-highlight fragment" style="text-align:center; background:#ffeb3b; border-left-color:#e65100; color:#e65100;">
+                    🎉 CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH TOÀN BỘ 50 BÀI MINNA NO NIHONGO! 🎉<br>
+                    <span style="font-size:0.7em; font-weight:normal; color:#333;">Bạn đã chinh phục thành công trình độ N4. Hãy tự hào về bản thân và tiếp tục cố gắng nhé!</span>
                 </div>
             </section>
         </div>
@@ -176,13 +298,17 @@
         Reveal.initialize({
             hash: true,
             slideNumber: true,
-            transition: 'slide'
+            transition: 'fade',
+            backgroundTransition: 'fade',
+            width: 1080,
+            height: 720,
+            margin: 0.1
         });
 
-        const furiganaDict = {"参ります": "<ruby>参<rt>まい</rt></ruby>ります", "申します": "<ruby>申<rt>もう</rt></ruby>します", "拝見します": "<ruby>拝見<rt>はいけん</rt></ruby>します", "存じております": "<ruby>存<rt>ぞん</rt></ruby>じております", "目に": "<ruby>目<rt>め</rt></ruby>に", "重い": "<ruby>重<rt>おも</rt></ruby>い", "私": "<ruby>私<rt>わたし</rt></ruby>", "持ちします": "<ruby>持<rt>も</rt></ruby>ちします", "明日": "<ruby>明日<rt>あした</rt></ruby>", "社長": "<ruby>社長<rt>しゃちょう</rt></ruby>", "案内": "<ruby>案内<rt>あんない</rt></ruby>", "今日": "<ruby>今日<rt>きょう</rt></ruby>", "予定": "<ruby>予定<rt>よてい</rt></ruby>", "説明": "<ruby>説明<rt>せつめい</rt></ruby>", "勉強": "<ruby>勉強<rt>べんきょう</rt></ruby>", "頑張って": "<ruby>頑張<rt>がんば</rt></ruby>って"};
-        const vocabDict = {"参ります": "Đi, đến (khiêm nhường)", "おります": "Ở (khiêm nhường)", "いただきます": "Ăn, uống, nhận (khiêm nhường)", "申します": "Nói, tên là (khiêm nhường)", "いたします": "Làm (khiêm nhường)", "拝見します": "Xem, nhìn (khiêm nhường)", "存じております": "Biết (khiêm nhường)", "お目にかかります": "Gặp gỡ (khiêm nhường)", "案内します": "Hướng dẫn", "説明します": "Giải thích"};
+        const furiganaDict = {"社長": "<ruby>社長<rt>しゃちょう</rt></ruby>", "昼": "<ruby>昼<rt>ひる</rt></ruby>", "食べになりました": "<ruby>食<rt>た</rt></ruby>べになりました", "召し上がりました": "<ruby>召<rt>め</rt></ruby>し<ruby>上<rt>あ</rt></ruby>がりました", "少々": "<ruby>少々<rt>しょうしょう</rt></ruby>", "待ちください": "<ruby>待<rt>ま</rt></ruby>ちください", "参ります": "<ruby>参<rt>まい</rt></ruby>ります", "行きます": "<ruby>行<rt>い</rt></ruby>きます", "来ます": "<ruby>来<rt>き</rt></ruby>ます", "食べます": "<ruby>食<rt>た</rt></ruby>べます", "飲みます": "<ruby>飲<rt>の</rt></ruby>みます", "申します": "<ruby>申<rt>もう</rt></ruby>します", "言います": "<ruby>言<rt>い</rt></ruby>ます", "拝見します": "<ruby>拝見<rt>はいけん</rt></ruby>します", "見ます": "<ruby>見<rt>み</rt></ruby>ます", "存じております": "<ruby>存<rt>ぞん</rt></ruby>じております", "知っています": "<ruby>知<rt>し</rt></ruby>っています", "伺います": "<ruby>伺<rt>うかが</rt></ruby>います", "聞きます": "<ruby>聞<rt>き</rt></ruby>きます", "私": "<ruby>私<rt>わたし</rt></ruby>", "来ました": "<ruby>来<rt>き</rt></ruby>ました", "重そうですね": "<ruby>重<rt>おも</rt></ruby>そうですね", "持ち": "<ruby>持<rt>も</rt></ruby>ち", "持ちます": "<ruby>持<rt>も</rt></ruby>ちます", "明日": "<ruby>明日<rt>あした</rt></ruby>", "予定": "<ruby>予定<rt>よてい</rt></ruby>", "説明": "<ruby>説明<rt>せつめい</rt></ruby>", "電気": "<ruby>電気<rt>でんき</rt></ruby>", "申し訳ありません": "<ruby>申<rt>もう</rt></ruby>し<ruby>訳<rt>わけ</rt></ruby>ありません", "今": "<ruby>今<rt>いま</rt></ruby>", "外出": "<ruby>外出<rt>がいしゅつ</rt></ruby>", "初めまして": "<ruby>初<rt>はじ</rt></ruby>めまして", "山田": "<ruby>山田<rt>やまだ</rt></ruby>", "先生": "<ruby>先生<rt>せんせい</rt></ruby>", "写真": "<ruby>写真<rt>しゃしん</rt></ruby>", "見ました": "<ruby>見<rt>み</rt></ruby>ました", "拝見しました": "<ruby>拝見<rt>はいけん</rt></ruby>しました"};
 
-        document.querySelectorAll('p, .trans, .box-highlight, .answer-content, h1, h3').forEach(el => {
+        // Add furigana dynamically
+        document.querySelectorAll('p, .trans, .box-highlight, .answer-content, h1, h2, h3, li, strong, .vocab-item').forEach(el => {
             let html = el.innerHTML;
             for (let kanji in furiganaDict) {
                 let re = new RegExp(kanji, "g");
@@ -195,76 +321,13 @@
             let content = btn.nextElementSibling;
             if (content.style.display === "block") {
                 content.style.display = "none";
-                btn.innerText = "Xem đáp án";
+                btn.innerText = "Kiểm tra đáp án";
+                btn.style.background = "var(--danger)";
             } else {
                 content.style.display = "block";
                 btn.innerText = "Ẩn đáp án";
+                btn.style.background = "var(--success)";
             }
-        }
-
-        const vocabBox = document.getElementById('vocabBox');
-        const vocabList = document.getElementById('vocabList');
-        
-        Reveal.on('slidechanged', event => {
-            updateVocab(event.currentSlide);
-        });
-        Reveal.on('ready', event => {
-            updateVocab(event.currentSlide);
-        });
-
-        function updateVocab(slide) {
-            let text = slide.innerText;
-            let found = false;
-            vocabList.innerHTML = '';
-            
-            for (let word in vocabDict) {
-                if (text.includes(word)) {
-                    found = true;
-                    let li = document.createElement('li');
-                    li.innerHTML = `<span class="v-jp">${word}</span> <span class="v-vi">${vocabDict[word]}</span>`;
-                    vocabList.appendChild(li);
-                }
-            }
-            
-            vocabBox.style.display = found ? 'block' : 'none';
-        }
-
-        let isDragging = false;
-        let currentX;
-        let currentY;
-        let initialX;
-        let initialY;
-        let xOffset = 0;
-        let yOffset = 0;
-
-        vocabBox.addEventListener("mousedown", dragStart);
-        document.addEventListener("mouseup", dragEnd);
-        document.addEventListener("mousemove", drag);
-
-        function dragStart(e) {
-            initialX = e.clientX - xOffset;
-            initialY = e.clientY - yOffset;
-            if (e.target === vocabBox || vocabBox.contains(e.target)) {
-                isDragging = true;
-            }
-        }
-        function dragEnd(e) {
-            initialX = currentX;
-            initialY = currentY;
-            isDragging = false;
-        }
-        function drag(e) {
-            if (isDragging) {
-                e.preventDefault();
-                currentX = e.clientX - initialX;
-                currentY = e.clientY - initialY;
-                xOffset = currentX;
-                yOffset = currentY;
-                setTranslate(currentX, currentY, vocabBox);
-            }
-        }
-        function setTranslate(xPos, yPos, el) {
-            el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
         }
     </script>
 </body>
