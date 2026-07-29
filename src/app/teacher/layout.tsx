@@ -1,8 +1,9 @@
 'use client';
+import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { useTheme } from 'next-themes';
 import styles from './layout.module.css';
-import { useState } from 'react';
 
 const navItems = [
   { href: '/teacher/dashboard', icon: '🏠', label: 'Tổng quan' },
@@ -16,6 +17,12 @@ const navItems = [
 export default function TeacherLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <div className={styles.appShell}>
@@ -68,7 +75,16 @@ export default function TeacherLayout({ children }: { children: React.ReactNode 
             <span className={styles.pageTitle}>Daruma LMS</span>
             <span className={styles.pageSub}>Hệ thống quản lý giảng dạy</span>
           </div>
-          <div className={styles.headerActions}>
+          <div className={styles.headerActions} style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+            {mounted && (
+              <button 
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                style={{ background: 'none', border: 'none', fontSize: '20px', cursor: 'pointer' }}
+                title="Đổi giao diện"
+              >
+                {theme === 'dark' ? '🌞' : '🌙'}
+              </button>
+            )}
             <button className="btn-primary">Tạo mới</button>
           </div>
         </header>

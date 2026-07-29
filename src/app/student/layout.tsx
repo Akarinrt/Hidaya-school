@@ -1,13 +1,13 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useTheme } from 'next-themes';
 import styles from './layout.module.css';
 
 const navItems = [
   { href: '/student/dashboard', icon: '🏠', label: 'Tổng quan' },
   { href: '/student/schedule', icon: '📅', label: 'Lịch học' },
-  { href: '/student/lessons', icon: '📖', label: 'Bài giảng' },
   { href: '/student/vocab', icon: '🎮', label: 'Luyện tập' },
   { href: '/student/homework', icon: '📝', label: 'Bài tập' },
   { href: '/student/messages', icon: '💬', label: 'Tin nhắn' },
@@ -16,6 +16,12 @@ const navItems = [
 export default function StudentLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <div className={styles.appShell}>
@@ -67,6 +73,17 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
           <div className={styles.headerTitle}>
             <span className={styles.pageTitle}>Daruma LMS</span>
             <span className={styles.pageSub}>Hệ thống học tập trực tuyến</span>
+          </div>
+          <div className={styles.headerActions} style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+            {mounted && (
+              <button 
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                style={{ background: 'none', border: 'none', fontSize: '20px', cursor: 'pointer' }}
+                title="Đổi giao diện"
+              >
+                {theme === 'dark' ? '🌞' : '🌙'}
+              </button>
+            )}
           </div>
         </header>
         

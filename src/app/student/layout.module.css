@@ -5,7 +5,7 @@
 
 .sidebar {
   width: 260px;
-  background: #fff;
+  background: var(--surface);
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -163,7 +163,7 @@
 }
 
 .topHeader {
-  background: #fff;
+  background: var(--surface);
   border-bottom: 1px solid var(--border);
   padding: 0 28px;
   height: 60px;

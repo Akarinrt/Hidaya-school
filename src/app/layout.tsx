@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+import Providers from './providers';
+
 export const metadata: Metadata = {
-  title: "Hidaya School - Nền tảng Học Tiếng Nhật",
-  description: "Nền tảng học tiếng Nhật online dành cho học viên Hidaya School",
+  title: 'Hidaya School LMS',
+  description: 'Hệ thống quản lý học tập tiếng Nhật',
 };
 
 export default function RootLayout({
@@ -12,8 +14,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi">
-      <body>{children}</body>
+    <html lang="vi" suppressHydrationWarning>
+      <body>
+        <Providers>
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 }

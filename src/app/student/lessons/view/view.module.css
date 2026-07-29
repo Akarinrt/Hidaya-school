@@ -1,7 +1,0 @@
-.wrapper { display: flex; flex-direction: column; height: calc(100vh - 40px); margin: -32px; }
-.topBar { display: flex; align-items: center; gap: 16px; padding: 12px 20px; background: rgba(0,0,0,0.3); border-bottom: 1px solid var(--glass-border); flex-shrink: 0; flex-wrap: wrap; gap: 10px; }
-.backBtn { color: #64b4ff; text-decoration: none; font-size: 0.9rem; font-weight: 600; white-space: nowrap; }
-.title { flex: 1; font-size: 1rem; font-weight: 700; color: #fff; text-align: center; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.openBtn { color: var(--primary-color); text-decoration: none; font-size: 0.82rem; font-weight: 600; white-space: nowrap; }
-.frame { flex: 1; border: none; width: 100%; background: #fff; }
-@media (max-width: 768px) { .wrapper { margin: -20px -16px; height: calc(100vh - 140px); } }

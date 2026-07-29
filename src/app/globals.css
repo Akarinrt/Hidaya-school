@@ -34,6 +34,30 @@
   --radius-xl:      20px;
 }
 
+[data-theme='dark'] {
+  --primary:        #3B82F6;
+  --primary-dark:   #60A5FA;
+  --primary-light:  #172554;
+  --primary-mid:    #1E3A8A;
+  --accent:         #60A5FA;
+  --success:        #4ADE80;
+  --success-bg:     #064E3B;
+  --warning:        #FBBF24;
+  --warning-bg:     #78350F;
+  --danger:         #F87171;
+  --danger-bg:      #7F1D1D;
+  --bg:             #0F172A;
+  --surface:        #1E293B;
+  --border:         rgba(255,255,255,0.10);
+  --border-subtle:  rgba(255,255,255,0.05);
+  --text-main:      #F8FAFC;
+  --text-sub:       #CBD5E1;
+  --text-muted:     #94A3B8;
+  --shadow-sm:      0 1px 3px rgba(0,0,0,0.25);
+  --shadow-md:      0 4px 16px rgba(0,0,0,0.40);
+  --shadow-lg:      0 8px 32px rgba(0,0,0,0.50);
+}
+
 html, body {
   background: var(--bg);
   color: var(--text-main);
@@ -127,7 +151,7 @@ input, select, textarea, button { font-family: inherit; }
   align-items: center;
   gap: 6px;
   padding: 10px 20px;
-  background: #fff;
+  background: var(--surface);
   color: var(--text-sub);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -156,7 +180,7 @@ input, select, textarea, button { font-family: inherit; }
   border-radius: var(--radius-sm);
   font-size: 15px;
   color: var(--text-main);
-  background: #FAFCFF;
+  background: var(--bg);
   outline: none;
   transition: all 0.2s;
   font-family: inherit;
@@ -164,7 +188,7 @@ input, select, textarea, button { font-family: inherit; }
 .form-input:focus {
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(37,99,235,0.10);
-  background: #fff;
+  background: var(--surface);
 }
 .form-textarea { resize: vertical; min-height: 80px; }
 
@@ -181,7 +205,7 @@ input, select, textarea, button { font-family: inherit; }
 /* === TABLE === */
 .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
 .data-table th {
-  background: #F8FAFC;
+  background: var(--bg);
   color: var(--text-muted);
   font-size: 13px;
   font-weight: 600;
@@ -201,11 +225,11 @@ input, select, textarea, button { font-family: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(150deg, #F0F7FF 0%, #EFF6FF 40%, #F8FAFC 100%);
+  background: var(--bg);
   padding: 24px;
 }
 .login-card {
-  background: #fff;
+  background: var(--surface);
   border-radius: var(--radius-xl);
   padding: 44px 40px;
   width: 100%;
@@ -257,13 +281,13 @@ input, select, textarea, button { font-family: inherit; }
   transition: background 0.12s;
 }
 .notif-item:hover { background: var(--primary-light); }
-.notif-item.unread { background: #FAFCFF; border-left: 3px solid var(--primary); }
+.notif-item.unread { background: var(--bg); border-left: 3px solid var(--primary); }
 .notif-title { font-size: 15px; font-weight: 600; color: var(--text-main); }
 .notif-body  { font-size: 13px; color: var(--text-muted); margin-top: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 /* === MESSAGE BUBBLE === */
 .bubble-mine    { background: var(--primary); color: #fff; border-radius: 16px 16px 4px 16px; }
-.bubble-theirs  { background: #fff; color: var(--text-main); border: 1px solid var(--border); border-radius: 16px 16px 16px 4px; }
+.bubble-theirs  { background: var(--surface); color: var(--text-main); border: 1px solid var(--border); border-radius: 16px 16px 16px 4px; }
 
 /* === SCHEDULE CARD === */
 .schedule-card {

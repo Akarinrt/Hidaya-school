@@ -66,13 +66,6 @@ export default async function StudentDashboard() {
       
       {/* Quick Links */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px', marginBottom: '28px' }}>
-        <Link href="/student/lessons" className="quick-link-card">
-          <div className="quick-link-icon" style={{ background: 'var(--success-bg)' }}>📖</div>
-          <div>
-            <div className="quick-link-title">Xem bài giảng</div>
-            <div className="quick-link-desc">Tài liệu & Slides</div>
-          </div>
-        </Link>
         <Link href="/student/vocab" className="quick-link-card">
           <div className="quick-link-icon" style={{ background: 'var(--primary-light)' }}>🎮</div>
           <div>
