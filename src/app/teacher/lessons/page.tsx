@@ -14,15 +14,45 @@ export default async function LessonsPage() {
     'N5': '#66bb6a', 'N4': '#42a5f5', 'N3': '#ab47bc', 'N2': '#ef5350',
   };
 
+  // Generate an array for the interactive lessons from 29 to 50
+  const interactiveLessons = Array.from({ length: 50 - 29 + 1 }, (_, i) => 29 + i);
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <div>
           <h1 className={styles.title}>📂 Kho Giáo án</h1>
-          <p className={styles.subtitle}>{lessons.length} giáo án đã lưu trữ</p>
+          <p className={styles.subtitle}>Giáo án lưu trữ & Bài giảng tương tác thông minh</p>
         </div>
-        <Link href="/teacher/lessons/new" className={styles.addBtn}>+ Thêm giáo án</Link>
+        <Link href="/teacher/lessons/new" className={styles.addBtn}>+ Thêm giáo án DB</Link>
       </div>
+
+      <h2 style={{ marginTop: '30px', marginBottom: '15px', color: 'var(--primary)', borderBottom: '2px solid var(--primary)', display: 'inline-block' }}>
+        ✨ Bài giảng tương tác (N4 - Minna no Nihongo)
+      </h2>
+      
+      <div className={styles.grid}>
+        {interactiveLessons.map(lessonNumber => (
+          <div key={`bai${lessonNumber}`} className={styles.card} style={{ borderLeft: '4px solid var(--primary)' }}>
+            <div className={styles.cardTop}>
+              <span className={styles.level} style={{ background: '#e3f2fd', color: '#1976d2' }}>N4</span>
+              <span className={`${styles.badge} ${styles.public}`}>✨ Tương tác</span>
+            </div>
+            <h3 className={styles.cardTitle}>Bài {lessonNumber}</h3>
+            <p className={styles.cardLesson}>Ngữ pháp Minna II - Bài {lessonNumber}</p>
+            <div className={styles.cardFooter}>
+              <span className={styles.teacher}>🤖 Auto-generated</span>
+              <a href={`/slides/bai${lessonNumber}/index.html`} target="_blank" rel="noreferrer" className={styles.downloadBtn} style={{ background: 'var(--primary)', border: 'none', color: 'white' }}>
+                ▶️ Trình chiếu
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <h2 style={{ marginTop: '40px', marginBottom: '15px', color: '#555' }}>
+        📁 Tài liệu tải lên (Database)
+      </h2>
 
       <div className={styles.grid}>
         {lessons.map(lesson => (
