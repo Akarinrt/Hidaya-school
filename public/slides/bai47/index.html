@@ -19,8 +19,13 @@
             --bg: #F7F5F2;
         }
         body { background: var(--bg); font-family: 'Noto Sans JP', sans-serif; }
-        .title-slide h1 { color: var(--primary); font-weight: 800; font-size: 2.5em; }
+        .title-slide h1 { color: var(--primary); font-weight: 800; font-size: 2.5em; text-transform: uppercase; }
         .title-slide h3 { color: #555; font-size: 1.2em; }
+        
+        .section-title {
+            color: var(--primary); font-weight: bold; font-size: 1.8em; margin-bottom: 20px;
+            border-bottom: 3px solid var(--primary); display: inline-block; padding-bottom: 5px;
+        }
         
         .box-highlight {
             background: var(--surface);
@@ -45,116 +50,216 @@
             font-size: 1.1em;
         }
         
-        .grammar-example p { margin: 10px 0; }
-        .grammar-example .trans { color: #666; font-size: 0.9em; font-style: italic; display: block; margin-top: 5px; }
+        .grammar-example p { margin: 10px 0; font-size: 1.2em; }
+        .grammar-example .trans { color: #666; font-size: 0.85em; font-style: italic; display: block; margin-top: 5px; }
         
         .quiz-box {
             background: #FAFAFA;
-            border: 2px dashed var(--primary);
+            border: 2px dashed var(--danger);
             padding: 25px;
             border-radius: 12px;
             text-align: left;
+            margin-bottom: 20px;
         }
-        .quiz-title { font-weight: bold; color: var(--primary); margin-bottom: 15px; font-size: 1.2em; }
+        .quiz-title { font-weight: bold; color: var(--danger); margin-bottom: 15px; font-size: 1.3em; }
+        .quiz-q { font-size: 1.1em; margin-bottom: 15px; font-weight: bold; }
         
         .answer-btn {
-            background: var(--primary);
+            background: var(--danger);
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 10px 20px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.8em;
+            font-size: 0.9em;
             margin-top: 10px;
             transition: 0.2s;
+            font-weight: bold;
         }
-        .answer-btn:hover { background: #3a5bde; }
+        .answer-btn:hover { opacity: 0.8; transform: scale(1.05); }
         .answer-content {
             display: none;
             color: var(--success);
             font-weight: bold;
-            margin-top: 10px;
-            padding: 10px;
+            margin-top: 15px;
+            padding: 15px;
             background: #eef9f2;
             border-radius: 8px;
+            font-size: 1.1em;
+            border-left: 4px solid var(--success);
         }
+        
+        .vocab-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: left;
+        }
+        .vocab-item {
+            background: white; padding: 10px 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 1.1em;
+        }
+        .vocab-item strong { color: var(--primary); }
         
         ruby { font-size: 1em; }
-        rt { font-size: 0.5em; color: var(--primary); }
+        rt { font-size: 0.5em; color: var(--primary); font-weight: bold; }
         
-        /* Floating Vocab Box */
-        #vocabBox {
-            position: fixed;
-            top: 20px; right: 20px;
-            width: 250px;
-            background: rgba(255, 255, 255, 0.95);
-            border-left: 4px solid var(--primary);
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            padding: 15px;
-            z-index: 1000;
-            font-size: 0.4em;
+        .dialogue-box {
+            background: #fdfdfd;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin-bottom: 20px;
             text-align: left;
-            cursor: grab;
-            display: none;
-            backdrop-filter: blur(10px);
-            max-height: 80vh;
-            overflow-y: auto;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        #vocabBox h4 { margin: 0 0 10px 0; color: var(--primary); font-size: 1.2em; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        #vocabList { list-style: none; padding: 0; margin: 0; }
-        #vocabList li { margin-bottom: 8px; border-bottom: 1px dashed #ddd; padding-bottom: 5px; display: flex; justify-content: space-between; }
-        #vocabList li:last-child { border-bottom: none; }
-        .v-jp { font-weight: bold; color: #333; }
-        .v-vi { color: #666; font-size: 0.9em; }
+        .dialogue-p1 { color: #1976d2; font-weight: bold; margin-bottom: 5px !important; }
+        .dialogue-p2 { color: #e64a19; font-weight: bold; margin-bottom: 5px !important; }
     </style>
 </head>
 <body>
 
-    <div id="vocabBox">
-        <h4>📚 Từ vựng Slide này</h4>
-        <ul id="vocabList"></ul>
-    </div>
-
     <div class="reveal">
         <div class="slides">
             <section class="title-slide">
-                <h1>Ngữ Pháp Bài 47</h1>
-                <h3>Minna No Nihongo II - そうです (Nghe nói) & ようです (Có vẻ)</h3>
+                <h1>BÀI 47 - MINNA NO NIHONGO II</h1>
+                <h3>Ngữ pháp: そうです (Nghe nói) & ようです (Có vẻ như)</h3>
+                <p>⏳ Thời lượng dự kiến: 120 Phút</p>
             </section>
             <section>
-                <h2>1. ~ そうです (Nghe nói là...)</h2>
-                <div class="box-highlight">
-                    Thể thông thường + そうです。
+                <h2 class="section-title">🎯 Khởi động & Kiểm tra bài cũ</h2>
+                <div class="quiz-box">
+                    <p class="quiz-title">Mini Test (Bài 46)</p>
+                    <p class="quiz-q">1. Điền từ thích hợp:<br>
+                    バスは たった今 出発した (____________)。(Chỉ vừa mới xảy ra tức thì).</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        出発した <strong>ところです</strong>。<br>
+                        (Tức thì dùng ところです, không dùng ばかりです).
+                    </div>
                 </div>
-                <div class="grammar-example fragment">
-                    <p><strong>Cách dùng:</strong> Truyền đạt lại thông tin nghe được từ nguồn khác (báo chí, người khác kể) mà không thêm ý kiến cá nhân. Thường đi với "～によると" (Theo như...).</p>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>天気予報によると、明日は寒くなるそうです。</p>
-                    <span class="trans">Theo dự báo thời tiết, NGHE NÓI ngày mai trời sẽ trở lạnh.</span>
-                </div>
-                <div class="grammar-example fragment">
-                    <p>クララさんは子供の時、フランスに住んでいたそうです。</p>
-                    <span class="trans">Nghe nói hồi bé bạn Clara đã từng sống ở Pháp.</span>
+                <div class="quiz-box fragment">
+                    <p class="quiz-q">2. Chọn đáp án đúng:<br>
+                    彼は 日本に10年住んでいましたから、日本語が 上手な ( A. でしょう / B. はずです )。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        Đáp án: <strong>B. はずです</strong><br>
+                        (Vì có căn cứ rất logic là sống ở Nhật 10 năm -> Chắc chắn giỏi).
+                    </div>
                 </div>
             </section>
             <section>
-                <h2>2. ~ ようです (Hình như / Có vẻ như...)</h2>
+                <h2 class="section-title">📚 Từ vựng Trọng tâm (Bài 47)</h2>
+                <div class="vocab-grid">
+                    <div class="vocab-item"><strong>集まります</strong> (あつまります) : Tập trung, tụ tập</div>
+                    <div class="vocab-item"><strong>別れます</strong> (わかれます) : Chia tay</div>
+                    <div class="vocab-item"><strong>長生きします</strong> (ながいきします) : Sống thọ</div>
+                    <div class="vocab-item"><strong>します</strong> : Có (âm thanh, mùi vị)</div>
+                    <div class="vocab-item"><strong>ひどい</strong> : Tồi tệ, khủng khiếp</div>
+                    <div class="vocab-item"><strong>実験</strong> (じっけん) : Thực nghiệm, thí nghiệm</div>
+                    <div class="vocab-item"><strong>婚約します</strong> (こんやくします) : Đính hôn</div>
+                    <div class="vocab-item"><strong>恋人</strong> (こいびと) : Người yêu</div>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">1. ～そうです (Nghe nói là / Truyền đạt)</h2>
                 <div class="box-highlight">
-                    Thể thông thường + ようです。<br>
-                    <em>* Aな / N + の + ようです</em>
+                    Thể thông thường + そうです
+                </div>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> Dùng để TRUYỀN ĐẠT lại một thông tin mà mình nghe được, đọc được từ một nguồn khác (không phải ý kiến cá nhân). Thường đi với mẫu "N(nguồn) によると...そうです" (Theo như N thì...).</p>
+                    <p style="color:var(--danger)">* Tính từ な / Danh từ ➔ Giữ nguyên だ ＋ そうです</p>
                 </div>
                 <div class="grammar-example fragment">
-                    <p><strong>Cách dùng:</strong> Phán đoán mang tính chủ quan của người nói thông qua 5 giác quan (nhìn, nghe, ngửi, sờ, nếm) hoặc qua quan sát hoàn cảnh.</p>
+                    <p>天気予報<strong>によると</strong>、明日は 寒くなる <strong>そうです</strong>。</p>
+                    <span class="trans">THEO NHƯ dự báo thời tiết, NGHE NÓI LÀ ngày mai sẽ trở lạnh.</span>
                 </div>
                 <div class="grammar-example fragment">
-                    <p>咳も出るし、頭も痛い。どうも風邪を引いたようです。</p>
-                    <span class="trans">Vừa bị ho, vừa đau đầu. HÌNH NHƯ tôi bị cảm rồi.</span>
+                    <p>ニュース<strong>によると</strong>、アメリカで 地震が あった <strong>そうです</strong>。</p>
+                    <span class="trans">THEO NHƯ tin tức, NGHE NÓI LÀ đã có động đất ở Mỹ.</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">🔍 So sánh: 2 loại "そうです"</h2>
+                <div class="grammar-example">
+                    <p style="color:var(--primary); font-weight:bold;">1. そうです (Nhìn bề ngoài - Bài 43):</p>
+                    <p>Cách chia: BỎ ます / BỎ い / BỎ な.<br>
+                    Ý nghĩa: "Trông có vẻ". (Đánh giá bằng MẮT).<br>
+                    Ví dụ: 料理が <strong>おいしそうです</strong>。 (Món ăn TRÔNG CÓ VẺ ngon - chưa ăn thử).</p>
                 </div>
                 <div class="grammar-example fragment">
-                    <p>人が大勢集まっていますね。事故のようです。</p>
-                    <span class="trans">Người ta đang tập trung đông quá nhỉ. CÓ VẺ NHƯ là một vụ tai nạn.</span>
+                    <p style="color:var(--success); font-weight:bold;">2. そうです (Nghe nói - Bài 47):</p>
+                    <p>Cách chia: THỂ THÔNG THƯỜNG (Giữ nguyên だ / い).<br>
+                    Ý nghĩa: "Nghe nói là". (Truyền đạt bằng TAI).<br>
+                    Ví dụ: 料理が <strong>おいしいそうです</strong>。 (NGHE NÓI LÀ món ăn ngon - nghe ai đó kể lại).</p>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">2. ～ようです (Có vẻ như - Suy đoán)</h2>
+                <div class="box-highlight">
+                    Thể thông thường + ようです<br>
+                    (Tính từ な ➔ な / Danh từ ➔ の) + ようです
+                </div>
+                <div class="grammar-example">
+                    <p><strong>Ý nghĩa:</strong> Suy đoán mang tính chủ quan của người nói, dựa trên một <strong>CĂN CỨ DO CÁC GIÁC QUAN (Tai, Mắt, Mũi...)</strong> cảm nhận được.</p>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>隣の部屋に 誰か いる <strong>ようです</strong>。</p>
+                    <span class="trans">CÓ VẺ NHƯ có ai đó ở phòng bên cạnh. (Căn cứ bằng Tai: Nghe thấy tiếng động).</span>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>人が たくさん集まっていますね。事故の <strong>ようです</strong>。</p>
+                    <span class="trans">Mọi người đang tập trung đông nhỉ. CÓ VẺ NHƯ là một vụ tai nạn. (Căn cứ bằng Mắt).</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">3. Danh từ (Chỉ giác quan) ＋ が します</h2>
+                <div class="grammar-example">
+                    <p>Dùng để diễn tả việc bản thân NHẬN THẤY / CẢM THẤY một kích thích từ các giác quan (Âm thanh, Mùi vị, Giọng nói...).</p>
+                    <ul style="font-size: 1.1em; line-height: 1.8;">
+                        <li><strong>音 (おと) が します:</strong> Có âm thanh / tiếng động.</li>
+                        <li><strong>声 (こえ) が します:</strong> Có giọng nói.</li>
+                        <li><strong>におい が します:</strong> Có mùi.</li>
+                        <li><strong>味 (あじ) が します:</strong> Có vị.</li>
+                    </ul>
+                </div>
+                <div class="grammar-example fragment">
+                    <p>変な <strong>においが します</strong>ね。</p>
+                    <span class="trans">Có mùi lạ nhỉ. (Ngửi thấy).</span>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">📝 Bài tập Cuối bài (Tổng hợp)</h2>
+                <div class="quiz-box">
+                    <p class="quiz-title">Quiz Tổng hợp</p>
+                    <p class="quiz-q">1. Chọn đáp án đúng (Phân biệt 2 loại そうです):<br>
+                    山田さんは ケーキが好き ( A. だ / B. な ) そうです。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        Đáp án: <strong>A. だ</strong>.<br>
+                        (Vì "Nghe nói là" đi với Thể thông thường. Tính từ な giữ nguyên だ. Câu này nghĩa là: NGHE NÓI anh Yamada thích bánh kem).
+                    </div>
+                </div>
+                
+                <div class="quiz-box fragment">
+                    <p class="quiz-q">2. Chọn từ thích hợp:<br>
+                    外で 犬の ( A. 音 / B. 声 ) がします。</p>
+                    <button class="answer-btn" onclick="toggleAnswer(this)">Kiểm tra đáp án</button>
+                    <div class="answer-content">
+                        Đáp án: <strong>B. 声 (こえ)</strong><br>
+                        (Âm thanh do động vật, con người phát ra từ miệng dùng 声. Âm thanh đồ vật dùng 音).
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2 class="section-title">📚 Tổng kết Bài 47</h2>
+                <div class="grammar-example">
+                    <ul>
+                        <li style="margin-bottom:15px;"><strong>Thể thông thường + そうです:</strong> Nghe nói là (Truyền đạt lại thông tin).</li>
+                        <li style="margin-bottom:15px;"><strong>Thể thông thường + ようです:</strong> Có vẻ như (Suy đoán dựa trên chứng cứ giác quan thu thập được).</li>
+                        <li style="margin-bottom:15px;"><strong>(音/声/におい/味) + が します:</strong> Có âm thanh/tiếng/mùi/vị (Cảm nhận bằng giác quan).</li>
+                    </ul>
+                </div>
+                <div class="box-highlight fragment" style="text-align:center;">
+                    🏆 CHÚC MỪNG BẠN ĐÃ HOÀN THÀNH BÀI 47! 🏆<br>
+                    <span style="font-size:0.7em; font-weight:normal;">Chỉ còn 3 bài nữa là kết thúc 50 bài Minna no Nihongo!</span>
                 </div>
             </section>
         </div>
@@ -165,13 +270,17 @@
         Reveal.initialize({
             hash: true,
             slideNumber: true,
-            transition: 'slide'
+            transition: 'fade',
+            backgroundTransition: 'fade',
+            width: 1080,
+            height: 720,
+            margin: 0.1
         });
 
-        const furiganaDict = {"天気予報": "<ruby>天気予報<rt>てんきよほう</rt></ruby>", "明日": "<ruby>明日<rt>あした</rt></ruby>", "寒くなる": "<ruby>寒<rt>さむ</rt></ruby>くなる", "子供": "<ruby>子供<rt>こども</rt></ruby>", "時": "<ruby>時<rt>とき</rt></ruby>", "住んでいた": "<ruby>住<rt>す</rt></ruby>んでいた", "咳": "<ruby>咳<rt>せき</rt></ruby>", "出る": "<ruby>出<rt>で</rt></ruby>る", "頭": "<ruby>頭<rt>あたま</rt></ruby>", "痛い": "<ruby>痛<rt>いた</rt></ruby>い", "風邪": "<ruby>風邪<rt>かぜ</rt></ruby>", "引いた": "<ruby>引<rt>ひ</rt></ruby>いた", "人": "<ruby>人<rt>ひと</rt></ruby>", "大勢": "<ruby>大勢<rt>おおぜい</rt></ruby>", "集まって": "<ruby>集<rt>あつ</rt></ruby>まって", "事故": "<ruby>事故<rt>じこ</rt></ruby>"};
-        const vocabDict = {"天気予報": "Dự báo thời tiết", "寒くなります": "Trở lạnh", "咳": "Ho", "風邪を引きます": "Bị cảm", "大勢": "Nhiều người", "集まります": "Tập trung", "事故": "Tai nạn"};
+        const furiganaDict = {"出発した": "<ruby>出発<rt>しゅっぱつ</rt></ruby>した", "彼": "<ruby>彼<rt>かれ</rt></ruby>", "日本": "<ruby>日本<rt>にほん</rt></ruby>", "年": "<ruby>年<rt>ねん</rt></ruby>", "住んでいました": "<ruby>住<rt>す</rt></ruby>んでいました", "日本語": "<ruby>日本語<rt>にほんご</rt></ruby>", "上手": "<ruby>上手<rt>じょうず</rt></ruby>", "集まります": "<ruby>集<rt>あつま</rt></ruby>ります", "別れます": "<ruby>別<rt>わか</rt></ruby>れます", "長生きします": "<ruby>長生<rt>ながい</rt></ruby>きします", "実験": "<ruby>実験<rt>じっけん</rt></ruby>", "婚約": "<ruby>婚約<rt>こんやく</rt></ruby>", "恋人": "<ruby>恋人<rt>こいびと</rt></ruby>", "天気予報": "<ruby>天気予報<rt>てんきよほう</rt></ruby>", "明日": "<ruby>明日<rt>あした</rt></ruby>", "寒くなる": "<ruby>寒<rt>さむ</rt></ruby>くなる", "地震": "<ruby>地震<rt>じしん</rt></ruby>", "料理": "<ruby>料理<rt>りょうり</rt></ruby>", "隣": "<ruby>隣<rt>となり</rt></ruby>", "部屋": "<ruby>部屋<rt>へや</rt></ruby>", "誰か": "<ruby>誰<rt>だれ</rt></ruby>か", "人": "<ruby>人<rt>ひと</rt></ruby>", "集まっています": "<ruby>集<rt>あつま</rt></ruby>っています", "事故": "<ruby>事故<rt>じこ</rt></ruby>", "音": "<ruby>音<rt>おと</rt></ruby>", "声": "<ruby>声<rt>こえ</rt></ruby>", "味": "<ruby>味<rt>あじ</rt></ruby>", "変": "<ruby>変<rt>へん</rt></ruby>", "山田": "<ruby>山田<rt>やまだ</rt></ruby>", "好き": "<ruby>好<rt>す</rt></ruby>き", "外": "<ruby>外<rt>そと</rt></ruby>", "犬": "<ruby>犬<rt>いぬ</rt></ruby>"};
 
-        document.querySelectorAll('p, .trans, .box-highlight, .answer-content, h1, h3').forEach(el => {
+        // Add furigana dynamically
+        document.querySelectorAll('p, .trans, .box-highlight, .answer-content, h1, h2, h3, li, strong, .vocab-item').forEach(el => {
             let html = el.innerHTML;
             for (let kanji in furiganaDict) {
                 let re = new RegExp(kanji, "g");
@@ -184,76 +293,13 @@
             let content = btn.nextElementSibling;
             if (content.style.display === "block") {
                 content.style.display = "none";
-                btn.innerText = "Xem đáp án";
+                btn.innerText = "Kiểm tra đáp án";
+                btn.style.background = "var(--danger)";
             } else {
                 content.style.display = "block";
                 btn.innerText = "Ẩn đáp án";
+                btn.style.background = "var(--success)";
             }
-        }
-
-        const vocabBox = document.getElementById('vocabBox');
-        const vocabList = document.getElementById('vocabList');
-        
-        Reveal.on('slidechanged', event => {
-            updateVocab(event.currentSlide);
-        });
-        Reveal.on('ready', event => {
-            updateVocab(event.currentSlide);
-        });
-
-        function updateVocab(slide) {
-            let text = slide.innerText;
-            let found = false;
-            vocabList.innerHTML = '';
-            
-            for (let word in vocabDict) {
-                if (text.includes(word)) {
-                    found = true;
-                    let li = document.createElement('li');
-                    li.innerHTML = `<span class="v-jp">${word}</span> <span class="v-vi">${vocabDict[word]}</span>`;
-                    vocabList.appendChild(li);
-                }
-            }
-            
-            vocabBox.style.display = found ? 'block' : 'none';
-        }
-
-        let isDragging = false;
-        let currentX;
-        let currentY;
-        let initialX;
-        let initialY;
-        let xOffset = 0;
-        let yOffset = 0;
-
-        vocabBox.addEventListener("mousedown", dragStart);
-        document.addEventListener("mouseup", dragEnd);
-        document.addEventListener("mousemove", drag);
-
-        function dragStart(e) {
-            initialX = e.clientX - xOffset;
-            initialY = e.clientY - yOffset;
-            if (e.target === vocabBox || vocabBox.contains(e.target)) {
-                isDragging = true;
-            }
-        }
-        function dragEnd(e) {
-            initialX = currentX;
-            initialY = currentY;
-            isDragging = false;
-        }
-        function drag(e) {
-            if (isDragging) {
-                e.preventDefault();
-                currentX = e.clientX - initialX;
-                currentY = e.clientY - initialY;
-                xOffset = currentX;
-                yOffset = currentY;
-                setTranslate(currentX, currentY, vocabBox);
-            }
-        }
-        function setTranslate(xPos, yPos, el) {
-            el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
         }
     </script>
 </body>
