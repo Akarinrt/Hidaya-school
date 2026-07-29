@@ -29,6 +29,10 @@ model User {
   notifications     Notification[]
   vocabScores       VocabScore[]
   aiAnalyses        AIAnalysis[]
+  
+  teachingClasses   Class[]           @relation("TeacherClasses")
+  classEnrollments  ClassEnrollment[]
+  attendances       Attendance[]
 }
 
 model Schedule {
@@ -42,8 +46,49 @@ model Schedule {
   color      String?  @default("#ff9800")
   teacherId  String
   teacher    User     @relation(fields: [teacherId], references: [id])
+  classId    String?
+  class      Class?   @relation(fields: [classId], references: [id])
   createdAt  DateTime @default(now())
 }
+
+model Class {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  teacherId   String
+  teacher     User     @relation("TeacherClasses", fields: [teacherId], references: [id])
+  students    ClassEnrollment[]
+  schedules   Schedule[]
+  attendances Attendance[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ClassEnrollment {
+  id        String   @id @default(uuid())
+  classId   String
+  class     Class    @relation(fields: [classId], references: [id])
+  studentId String
+  student   User     @relation(fields: [studentId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([classId, studentId])
+}
+
+model Attendance {
+  id        String   @id @default(uuid())
+  classId   String
+  class     Class    @relation(fields: [classId], references: [id])
+  studentId String
+  student   User     @relation(fields: [studentId], references: [id])
+  date      DateTime
+  status    String   @default("PRESENT") // PRESENT, ABSENT, LATE
+  note      String?
+  createdAt DateTime @default(now())
+
+  @@unique([classId, studentId, date])
+}
+
 
 model LessonPlan {
   id          String   @id @default(uuid())
