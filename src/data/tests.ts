@@ -947,6 +947,227 @@ export const testsData: Test[] = [
         correctAnswers: ["日本語が少ししか話せません", "日本語がすこししか話せません", "にほんごがすこししかはなせません", "日本語は少ししか話せません", "日本語は少しだけ話せます"],
         explanation: "少ししか話せません (chỉ có thể nói một chút) hoặc 少しだけ話せます."
       }
+,
+
+  // Exercise 1: Potential form conjugation
+  {
+    id: "l27_wb_1_1",
+    type: "text_input",
+    skill: "Ngữ pháp (Thể khả năng)",
+    text: "Chia sang thể khả năng (Masu): 見られます -> Thể từ điển (Khả năng)?",
+    correctAnswers: ["見られる", "みられる"],
+    explanation: "見られます (mieraremasu) thể từ điển là 見られる."
+  },
+  {
+    id: "l27_wb_1_2",
+    type: "text_input",
+    skill: "Ngữ pháp (Thể khả năng)",
+    text: "Chia sang thể khả năng (Masu): 建てます -> Thể khả năng (Masu)?",
+    correctAnswers: ["建てられます", "たてられます"],
+    explanation: "建てます nhóm 2 -> 建てられます."
+  },
+  {
+    id: "l27_wb_1_3",
+    type: "text_input",
+    skill: "Ngữ pháp (Thể khả năng)",
+    text: "Chia sang thể khả năng (Từ điển): 走れる -> Thể khả năng (Masu)?",
+    correctAnswers: ["走れます", "はしれます"],
+    explanation: "走れる là thể từ điển, sang masu là 走れます."
+  },
+  {
+    id: "l27_wb_1_4",
+    type: "text_input",
+    skill: "Ngữ pháp (Thể khả năng)",
+    text: "Chia sang thể khả năng (Masu): 借ります -> Thể khả năng (Masu)?",
+    correctAnswers: ["借りられます", "かりられます"],
+    explanation: "借ります nhóm 2 -> 借りられます."
+  },
+  {
+    id: "l27_wb_1_5",
+    type: "text_input",
+    skill: "Ngữ pháp (Thể khả năng)",
+    text: "Chia sang thể khả năng (Từ điển): 捜せます -> Thể từ điển?",
+    correctAnswers: ["捜せる", "さがせる"],
+    explanation: "捜せます -> 捜せる."
+  },
+  {
+    id: "l27_wb_1_6",
+    type: "text_input",
+    skill: "Ngữ pháp (Thể khả năng)",
+    text: "Chia sang thể khả năng (Masu): 連絡します -> Thể khả năng (Masu)?",
+    correctAnswers: ["連絡できます", "れんらくできます"],
+    explanation: "連絡します nhóm 3 -> 連絡できます."
+  },
+  {
+    id: "l27_wb_1_7",
+    type: "text_input",
+    skill: "Ngữ pháp (Thể khả năng)",
+    text: "Chia sang thể khả năng (Masu): 起きます -> Thể khả năng (Masu)?",
+    correctAnswers: ["起きられます", "おきられます"],
+    explanation: "起きます nhóm 2 -> 起きられます."
+  },
+  {
+    id: "l27_wb_1_8",
+    type: "text_input",
+    skill: "Ngữ pháp (Thể khả năng)",
+    text: "Chia sang thể khả năng (Từ điển): 置けます -> Thể từ điển?",
+    correctAnswers: ["置ける", "おける"],
+    explanation: "置けます -> 置ける."
+  },
+  {
+    id: "l27_wb_1_9",
+    type: "text_input",
+    skill: "Ngữ pháp (Thể khả năng)",
+    text: "Chia sang thể khả năng (Masu): 開ける -> Thể khả năng (Masu)?",
+    correctAnswers: ["開けられます", "あけられます"],
+    explanation: "開ける là thể từ điển của khả năng -> 開けられます."
+  },
+  {
+    id: "l27_wb_1_10",
+    type: "text_input",
+    skill: "Ngữ pháp (Thể khả năng)",
+    text: "Chia sang thể khả năng (Masu): 来ます -> Thể khả năng (Masu)?",
+    correctAnswers: ["こられます", "来られます"],
+    explanation: "来ます nhóm 3 -> こられます."
+  },
+  
+  // Exercise 2: Combine sentences
+  {
+    id: "l27_wb_2_1",
+    type: "text_input",
+    skill: "Ngữ pháp",
+    text: "Viết lại câu sử dụng thể khả năng phủ định: 簡単な料理だったら、自分で(作ります -> ✖)",
+    correctAnswers: ["作れません", "つくれません"],
+    explanation: "作ります -> 作れます. Phủ định là 作れません."
+  },
+  {
+    id: "l27_wb_2_2",
+    type: "text_input",
+    skill: "Ngữ pháp",
+    text: "Viết lại câu sử dụng thể khả năng phủ định: 早く漢字を覚えたいですが、なかなか(覚えます -> ✖)",
+    correctAnswers: ["覚えられません", "おぼえられません"],
+    explanation: "覚えます -> 覚えられます -> 覚えられません."
+  },
+  {
+    id: "l27_wb_2_3",
+    type: "text_input",
+    skill: "Ngữ pháp",
+    text: "Viết lại câu sử dụng thể khả năng phủ định: また会いたいですね。今度いつ(会います -> 〇)?",
+    correctAnswers: ["会えますか", "あえますか"],
+    explanation: "Câu hỏi: 今度いつ会えますか (Lần tới khi nào có thể gặp?)"
+  },
+  {
+    id: "l27_wb_2_4",
+    type: "text_input",
+    skill: "Ngữ pháp",
+    text: "Viết lại câu sử dụng thể khả năng phủ định: 去年は忙しかったですから、長い旅行に(行きます -> ✖)",
+    correctAnswers: ["行けませんでした", "いけませんでした"],
+    explanation: "Quá khứ phủ định của 行けます là 行けませんでした."
+  },
+
+  // Exercise 3: Rewrite ことができます -> potential
+  {
+    id: "l27_wb_3_1",
+    type: "text_input",
+    skill: "Ngữ pháp",
+    text: "Viết lại câu dùng thể khả năng thay cho ことができます: 自分で自転車を修理することができますか。",
+    correctAnswers: ["自分で自転車が修理できますか", "自分で自転車を修理できますか", "じぶんでじてんしゃがしゅうりできますか"],
+    explanation: "修理することができます -> 修理できます. Trợ từ を có thể giữ nguyên hoặc đổi thành が."
+  },
+  {
+    id: "l27_wb_3_2",
+    type: "text_input",
+    skill: "Ngữ pháp",
+    text: "Viết lại câu dùng thể khả năng thay cho ことができます: あの人の名前を思い出すことができません。",
+    correctAnswers: ["あの人の名前が思い出せません", "あのひとのなまえがおもいだせません", "あの人の名前を思い出せません"],
+    explanation: "思い出すことができません -> 思い出せません."
+  },
+  
+  // Exercise 4: Particles
+  {
+    id: "l27_wb_4_1",
+    type: "text_input",
+    skill: "Trợ từ",
+    text: "Điền 2 trợ từ liên tiếp (cách nhau bởi dấu phẩy): 駅の近く(　) 大きいマンション(　) できました。",
+    correctAnswers: ["に,が", "に, が", "に、が"],
+    explanation: "駅の近く【に】 大きいマンション【が】 できました (Ở gần nhà ga đã xây xong một chung cư lớn)."
+  },
+  {
+    id: "l27_wb_4_2",
+    type: "text_input",
+    skill: "Trợ từ",
+    text: "Điền 2 trợ từ liên tiếp (cách nhau bởi dấu phẩy): 2階の窓(　) お祭りの花火(　) 見えます。",
+    correctAnswers: ["から,が", "から, が", "から、が"],
+    explanation: "窓【から】 花火【が】 見えます (Từ cửa sổ nhìn thấy pháo hoa)."
+  },
+  {
+    id: "l27_wb_4_3",
+    type: "text_input",
+    skill: "Trợ từ",
+    text: "Điền trợ từ: ここは波の音(　) よく聞こえます。",
+    correctAnswers: ["が"],
+    explanation: "波の音【が】 聞こえます (Nghe thấy tiếng sóng biển)."
+  },
+  {
+    id: "l27_wb_4_4",
+    type: "text_input",
+    skill: "Trợ từ",
+    text: "Điền trợ từ: すみませんが、もう少し大きい声(　) 話していただけませんか。",
+    correctAnswers: ["で"],
+    explanation: "大きい声【で】 話す (Nói BẰNG giọng lớn hơn)."
+  },
+  {
+    id: "l27_wb_4_5",
+    type: "text_input",
+    skill: "Trợ từ",
+    text: "Điền 2 trợ từ liên tiếp (cách nhau bởi dấu phẩy): 時計の修理(　) いつできますか。…3日後(　) できます。",
+    correctAnswers: ["は,に", "は, に", "は、に"],
+    explanation: "時計の修理【は】 いつできますか。…3日後【に】 できます."
+  },
+
+  // Exercise 5: shika ... masen
+  {
+    id: "l27_wb_5_1",
+    type: "text_input",
+    skill: "Ngữ pháp (しか)",
+    text: "Dùng しか...ません để trả lời: 冷蔵庫に卵がいくつありますか。…2つ(　)。",
+    correctAnswers: ["しかありません"],
+    explanation: "2つしかありません (Chỉ có 2 quả)."
+  },
+  {
+    id: "l27_wb_5_2",
+    type: "text_input",
+    skill: "Ngữ pháp (しか)",
+    text: "Dùng しか...ません để trả lời: どんな料理が作れますか。…カレー(　)。",
+    correctAnswers: ["しか作れません", "しかつれません"],
+    explanation: "カレーしか作れません (Chỉ có thể làm món cà ri)."
+  },
+  {
+    id: "l27_wb_5_3",
+    type: "text_input",
+    skill: "Ngữ pháp (しか)",
+    text: "Dùng しか...ません để trả lời: きのうの晩はよく寝られましたか。…いいえ、2時間ぐらい(　)。",
+    correctAnswers: ["しか寝られませんでした", "しかねられませんでした"],
+    explanation: "2時間ぐらいしか寝られませんでした (Chỉ có thể ngủ được khoảng 2 tiếng)."
+  },
+
+  // Exercise 6: Wa... ga, wa...
+  {
+    id: "l27_wb_6_1",
+    type: "text_input",
+    skill: "Ngữ pháp (So sánh đối lập は)",
+    text: "Viết lại thành câu so sánh đối lập (dùng は...が、...は...): 木村さんの住所と電話番号がわかりますか。（住所…〇　電話番号…✖）",
+    correctAnswers: ["住所はわかりますが、電話番号はわかりません", "じゅうしょはわかりますが、でんわばんごうはわかりません"],
+    explanation: "住所はわかりますが、電話番号はわかりません (Địa chỉ thì biết, nhưng số điện thoại thì không biết)."
+  },
+  {
+    id: "l27_wb_6_2",
+    type: "text_input",
+    skill: "Ngữ pháp (So sánh đối lập は)",
+    text: "Viết lại thành câu so sánh đối lập: スポーツが好きですか。（ゴルフ…〇　ほかのスポーツ…✖）",
+    correctAnswers: ["ゴルフは好きですが、ほかのスポーツは好きじゃありません", "ゴルフは好きですが、ほかのスポーツは好きではありません"],
+    explanation: "ゴルフは好きですが、ほかのスポーツは好きじゃありません (Golf thì thích, nhưng môn khác thì không)."
+  }
 ]
   }
 ];
