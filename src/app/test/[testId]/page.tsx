@@ -106,6 +106,9 @@ export default function TestPage({ params }: { params: Promise<{ testId: string 
       </div>
 
       {testData.questions.map((q, index) => {
+        const prevSection = index > 0 ? testData.questions[index - 1].section : null;
+        const showSectionHeader = q.section && q.section !== prevSection;
+
         const isAnswered = answers[q.id] !== undefined;
         let isCorrect = false;
         
@@ -115,9 +118,18 @@ export default function TestPage({ params }: { params: Promise<{ testId: string 
           const userAnswer = (answers[q.id] || '').trim().replace(/\s+/g, '');
           isCorrect = q.correctAnswers?.some(ans => ans.replace(/\s+/g, '') === userAnswer) || false;
         }
+
+        const sectionInfo = testData.sections?.find(s => s.title === q.section);
         
         return (
-          <div key={q.id} style={{ background: 'white', padding: '30px', borderRadius: '12px', boxShadow: '0 2px 15px rgba(0,0,0,0.05)', marginBottom: '25px', border: submitted ? (isCorrect ? '2px solid #4caf50' : '2px solid #f44336') : '2px solid transparent' }}>
+          <div key={q.id}>
+            {showSectionHeader && (
+              <div style={{ margin: '30px 0 20px 0', padding: '20px 25px', background: 'linear-gradient(135deg, #1a237e, #283593)', borderRadius: '10px', color: 'white' }}>
+                <h3 style={{ margin: '0 0 6px 0', fontSize: '1.2rem' }}>{q.section}</h3>
+                {sectionInfo && <p style={{ margin: 0, fontSize: '0.9rem', opacity: 0.85 }}>{sectionInfo.description}</p>}
+              </div>
+            )}
+          <div style={{ background: 'white', padding: '30px', borderRadius: '12px', boxShadow: '0 2px 15px rgba(0,0,0,0.05)', marginBottom: '25px', border: submitted ? (isCorrect ? '2px solid #4caf50' : '2px solid #f44336') : '2px solid transparent' }}>
             
             {q.passage && (
               <div style={{ background: '#f5f5f5', padding: '20px', borderRadius: '8px', marginBottom: '20px', borderLeft: '4px solid #9c27b0' }}>
@@ -208,6 +220,7 @@ export default function TestPage({ params }: { params: Promise<{ testId: string 
                 </p>
               </div>
             )}
+          </div>
           </div>
         );
       })}

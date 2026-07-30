@@ -1,16 +1,17 @@
 export interface Question {
   id: string;
   type: 'multiple_choice' | 'text_input';
+  section?: string; // Phần thi (VD: "もんだい1 漢字読み", "もんだい2 文法", ...)
   text: string;
   passage?: string; // Đoạn văn đọc hiểu (nếu có)
-  
+
   // Dành cho trắc nghiệm
   options?: { id: string; text: string }[];
   correctOptionId?: string;
-  
+
   // Dành cho tự luận / điền từ
   correctAnswers?: string[]; // Danh sách các đáp án được chấp nhận
-  
+
   explanation: string;
 }
 
@@ -20,80 +21,287 @@ export interface Test {
   description: string;
   level: string;
   durationMinutes: number;
+  sections?: { id: string; title: string; description: string }[];
   questions: Question[];
 }
 
 export const testsData: Test[] = [
+  // ====================================================
+  // BÀI THI N5 (40 CÂU - DẠNG JLPT)
+  // ====================================================
   {
     id: 'n5-comprehensive',
-    title: 'Bài Kiểm Tra Kiến Thức N5',
-    description: 'Kiểm tra tổng hợp kiến thức cơ bản cấp độ N5 (Trợ từ, chia động từ, đọc hiểu ngắn).',
+    title: '模擬試験 N5 (Đề thi thử N5)',
+    description: 'Đề thi thử theo chuẩn JLPT N5 gồm 40 câu chia 4 phần: Chữ Hán, Từ vựng, Ngữ pháp và Đọc hiểu.',
     level: 'N5',
-    durationMinutes: 15,
+    durationMinutes: 45,
+    sections: [
+      { id: 'sec1', title: 'もんだい１　文字（ふりがな）', description: 'Đọc cách đọc từ in đậm bằng Hiragana.' },
+      { id: 'sec2', title: 'もんだい２　語彙（ごい）', description: 'Chọn từ hoặc chữ Hán phù hợp với nghĩa.' },
+      { id: 'sec3', title: 'もんだい３　文法（ぶんぽう）', description: 'Điền trợ từ, chọn cách chia động từ, cấu trúc câu đúng.' },
+      { id: 'sec4', title: 'もんだい４　読解（どっかい）', description: 'Đọc đoạn văn ngắn và trả lời câu hỏi.' },
+    ],
     questions: [
+      // ─────────────────────────────────────────────
+      // PHẦN 1: もんだい１ 文字・ふりがな (10 câu)
+      // ─────────────────────────────────────────────
       {
-        id: 'q1', type: 'multiple_choice',
-        text: 'Chon trợ từ thích hợp: わたしは スーパー（　　）行きます。',
-        options: [{ id: 'a', text: 'で' }, { id: 'b', text: 'へ' }, { id: 'c', text: 'を' }, { id: 'd', text: 'が' }],
-        correctOptionId: 'b', explanation: 'Trợ từ "へ" (hoặc "に") dùng để chỉ phương hướng di chuyển (Đi đến siêu thị).'
+        id: 'n5_q01', type: 'multiple_choice', section: 'もんだい１　文字（ふりがな）',
+        text: '＿＿の ことばは どう よみますか？\n「今日、山田先生に 会いました。」',
+        options: [{ id: 'a', text: 'きょう・やまださんせい' }, { id: 'b', text: 'こんにち・やまだせんせい' }, { id: 'c', text: 'きょう・やまだせんせい' }, { id: 'd', text: 'こんにち・やまださんせい' }],
+        correctOptionId: 'c', explanation: '今日 đọc là きょう (kyou), 先生 đọc là せんせい (sensei).'
       },
       {
-        id: 'q2', type: 'multiple_choice',
-        text: 'Chia động từ: 食べる → Thể từ điển (Jisho-kei) là gì?',
-        options: [{ id: 'a', text: 'たべない' }, { id: 'b', text: 'たべた' }, { id: 'c', text: 'たべる' }, { id: 'd', text: 'たべて' }],
-        correctOptionId: 'c', explanation: '食べる (Taberu) là thể từ điển (thể nguyên dạng).'
+        id: 'n5_q02', type: 'multiple_choice', section: 'もんだい１　文字（ふりがな）',
+        text: '＿＿の ことばは どう よみますか？\n「毎朝、六時に 起きます。」',
+        options: [{ id: 'a', text: 'まいあさ・ろくじ' }, { id: 'b', text: 'まいあさ・むじ' }, { id: 'c', text: 'まいちょう・ろくじ' }, { id: 'd', text: 'まいちょう・むじ' }],
+        correctOptionId: 'a', explanation: '毎朝 đọc là まいあさ (maisasa), 六時 đọc là ろくじ (rokuji).'
       },
       {
-        id: 'q3', type: 'multiple_choice',
-        text: 'Tình huống giao tiếp: Bạn muốn mượn bút của bạn bè. Bạn sẽ nói thế nào?',
-        options: [{ id: 'a', text: 'ペンを 貸してください。' }, { id: 'b', text: 'ペンを 借りてください。' }, { id: 'c', text: 'ペンを 貸しても いいですか。' }, { id: 'd', text: 'ペンを 借りては いけません。' }],
-        correctOptionId: 'a', explanation: '貸してください (Kashite kudasai) nghĩa là "Hãy cho tôi mượn".'
+        id: 'n5_q03', type: 'multiple_choice', section: 'もんだい１　文字（ふりがな）',
+        text: '＿＿の ことばは どう よみますか？\n「この 水は 冷たいです。」',
+        options: [{ id: 'a', text: 'すい・さむたい' }, { id: 'b', text: 'みず・つめたい' }, { id: 'c', text: 'みず・さむたい' }, { id: 'd', text: 'すい・つめたい' }],
+        correctOptionId: 'b', explanation: '水 đọc là みず (mizu), 冷たい đọc là つめたい (tsumetai).'
       },
       {
-        id: 'q4', type: 'multiple_choice',
-        text: 'Chon trợ từ thích hợp: 箸（　　）ご飯を食べます。',
-        options: [{ id: 'a', text: 'に' }, { id: 'b', text: 'で' }, { id: 'c', text: 'と' }, { id: 'd', text: 'を' }],
-        correctOptionId: 'b', explanation: 'Trợ từ "で" chỉ phương tiện, công cụ (ăn bằng đũa).'
+        id: 'n5_q04', type: 'multiple_choice', section: 'もんだい１　文字（ふりがな）',
+        text: '＿＿の ことばは どう よみますか？\n「駅の 右に 銀行が あります。」',
+        options: [{ id: 'a', text: 'えき・みぎ・ぎんこ' }, { id: 'b', text: 'えき・ひだり・ぎんこう' }, { id: 'c', text: 'えき・みぎ・ぎんこう' }, { id: 'd', text: 'たつみ・みぎ・ぎんこう' }],
+        correctOptionId: 'c', explanation: '駅=えき, 右=みぎ, 銀行=ぎんこう.'
       },
       {
-        id: 'q5', type: 'multiple_choice',
-        text: 'Chia động từ: 書く → Thể phủ định quá khứ (Nai-kei) là gì?',
-        options: [{ id: 'a', text: '書かない' }, { id: 'b', text: '書かなかった' }, { id: 'c', text: '書きました' }, { id: 'd', text: '書いた' }],
-        correctOptionId: 'b', explanation: '書かない (không viết) -> quá khứ là 書かなかった (đã không viết).'
+        id: 'n5_q05', type: 'multiple_choice', section: 'もんだい１　文字（ふりがな）',
+        text: '＿＿の ことばは どう よみますか？\n「父は 会社員です。」',
+        options: [{ id: 'a', text: 'ちち・かいしゃいん' }, { id: 'b', text: 'ちち・かいしゃしゃいん' }, { id: 'c', text: 'おとうさん・かいしゃいん' }, { id: 'd', text: 'はは・かいしゃいん' }],
+        correctOptionId: 'a', explanation: '父 (ちち) là "bố" dùng khi nói về bố mình. 会社員 (かいしゃいん) là nhân viên công ty.'
       },
       {
-        id: 'q6', type: 'multiple_choice',
-        text: 'Dịch sang tiếng Nhật: "Quyển sách này không đắt".',
-        options: [{ id: 'a', text: 'この本は 高いじゃないです。' }, { id: 'b', text: 'この本は 高くありません。' }, { id: 'c', text: 'この本は 高くないでした。' }, { id: 'd', text: 'この本は 高いです。' }],
-        correctOptionId: 'b', explanation: 'Tính từ đuôi い khi phủ định đổi い thành くない hoặc くありません.'
+        id: 'n5_q06', type: 'multiple_choice', section: 'もんだい１　文字（ふりがな）',
+        text: '＿＿の ことばは どう よみますか？\n「この 映画は 長くて、おもしろかったです。」',
+        options: [{ id: 'a', text: 'えいが・みじかくて' }, { id: 'b', text: 'えいが・ながくて' }, { id: 'c', text: 'えいが・ちょうくて' }, { id: 'd', text: 'えいえい・ながくて' }],
+        correctOptionId: 'b', explanation: '映画=えいが, 長くて=ながくて (dài).'
       },
       {
-        id: 'q7', type: 'multiple_choice',
-        text: 'Điền từ thích hợp: （　　）に 本が あります。',
-        options: [{ id: 'a', text: '机の 上' }, { id: 'b', text: '机の 中' }, { id: 'c', text: '机の 下' }, { id: 'd', text: 'Tất cả đều đúng' }],
-        correctOptionId: 'd', explanation: 'Tất cả các vị trí trên đều dùng được với trợ từ に và あります.'
+        id: 'n5_q07', type: 'multiple_choice', section: 'もんだい１　文字（ふりがな）',
+        text: '＿＿の ことばは どう よみますか？\n「来月、友達の 結婚式に 行きます。」',
+        options: [{ id: 'a', text: 'らいつき・ゆうじん・けっこんしき' }, { id: 'b', text: 'らいげつ・ともだち・けっこんしき' }, { id: 'c', text: 'らいげつ・ゆうじん・けっこんしき' }, { id: 'd', text: 'らいつき・ともだち・けっこんしき' }],
+        correctOptionId: 'b', explanation: '来月=らいげつ, 友達=ともだち, 結婚式=けっこんしき.'
       },
       {
-        id: 'q8', type: 'text_input',
-        text: 'Viết câu: "Tôi đã mua táo ở siêu thị." (Viết bằng Hiragana/Kanji, không dùng Romaji)',
-        correctAnswers: ['スーパーでりんごをかいました。', 'スーパーでりんごを買いました。', 'スーパーで リンゴを 買いました。'],
-        explanation: 'Địa điểm xảy ra hành động dùng で (スーパーで). Đã mua dùng quá khứ 買いました (かいました).'
+        id: 'n5_q08', type: 'multiple_choice', section: 'もんだい１　文字（ふりがな）',
+        text: '＿＿の ことばは どう よみますか？\n「外は 雨が 降っています。」',
+        options: [{ id: 'a', text: 'そと・あめ・ふって' }, { id: 'b', text: 'うち・あめ・ふって' }, { id: 'c', text: 'そと・ゆき・ふって' }, { id: 'd', text: 'がい・あめ・くだって' }],
+        correctOptionId: 'a', explanation: '外=そと (bên ngoài), 雨=あめ (mưa), 降っています=đang rơi/đang mưa.'
       },
       {
-        id: 'q9', type: 'multiple_choice',
-        passage: 'きのうは 日曜日でした。わたしは 家族と デパートへ 行きました。デパートで 服を 買いました。それから、レストランで 晩ごはんを 食べました。とても 楽しかったです。',
-        text: 'Đọc đoạn văn trên và cho biết: "Hôm qua người này đã ăn tối ở đâu?"',
-        options: [{ id: 'a', text: 'Ở nhà' }, { id: 'b', text: 'Ở nhà hàng' }, { id: 'c', text: 'Ở siêu thị' }, { id: 'd', text: 'Ở công viên' }],
-        correctOptionId: 'b', explanation: 'Trong bài có câu: 「レストランで 晩ごはんを 食べました。」 (Đã ăn tối ở nhà hàng).'
+        id: 'n5_q09', type: 'multiple_choice', section: 'もんだい１　文字（ふりがな）',
+        text: '＿＿の ことばは どう よみますか？\n「図書館で 本を 読みました。」',
+        options: [{ id: 'a', text: 'としょかん・ほん・よみました' }, { id: 'b', text: 'としょかん・ほん・みました' }, { id: 'c', text: 'としょかん・ほん・かきました' }, { id: 'd', text: 'としょくん・ほん・よみました' }],
+        correctOptionId: 'a', explanation: '図書館=としょかん, 本=ほん, 読みました=よみました (đã đọc).'
       },
       {
-        id: 'q10', type: 'multiple_choice',
-        text: 'Dựa vào đoạn văn trên: "Người này đã đi chơi với ai?"',
-        options: [{ id: 'a', text: 'Bạn bè' }, { id: 'b', text: 'Gia đình' }, { id: 'c', text: 'Một mình' }, { id: 'd', text: 'Người yêu' }],
-        correctOptionId: 'b', explanation: 'Câu số 2 nói: 「わたしは 家族と... 行きました」 (Tôi đã đi với gia đình).'
-      }
+        id: 'n5_q10', type: 'multiple_choice', section: 'もんだい１　文字（ふりがな）',
+        text: '＿＿の ことばは どう よみますか？\n「先週、新聞に 大きい 記事が ありました。」',
+        options: [{ id: 'a', text: 'せんしゅう・しんぶん・おきい・きじ' }, { id: 'b', text: 'せんしゅう・しんぶん・おおきい・きじ' }, { id: 'c', text: 'らいしゅう・しんぶん・おおきい・きじ' }, { id: 'd', text: 'せんしゅう・しんぶん・おおきい・きい' }],
+        correctOptionId: 'b', explanation: '先週=せんしゅう, 新聞=しんぶん, 大きい=おおきい, 記事=きじ.'
+      },
+      // ─────────────────────────────────────────────
+      // PHẦN 2: もんだい２ 語彙 - Từ vựng (10 câu)
+      // ─────────────────────────────────────────────
+      {
+        id: 'n5_q11', type: 'multiple_choice', section: 'もんだい２　語彙（ごい）',
+        text: '「しずか」の 意味として ただしいのは どれですか？',
+        options: [{ id: 'a', text: 'うるさい (ồn ào)' }, { id: 'b', text: 'にぎやか (náo nhiệt)' }, { id: 'c', text: 'しずか (yên tĩnh)' }, { id: 'd', text: 'あつい (nóng)' }],
+        correctOptionId: 'c', explanation: 'しずか (静か) nghĩa là "yên tĩnh, im lặng". Đây là tính từ đuôi な.'
+      },
+      {
+        id: 'n5_q12', type: 'multiple_choice', section: 'もんだい２　語彙（ごい）',
+        text: '（　　）に　はいる　ことばは　どれですか？\n「スーパーで　やさいと　（　　）を　かいました。」',
+        options: [{ id: 'a', text: 'くだもの' }, { id: 'b', text: 'えんぴつ' }, { id: 'c', text: 'くすり' }, { id: 'd', text: 'きって' }],
+        correctOptionId: 'a', explanation: 'Đi mua rau ở siêu thị thì cũng hay mua thêm くだもの (trái cây).'
+      },
+      {
+        id: 'n5_q13', type: 'multiple_choice', section: 'もんだい２　語彙（ごい）',
+        text: '（　　）に　はいる　ことばは　どれですか？\n「あたまが　いたいので、（　　）を　のみました。」',
+        options: [{ id: 'a', text: 'おちゃ' }, { id: 'b', text: 'くすり' }, { id: 'c', text: 'みず' }, { id: 'd', text: 'ぎゅうにゅう' }],
+        correctOptionId: 'b', explanation: 'Vì đau đầu nên uống くすり (thuốc).'
+      },
+      {
+        id: 'n5_q14', type: 'multiple_choice', section: 'もんだい２　語彙（ごい）',
+        text: '「あの　えきまで　あるいて　なんぷんですか。」という　ぶんの　「あるいて」の　いみは？',
+        options: [{ id: 'a', text: 'Đi xe đạp' }, { id: 'b', text: 'Đi bộ' }, { id: 'c', text: 'Đi xe buýt' }, { id: 'd', text: 'Đi ô tô' }],
+        correctOptionId: 'b', explanation: 'あるいて là thể て của あるく (歩く) = đi bộ.'
+      },
+      {
+        id: 'n5_q15', type: 'multiple_choice', section: 'もんだい２　語彙（ごい）',
+        text: '「ちかい」の　はんたいは　なんですか？',
+        options: [{ id: 'a', text: 'あぶない' }, { id: 'b', text: 'とおい' }, { id: 'c', text: 'ちいさい' }, { id: 'd', text: 'ひろい' }],
+        correctOptionId: 'b', explanation: 'ちかい (gần) ↔ とおい (xa). Đây là cặp tính từ trái nghĩa.'
+      },
+      {
+        id: 'n5_q16', type: 'multiple_choice', section: 'もんだい２　語彙（ごい）',
+        text: '（　　）に　はいる　ことばは　どれですか？\n「ちょっと　まって　ください。いま　（　　）です。」',
+        options: [{ id: 'a', text: 'いそがしい' }, { id: 'b', text: 'たのしい' }, { id: 'c', text: 'うれしい' }, { id: 'd', text: 'かなしい' }],
+        correctOptionId: 'a', explanation: '"Chờ một chút. Bây giờ tôi đang いそがしい (bận)."'
+      },
+      {
+        id: 'n5_q17', type: 'multiple_choice', section: 'もんだい２　語彙（ごい）',
+        text: 'つぎの　ぶんと　ちかい　いみの　ぶんは　どれですか？\n「わたしは　テニスが　じょうずでは　ありません。」',
+        options: [{ id: 'a', text: 'テニスが　すきです。' }, { id: 'b', text: 'テニスが　へたです。' }, { id: 'c', text: 'テニスが　たのしいです。' }, { id: 'd', text: 'テニスが　きらいです。' }],
+        correctOptionId: 'b', explanation: 'じょうず (giỏi) ↔ へた (tệ, kém). Không giỏi = kém.'
+      },
+      {
+        id: 'n5_q18', type: 'multiple_choice', section: 'もんだい２　語彙（ごい）',
+        text: '（　　）に　はいる　ことばは　どれですか？\n「まいにち　（　　）で　かいしゃに　いきます。」',
+        options: [{ id: 'a', text: 'でんしゃ' }, { id: 'b', text: 'でんわ' }, { id: 'c', text: 'でんき' }, { id: 'd', text: 'でんち' }],
+        correctOptionId: 'a', explanation: 'Phương tiện đi làm hàng ngày: でんしゃ (xe điện/tàu điện).'
+      },
+      {
+        id: 'n5_q19', type: 'multiple_choice', section: 'もんだい２　語彙（ごい）',
+        text: '「きのう　えいがを　みました」の　「きのう」の　いみは？',
+        options: [{ id: 'a', text: 'Hôm nay' }, { id: 'b', text: 'Ngày mai' }, { id: 'c', text: 'Hôm qua' }, { id: 'd', text: 'Ngày kia' }],
+        correctOptionId: 'c', explanation: 'きのう (昨日) = hôm qua.'
+      },
+      {
+        id: 'n5_q20', type: 'multiple_choice', section: 'もんだい２　語彙（ごい）',
+        text: '（　　）に　はいる　ことばは　どれですか？\n「この　へやは　（　　）て、きれいです。」',
+        options: [{ id: 'a', text: 'せまくて' }, { id: 'b', text: 'ひろく' }, { id: 'c', text: 'きたなく' }, { id: 'd', text: 'みじかく' }],
+        correctOptionId: 'b', explanation: 'Phòng rộng và đẹp: ひろくて (thể て của ひろい - rộng).'
+      },
+      // ─────────────────────────────────────────────
+      // PHẦN 3: もんだい３ 文法 - Ngữ pháp (12 câu)
+      // ─────────────────────────────────────────────
+      {
+        id: 'n5_q21', type: 'multiple_choice', section: 'もんだい３　文法（ぶんぽう）',
+        text: '（　　）に　はいる　ことばは　どれですか？\n「わたしは　まいにち　コーヒー（　　）のみます。」',
+        options: [{ id: 'a', text: 'が' }, { id: 'b', text: 'を' }, { id: 'c', text: 'に' }, { id: 'd', text: 'で' }],
+        correctOptionId: 'b', explanation: 'Trợ từ を đi với tân ngữ của động từ: コーヒーを のみます (uống cà phê).'
+      },
+      {
+        id: 'n5_q22', type: 'multiple_choice', section: 'もんだい３　文法（ぶんぽう）',
+        text: '（　　）に　はいる　ことばは　どれですか？\n「つくえ（　　）うえ　に　ほんが　あります。」',
+        options: [{ id: 'a', text: 'を' }, { id: 'b', text: 'が' }, { id: 'c', text: 'の' }, { id: 'd', text: 'に' }],
+        correctOptionId: 'c', explanation: 'Chỉ sở hữu/vị trí: つくえ の うえ (trên mặt bàn).'
+      },
+      {
+        id: 'n5_q23', type: 'multiple_choice', section: 'もんだい３　文法（ぶんぽう）',
+        text: '（　　）に　はいる　ことばは　どれですか？\n「きのう　ともだち（　　）えいがを　みました。」',
+        options: [{ id: 'a', text: 'に' }, { id: 'b', text: 'で' }, { id: 'c', text: 'と' }, { id: 'd', text: 'が' }],
+        correctOptionId: 'c', explanation: 'と chỉ "cùng với ai": ともだち と (cùng bạn bè).'
+      },
+      {
+        id: 'n5_q24', type: 'multiple_choice', section: 'もんだい３　文法（ぶんぽう）',
+        text: '（　　）に　はいる　ことばは　どれですか？\n「A：すきやきは　どう　でしたか。　B：（　　）、おいしかったです。」',
+        options: [{ id: 'a', text: 'はじめて' }, { id: 'b', text: 'はじめまして' }, { id: 'c', text: 'はじめての' }, { id: 'd', text: 'はじめ' }],
+        correctOptionId: 'a', explanation: 'はじめて (lần đầu tiên). "Đây là lần đầu, (tôi thấy) ngon!"'
+      },
+      {
+        id: 'n5_q25', type: 'multiple_choice', section: 'もんだい３　文法（ぶんぽう）',
+        text: '（　　）に　はいる　ことばは　どれですか？\n「えきから　うちまで　（　　）で　じゅっぷんです。」',
+        options: [{ id: 'a', text: 'あるき' }, { id: 'b', text: 'あるいて' }, { id: 'c', text: 'あるく' }, { id: 'd', text: 'あるいた' }],
+        correctOptionId: 'b', explanation: 'あるいて（歩いて）= đi bộ. Cách tính thời gian di chuyển: 〜て〜ふん。'
+      },
+      {
+        id: 'n5_q26', type: 'multiple_choice', section: 'もんだい３　文法（ぶんぽう）',
+        text: '（　　）に　はいる　ことばは　どれですか？\n「すみません、（　　）を　おしえて　いただけますか。」',
+        options: [{ id: 'a', text: 'じかん' }, { id: 'b', text: 'じかんの' }, { id: 'c', text: 'なんじ' }, { id: 'd', text: 'いつ' }],
+        correctOptionId: 'c', explanation: 'Hỏi giờ: なんじ ですか / なんじ を おしえて ください。'
+      },
+      {
+        id: 'n5_q27', type: 'multiple_choice', section: 'もんだい３　文法（ぶんぽう）',
+        text: 'ただしい　ぶんは　どれですか？',
+        options: [{ id: 'a', text: 'わたしは　ねこが　すきです。' }, { id: 'b', text: 'わたしが　ねこを　すきです。' }, { id: 'c', text: 'わたしに　ねこは　すきです。' }, { id: 'd', text: 'わたしを　ねこが　すきです。' }],
+        correctOptionId: 'a', explanation: '～が すきです là cấu trúc cố định. Chủ ngữ dùng は, thứ thích dùng が.'
+      },
+      {
+        id: 'n5_q28', type: 'multiple_choice', section: 'もんだい３　文法（ぶんぽう）',
+        text: '（　　）に　はいる　ことばは　どれですか？\n「ははは　りょうりが（　　）。」（Mẹ nấu ăn giỏi）',
+        options: [{ id: 'a', text: 'じょうずです' }, { id: 'b', text: 'じょうずに　します' }, { id: 'c', text: 'じょうずが　あります' }, { id: 'd', text: 'じょうずで　います' }],
+        correctOptionId: 'a', explanation: 'りょうりが　じょうずです = nấu ăn giỏi. Dùng が với じょうず.'
+      },
+      {
+        id: 'n5_q29', type: 'multiple_choice', section: 'もんだい３　文法（ぶんぽう）',
+        text: '（　　）に　はいる　ことばは　どれですか？\n「A：たばこを　（　　）か。　B：いいえ、すいません。」',
+        options: [{ id: 'a', text: 'すいません' }, { id: 'b', text: 'すいます' }, { id: 'c', text: 'すいましょう' }, { id: 'd', text: 'すって　もいいです' }],
+        correctOptionId: 'b', explanation: 'Hỏi "Anh có hút thuốc không?" dùng: V-ます + か (câu hỏi礼儀).'
+      },
+      {
+        id: 'n5_q30', type: 'multiple_choice', section: 'もんだい３　文法（ぶんぽう）',
+        text: '（　　）に　はいる　ことばは　どれですか？\n「わたしは　にほんご（　　）べんきょう　して　います。」',
+        options: [{ id: 'a', text: 'が' }, { id: 'b', text: 'を' }, { id: 'c', text: 'に' }, { id: 'd', text: 'で' }],
+        correctOptionId: 'b', explanation: 'べんきょうする là ngoại động từ, tân ngữ dùng を: にほんごをべんきょうします.'
+      },
+      {
+        id: 'n5_q31', type: 'multiple_choice', section: 'もんだい３　文法（ぶんぽう）',
+        text: '（　　）に　はいる　ことばは　どれですか？\n「きょうは　やすみです（　　）、どこかへ　いきましょう！」',
+        options: [{ id: 'a', text: 'でも' }, { id: 'b', text: 'だから' }, { id: 'c', text: 'でした' }, { id: 'd', text: 'では' }],
+        correctOptionId: 'b', explanation: 'だから = "vì vậy, cho nên". Hôm nay nghỉ → vì vậy hãy đi chơi đâu đó!'
+      },
+      {
+        id: 'n5_q32', type: 'multiple_choice', section: 'もんだい３　文法（ぶんぽう）',
+        text: 'ただしい　ぶんは　どれですか？\n（ Dịch: "Người kia là người Hàn Quốc hay người Trung Quốc?" ）',
+        options: [{ id: 'a', text: 'あの　ひとは　かんこくじんや　ちゅうごくじんですか。' }, { id: 'b', text: 'あの　ひとは　かんこくじんか　ちゅうごくじんですか。' }, { id: 'c', text: 'あの　ひとは　かんこくじんと　ちゅうごくじんですか。' }, { id: 'd', text: 'あの　ひとは　かんこくじんが　ちゅうごくじんですか。' }],
+        correctOptionId: 'b', explanation: '～か～ですか là cấu trúc câu hỏi "lựa chọn" = "A hay B?"'
+      },
+      // ─────────────────────────────────────────────
+      // PHẦN 4: もんだい４ 読解 - Đọc hiểu (8 câu / 2 đoạn văn)
+      // ─────────────────────────────────────────────
+      {
+        id: 'n5_q33', type: 'multiple_choice', section: 'もんだい４　読解（どっかい）',
+        passage: '【文章①】\nわたしの　なまえは　タン　です。ベトナムから　きました。いまは　とうきょうの　だいがくで　にほんごを　べんきょう　して　います。まいにち　バスで　がっこうへ　いきます。がっこうは　うちから　ちかいですが、バスで　じゅっぷん　かかります。\n\nやすみの　ひは　たいてい　としょかんへ　いきます。としょかんで　にほんごの　ほんを　よんだり、インターネットを　したり　します。にほんご　は　むずかしいですが、たのしいです。',
+        text: '①　タンさんは　いま　どこで　にほんごを　べんきょう　して　いますか。',
+        options: [{ id: 'a', text: 'ベトナムの　だいがく' }, { id: 'b', text: 'とうきょうの　だいがく' }, { id: 'c', text: 'としょかん' }, { id: 'd', text: 'タンさんの　うち' }],
+        correctOptionId: 'b', explanation: 'Trong bài có câu: 「とうきょうの　だいがくで　にほんごを　べんきょう　しています。」'
+      },
+      {
+        id: 'n5_q34', type: 'multiple_choice', section: 'もんだい４　読解（どっかい）',
+        text: '②　がっこうまで　どうやって　いきますか。',
+        options: [{ id: 'a', text: 'でんしゃで　いきます。' }, { id: 'b', text: 'くるまで　いきます。' }, { id: 'c', text: 'バスで　いきます。' }, { id: 'd', text: 'あるいて　いきます。' }],
+        correctOptionId: 'c', explanation: '「まいにち　バスで　がっこうへ　いきます。」'
+      },
+      {
+        id: 'n5_q35', type: 'multiple_choice', section: 'もんだい４　読解（どっかい）',
+        text: '③　タンさんは　やすみの　ひに　たいてい　なにを　しますか。',
+        options: [{ id: 'a', text: 'うちで　べんきょう　します。' }, { id: 'b', text: 'としょかんへ　いきます。' }, { id: 'c', text: 'ベトナムに　かえります。' }, { id: 'd', text: 'ともだちと　あそびます。' }],
+        correctOptionId: 'b', explanation: '「やすみの　ひは　たいてい　としょかんへ　いきます。」'
+      },
+      {
+        id: 'n5_q36', type: 'multiple_choice', section: 'もんだい４　読解（どっかい）',
+        text: '④　この　ぶんしょうの　ないようと　あっている　ものは　どれですか。',
+        options: [{ id: 'a', text: 'タンさんは　にほんごが　むずかしくて、つまらないと　おもっています。' }, { id: 'b', text: 'タンさんの　うちは　がっこうから　とおいです。' }, { id: 'c', text: 'タンさんは　にほんごが　むずかしいですが、たのしいと　おもっています。' }, { id: 'd', text: 'タンさんは　やすみの　ひに　えいがを　みます。' }],
+        correctOptionId: 'c', explanation: '「にほんごは　むずかしいですが、たのしいです。」'
+      },
+      {
+        id: 'n5_q37', type: 'multiple_choice', section: 'もんだい４　読解（どっかい）',
+        passage: '【文章②】\n＜メール＞\nあてさき：かとうさん\nけんめい：こんしゅうの　パーティー\n\nかとうさん、こんにちは。\nこんしゅうの　どようびに　わたしの　うちで　パーティーを　します。じかんは　ごごの　さんじからです。たべものや　のみものは　わたしが　よういします。かとうさんは　なにも　もってこなくても　いいです。\nよかったら、きて　ください。\n\nやまだ',
+        text: '⑤　パーティーは　いつですか。',
+        options: [{ id: 'a', text: 'こんしゅうの　きんようびの　ごごさんじ' }, { id: 'b', text: 'こんしゅうの　どようびの　ごごさんじ' }, { id: 'c', text: 'らいしゅうの　どようびの　ごごさんじ' }, { id: 'd', text: 'こんしゅうの　どようびの　ごぜんさんじ' }],
+        correctOptionId: 'b', explanation: '「こんしゅうの　どようびに　... じかんは　ごごの　さんじからです。」'
+      },
+      {
+        id: 'n5_q38', type: 'multiple_choice', section: 'もんだい４　読解（どっかい）',
+        text: '⑥　パーティーは　どこで　しますか。',
+        options: [{ id: 'a', text: 'レストラン' }, { id: 'b', text: 'かとうさんの　うち' }, { id: 'c', text: 'やまださんの　うち' }, { id: 'd', text: 'がっこう' }],
+        correctOptionId: 'c', explanation: '「わたしの　うちで　パーティーを　します。」 Người viết mail là やまだ.'
+      },
+      {
+        id: 'n5_q39', type: 'multiple_choice', section: 'もんだい４　読解（どっかい）',
+        text: '⑦　かとうさんは　パーティーに　なにを　もって　いきますか。',
+        options: [{ id: 'a', text: 'たべものと　のみもの' }, { id: 'b', text: 'たべものだけ' }, { id: 'c', text: 'のみものだけ' }, { id: 'd', text: 'なにも　もっていかなくても　いいです' }],
+        correctOptionId: 'd', explanation: '「かとうさんは　なにも　もってこなくても　いいです。」 (Không cần mang gì cả)'
+      },
+      {
+        id: 'n5_q40', type: 'multiple_choice', section: 'もんだい４　読解（どっかい）',
+        text: '⑧　この　メールの　ないようで　ただしいのは　どれですか。',
+        options: [{ id: 'a', text: 'やまださんは　かとうさんの　うちで　パーティーを　します。' }, { id: 'b', text: 'かとうさんが　たべものと　のみものを　よういします。' }, { id: 'c', text: 'パーティーは　ごごさんじから　はじまります。' }, { id: 'd', text: 'かとうさんは　パーティーに　たべものを　もっていきます。' }],
+        correctOptionId: 'c', explanation: '「じかんは　ごごの　さんじからです。」 Đây là đáp án đúng. やまだ chuẩn bị đồ ăn, không phải かとう.'
+      },
     ]
   },
+
+  // ====================================================
+  // BÀI KIỂM TRA BÀI 26 (10 câu)
+  // ====================================================
   {
     id: 'lesson-26',
     title: 'Bài Kiểm Tra Bài 26',
@@ -123,46 +331,51 @@ export const testsData: Test[] = [
         id: 'q4', type: 'multiple_choice',
         text: 'Điền vào chỗ trống: わたしは 日本語が（　　）んですが、...',
         options: [{ id: 'a', text: '下手' }, { id: 'b', text: '下手だ' }, { id: 'c', text: '下手な' }, { id: 'd', text: '下手の' }],
-        correctOptionId: 'c', explanation: 'Tính từ đuôi な và Danh từ khi kết hợp với んです sẽ biến thành なんです.'
+        correctOptionId: 'c', explanation: 'Tính từ đuôi な + んです → なんです. 下手な → 下手なんです.'
       },
       {
         id: 'q5', type: 'multiple_choice',
-        text: 'Cách dùng nào của んです sau đây là đúng?',
-        options: [{ id: 'a', text: 'Nhấn mạnh lý do' }, { id: 'b', text: 'Hỏi thêm thông tin, xin lời khuyên' }, { id: 'c', text: 'Thu hút sự chú ý trước khi trình bày' }, { id: 'd', text: 'Tất cả đều đúng' }],
-        correctOptionId: 'd', explanation: 'んです có rất nhiều cách dùng bao gồm cả 3 phương án trên.'
+        text: 'Chia đúng: パスポートを（　　）んですが、どうしたらいいですか。',
+        options: [{ id: 'a', text: 'なくす' }, { id: 'b', text: 'なくした' }, { id: 'c', text: 'なくして' }, { id: 'd', text: 'なくさない' }],
+        correctOptionId: 'b', explanation: 'Đã làm mất hộ chiếu nên dùng quá khứ: なくした.'
       },
       {
         id: 'q6', type: 'multiple_choice',
-        text: 'Mẫu câu: どこで そのかばんを （　　）んですか。',
-        options: [{ id: 'a', text: '買った' }, { id: 'b', text: '買う' }, { id: 'c', text: '買って' }, { id: 'd', text: '買いたい' }],
-        correctOptionId: 'a', explanation: 'Hỏi thông tin về việc ĐÃ MUA ở đâu nên phải dùng quá khứ 買った.'
+        text: 'Khi thấy bạn mình có vẻ mệt, bạn hỏi:',
+        options: [{ id: 'a', text: 'どうしたんですか。' }, { id: 'b', text: 'どうしますか。' }, { id: 'c', text: 'どうなるんですか。' }, { id: 'd', text: 'どうしてですか。' }],
+        correctOptionId: 'a', explanation: 'どうしたんですか là mẫu câu hỏi thăm khi thấy ai đó có vẻ không ổn.'
       },
       {
         id: 'q7', type: 'multiple_choice',
-        text: 'Chia đúng: パスポートを（　　）んですが、どうしたらいいですか。',
-        options: [{ id: 'a', text: 'なくす' }, { id: 'b', text: 'なくした' }, { id: 'c', text: 'なくして' }, { id: 'd', text: 'なくさない' }],
-        correctOptionId: 'b', explanation: 'Đã làm mất hộ chiếu nên dùng なくした.'
+        text: 'Câu nào dưới đây dùng đúng んです?',
+        options: [{ id: 'a', text: '雨がふります んです。' }, { id: 'b', text: '雨がふる んです。' }, { id: 'c', text: '雨がふりました んです。' }, { id: 'd', text: '雨がふって んです。' }],
+        correctOptionId: 'b', explanation: 'Động từ thể thông thường + んです: ふる んです.'
       },
       {
-        id: 'q8', type: 'multiple_choice',
-        text: 'Dịch sang tiếng Nhật: "Tôi muốn đi xem hoa anh đào, bạn có thể giới thiệu cho tôi chỗ nào đẹp không?"',
-        options: [{ id: 'a', text: '桜を見に行きたいんですが、いい所を教えていただけませんか。' }, { id: 'b', text: '桜を見に行くですが、いい所を教えたらいいですか。' }, { id: 'c', text: '桜を見に行きたいんですが、いい所を教えますか。' }, { id: 'd', text: '桜を見に行ったんですが、いい所を教えてもいいですか。' }],
-        correctOptionId: 'a', explanation: 'V-たいんですが、V-ていただけませんか là cặp mẫu câu kinh điển.'
+        id: 'q8', type: 'text_input',
+        text: 'Dịch sang tiếng Nhật: "Tôi đang bị đau bụng, tôi phải làm thế nào đây?" (Dùng んです và たらいいですか)',
+        correctAnswers: ['おなかが　いたいんですが、どうしたらいいですか。', 'おなかがいたいんですが、どうしたらいいですか。', 'おなかが いたいんですが、どうしたら いいですか。'],
+        explanation: 'Cấu trúc: いたい (tính từ い) + んですが + どうしたら いいですか.'
       },
       {
         id: 'q9', type: 'multiple_choice',
-        text: 'Điền vào chỗ trống: 頭が 痛い（　　）、帰ってもいいですか。',
-        options: [{ id: 'a', text: 'な' }, { id: 'b', text: 'の' }, { id: 'c', text: 'ん' }, { id: 'd', text: 'だ' }],
-        correctOptionId: 'c', explanation: '痛い (tính từ đuôi い) + んです.'
+        passage: 'アリさんは　日本語の　クラスで　先生に　聞きました。\n「先生、ちょっと　いいですか。わたしは　来月　日本へ　行くんですが、電車の　乗り方が　わからないんです。どう　したら　いいでしょうか。」\n「まず、みどりの　窓口で　きっぷを　かって　ください。ひょうじを　よく　みたら　いいですよ。」',
+        text: '会話の内容と合っているのはどれですか。',
+        options: [{ id: 'a', text: 'アリさんは　日本の　電車に　のった　ことが　あります。' }, { id: 'b', text: 'アリさんは　電車の　乗り方が　わかりません。' }, { id: 'c', text: '先生は　みどりの　窓口へ　行きます。' }, { id: 'd', text: 'アリさんは　来月　日本を　出ます。' }],
+        correctOptionId: 'b', explanation: '「電車の　乗り方が　わからないんです。」 → アリさんは電車の乗り方が分からない.'
       },
       {
         id: 'q10', type: 'multiple_choice',
-        text: 'Khi thấy bạn mình có vẻ mệt, bạn hỏi:',
-        options: [{ id: 'a', text: 'どうしたんですか。' }, { id: 'b', text: 'どうしますか。' }, { id: 'c', text: 'どうなるんですか。' }, { id: 'd', text: 'どうしてですか。' }],
-        correctOptionId: 'a', explanation: 'どうしたんですか là mẫu câu dùng để hỏi thăm người khác có chuyện gì.'
-      }
+        text: '先生の　アドバイスは　なんですか。',
+        options: [{ id: 'a', text: '先生に　きく' }, { id: 'b', text: 'じぶんで　しらべる' }, { id: 'c', text: 'みどりの　窓口で　きっぷを　かって、ひょうじを　みる。' }, { id: 'd', text: 'タクシーを　つかう' }],
+        correctOptionId: 'c', explanation: '「みどりの　窓口で　きっぷを　かって　ください。ひょうじを　よく　みたら　いいですよ。」'
+      },
     ]
   },
+
+  // ====================================================
+  // BÀI KIỂM TRA BÀI 27 - PHẦN 1 (10 câu)
+  // ====================================================
   {
     id: 'lesson-27-part1',
     title: 'Bài Kiểm Tra Bài 27 (Nửa bài đầu)',
@@ -192,44 +405,45 @@ export const testsData: Test[] = [
         id: 'q4', type: 'multiple_choice',
         text: 'Chia động từ khả năng Nhóm 2: 食べます → ?',
         options: [{ id: 'a', text: '食べれます' }, { id: 'b', text: '食べられます' }, { id: 'c', text: '食べえます' }, { id: 'd', text: '食べさせます' }],
-        correctOptionId: 'b', explanation: 'Động từ nhóm 2 bỏ ます thêm られます.'
+        correctOptionId: 'b', explanation: 'Động từ nhóm 2: bỏ ます, thêm られます.'
       },
       {
         id: 'q5', type: 'multiple_choice',
-        text: 'Chia động từ khả năng Nhóm 3: きます (Đến) → ?',
-        options: [{ id: 'a', text: 'こられます' }, { id: 'b', text: 'きれます' }, { id: 'c', text: 'きます' }, { id: 'd', text: 'こさせます' }],
-        correctOptionId: 'a', explanation: '来ます chia sang khả năng là 来られます (こられます).'
+        text: 'Phân biệt 見えます / 見られます: "Vì trời tối nên không nhìn thấy gì cả."',
+        options: [{ id: 'a', text: '暗いですから、何も 見られません。' }, { id: 'b', text: '暗いですから、何も 見えません。' }, { id: 'c', text: '暗いですから、何も 見ません。' }, { id: 'd', text: '暗いですから、何も 見させません。' }],
+        correctOptionId: 'b', explanation: 'Tự nhiên không thấy do điều kiện (trời tối) dùng 見えません.'
       },
       {
         id: 'q6', type: 'multiple_choice',
-        text: 'Điền từ: この銀行で ドル（　　）換えられます。',
-        options: [{ id: 'a', text: 'を' }, { id: 'b', text: 'が' }, { id: 'c', text: 'に' }, { id: 'd', text: 'で' }],
-        correctOptionId: 'b', explanation: 'Tân ngữ đi với động từ khả năng dùng が (Có thể đổi Đô la).'
+        text: 'Phân biệt 見えます / 見られます: "Ở rạp chiếu phim có thể xem được phim mới."',
+        options: [{ id: 'a', text: '映画館で 新しい映画が 見られます。' }, { id: 'b', text: '映画館で 新しい映画が 見えます。' }, { id: 'c', text: '映画館で 新しい映画を 見えます。' }, { id: 'd', text: '映画館で 新しい映画が 見させます。' }],
+        correctOptionId: 'a', explanation: 'Chủ động đi xem phim dùng 見られます (動詞可能形).'
       },
       {
         id: 'q7', type: 'multiple_choice',
         text: 'Dịch: "Vì bận nên tôi không thể đi chơi được."',
-        options: [{ id: 'a', text: '忙しいですから、遊びに行けません。' }, { id: 'b', text: '忙しいですから、遊びに行きません。' }, { id: 'c', text: '忙しいですから、遊びに行かない。' }, { id: 'd', text: '忙しいですから、遊びに行きませんでした。' }],
-        correctOptionId: 'a', explanation: '行きます → 行けます (Có thể đi), thể phủ định là 行けません (Không thể đi).'
+        options: [{ id: 'a', text: '忙しいですから、遊びに行けません。' }, { id: 'b', text: '忙しいですから、遊びに行きません。' }, { id: 'c', text: '忙しいですから、遊びに行かない。' }, { id: 'd', text: '忙しいですから、遊びに行けました。' }],
+        correctOptionId: 'a', explanation: '行きます → 行けます (Có thể đi) → 行けません (Không thể đi).'
       },
       {
-        id: 'q8', type: 'multiple_choice',
-        text: 'Phân biệt 見えます / 見られます: "Vì trời tối nên không nhìn thấy gì cả (tự nhiên không thấy)".',
-        options: [{ id: 'a', text: '暗いですから、何も 見られません。' }, { id: 'b', text: '暗いですから、何も 見えません。' }, { id: 'c', text: '暗いですから、何も 見ません。' }, { id: 'd', text: '暗いですから、何も 見ませんでしょう。' }],
-        correctOptionId: 'b', explanation: 'Tình trạng không nhìn thấy do điều kiện (trời tối) dùng 見えません.'
+        id: 'q8', type: 'text_input',
+        text: 'Chia sang thể khả năng rồi điền vào câu: 書きます → この漢字（　　）書けますか。 (Điền trợ từ + động từ)',
+        correctAnswers: ['が書けますか', 'が　書けますか', 'がかけますか'],
+        explanation: 'この漢字が 書けますか。 Tân ngữ を → が, 書きます → 書けます.'
       },
       {
         id: 'q9', type: 'multiple_choice',
-        text: 'Phân biệt 見えます / 見られます: "Ở rạp chiếu phim có thể xem được phim mới".',
-        options: [{ id: 'a', text: '映画館で 新しい映画が 見られます。' }, { id: 'b', text: '映画館で 新しい映画が 見えます。' }, { id: 'c', text: '映画館で 新しい映画を 見えます。' }, { id: 'd', text: '映画館で 新しい映画が 見させます。' }],
-        correctOptionId: 'a', explanation: 'Chủ động đi xem một bộ phim, dùng động từ khả năng bình thường là 見られます.'
+        passage: 'マリアさんは　日本に　来て　１年に　なります。最初は　ひらがなしか　読めませんでしたが、今は　カタカナも　ひらがなも　漢字も　読めます。でも、日本語で　話すのは　まだ　少し　難しいです。',
+        text: '①　マリアさんは　今、日本語で　何が　できますか。',
+        options: [{ id: 'a', text: 'ひらがなしか　読めません。' }, { id: 'b', text: 'ひらがなと　カタカナが　読めます。' }, { id: 'c', text: 'ひらがな・カタカナ・漢字が　読めます。' }, { id: 'd', text: '日本語で　よく　話せます。' }],
+        correctOptionId: 'c', explanation: '「今は　カタカナも　ひらがなも　漢字も　読めます。」'
       },
       {
         id: 'q10', type: 'multiple_choice',
-        text: 'Chọn câu ĐÚNG:',
-        options: [{ id: 'a', text: 'わたしは 日本語が 分かれます。' }, { id: 'b', text: 'わたしは 日本語が 分かりません。' }, { id: 'c', text: 'わたしは 日本語を 分かれます。' }, { id: 'd', text: 'わたしは 日本語を 分かります。' }],
-        correctOptionId: 'b', explanation: 'Động từ 分かります không chia sang thể khả năng vì bản thân nó đã mang nghĩa trạng thái. Tân ngữ dùng が.'
-      }
+        text: '②　マリアさんは　何が　まだ　難しいですか。',
+        options: [{ id: 'a', text: '漢字を　読むこと' }, { id: 'b', text: 'ひらがなを　読むこと' }, { id: 'c', text: '日本語で　話すこと' }, { id: 'd', text: '日本語で　書くこと' }],
+        correctOptionId: 'c', explanation: '「日本語で　話すのは　まだ　少し　難しいです。」'
+      },
     ]
   }
 ];
