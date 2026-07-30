@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { testsData } from '../../../data/tests';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from 'recharts';
 
 interface TestResult {
   id: string;
@@ -89,8 +90,73 @@ export default function TestResultsPage() {
           {!testData ? (
             <p style={{ color: '#888', textAlign: 'center' }}>Không tìm thấy dữ liệu bài kiểm tra.</p>
           ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-              {testData.questions.map((q, i) => {
+            <>
+              {/* GAP ANALYSIS SECTION */}
+              {(() => {
+                const skillStats: Record<string, { total: number; correct: number }> = {};
+                testData.questions.forEach(q => {
+                  const skill = q.skill || 'Khác';
+                  if (!skillStats[skill]) skillStats[skill] = { total: 0, correct: 0 };
+                  skillStats[skill].total++;
+                  
+                  const studentAnswer = answers[q.id];
+                  let isCorrect = false;
+                  if (q.type === 'multiple_choice') {
+                    isCorrect = studentAnswer === q.correctOptionId;
+                  } else if (q.type === 'text_input') {
+                    const ua = (studentAnswer || '').trim().replace(/\s+/g, '');
+                    isCorrect = q.correctAnswers?.some(a => a.replace(/\s+/g, '') === ua) || false;
+                  }
+                  if (isCorrect) skillStats[skill].correct++;
+                });
+
+                const radarData = Object.keys(skillStats).map(skill => ({
+                  skill,
+                  'Điểm': Math.round((skillStats[skill].correct / skillStats[skill].total) * 100),
+                  fullMark: 100,
+                }));
+                
+                const weakSkills = radarData.filter(d => d['Điểm'] < 60).map(d => d.skill);
+
+                return (
+                  <div style={{ marginBottom: '30px', background: '#f8f9fa', borderRadius: '12px', padding: '20px' }}>
+                    <h3 style={{ margin: '0 0 15px', color: '#1a237e', textAlign: 'center' }}>🎯 Phân tích Lỗ hổng Kiến thức</h3>
+                    
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', alignItems: 'center' }}>
+                      <div style={{ width: '300px', height: '250px', margin: '0 auto' }}>
+                        <ResponsiveContainer width="100%" height="100%">
+                          <RadarChart cx="50%" cy="50%" outerRadius="70%" data={radarData}>
+                            <PolarGrid />
+                            <PolarAngleAxis dataKey="skill" tick={{ fill: '#555', fontSize: 12 }} />
+                            <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} />
+                            <Radar name="Tỷ lệ đúng (%)" dataKey="Điểm" stroke="#1976d2" fill="#2196f3" fillOpacity={0.5} />
+                            <Tooltip />
+                          </RadarChart>
+                        </ResponsiveContainer>
+                      </div>
+
+                      <div style={{ flex: 1, minWidth: '250px' }}>
+                        <div style={{ background: 'white', padding: '15px', borderRadius: '8px', border: '1px solid #e0e0e0' }}>
+                          <h4 style={{ margin: '0 0 10px', color: '#333' }}>🤖 Nhận xét tự động:</h4>
+                          {weakSkills.length === 0 ? (
+                            <p style={{ color: '#2e7d32', margin: 0, lineHeight: 1.5 }}>
+                              ✨ Học sinh nắm rất vững các kiến thức trong bài kiểm tra này. Không phát hiện lỗ hổng lớn nào (các kỹ năng đều đạt ≥60%).
+                            </p>
+                          ) : (
+                            <p style={{ color: '#c62828', margin: 0, lineHeight: 1.5 }}>
+                              ⚠️ Học sinh đang gặp khó khăn ở kỹ năng: <strong>{weakSkills.join(', ')}</strong>. Cần giao thêm bài tập phụ trợ hoặc ôn tập lại lý thuyết phần này.
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()}
+
+              <h3 style={{ borderBottom: '2px solid #1a237e', paddingBottom: '10px', color: '#1a237e', marginBottom: '20px' }}>Chi tiết câu trả lời</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                {testData.questions.map((q, i) => {
                 const studentAnswer = answers[q.id];
                 let isCorrect = false;
 
@@ -168,6 +234,7 @@ export default function TestResultsPage() {
                 );
               })}
             </div>
+            </>
           )}
 
           <button
