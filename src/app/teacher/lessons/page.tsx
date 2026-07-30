@@ -14,7 +14,8 @@ export default async function LessonsPage() {
     'N5': '#66bb6a', 'N4': '#42a5f5', 'N3': '#ab47bc', 'N2': '#ef5350',
   };
 
-  // Generate an array for the interactive lessons from 29 to 50
+  // Special lessons 26, 27, 28 and regular lessons 29 to 50
+  const specialLessons = [26, 27, 28];
   const interactiveLessons = Array.from({ length: 50 - 29 + 1 }, (_, i) => 29 + i);
 
   return (
@@ -32,6 +33,31 @@ export default async function LessonsPage() {
       </h2>
       
       <div className={styles.grid}>
+        {/* Special Lessons 26, 27, 28 */}
+        {specialLessons.map(lessonNumber => (
+          <div key={`bai${lessonNumber}`} className={styles.card} style={{ borderLeft: '4px solid #ff9800' }}>
+            <div className={styles.cardTop}>
+              <span className={styles.level} style={{ background: 'rgba(66, 165, 245, 0.22)', color: '#42a5f5' }}>
+                N4
+              </span>
+              <span className={`${styles.badge} ${styles.public}`}>
+                ✨ Giáo án
+              </span>
+            </div>
+            <h3 className={styles.cardTitle}>Bài {lessonNumber}</h3>
+            <p className={styles.cardLesson}>Giáo án Minna II - Bài {lessonNumber}</p>
+            <div className={styles.cardFooter} style={{ display: 'flex', gap: '8px', width: '100%' }}>
+              <a href={`/slides/bai${lessonNumber}/kanji.html`} target="_blank" rel="noreferrer" className={styles.downloadBtn} style={{ flex: 1, textAlign: 'center', background: '#ab47bc', color: 'white', border: 'none' }}>
+                漢字 Kanji
+              </a>
+              <a href={`/slides/bai${lessonNumber}/nguphap.html`} target="_blank" rel="noreferrer" className={styles.downloadBtn} style={{ flex: 1, textAlign: 'center', background: '#42a5f5', color: 'white', border: 'none' }}>
+                文法 Ngữ pháp
+              </a>
+            </div>
+          </div>
+        ))}
+
+        {/* Regular Lessons 29-50 */}
         {interactiveLessons.map(lessonNumber => (
           <div key={`bai${lessonNumber}`} className={styles.card} style={{ borderLeft: '4px solid var(--primary-color)' }}>
             <div className={styles.cardTop}>
@@ -47,7 +73,7 @@ export default async function LessonsPage() {
             <div className={styles.cardFooter}>
               <span className={styles.teacher}>🤖 Auto-generated</span>
               <a href={`/slides/bai${lessonNumber}/index.html`} target="_blank" rel="noreferrer" className={styles.downloadBtn}>
-                ▶️ Trình chiếu
+                ▶️ Giáo án
               </a>
             </div>
           </div>

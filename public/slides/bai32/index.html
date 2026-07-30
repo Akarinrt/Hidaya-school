@@ -200,6 +200,102 @@
         }
         
 </style>
+
+    <!-- Scroll Document Mode Overrides -->
+    <style>
+        body {
+            background: #f0f7ff !important;
+            overflow: auto !important;
+        }
+        .reveal, .reveal .slides {
+            position: relative !important;
+            width: 100% !important;
+            height: auto !important;
+            min-height: 100vh !important;
+            overflow: visible !important;
+            display: block !important;
+            inset: 0 !important;
+            transform: none !important;
+            zoom: 1 !important;
+        }
+        .reveal .slides section {
+            display: block !important;
+            position: relative !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: auto !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+            margin-bottom: 40px !important;
+            padding: 35px 25px !important;
+            box-sizing: border-box !important;
+            background: white !important;
+            border-radius: 16px !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 82, 0.05) !important;
+            text-align: left !important;
+        }
+        /* Show all fragments */
+        .reveal .slides section .fragment {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+            display: block !important;
+        }
+        .reveal .slides section .fragment.fade-in {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        /* Grid layout for cards */
+        .kanji-grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 25px !important;
+        }
+        .kanji-card {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            background: #ffffff !important;
+            border: 1px solid #e1efff !important;
+            box-shadow: 0 10px 25px rgba(0, 82, 204, 0.05) !important;
+            padding: 20px !important;
+            border-radius: 16px !important;
+            color: #333 !important;
+        }
+        .kanji-char-box {
+            width: 100% !important;
+            height: 120px !important;
+            margin-bottom: 15px !important;
+        }
+        .kanji-details {
+            width: 100% !important;
+            text-align: left !important;
+        }
+        @media (max-width: 768px) {
+            .kanji-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        @media print {
+            body { background: white !important; }
+            .reveal .slides section {
+                box-shadow: none !important;
+                border: none !important;
+                margin: 0 0 20px 0 !important;
+                padding: 10px 0 !important;
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+            .kanji-card {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+            .no-print { display: none !important; }
+        }
+    </style>
+
 </head>
 <body>
     <!-- Nút in PDF -->
@@ -410,7 +506,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
     <script>
-        Reveal.initialize({ pdfSeparateFragments: false,
+        // Reveal.initialize({ pdfSeparateFragments: false,
             hash: true,
             slideNumber: true,
             transition: 'fade',
@@ -606,6 +702,60 @@
 
         
         
+
+    <!-- Dynamic Kanji Memo Extraction & Deactivate Reveal -->
+    <script>
+        // 1. Deactivate Reveal.js keyboard navigation and page styling
+        if (window.Reveal) {
+            window.Reveal.initialize = function() {
+                console.log("RevealJS de-activated for Document Mode");
+            };
+        }
+
+        // 2. Extract and show Kanji memos inline
+        document.addEventListener('DOMContentLoaded', function() {
+            var cards = document.querySelectorAll('.kanji-card');
+            cards.forEach(function(card) {
+                var charBox = card.querySelector('.kanji-char-box');
+                if (charBox) {
+                    var onclickAttr = charBox.getAttribute('onclick');
+                    if (onclickAttr && onclickAttr.indexOf('showModal') !== -1) {
+                        try {
+                            var match = onclickAttr.match(/showModal\(([\s\S]*)\)/);
+                            if (match && match[1]) {
+                                // Decode html entities like &apos;
+                                var argsStr = match[1].replace(/&apos;/g, "'").replace(/&quot;/g, '"');
+                                var args = new Function("return [" + argsStr + "]")();
+                                var memoHtml = args[2];
+                                
+                                if (memoHtml) {
+                                    var memoDiv = document.createElement('div');
+                                    memoDiv.className = 'kanji-memo-visible';
+                                    memoDiv.style.marginTop = '15px';
+                                    memoDiv.style.textAlign = 'left';
+                                    memoDiv.style.fontSize = '0.95rem';
+                                    memoDiv.style.borderTop = '1px dashed #ddd';
+                                    memoDiv.style.paddingTop = '10px';
+                                    memoDiv.style.width = '100%';
+                                    memoDiv.innerHTML = memoHtml;
+                                    
+                                    var details = card.querySelector('.kanji-details');
+                                    if (details) {
+                                        details.appendChild(memoDiv);
+                                    } else {
+                                        card.appendChild(memoDiv);
+                                    }
+                                }
+                            }
+                        } catch (e) {
+                            console.error("Failed to parse showModal args:", e);
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
 

@@ -3,8 +3,9 @@ import Link from 'next/link';
 
 export default function StudentMaterialsPage() {
   const lessons = [
-    { id: '27', name: 'Bài 27: Năng lực & Giao thông' },
-    // More lessons can be added here
+    { id: '26', name: 'Bài 26: Thể thông thường + んです' },
+    { id: '27', name: 'Bài 27: Thể khả năng & Chỉ' },
+    { id: '28', name: 'Bài 28: Vừa... vừa & Thói quen' },
   ];
 
   return (
