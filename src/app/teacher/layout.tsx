@@ -9,6 +9,7 @@ const navItems = [
   { href: '/teacher/dashboard', icon: '🏠', label: 'Tổng quan' },
   { href: '/teacher/schedule', icon: '📅', label: 'Lịch dạy' },
   { href: '/teacher/lessons', icon: '📂', label: 'Kho giáo án' },
+  { href: '/teacher/tests', icon: '📑', label: 'Bài kiểm tra' },
   { href: '/teacher/homework', icon: '📝', label: 'Bài tập' },
   { href: '/teacher/grading', icon: '✅', label: 'Chấm bài' },
   { href: '/teacher/students', icon: '👥', label: 'Lớp học' },
