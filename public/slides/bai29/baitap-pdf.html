@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài tập Bài 29</title>
+  <style>
+    body {
+      font-family: "Noto Sans JP", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f9;
+      color: #333;
+    }
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 20mm;
+      margin: 10mm auto;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      font-size: 14pt;
+      line-height: 1.8;
+      page-break-after: always;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #333;
+      padding-bottom: 10px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 24pt;
+    }
+    .name-section {
+      text-align: right;
+      font-size: 16pt;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    .exercise {
+      margin-bottom: 30px;
+    }
+    .exercise-title {
+      font-weight: bold;
+      font-size: 16pt;
+      margin-bottom: 10px;
+    }
+    .example {
+      color: #555;
+    }
+    .blank {
+      display: inline-block;
+      border-bottom: 1px solid #333;
+      min-width: 150px;
+    }
+    .blank-long {
+      display: inline-block;
+      border-bottom: 1px solid #333;
+      min-width: 250px;
+    }
+    .blank-full {
+      display: inline-block;
+      border-bottom: 1px solid #333;
+      width: 70%;
+    }
+    .word-box {
+      border: 1px solid #333;
+      padding: 10px;
+      margin-bottom: 15px;
+      font-size: 13pt;
+      border-radius: 5px;
+    }
+    
+    @media print {
+      body { background: white; }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        width: 100%;
+        padding: 10mm;
+      }
+      .no-print { display: none; }
+    }
+    
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #1976d2;
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+    .print-btn:hover { background: #1565c0; }
+  </style>
+</head>
+<body>
+  <button class="print-btn no-print" onclick="window.print()">🖨 Xuất file PDF</button>
+
+  <!-- PAGE 1 -->
+  <div class="page">
+    <div class="header">
+      <h1>第 29 課 - 練習</h1>
+    </div>
+    
+    <div class="name-section">
+      名前：<span class="blank-long"></span>
+    </div>
+
+    <!-- Bài 1 -->
+    <div class="exercise">
+      <div class="exercise-title">1. （　　）に助詞を入れなさい。(Điền trợ từ vào chỗ trống)</div>
+      <div class="example">例：この店（ で ）はカード（ で ）買い物できません。</div>
+      <div>1) このスーパー（　　）夜9時（　　）開いています。</div>
+      <div>2) 電車の網棚（　　）忘れ物（　　）してしまいました。</div>
+      <div>3) このかばん（　　）はポケット（　　）たくさん付いています。</div>
+      <div>4) 切符をなくしたら、駅員（　　）言ってください。</div>
+      <div>5) どこか（　　）ちょっと休みませんか。</div>
+      <div>6) パンチはどこですか。<br>
+      …えーと、どこか（　　）あると思いますよ。</div>
+    </div>
+
+    <!-- Bài 2 -->
+    <div class="exercise">
+      <div class="exercise-title">2. 正しい言葉を選びなさい。(Khoanh tròn từ đúng)</div>
+      <div class="example">例：｛ ガラス，<strong><u>コップ</u></strong>，お皿 ｝でビールを飲みます。</div>
+      <div>1) ｛ ちゃわん，袋，木の枝 ｝が折れています。</div>
+      <div>2) ｛ ガラス，ちゃわん，シャツ ｝が破れてしまいました。</div>
+      <div>3) ｛ ボタン，ポケット，財布 ｝が外れていますよ。</div>
+      <div>4) コップが ｛ 割れました，折れました，破れました ｝。</div>
+      <div>5) 傘が ｛ 割れて，壊れて，故障して ｝しまいました。</div>
+    </div>
+
+    <!-- Bài 3 -->
+    <div class="exercise">
+      <div class="exercise-title">3. 「～ています」の文を作りなさい。(Viết câu với V-ています miêu tả trạng thái)</div>
+      <div class="example">例：時計が（ <u>止まっています</u> ）から、時間がわかりません。</div>
+      <div style="margin-top: 15px;">1) エアコンが（ <span class="blank-long"></span> ）から、窓を開けないでください。</div>
+      <div style="margin-top: 15px;">2) コップが（ <span class="blank-long"></span> ）から、洗ってください。</div>
+      <div style="margin-top: 15px;">3) 隣のうちは電気が（ <span class="blank-long"></span> ）から、だれもいないと思います。</div>
+      <div style="margin-top: 15px;">4) コピー機が（ <span class="blank-long"></span> ）から、修理してもらわなければなりません。</div>
+      <div style="margin-top: 15px;">5) 寒いですね。…あ、窓が（ <span class="blank-long"></span> ）から、閉めましょう。</div>
+      <div style="margin-top: 15px;">6) 会議室はかぎが（ <span class="blank-long"></span> ）から、入れませんでした。</div>
+      <div style="margin-top: 15px;">7) あそこに大きい車が（ <span class="blank-long"></span> ）んですが、だれが止めたんですか。</div>
+      <div style="margin-top: 15px;">8) このかばん、ずいぶん重いですね。何が（ <span class="blank-long"></span> ）んですか。</div>
+    </div>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div class="page">
+    <div class="header">
+      <h1>第 29 課 - 練習 (2)</h1>
+    </div>
+
+    <!-- Bài 4 -->
+    <div class="exercise">
+      <div class="exercise-title">4. 「～てしまいます」の文を完成しなさい。(Hoàn thành câu với V-てしまいます thể hiện sự hoàn thành)</div>
+      <div class="example">
+        例：ちょっとお茶でも飲みませんか。<br>
+        …この資料をメールで（ <u>送ってしまいます</u> ）から、ちょっと待っていただけませんか。
+      </div>
+      <div style="margin-top: 15px;">1) ミラーさんにもらったケーキは？<br>
+      …もう全部 <span class="blank-long"></span>。</div>
+      
+      <div style="margin-top: 15px;">2) その本、おもしろいですか。<br>
+      …ええ。わたしはもう <span class="blank-long"></span> から、貸しましょうか。</div>
+      
+      <div style="margin-top: 15px;">3) いっしょに帰りませんか。<br>
+      …すみません。あしたの会議の準備を <span class="blank-long"></span> から、お先にどうぞ。</div>
+      
+      <div style="margin-top: 15px;">4) レポートはもう書きましたか。<br>
+      …いいえ、まだです。あしたから忙しくなりますから、今晩 <span class="blank-long"></span>。</div>
+      
+      <div style="margin-top: 15px;">5) 部長は何時に出かけるんですか。<br>
+      …もう <span class="blank-long"></span> よ。</div>
+    </div>
+
+    <!-- Bài 5 -->
+    <div class="exercise">
+      <div class="exercise-title">5. 動詞を選んで、「～てしまいました」の文を作りなさい。(Chọn từ trong hộp và chia về V-てしまいました thể hiện sự tiếc nuối/lỡ)</div>
+      <div class="word-box">
+        落とします, 捨てます, 結婚します, まちがえます<br>
+        破れます, 忘れます, 折れます, 売れます
+      </div>
+      <div class="example">例：あの人の名前、きのう聞いたんですが、（ <u>忘れてしまいました</u> ）。</div>
+      
+      <div style="margin-top: 15px;">1) わたしが結婚したかった人は、ほかの人と <span class="blank-long"></span>。</div>
+      <div style="margin-top: 15px;">2) ここに置いた雑誌がないんですが……。<br>
+      …あ、すみません。ごみの日に <span class="blank-long"></span>。</div>
+      <div style="margin-top: 15px;">3) 袋が <span class="blank-long"></span> んですが、取り替えていただけませんか。</div>
+      <div style="margin-top: 15px;">4) すみませんが、細かいお金を200円貸していただけませんか。どこかで財布を <span class="blank-long"></span> んです。</div>
+      <div style="margin-top: 15px;">5) この靴、デザインはいいんですが、色がちょっと……。黒いのはありませんか。<br>
+      …すみません。あったんですが、 <span class="blank-long"></span>。</div>
+      <div style="margin-top: 15px;">6) 遅かったですね。どうしたんですか。<br>
+      …すみません。道を <span class="blank-long"></span> んです。</div>
+    </div>
+
+  </div>
+</body>
+</html>
