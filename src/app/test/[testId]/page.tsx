@@ -47,24 +47,24 @@ export default function TestPage({ params }: { params: Promise<{ testId: string 
 
   if (!hasStarted) {
     return (
-      <div style={{ maxWidth: '600px', margin: '40px auto', padding: '30px', backgroundColor: '#fff', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)', fontFamily: 'Arial, sans-serif' }}>
+      <div style={{ maxWidth: '600px', margin: '40px auto', padding: '30px', backgroundColor: '#fff', color: '#333', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)', fontFamily: 'Arial, sans-serif' }}>
         <h1 style={{ color: '#1976d2', textAlign: 'center', marginBottom: '10px' }}>{testData.title}</h1>
         <p style={{ textAlign: 'center', color: '#666', marginBottom: '30px' }}>{testData.description}</p>
         
-        <div style={{ background: '#e3f2fd', padding: '20px', borderRadius: '8px', marginBottom: '30px' }}>
+        <div style={{ background: '#e3f2fd', color: '#333', padding: '20px', borderRadius: '8px', marginBottom: '30px' }}>
           <p><strong>Cấp độ:</strong> {testData.level}</p>
           <p><strong>Thời gian làm bài:</strong> {testData.durationMinutes} phút</p>
           <p><strong>Số câu hỏi:</strong> {testData.questions.length}</p>
         </div>
         
         <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-          <label style={{ fontWeight: 'bold' }}>Nhập họ tên của bạn:</label>
+          <label style={{ fontWeight: 'bold', color: '#333' }}>Nhập họ tên của bạn:</label>
           <input 
             type="text" 
             value={studentName}
             onChange={(e) => setStudentName(e.target.value)}
             placeholder="Ví dụ: Nguyễn Văn A"
-            style={{ padding: '12px', borderRadius: '6px', border: '1px solid #ccc', fontSize: '16px' }}
+            style={{ padding: '12px', borderRadius: '6px', border: '1px solid #ccc', fontSize: '16px', color: '#333', backgroundColor: '#fff' }}
           />
           <button 
             onClick={() => {
