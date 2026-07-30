@@ -433,16 +433,16 @@ export const testsData: Test[] = [
       },
       {
         id: 'q9', type: 'multiple_choice',
-        passage: 'マリアさんは　日本に　来て　１年に　なります。最初は　ひらがなしか　読めませんでしたが、今は　カタカナも　ひらがなも　漢字も　読めます。でも、日本語で　話すのは　まだ　少し　難しいです。',
-        text: '①　マリアさんは　今、日本語で　何が　できますか。',
-        options: [{ id: 'a', text: 'ひらがなしか　読めません。' }, { id: 'b', text: 'ひらがなと　カタカナが　読めます。' }, { id: 'c', text: 'ひらがな・カタカナ・漢字が　読めます。' }, { id: 'd', text: '日本語で　よく　話せます。' }],
-        correctOptionId: 'c', explanation: '「今は　カタカナも　ひらがなも　漢字も　読めます。」'
+        passage: 'アンさんは　日本語の　クラスで　勉強して　います。ひらがなと　カタカナが　読めます。簡単な　漢字も　少し　読めます。でも、日本語で　話すのは　まだ　難しいです。聞くのは　だいたい　大丈夫ですが、早い　日本語は　よく　聞こえません。',
+        text: '①　アンさんが　今　できないことは　何ですか。',
+        options: [{ id: 'a', text: 'ひらがなを　読むこと' }, { id: 'b', text: 'カタカナを　読むこと' }, { id: 'c', text: '日本語で　話すこと' }, { id: 'd', text: '簡単な　漢字を　読むこと' }],
+        correctOptionId: 'c', explanation: '「日本語で　話すのは　まだ　難しいです。」→ 話すことが　まだ　できません。しか は使いません！'
       },
       {
         id: 'q10', type: 'multiple_choice',
-        text: '②　マリアさんは　何が　まだ　難しいですか。',
-        options: [{ id: 'a', text: '漢字を　読むこと' }, { id: 'b', text: 'ひらがなを　読むこと' }, { id: 'c', text: '日本語で　話すこと' }, { id: 'd', text: '日本語で　書くこと' }],
-        correctOptionId: 'c', explanation: '「日本語で　話すのは　まだ　少し　難しいです。」'
+        text: '②　「早い　日本語は　よく　聞こえません」の　意味は　どれですか。',
+        options: [{ id: 'a', text: '早い　日本語を　聞きたく　ない。' }, { id: 'b', text: '早い　日本語が　自然に　耳に　入って　こない。' }, { id: 'c', text: '早い　日本語が　聞けない。（自分で　努力しているが）' }, { id: 'd', text: '早い　日本語は　聞きません。' }],
+        correctOptionId: 'b', explanation: '聞こえません = âm thanh tự nhiên không lọt vào tai, không phải do cố gắng. Đây là điểm phân biệt 聞こえます vs 聞けます.'
       },
     ]
   }
