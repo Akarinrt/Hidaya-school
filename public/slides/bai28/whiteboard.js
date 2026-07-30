@@ -8,14 +8,22 @@ const wbCss = `
     .wb-colors { display: none; flex-direction: column; gap: 5px; margin-top: 10px; border-top: 1px solid #ddd; padding-top: 10px; align-items: center; }
     .wb-color { width: 28px; height: 28px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; }
     .wb-color.active { border: 2px solid #333; transform: scale(1.1); }
-    #wb-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9998; pointer-events: none; }
-    #wb-text-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; pointer-events: none; overflow: hidden; }
+    
+    .wb-slide-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 9998; pointer-events: none; }
+    .wb-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: auto; }
+    .wb-text-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; }
+    
     .wb-text-input { position: absolute; background: rgba(255,255,255,0.9); border: 2px dashed #0052cc; outline: none; font-size: 2rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: bold; pointer-events: auto; padding: 5px 10px; border-radius: 5px; min-width: 150px; z-index: 10000; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     .wb-text-box { position: absolute; font-size: 2rem; font-weight: bold; font-family: 'Plus Jakarta Sans', sans-serif; pointer-events: auto; cursor: move; padding: 5px 10px; border: 1px solid transparent; border-radius: 5px; background: transparent; user-select: none; }
     .wb-text-box:hover { border: 1px dashed #aaa; background: rgba(255,255,255,0.5); }
-    .wb-text-box::after { content: " (Nháy đúp: Sửa | Cuộn chuột: Chỉnh size | Chuột phải: Xóa)"; font-size: 0.8rem; color: #999; opacity: 0; transition: opacity 0.2s; position:absolute; top:-25px; left:0; white-space:nowrap; pointer-events:none; }
+    .wb-text-box::after { content: " (Nháy đúp: Sửa | Cuộn: Chỉnh size | Chuột phải: Xóa)"; font-size: 0.8rem; color: #999; opacity: 0; transition: opacity 0.2s; position:absolute; top:-25px; left:0; white-space:nowrap; pointer-events:none; }
     .wb-text-box:hover::after { opacity: 1; }
     .wb-text-box.dragging { opacity: 0.8; border: 1px dashed #0052cc; cursor: grabbing; }
+    
+    @media print {
+        .wb-text-box::after { display: none !important; }
+        .wb-text-box { border: none !important; background: transparent !important; }
+    }
 `;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,8 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(style);
 
     const wbHtml = `
-        <div id="wb-text-layer"></div>
-        <canvas id="wb-canvas"></canvas>
         <div class="wb-toolbar">
             <button class="wb-btn" id="wb-toggle" title="Bật/Tắt Bảng Trắng">🖍️</button>
             <div id="wb-tools" style="display:none; flex-direction:column; gap:8px; margin-top:8px;">
@@ -46,52 +52,26 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.body.insertAdjacentHTML('beforeend', wbHtml);
 
-    initWhiteboard();
+    // Don't initialize whiteboard tools if in print mode
+    if (window.location.search.match(/print-pdf/gi)) {
+        document.querySelector('.wb-toolbar').style.display = 'none';
+        return;
+    }
+
+    setTimeout(initWhiteboard, 1000); // Wait for Reveal.js to initialize
 });
 
 function initWhiteboard() {
-    const canvas = document.getElementById('wb-canvas');
-    const ctx = canvas.getContext('2d');
-    const textLayer = document.getElementById('wb-text-layer');
-    
-    let isDrawing = false;
-    let mode = 'none'; // 'pen', 'eraser', 'text'
-    let currentColor = '#d32f2f';
     let isWhiteboardActive = false;
+    let mode = 'none';
+    let currentColor = '#d32f2f';
+    let isDrawing = false;
     
-    let undoStack = []; // stores data URLs
-
-    function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        loadSlideData();
-    }
-    window.addEventListener('resize', resize);
-    resize();
-    
-    function saveStateForUndo() {
-        undoStack.push(canvas.toDataURL());
-        if(undoStack.length > 20) undoStack.shift(); // limit history
-        saveSlideData();
-    }
-
-    // Turn off whiteboard helper
-    function deactivateWhiteboard() {
-        if (!isWhiteboardActive) return;
-        isWhiteboardActive = false;
-        mode = 'none';
-        canvas.style.pointerEvents = 'none';
-        textLayer.style.pointerEvents = 'none';
-        document.getElementById('wb-tools').style.display = 'none';
-        document.querySelectorAll('.wb-btn').forEach(b => b.classList.remove('active'));
-    }
-
     // Auto turn off when navigating
     document.addEventListener('keydown', (e) => {
         const navKeys = ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'Space', 'PageDown', 'PageUp'];
         if (isWhiteboardActive && navKeys.includes(e.code) && e.target.tagName !== 'INPUT') {
             deactivateWhiteboard();
-            // Allow event to propagate to Reveal.js
         }
     });
 
@@ -103,9 +83,18 @@ function initWhiteboard() {
             e.currentTarget.classList.add('active');
             document.getElementById('wb-tools').style.display = 'flex';
             document.getElementById('wb-pen').click();
-            textLayer.style.pointerEvents = 'auto'; // allow text clicks
+            updateActiveSlideLayer();
         }
     });
+
+    function deactivateWhiteboard() {
+        if (!isWhiteboardActive) return;
+        isWhiteboardActive = false;
+        mode = 'none';
+        document.getElementById('wb-tools').style.display = 'none';
+        document.querySelectorAll('.wb-btn').forEach(b => b.classList.remove('active'));
+        disablePointerEventsOnAllLayers();
+    }
 
     function setMode(newMode, btnId) {
         mode = newMode;
@@ -115,39 +104,16 @@ function initWhiteboard() {
         document.getElementById(btnId).classList.add('active');
         
         if (mode === 'pen' || mode === 'eraser') {
-            canvas.style.pointerEvents = 'auto';
-            textLayer.style.pointerEvents = 'none'; // click goes to canvas
             document.getElementById('wb-color-picker').style.display = (mode === 'pen') ? 'flex' : 'none';
         } else if (mode === 'text') {
-            canvas.style.pointerEvents = 'none';
-            textLayer.style.pointerEvents = 'auto'; // click goes to text layer
             document.getElementById('wb-color-picker').style.display = 'flex';
         }
+        updateActiveSlideLayer();
     }
 
     document.getElementById('wb-pen').addEventListener('click', () => setMode('pen', 'wb-pen'));
     document.getElementById('wb-eraser').addEventListener('click', () => setMode('eraser', 'wb-eraser'));
     document.getElementById('wb-text').addEventListener('click', () => setMode('text', 'wb-text'));
-
-    document.getElementById('wb-undo').addEventListener('click', () => {
-        if (undoStack.length > 0) {
-            const lastState = undoStack.pop();
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            if (undoStack.length > 0) {
-                const img = new Image();
-                img.onload = () => ctx.drawImage(img, 0, 0);
-                img.src = undoStack[undoStack.length - 1];
-            }
-            saveSlideData(); // sync to session
-        }
-    });
-
-    document.getElementById('wb-clear').addEventListener('click', () => {
-        saveStateForUndo(); // save before clear
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        textLayer.innerHTML = '';
-        saveSlideData();
-    });
 
     document.querySelectorAll('.wb-color').forEach(c => {
         c.addEventListener('click', (e) => {
@@ -157,63 +123,163 @@ function initWhiteboard() {
         });
     });
 
-    // Drawing Logic
-    canvas.addEventListener('mousedown', startPos);
-    canvas.addEventListener('mouseup', endPos);
-    canvas.addEventListener('mousemove', draw);
-    
-    // For touch devices
-    canvas.addEventListener('touchstart', (e) => { e.preventDefault(); startPos(e.touches[0]); }, {passive: false});
-    canvas.addEventListener('touchend', (e) => { e.preventDefault(); endPos(); }, {passive: false});
-    canvas.addEventListener('touchmove', (e) => { e.preventDefault(); draw(e.touches[0]); }, {passive: false});
+    // --- Slide-local Layer Management ---
+    function disablePointerEventsOnAllLayers() {
+        document.querySelectorAll('.wb-slide-layer').forEach(layer => {
+            layer.style.pointerEvents = 'none';
+            layer.querySelector('.wb-canvas').style.pointerEvents = 'none';
+            layer.querySelector('.wb-text-layer').style.pointerEvents = 'none';
+        });
+    }
 
-    function startPos(e) {
+    function updateActiveSlideLayer() {
+        disablePointerEventsOnAllLayers();
+        if (!isWhiteboardActive) return;
+
+        const slide = document.querySelector('.reveal .slides section.present');
+        if (!slide) return;
+
+        let layer = slide.querySelector('.wb-slide-layer');
+        if (!layer) {
+            layer = createLayerForSlide(slide);
+        }
+
+        layer.style.pointerEvents = 'auto';
         if (mode === 'pen' || mode === 'eraser') {
-            isDrawing = true;
-            if (undoStack.length === 0) {
-                undoStack.push(canvas.toDataURL()); // push initial blank state
-            }
-            draw(e);
+            layer.querySelector('.wb-canvas').style.pointerEvents = 'auto';
+            layer.querySelector('.wb-text-layer').style.pointerEvents = 'none';
+        } else if (mode === 'text') {
+            layer.querySelector('.wb-canvas').style.pointerEvents = 'none';
+            layer.querySelector('.wb-text-layer').style.pointerEvents = 'auto';
         }
     }
 
-    function endPos() {
-        if (isDrawing) {
-            isDrawing = false;
-            ctx.beginPath();
-            saveStateForUndo();
-        }
-    }
-
-    function draw(e) {
-        if (!isDrawing) return;
-        
-        ctx.lineWidth = mode === 'eraser' ? 30 : 5;
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
-        
-        if (mode === 'eraser') {
-            ctx.globalCompositeOperation = 'destination-out';
-            ctx.strokeStyle = 'rgba(0,0,0,1)'; // color doesn't matter for destination-out
-        } else {
-            ctx.globalCompositeOperation = 'source-over';
-            ctx.strokeStyle = currentColor;
-        }
-        
-        ctx.lineTo(e.clientX, e.clientY);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(e.clientX, e.clientY);
-    }
-
-    // Text Logic
-    textLayer.addEventListener('mousedown', (e) => {
-        if (mode === 'text' && e.target === textLayer) {
-            createTextInput(e.clientX, e.clientY);
+    Reveal.on('slidechanged', () => {
+        if (isWhiteboardActive) {
+            updateActiveSlideLayer();
         }
     });
 
-    function createTextInput(x, y, existingDiv = null) {
+    function createLayerForSlide(slide) {
+        // Find actual dimensions of slide. Default to 960x700 or whatever reveal config is.
+        const config = Reveal.getConfig();
+        const width = config.width || 1400;
+        const height = config.height || 900;
+
+        const layer = document.createElement('div');
+        layer.className = 'wb-slide-layer';
+        
+        const canvas = document.createElement('canvas');
+        canvas.className = 'wb-canvas';
+        canvas.width = width;
+        canvas.height = height;
+        
+        const textLayer = document.createElement('div');
+        textLayer.className = 'wb-text-layer';
+
+        layer.appendChild(canvas);
+        layer.appendChild(textLayer);
+        slide.appendChild(layer);
+
+        // Attach drawing events to canvas
+        const ctx = canvas.getContext('2d');
+        let undoStack = [];
+        
+        // Attach undo and clear specifically to current layer via closure?
+        // Since buttons are global, we override their onclick
+        document.getElementById('wb-undo').onclick = () => {
+            if (undoStack.length > 0) {
+                undoStack.pop();
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                if (undoStack.length > 0) {
+                    const img = new Image();
+                    img.onload = () => ctx.drawImage(img, 0, 0);
+                    img.src = undoStack[undoStack.length - 1];
+                }
+            }
+        };
+
+        document.getElementById('wb-clear').onclick = () => {
+            undoStack.push(canvas.toDataURL());
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            textLayer.innerHTML = '';
+        };
+
+        function getMousePos(e) {
+            const rect = canvas.getBoundingClientRect();
+            const scale = Reveal.getScale();
+            let clientX = e.clientX;
+            let clientY = e.clientY;
+            if (e.touches && e.touches.length > 0) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            }
+            return {
+                x: (clientX - rect.left) / scale,
+                y: (clientY - rect.top) / scale
+            };
+        }
+
+        function startPos(e) {
+            if (mode === 'pen' || mode === 'eraser') {
+                isDrawing = true;
+                if (undoStack.length === 0) {
+                    undoStack.push(canvas.toDataURL());
+                }
+                draw(e);
+            }
+        }
+
+        function endPos() {
+            if (isDrawing) {
+                isDrawing = false;
+                ctx.beginPath();
+                undoStack.push(canvas.toDataURL());
+            }
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            const pos = getMousePos(e);
+            
+            ctx.lineWidth = mode === 'eraser' ? 30 : 5;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            
+            if (mode === 'eraser') {
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.strokeStyle = 'rgba(0,0,0,1)';
+            } else {
+                ctx.globalCompositeOperation = 'source-over';
+                ctx.strokeStyle = currentColor;
+            }
+            
+            ctx.lineTo(pos.x, pos.y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(pos.x, pos.y);
+        }
+
+        canvas.addEventListener('mousedown', startPos);
+        canvas.addEventListener('mouseup', endPos);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('touchstart', (e) => { e.preventDefault(); startPos(e); }, {passive: false});
+        canvas.addEventListener('touchend', (e) => { e.preventDefault(); endPos(); }, {passive: false});
+        canvas.addEventListener('touchmove', (e) => { e.preventDefault(); draw(e); }, {passive: false});
+
+        // Attach text events
+        textLayer.addEventListener('mousedown', (e) => {
+            if (mode === 'text' && e.target === textLayer) {
+                const pos = getMousePos(e);
+                createTextInput(pos.x, pos.y, null, textLayer);
+            }
+        });
+        
+        // Return the created layer
+        return layer;
+    }
+
+    function createTextInput(x, y, existingDiv, textLayer) {
         if (textLayer.querySelector('.wb-text-input')) {
             textLayer.querySelector('.wb-text-input').focus();
             return;
@@ -239,7 +305,6 @@ function initWhiteboard() {
         
         input.placeholder = "Gõ chữ...";
         textLayer.appendChild(input);
-        
         setTimeout(() => input.focus(), 50);
 
         input.addEventListener('blur', () => {
@@ -249,7 +314,7 @@ function initWhiteboard() {
                     div = document.createElement('div');
                     div.className = 'wb-text-box';
                     textLayer.appendChild(div);
-                    attachTextBoxEvents(div);
+                    attachTextBoxEvents(div, textLayer);
                 }
                 div.style.display = 'block';
                 div.style.left = input.style.left;
@@ -258,10 +323,9 @@ function initWhiteboard() {
                 div.style.fontSize = input.style.fontSize;
                 div.innerText = input.value;
             } else if (existingDiv) {
-                existingDiv.remove(); // empty means delete
+                existingDiv.remove();
             }
             input.remove();
-            saveSlideData();
         });
         
         input.addEventListener('keydown', (e) => {
@@ -269,40 +333,46 @@ function initWhiteboard() {
         });
     }
 
-    function attachTextBoxEvents(div) {
-        // Xóa
+    function attachTextBoxEvents(div, textLayer) {
         div.addEventListener('contextmenu', (e) => {
             e.preventDefault();
             div.remove();
-            saveSlideData();
         });
         
-        // Sửa (nháy đúp)
         div.addEventListener('dblclick', (e) => {
             e.stopPropagation();
-            createTextInput(0, 0, div);
+            createTextInput(0, 0, div, textLayer);
         });
 
-        // Zoom (cuộn chuột)
         div.addEventListener('wheel', (e) => {
             if (mode !== 'text') return;
             e.preventDefault();
-            let size = parseFloat(div.style.fontSize) || 2; // in rem
+            let size = parseFloat(div.style.fontSize) || 2;
             if (e.deltaY < 0) size += 0.2;
             else size = Math.max(0.5, size - 0.2);
             div.style.fontSize = size + 'rem';
-            saveSlideData();
         });
 
-        // Kéo thả (Drag)
         let isDragging = false;
         let startX, startY, initialLeft, initialTop;
+
+        const getMousePos = (e) => {
+            const rect = textLayer.getBoundingClientRect();
+            const scale = Reveal.getScale();
+            let clientX = e.clientX || e.touches[0].clientX;
+            let clientY = e.clientY || e.touches[0].clientY;
+            return {
+                x: (clientX - rect.left) / scale,
+                y: (clientY - rect.top) / scale
+            };
+        };
 
         const onMouseDown = (e) => {
             if (mode !== 'text') return;
             isDragging = true;
-            startX = e.clientX || e.touches[0].clientX;
-            startY = e.clientY || e.touches[0].clientY;
+            const pos = getMousePos(e);
+            startX = pos.x;
+            startY = pos.y;
             initialLeft = parseFloat(div.style.left) || 0;
             initialTop = parseFloat(div.style.top) || 0;
             div.classList.add('dragging');
@@ -311,10 +381,9 @@ function initWhiteboard() {
 
         const onMouseMove = (e) => {
             if (!isDragging) return;
-            let currentX = e.clientX || (e.touches ? e.touches[0].clientX : 0);
-            let currentY = e.clientY || (e.touches ? e.touches[0].clientY : 0);
-            let dx = currentX - startX;
-            let dy = currentY - startY;
+            const pos = getMousePos(e);
+            let dx = pos.x - startX;
+            let dy = pos.y - startY;
             div.style.left = (initialLeft + dx) + 'px';
             div.style.top = (initialTop + dy) + 'px';
         };
@@ -323,7 +392,6 @@ function initWhiteboard() {
             if (isDragging) {
                 isDragging = false;
                 div.classList.remove('dragging');
-                saveSlideData();
             }
         };
 
@@ -335,53 +403,4 @@ function initWhiteboard() {
         window.addEventListener('touchmove', onMouseMove, {passive: false});
         window.addEventListener('touchend', onMouseUp);
     }
-
-    // Storage Logic per Slide
-    function getSlideId() {
-        const indices = Reveal.getIndices();
-        return `slide_${indices.h}_${indices.v}`;
-    }
-
-    function saveSlideData() {
-        const id = getSlideId();
-        const data = {
-            image: canvas.toDataURL(),
-            texts: textLayer.innerHTML
-        };
-        sessionStorage.setItem(id, JSON.stringify(data));
-    }
-
-    function loadSlideData() {
-        const id = getSlideId();
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        textLayer.innerHTML = '';
-        undoStack = [];
-        
-        const stored = sessionStorage.getItem(id);
-        if (stored) {
-            const data = JSON.parse(stored);
-            if (data.image) {
-                const img = new Image();
-                img.onload = () => {
-                    ctx.drawImage(img, 0, 0);
-                    undoStack.push(canvas.toDataURL());
-                };
-                img.src = data.image;
-            } else {
-                undoStack.push(canvas.toDataURL());
-            }
-            if (data.texts) {
-                textLayer.innerHTML = data.texts;
-                textLayer.querySelectorAll('.wb-text-box').forEach(div => {
-                    attachTextBoxEvents(div);
-                });
-            }
-        } else {
-            undoStack.push(canvas.toDataURL());
-        }
-    }
-
-    Reveal.on('slidechanged', () => {
-        loadSlideData();
-    });
 }
