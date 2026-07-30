@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Từ vựng Bài 27</title>
+  <style>
+    body {
+      font-family: "Noto Sans JP", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f9;
+      color: #333;
+    }
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 15mm 20mm;
+      margin: 10mm auto;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      font-size: 13pt;
+      line-height: 1.6;
+      page-break-after: always;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #333;
+      padding-bottom: 10px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 24pt;
+      color: #1976d2;
+    }
+    .header p {
+      margin: 5px 0 0;
+      font-size: 14pt;
+      color: #555;
+    }
+    
+    .vocab-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    .vocab-table th, .vocab-table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    .vocab-table th {
+      background: #1976d2;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+    }
+    .vocab-table tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+    .col-hiragana { width: 30%; font-weight: bold; font-size: 14pt; }
+    .col-kanji { width: 25%; font-family: "Klee One", serif; font-size: 16pt; text-align: center; }
+    .col-meaning { width: 45%; }
+    
+    .section-title {
+      font-weight: bold;
+      font-size: 16pt;
+      color: #d32f2f;
+      margin-top: 15px;
+      margin-bottom: 10px;
+      border-bottom: 1px dashed #d32f2f;
+      display: inline-block;
+    }
+    
+    @media print {
+      body { background: white; }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        width: 100%;
+        padding: 10mm;
+      }
+      .no-print { display: none; }
+    }
+    
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #1976d2;
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+    .print-btn:hover { background: #1565c0; }
+    
+    ruby { font-family: 'Noto Sans JP', sans-serif; }
+    rt { font-size: 0.6em; color: #555; }
+  </style>
+</head>
+<body>
+  <button class="print-btn no-print" onclick="window.print()">🖨 Xuất file PDF</button>
+
+  <!-- PAGE 1 -->
+  <div class="page">
+    <div class="header">
+      <h1>第 27 課 - 語彙</h1>
+      <p>Danh sách từ vựng Bài 27 - Minna no Nihongo II</p>
+    </div>
+    
+    <div class="section-title">I. 語彙 (Từ vựng chung)</div>
+    <table class="vocab-table">
+      <tr>
+        <th class="col-hiragana">Hiragana</th>
+        <th class="col-kanji">Kanji</th>
+        <th class="col-meaning">Ý nghĩa</th>
+      </tr>
+      <tr><td>かいます I</td><td>飼います</td><td>nuôi (động vật)</td></tr>
+      <tr><td>たてます II</td><td>建てます</td><td>xây, xây dựng</td></tr>
+      <tr><td>はしります I<br><span style="font-size:11pt;color:#666">[道を〜]</span></td><td>走ります</td><td>chạy [trên đường]</td></tr>
+      <tr><td>とります I<br><span style="font-size:11pt;color:#666">[休みを〜]</span></td><td>取ります</td><td>xin [nghỉ]</td></tr>
+      <tr><td>みえます II<br><span style="font-size:11pt;color:#666">[山が〜]</span></td><td>見えます</td><td>nhìn thấy [núi]</td></tr>
+      <tr><td>きこえます II<br><span style="font-size:11pt;color:#666">[音が〜]</span></td><td>聞こえます</td><td>nghe thấy [âm thanh]</td></tr>
+      <tr><td>できます II<br><span style="font-size:11pt;color:#666">[空港が〜]</span></td><td></td><td>được xây dựng, hoàn thành [sân bay]</td></tr>
+      <tr><td>ひらきます I<br><span style="font-size:11pt;color:#666">[教室を〜]</span></td><td>開きます</td><td>mở [lớp học]</td></tr>
+      <tr><td>ペット</td><td></td><td>thú cưng</td></tr>
+      <tr><td>とり</td><td>鳥</td><td>chim</td></tr>
+      <tr><td>こえ</td><td>声</td><td>tiếng, giọng nói</td></tr>
+      <tr><td>なみ</td><td>波</td><td>sóng</td></tr>
+      <tr><td>はなび</td><td>花火</td><td>pháo hoa</td></tr>
+      <tr><td>けしき</td><td>景色</td><td>phong cảnh</td></tr>
+      <tr><td>ひるま</td><td>昼間</td><td>ban ngày</td></tr>
+      <tr><td>むかし</td><td>昔</td><td>ngày xưa</td></tr>
+      <tr><td>どうぐ</td><td>道具</td><td>dụng cụ, công cụ</td></tr>
+      <tr><td>じどうはんばいき</td><td>自動販売機</td><td>máy bán hàng tự động</td></tr>
+      <tr><td>つうしんはんばい</td><td>通信販売</td><td>bán hàng qua mạng/bưu điện</td></tr>
+      <tr><td>クリーニング</td><td></td><td>giặt ủi</td></tr>
+      <tr><td>マンション</td><td></td><td>chung cư</td></tr>
+      <tr><td>だいどころ</td><td>台所</td><td>nhà bếp</td></tr>
+      <tr><td>〜きょうしつ</td><td>〜教室</td><td>lớp học ~</td></tr>
+      <tr><td>パーティールーム</td><td></td><td>phòng tiệc</td></tr>
+    </table>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div class="page">
+    <div class="header">
+      <h1>第 27 課 - 語彙 (2)</h1>
+    </div>
+
+    <table class="vocab-table">
+      <tr>
+        <th class="col-hiragana">Hiragana</th>
+        <th class="col-kanji">Kanji</th>
+        <th class="col-meaning">Ý nghĩa</th>
+      </tr>
+      <tr><td>〜ご</td><td>〜後</td><td>sau ~ (khoảng thời gian)</td></tr>
+      <tr><td>〜しか</td><td></td><td>chỉ ~ (dùng với thể phủ định)</td></tr>
+      <tr><td>ほかの</td><td></td><td>khác</td></tr>
+      <tr><td>はっきり</td><td></td><td>rõ ràng</td></tr>
+      <tr><td>ほとんど</td><td></td><td>hầu hết (khẳng định), hầu như không (phủ định)</td></tr>
+      <tr><td>かんさいくうこう</td><td>関西空港</td><td>Sân bay quốc tế Kansai</td></tr>
+      <tr><td>あきはばら</td><td>秋葉原</td><td>Khu Akihabara (ở Tokyo)</td></tr>
+      <tr><td>いず</td><td>伊豆</td><td>Bán đảo Izu (ở Shizuoka)</td></tr>
+    </table>
+
+    <div class="section-title">II. 会話 (Hội thoại)</div>
+    <table class="vocab-table">
+      <tr>
+        <th class="col-hiragana">Hiragana</th>
+        <th class="col-kanji">Kanji</th>
+        <th class="col-meaning">Ý nghĩa</th>
+      </tr>
+      <tr><td>にちようだいく</td><td>日曜大工</td><td>thợ mộc ngày chủ nhật (làm mộc lúc rảnh rỗi)</td></tr>
+      <tr><td>ほんだな</td><td>本棚</td><td>giá sách</td></tr>
+      <tr><td>ゆめ</td><td>夢</td><td>giấc mơ (〜を見ます: mơ thấy)</td></tr>
+      <tr><td>いつか</td><td></td><td>một ngày nào đó</td></tr>
+      <tr><td>いえ</td><td>家</td><td>nhà</td></tr>
+      <tr><td>すばらしい</td><td></td><td>tuyệt vời</td></tr>
+    </table>
+
+    <div class="section-title">III. 読み物 (Bài đọc)</div>
+    <table class="vocab-table">
+      <tr>
+        <th class="col-hiragana">Hiragana</th>
+        <th class="col-kanji">Kanji</th>
+        <th class="col-meaning">Ý nghĩa</th>
+      </tr>
+      <tr><td>こどもたち</td><td>子どもたち</td><td>bọn trẻ</td></tr>
+      <tr><td>だいすき[な]</td><td>大好き[な]</td><td>rất thích</td></tr>
+      <tr><td>まんが</td><td>漫画</td><td>truyện tranh</td></tr>
+      <tr><td>しゅじんこう</td><td>主人公</td><td>nhân vật chính</td></tr>
+      <tr><td>かたち</td><td>形</td><td>hình dáng</td></tr>
+      <tr><td>ロボット</td><td></td><td>người máy, robot</td></tr>
+      <tr><td>ふしぎ[な]</td><td>不思議[な]</td><td>kỳ lạ, huyền bí</td></tr>
+      <tr><td>ポケット</td><td></td><td>túi</td></tr>
+      <tr><td>たとえば</td><td>例えば</td><td>ví dụ</td></tr>
+      <tr><td>つけます II</td><td>付けます</td><td>lắp, ghép thêm</td></tr>
+      <tr><td>じゆうに</td><td>自由に</td><td>tự do</td></tr>
+      <tr><td>そら</td><td>空</td><td>bầu trời</td></tr>
+      <tr><td>とびます I</td><td>飛びます</td><td>bay</td></tr>
+      <tr><td>じぶん</td><td>自分</td><td>bản thân</td></tr>
+      <tr><td>しょうらい</td><td>将来</td><td>tương lai</td></tr>
+      <tr><td>ドラえもん</td><td></td><td>Doraemon (tên nhân vật)</td></tr>
+    </table>
+
+  </div>
+</body>
+</html>
