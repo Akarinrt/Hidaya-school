@@ -668,3 +668,240 @@
             </section>
 
 
+\n</div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            width: 1400,
+            height: 900,
+            margin: 0.12,
+            minScale: 0.2,
+            maxScale: 1.5, hash: true, transition: 'slide', fragments: true, slideNumber: true, margin: 0.1 });
+        
+        
+        function playAudio(text) {
+            // Remove html tags if any
+            let cleanText = text.replace(/<rt>.*?<\/rt>/g, '').replace(/<[^>]+>/g, '');
+            let utterance = new SpeechSynthesisUtterance(cleanText);
+            utterance.lang = 'ja-JP';
+            utterance.rate = 0.9;
+            speechSynthesis.speak(utterance);
+        }
+    function toggleAnswer(btn) {
+            var answerDiv = btn.nextElementSibling;
+            if(answerDiv.classList.contains('show')) {
+                answerDiv.classList.remove('show');
+                btn.innerText = 'Xem đáp án';
+            } else {
+                answerDiv.classList.add('show');
+                confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+                btn.innerText = 'Ẩn đáp án';
+            }
+        }
+    </script>
+
+    <script>
+        const vocabDict = {
+            "日本語": "Tiếng Nhật",
+            "話します": "Nói chuyện (V)",
+            "話せます": "Có thể nói chuyện",
+            "話せる": "Có thể nói chuyện (ngắn)",
+            "話す": "Nói chuyện (ngắn)",
+            "書きます": "Viết (V)",
+            "書けます": "Có thể viết",
+            "書ける": "Có thể viết",
+            "書く": "Viết",
+            "読みます": "Đọc (V)",
+            "読めます": "Có thể đọc",
+            "読める": "Có thể đọc",
+            "読む": "Đọc",
+            "泳ぎます": "Bơi",
+            "泳げます": "Có thể bơi",
+            "泳げる": "Có thể bơi",
+            "待ちます": "Đợi",
+            "待てます": "Có thể đợi",
+            "待てる": "Có thể đợi",
+            "起きます": "Thức dậy",
+            "起きられます": "Có thể thức dậy",
+            "起きられる": "Có thể thức dậy",
+            "起きる": "Thức dậy",
+            "借ります": "Mượn",
+            "借りられます": "Có thể mượn",
+            "借りられる": "Có thể mượn",
+            "借りる": "Mượn",
+            "食べられます": "Có thể ăn",
+            "食べられる": "Có thể ăn",
+            "食べます": "Ăn",
+            "食べる": "Ăn",
+            "見られます": "Có thể xem (chủ động)",
+            "見られる": "Có thể xem (chủ động)",
+            "見えます": "Có thể nhìn thấy (tự nhiên)",
+            "見ます": "Nhìn, xem",
+            "見る": "Nhìn, xem",
+            "来られます": "Có thể đến",
+            "来られる": "Có thể đến",
+            "来ます": "Đến",
+            "来る": "Đến",
+            "分かります": "Hiểu",
+            "病院": "Bệnh viện",
+            "行きます": "Đi",
+            "行けます": "Có thể đi",
+            "田中さん": "Anh/chị Tanaka",
+            "会えません": "Không thể gặp",
+            "会えます": "Có thể gặp",
+            "英語": "Tiếng Anh",
+            "漢字": "Chữ Hán",
+            "銀行": "Ngân hàng",
+            "新幹線": "Tàu siêu tốc",
+            "富士山": "Núi Phú Sĩ",
+            "聞こえます": "Nghe thấy (tự nhiên)",
+            "聞けます": "Có thể nghe (chủ động)",
+            "新宿": "Shinjuku (Địa danh)",
+            "映画": "Phim ảnh",
+            "電話": "Điện thoại",
+            "天気予報": "Dự báo thời tiết",
+            "先生": "Giáo viên",
+            "友達": "Bạn bè",
+            "修理": "Sửa chữa",
+            "旅行": "Du lịch",
+            "沖縄": "Okinawa (Địa danh)",
+            "飛行機": "Máy bay",
+            "日曜日": "Chủ nhật",
+            "乗れます": "Có thể lên xe/tàu",
+            "学校": "Trường học",
+            "時計": "Đồng hồ",
+            "一人": "Một mình",
+            "音": "Âm thanh",
+            "声": "Giọng nói",
+            "足": "Chân",
+            "傷": "Vết thương",
+            "駅": "Nhà ga",
+            "前": "Phía trước",
+            "母": "Mẹ",
+            "朝": "Buổi sáng",
+            "日本": "Nhật Bản",
+            "茶": "Trà",
+            "山": "Núi",
+            "時": "Giờ",
+            "飲みます": "Uống",
+            "可能動詞": "Động từ khả năng"
+        };
+
+        // Make draggable
+        const vocabBox = document.getElementById('vocab-box');
+        const vocabHeader = document.getElementById('vocab-header');
+        let isDragging = false, startX, startY, initialX, initialY;
+
+        vocabHeader.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            const rect = vocabBox.getBoundingClientRect();
+            initialX = rect.left;
+            initialY = rect.top;
+            
+            // Convert right/bottom to left/top fixed positioning
+            vocabBox.style.right = 'auto';
+            vocabBox.style.bottom = 'auto';
+            vocabBox.style.left = initialX + 'px';
+            vocabBox.style.top = initialY + 'px';
+            vocabBox.style.transition = 'none'; // prevent lag
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+            vocabBox.style.left = (initialX + dx) + 'px';
+            vocabBox.style.top = (initialY + dy) + 'px';
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        // Update content on slide change
+        
+        const furiganaDict = {"日本語": "<ruby>日本語<rt>にほんご</rt></ruby>", "話します": "<ruby>話<rt>はな</rt></ruby>します", "話せます": "<ruby>話<rt>はな</rt></ruby>せます", "話せる": "<ruby>話<rt>はな</rt></ruby>せる", "話す": "<ruby>話<rt>はな</rt></ruby>す", "書きます": "<ruby>書<rt>か</rt></ruby>きます", "書けます": "<ruby>書<rt>か</rt></ruby>けます", "書ける": "<ruby>書<rt>か</rt></ruby>ける", "書く": "<ruby>書<rt>か</rt></ruby>く", "読みます": "<ruby>読<rt>よ</rt></ruby>みます", "読めます": "<ruby>読<rt>よ</rt></ruby>めます", "読める": "<ruby>読<rt>よ</rt></ruby>める", "読む": "<ruby>読<rt>よ</rt></ruby>む", "泳ぎます": "<ruby>泳<rt>およ</rt></ruby>ぎます", "泳げます": "<ruby>泳<rt>およ</rt></ruby>げます", "泳げる": "<ruby>泳<rt>およ</rt></ruby>げる", "待ちます": "<ruby>待<rt>ま</rt></ruby>ちます", "待てます": "<ruby>待<rt>ま</rt></ruby>てます", "待てる": "<ruby>待<rt>ま</rt></ruby>てる", "起きます": "<ruby>起<rt>お</rt></ruby>きます", "起きられます": "<ruby>起<rt>お</rt></ruby>きられます", "起きられる": "<ruby>起<rt>お</rt></ruby>きられる", "起きる": "<ruby>起<rt>お</rt></ruby>きる", "借ります": "<ruby>借<rt>か</rt></ruby>ります", "借りられます": "<ruby>借<rt>か</rt></ruby>りられます", "借りられる": "<ruby>借<rt>か</rt></ruby>りられる", "借りる": "<ruby>借<rt>か</rt></ruby>りる", "食べられます": "<ruby>食<rt>た</rt></ruby>べられます", "食べられる": "<ruby>食<rt>た</rt></ruby>べられる", "食べます": "<ruby>食<rt>た</rt></ruby>べます", "食べる": "<ruby>食<rt>た</rt></ruby>べる", "見られます": "<ruby>見<rt>み</rt></ruby>られます", "見られる": "<ruby>見<rt>み</rt></ruby>られる", "見えます": "<ruby>見<rt>み</rt></ruby>えます", "見ます": "<ruby>見<rt>み</rt></ruby>ます", "見る": "<ruby>見<rt>み</rt></ruby>る", "来られます": "<ruby>来<rt>こ</rt></ruby>られます", "来られる": "<ruby>来<rt>こ</rt></ruby>られる", "来ます": "<ruby>来<rt>き</rt></ruby>ます", "来る": "<ruby>来<rt>く</rt></ruby>る", "分かります": "<ruby>分<rt>わ</rt></ruby>かります", "分かれます": "<ruby>分<rt>わ</rt></ruby>かれます", "病院": "<ruby>病院<rt>びょういん</rt></ruby>", "行きます": "<ruby>行<rt>い</rt></ruby>きます", "行けます": "<ruby>行<rt>い</rt></ruby>けます", "田中さん": "<ruby>田中<rt>たなか</rt></ruby>さん", "会えません": "<ruby>会<rt>あ</rt></ruby>えません", "会えます": "<ruby>会<rt>あ</rt></ruby>えます", "英語": "<ruby>英語<rt>えいご</rt></ruby>", "漢字": "<ruby>漢字<rt>かんじ</rt></ruby>", "銀行": "<ruby>銀行<rt>ぎんこう</rt></ruby>", "新幹線": "<ruby>新幹線<rt>しんかんせん</rt></ruby>", "富士山": "<ruby>富士山<rt>ふじさん</rt></ruby>", "聞こえます": "<ruby>聞<rt>き</rt></ruby>こえます", "聞けます": "<ruby>聞<rt>き</rt></ruby>けます", "新宿": "<ruby>新宿<rt>しんじゅく</rt></ruby>", "映画": "<ruby>映画<rt>えいが</rt></ruby>", "電話": "<ruby>電話<rt>でんわ</rt></ruby>", "天気予報": "<ruby>天気予報<rt>てんきよほう</rt></ruby>", "先生": "<ruby>先生<rt>せんせい</rt></ruby>", "友達": "<ruby>友達<rt>ともだち</rt></ruby>", "修理": "<ruby>修理<rt>しゅうり</rt></ruby>", "旅行": "<ruby>旅行<rt>りょこう</rt></ruby>", "沖縄": "<ruby>沖縄<rt>おきなわ</rt></ruby>", "飛行機": "<ruby>飛行機<rt>ひこうき</rt></ruby>", "日曜日": "<ruby>日曜日<rt>にちようび</rt></ruby>", "乗れます": "<ruby>乗<rt>の</rt></ruby>れます", "学校": "<ruby>学校<rt>がっこう</rt></ruby>", "時計": "<ruby>時計<rt>とけい</rt></ruby>", "一人": "<ruby>一人<rt>ひとり</rt></ruby>", "音": "<ruby>音<rt>おと</rt></ruby>", "声": "<ruby>声<rt>こえ</rt></ruby>", "足": "<ruby>足<rt>あし</rt></ruby>", "傷": "<ruby>傷<rt>きず</rt></ruby>", "駅": "<ruby>駅<rt>えき</rt></ruby>", "前": "<ruby>前<rt>まえ</rt></ruby>", "母": "<ruby>母<rt>はは</rt></ruby>", "朝": "<ruby>朝<rt>あさ</rt></ruby>", "日本": "<ruby>日本<rt>にほん</rt></ruby>", "茶": "<ruby>茶<rt>ちゃ</rt></ruby>", "山": "<ruby>山<rt>やま</rt></ruby>", "時": "<ruby>時<rt>じ</rt></ruby>", "飲みます": "<ruby>飲<rt>の</rt></ruby>みます", "可能動詞": "<ruby>可能動詞<rt>かのうどうし</rt></ruby>", "転んで": "<ruby>転<rt>ころ</rt></ruby>んで", "転びます": "<ruby>転<rt>ころ</rt></ruby>びます"};
+
+        // Dynamic font resizing based on container width
+        const resizeObserver = new ResizeObserver(entries => {
+            for (let entry of entries) {
+                // Base width is 200px -> base font size 0.9rem
+                // If width becomes 400px, font size becomes 1.8rem
+                let newWidth = entry.contentRect.width;
+                let scale = Math.max(1, newWidth / 200);
+                vocabBox.style.fontSize = (0.9 * scale) + 'rem';
+                
+                // Also scale the title font size to keep it proportionate
+                document.getElementById('vocab-header').style.fontSize = (1 * scale) + 'rem';
+            }
+        });
+        resizeObserver.observe(vocabBox);
+
+        function updateVocab() {
+            const currentSlide = Reveal.getCurrentSlide();
+            if (!currentSlide) return;
+            
+            let rawHtml = currentSlide.innerHTML;
+            
+            const list = document.getElementById('vocab-list');
+            list.innerHTML = '';
+            let foundAny = false;
+            
+            let keys = Object.keys(vocabDict).sort((a, b) => b.length - a.length);
+            
+            for (let key of keys) {
+                let cleanText = rawHtml.replace(/<rt>.*?<\/rt>/g, '').replace(/<[^>]+>/g, '');
+                
+                if (cleanText.includes(key)) {
+                    let div = document.createElement('div');
+                    div.style.marginBottom = '4px';
+                    // Use furigana if available
+                    let displayWord = furiganaDict[key] || key;
+                    div.innerHTML = `<strong>* ${displayWord}:</strong> ${vocabDict[key]}`;
+                    list.appendChild(div);
+                    foundAny = true;
+                }
+            }
+            
+            if (!foundAny) {
+                list.innerHTML = '<div style="color:#aaa; font-style:italic;">Không có từ vựng ở trang này</div>';
+            }
+        }
+
+        Reveal.on('slidechanged', updateVocab);
+
+        
+
+        Reveal.on('ready', updateVocab);
+    </script>
+
+    
+    <!-- Nút toàn màn hình (Subtle) -->
+    <button id="fs-btn" onclick="toggleFullScreen()" title="Toàn màn hình" style="position:fixed; bottom:15px; left:15px; z-index:9999; background:rgba(0,0,0,0.1); color:#333; border:none; width:35px; height:35px; border-radius:50%; font-weight:bold; cursor:pointer; transition: all 0.2s; opacity: 0.5; display: flex; justify-content: center; align-items: center;" onmouseover="this.style.opacity='1'; this.style.background='rgba(0,0,0,0.2)'" onmouseout="this.style.opacity='0.5'; this.style.background='rgba(0,0,0,0.1)'">
+        <span style="font-size:1.2rem; line-height: 1;">⛶</span>
+    </button>
+    <script>
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+                document.querySelector('#fs-btn span').innerText = '✖';
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                    document.querySelector('#fs-btn span').innerText = '⛶';
+                }
+            }
+        }
+    </script>
+    
+    <!-- Whiteboard Script -->
+    <script src="whiteboard.js"></script>
+</body>
+
+
+
+</html>
