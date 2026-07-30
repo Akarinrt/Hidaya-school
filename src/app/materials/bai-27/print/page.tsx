@@ -1,10 +1,10 @@
-import React from 'react';
-
-export const metadata = {
-  title: 'Tài liệu In ấn - Bài 27',
-};
+'use client';
+import React, { useEffect } from 'react';
 
 export default function MaterialPrintPage() {
+  useEffect(() => {
+    document.title = 'Tài liệu In ấn - Bài 27';
+  }, []);
   return (
     <div style={{ fontFamily: '"Times New Roman", serif', color: '#000', background: '#fff', padding: '0', maxWidth: '800px', margin: '0 auto', fontSize: '12pt', lineHeight: 1.5 }}>
       {/* CSS for printing */}
