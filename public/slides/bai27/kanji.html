@@ -1,444 +1,187 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kanji Bài 26</title>
+    <title>Bài 27 - Kanji</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .kanji-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 10px; }
-        .kanji-card { padding: 10px; display: flex; }
-        .kanji-char-box { width: 100px; display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: transform 0.2s;}
-        .kanji-char-box:hover { transform: scale(1.05); }
-        .kanji-svg-container { width: 80px; height: 80px; background: #f9f9f9; border-radius: 8px; border: 1px solid #eee; display: flex; justify-content: center; align-items: center; }
-        .zoom-hint { font-size: 0.75rem; color: #1976d2; margin-top: 5px; font-weight: bold; background: #e3f2fd; padding: 2px 8px; border-radius: 10px; }
+        .kanji-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 20px; }
+        .kanji-card { background: rgba(255, 255, 255, 0.95); border-radius: 15px; padding: 15px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: transform 0.3s; color: #333; position: relative; }
+        .kanji-card:hover { transform: translateY(-5px) scale(1.02); }
+        .kanji-char-box { width: 100%; height: 150px; background: #f0f4f8; border-radius: 10px; margin-bottom: 15px; display: flex; justify-content: center; align-items: center; cursor: pointer; position: relative; border: 2px dashed #bbdefb; }
+        .kanji-char-box:hover { border-color: #1976d2; background: #e3f2fd; }
+        .kanji-svg-container { width: 120px; height: 120px; display: flex; justify-content: center; align-items: center; }
+        .zoom-hint { position: absolute; bottom: 5px; right: 5px; font-size: 0.8rem; color: #666; background: rgba(255,255,255,0.8); padding: 2px 5px; border-radius: 5px; pointer-events: none; }
+        .kanji-meaning { font-size: 1.8rem; font-weight: bold; color: #d32f2f; margin-bottom: 5px; }
+        .kanji-reading { font-size: 1.2rem; color: #0b1f38; background: #e0f2f1; padding: 5px; border-radius: 5px; margin-top: 5px; }
+        .kanji-example { font-size: 1.2rem; color: #424242; margin-top: 10px; font-style: italic; }
         
-        .kanji-meaning { font-weight: bold; margin-top: 5px; color: #d32f2f; }
-        .kanji-details { text-align: left; margin-left: 15px; flex: 1; font-size: 1rem;}
-        .kanji-reading span { font-weight: bold; color: #1976d2; }
-        .kanji-ex { margin-top: 10px; background: #f5f5f5; padding: 8px; border-radius: 6px; font-size: 0.9rem;}
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; justify-content: center; align-items: center; }
+        .modal.active { display: flex; }
+        .modal-content { background: white; padding: 30px; border-radius: 20px; width: 90%; max-width: 800px; display: flex; gap: 30px; position: relative; color: #333; }
+        .modal-close { position: absolute; top: -15px; right: -15px; width: 40px; height: 40px; background: #d32f2f; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: bold; cursor: pointer; border: 3px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .modal-left { flex: 1; display: flex; flex-direction: column; align-items: center; }
+        .modal-right { flex: 2; display: flex; flex-direction: column; justify-content: center; }
+        .modal-char-container { width: 250px; height: 250px; border: 3px dashed #1976d2; border-radius: 15px; display: flex; justify-content: center; align-items: center; margin-bottom: 20px; background: #f8faff; }
+        .modal-title { font-size: 3rem; font-weight: bold; color: #d32f2f; margin-bottom: 10px; text-transform: uppercase; }
+        .modal-desc { font-size: 1.5rem; line-height: 1.6; color: #333; }
+        .btn-animate { padding: 10px 20px; background: #1976d2; color: white; border: none; border-radius: 8px; font-size: 1.2rem; cursor: pointer; font-weight: bold; box-shadow: 0 4px 10px rgba(25,118,210,0.3); transition: all 0.2s; }
+        .btn-animate:hover { background: #1565c0; transform: translateY(-2px); }
         
-        /* Modal for zoomed Kanji */
-        #kanji-modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center; flex-direction: column;
-        }
-        #kanji-modal.active { display: flex; }
-        #modal-char-container { width: 300px; height: 300px; background: white; border-radius: 16px; padding: 20px; margin-bottom: 15px; box-shadow: 0 0 30px rgba(255,255,255,0.3); cursor: pointer; }
-        #modal-meaning { font-size: 3.5rem; color: #ffb7b2; font-weight: bold; margin-bottom: 10px;}
-        #modal-memo { font-size: 1.5rem; color: #ddd; max-width: 800px; text-align: left; line-height: 1.5; padding-top: 15px; }
-        .close-btn { position: absolute; top: 20px; right: 40px; font-size: 4rem; color: white; cursor: pointer; }
-        .modal-hint { color: #fff; font-size: 1rem; margin-top: 10px; opacity: 0.7; }
-    
-        /* --- VIBRANT & CRISP UI --- */
-        body {
-            background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%) !important;
-        }
-        .reveal p, .reveal li {
-            font-size: 1.6rem !important;
-            line-height: 1.6 !important;
-            color: #0b1f38 !important; /* Deep Navy */
-        }
-        .reveal h1, .reveal h2, .reveal h3 {
-            background: none !important;
-            -webkit-text-fill-color: #0052cc !important; /* Vibrant Blue */
-            text-shadow: none !important;
-            font-weight: 800 !important;
-        }
-        
-        .box-highlight {
-            font-size: 1.8rem !important;
-            background: #ffffff !important;
-            border-left: 8px solid #0052cc !important;
-            border-radius: 12px !important;
-            padding: 25px !important;
-            color: #0052cc !important;
-            box-shadow: 0 15px 35px rgba(0, 82, 204, 0.1) !important;
-            font-weight: bold;
-        }
-        
-        .grammar-example {
-            font-size: 1.8rem !important;
-            padding: 25px !important;
-            background: #ffffff !important;
-            border: 2px solid #e1efff !important;
-            border-radius: 16px !important;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
-        }
-        
-        .trans {
-            font-size: 1.4rem !important;
-            color: #5c728a !important;
-            display: block;
-            margin-top: 10px;
-        }
-        
-        /* Kanji Cards 3D */
-        .kanji-grid { gap: 25px !important; margin-top: 30px !important;}
-        .kanji-card {
-            background: #ffffff !important;
-            border-radius: 20px !important;
-            padding: 20px !important;
-            box-shadow: 0 10px 30px rgba(0, 82, 204, 0.1) !important;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease !important;
-            border: none !important;
-        }
-        .kanji-card:hover {
-            transform: translateY(-10px) !important;
-            box-shadow: 0 20px 40px rgba(0, 82, 204, 0.2) !important;
-        }
-        .kanji-svg-container {
-            width: 100px !important; height: 100px !important;
-            background: #f0f7ff !important;
-            border: 2px solid #cce4ff !important;
-            border-radius: 16px !important;
-        }
-        .kanji-char-box span { font-size: 4rem !important; }
-        .kanji-details { font-size: 1.4rem !important; line-height: 1.5 !important; }
-        
-        /* Badges */
-        .badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 1rem;
-            font-weight: bold;
-            color: white;
-            margin-right: 5px;
-            margin-bottom: 5px;
-        }
-        .badge.on { background: #ff6b6b; box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3); }
-        .badge.kun { background: #20c997; box-shadow: 0 4px 10px rgba(32, 201, 151, 0.3); }
-        
-        .kanji-ex {
-            font-size: 1.3rem !important;
-            background: #f8fbff !important;
-            border-left: 4px solid #0052cc !important;
-            padding: 15px !important;
-            border-radius: 0 12px 12px 0 !important;
-        }
-    
-        .print-btn-slide {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: #d32f2f;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            font-size: 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-            z-index: 9999;
-            font-weight: bold;
-        }
-        .print-btn-slide:hover { background: #b71c1c; }
-        
+        .print-btn-slide { position: fixed; top: 20px; left: 20px; z-index: 9999; background: #d32f2f; color: white; border: 2px solid white; padding: 10px 15px; border-radius: 30px; font-weight: bold; font-family: 'Plus Jakarta Sans', sans-serif; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s ease; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .print-btn-slide:hover { background: #b71c1c; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
+
         @media print {
             .print-btn-slide { display: none !important; }
             .vocab-box { display: none !important; }
             .audio-btn { display: none !important; }
-            /* Khắc phục lỗi bị đè chữ khi in Reveal.js */
-            
         }
-    
         @media print {
             .fragment { opacity: 1 !important; visibility: visible !important; }
         }
-    
-</style>
+    </style>
 </head>
 <body>
-    <!-- Nút in PDF -->
-    <button class="print-btn-slide no-print" onclick="window.location.search = '?print-pdf';">🖨 In trang PDF</button>
+    <button onclick="window.location.href='?print-pdf'" class="print-btn-slide">
+        🖨 In trang PDF
+    </button>
+    <div class="reveal">
+        <div class="slides">
+            <section data-background-gradient="linear-gradient(135deg, #0b1f38 0%, #1a365d 100%)">
+                <h1 style="color: #64b5f6; font-weight: 900; font-size: 4rem; text-shadow: 0 10px 30px rgba(0,0,0,0.5);">漢字 - KANJI</h1>
+                <h2 style="color: #fff; font-size: 2.5rem; margin-top: 20px;">Bài 27: Năng lực & Giao thông</h2>
+                <div style="width: 100px; height: 5px; background: #d32f2f; margin: 30px auto; border-radius: 5px;"></div>
+                <p style="color: #b0bec5; font-size: 1.5rem;">空・業・鳥・通・味・運・転・力・色</p>
+                <div style="margin-top: 50px;">
+                    <p class="fragment" style="color: #81c784; font-size: 1.3rem;">👇 Ấn phím mũi tên hoặc quẹt ngang để học</p>
+                </div>
+            </section>
 
-    <div class="reveal"><div class="slides">
-        <section class="title-slide">
-            <h1>Từ Vựng Kanji Bài 26</h1>
-            <h3>Tiếng Nhật N4</h3>
-            <p class="fragment" style="color:#d32f2f; font-size:1.1rem; margin-top:30px;">(Nhấn phím Mũi tên hoặc Space để tiếp tục)</p>
-            <div style="margin-top: 20px;">
-                <a href="nguphap.html" style="font-size: 1.2rem; background: #1976d2; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Chuyển sang Ngữ Pháp Bài 27</a>
+            <section data-background="#f5f7fa">
+                <h2 style="color: #0b1f38; margin-bottom: 30px; font-weight: 800;">Nhóm 1: Tự nhiên & Nghề nghiệp</h2>
+                <div class="kanji-grid">
+                    <div class="kanji-card fragment">
+                        <div class="kanji-char-box" onclick='showModal("空", "Không", "<div style=\"text-align:left;\"><p><strong>🔍 Phân tích chi tiết:</strong><br>- 穴 (Huyệt): cái lỗ.<br>- 工 (Công): công việc.</p><p><strong>💡 Cách nhớ:</strong> Đào một cái lỗ (Huyệt) để làm việc (Công) thì thấy trống KHÔNG, có thấy gì đâu!</p></div>")'>
+                            <div id="svg-container-空" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">空</span></div>
+                            <div class="zoom-hint">👆 Vẽ nét</div>
+                        </div>
+                        <div class="kanji-meaning">Không</div>
+                        <div class="kanji-reading">そら、あ(く) / クウ</div>
+                        <div class="kanji-example">空気 (くうき): Không khí<br>空 (そら): Bầu trời</div>
+                    </div>
+
+                    <div class="kanji-card fragment">
+                        <div class="kanji-char-box" onclick='showModal("業", "Nghiệp", "<div style=\"text-align:left;\"><p><strong>🔍 Phân tích chi tiết:</strong><br>- Hình ảnh con Dê (羊) đứng trên bộ Nhất (一), bên dưới có bộ Mộc (木).</p><p><strong>💡 Cách nhớ:</strong> Dắt con Dê lên trên cành Cây làm NGHIỆP vụ xiếc.</p></div>")'>
+                            <div id="svg-container-業" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">業</span></div>
+                            <div class="zoom-hint">👆 Vẽ nét</div>
+                        </div>
+                        <div class="kanji-meaning">Nghiệp</div>
+                        <div class="kanji-reading">わざ / ギョウ</div>
+                        <div class="kanji-example">授業 (じゅぎょう): Giờ học<br>工業 (こうぎょう): Công nghiệp</div>
+                    </div>
+
+                    <div class="kanji-card fragment">
+                        <div class="kanji-char-box" onclick='showModal("鳥", "Điểu", "<div style=\"text-align:left;\"><p><strong>🔍 Phân tích chi tiết:</strong><br>- Đây là chữ tượng hình, vẽ hình con chim có mỏ, mắt, thân và 4 dấu phẩy tượng trưng cho đuôi hoặc chân.</p><p><strong>💡 Cách nhớ:</strong> Con chim (ĐIỂU) đang xòe cánh bay.</p></div>")'>
+                            <div id="svg-container-鳥" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">鳥</span></div>
+                            <div class="zoom-hint">👆 Vẽ nét</div>
+                        </div>
+                        <div class="kanji-meaning">Điểu</div>
+                        <div class="kanji-reading">とり / チョウ</div>
+                        <div class="kanji-example">鳥 (とり): Con chim<br>小鳥 (ことり): Chim non</div>
+                    </div>
+                </div>
+            </section>
+
+            <section data-background="#f5f7fa">
+                <h2 style="color: #0b1f38; margin-bottom: 30px; font-weight: 800;">Nhóm 2: Giao thông & Hoạt động</h2>
+                <div class="kanji-grid">
+                    <div class="kanji-card fragment">
+                        <div class="kanji-char-box" onclick='showModal("通", "Thông", "<div style=\"text-align:left;\"><p><strong>🔍 Phân tích chi tiết:</strong><br>- 辶 (Xước): bước đi.<br>- 用 (Dụng): dùng.</p><p><strong>💡 Cách nhớ:</strong> Dùng (用) chân bước đi (辶) xuyên qua mọi con đường thật hanh THÔNG.</p></div>")'>
+                            <div id="svg-container-通" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">通</span></div>
+                            <div class="zoom-hint">👆 Vẽ nét</div>
+                        </div>
+                        <div class="kanji-meaning">Thông</div>
+                        <div class="kanji-reading">とお(る) / ツウ</div>
+                        <div class="kanji-example">交通 (こうつう): Giao thông<br>通ります: Đi qua</div>
+                    </div>
+
+                    <div class="kanji-card fragment">
+                        <div class="kanji-char-box" onclick='showModal("運", "Vận", "<div style=\"text-align:left;\"><p><strong>🔍 Phân tích chi tiết:</strong><br>- 辶 (Xước): bước đi.<br>- 軍 (Quân): quân đội.</p><p><strong>💡 Cách nhớ:</strong> Quân đội (軍) đang hành quân (辶) đi VẬN chuyển lương thực.</p></div>")'>
+                            <div id="svg-container-運" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">運</span></div>
+                            <div class="zoom-hint">👆 Vẽ nét</div>
+                        </div>
+                        <div class="kanji-meaning">Vận</div>
+                        <div class="kanji-reading">はこ(ぶ) / ウン</div>
+                        <div class="kanji-example">運動 (うんどう): Vận động<br>運びます: Vận chuyển</div>
+                    </div>
+
+                    <div class="kanji-card fragment">
+                        <div class="kanji-char-box" onclick='showModal("転", "Chuyển", "<div style=\"text-align:left;\"><p><strong>🔍 Phân tích chi tiết:</strong><br>- 車 (Xa): xe cộ.<br>- 云 (Vân): nói / đám mây.</p><p><strong>💡 Cách nhớ:</strong> Xe (車) lăn bánh CHUYỂN động kêu vân vân (云).</p></div>")'>
+                            <div id="svg-container-転" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">転</span></div>
+                            <div class="zoom-hint">👆 Vẽ nét</div>
+                        </div>
+                        <div class="kanji-meaning">Chuyển</div>
+                        <div class="kanji-reading">ころ(がる) / テン</div>
+                        <div class="kanji-example">自転車 (じてんしゃ): Xe đạp<br>運転 (うんてん): Lái xe</div>
+                    </div>
+                </div>
+            </section>
+
+            <section data-background="#f5f7fa">
+                <h2 style="color: #0b1f38; margin-bottom: 30px; font-weight: 800;">Nhóm 3: Sức lực & Cảm quan</h2>
+                <div class="kanji-grid">
+                    <div class="kanji-card fragment">
+                        <div class="kanji-char-box" onclick='showModal("力", "Lực", "<div style=\"text-align:left;\"><p><strong>🔍 Phân tích chi tiết:</strong><br>- Chữ tượng hình, vẽ hình cánh tay đang gồng lên cuồn cuộn.</p><p><strong>💡 Cách nhớ:</strong> Hình bắp tay đang gồng lên đầy sức LỰC.</p></div>")'>
+                            <div id="svg-container-力" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">力</span></div>
+                            <div class="zoom-hint">👆 Vẽ nét</div>
+                        </div>
+                        <div class="kanji-meaning">Lực</div>
+                        <div class="kanji-reading">ちから / リョク、リキ</div>
+                        <div class="kanji-example">力 (ちから): Sức lực<br>電力 (でんりょく): Điện lực</div>
+                    </div>
+
+                    <div class="kanji-card fragment">
+                        <div class="kanji-char-box" onclick='showModal("色", "Sắc", "<div style=\"text-align:left;\"><p><strong>🔍 Phân tích chi tiết:</strong><br>- Phần trên giống bộ Đao, phần dưới giống chữ Ba.</p><p><strong>💡 Cách nhớ:</strong> SẮC mặt biến đổi khi bị kề đao vào cổ.</p></div>")'>
+                            <div id="svg-container-色" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">色</span></div>
+                            <div class="zoom-hint">👆 Vẽ nét</div>
+                        </div>
+                        <div class="kanji-meaning">Sắc</div>
+                        <div class="kanji-reading">いろ / ショク、シキ</div>
+                        <div class="kanji-example">色 (いろ): Màu sắc<br>景色 (けしき): Phong cảnh</div>
+                    </div>
+                    
+                    <div class="kanji-card fragment">
+                        <div class="kanji-char-box" onclick='showModal("味", "Vị", "<div style=\"text-align:left;\"><p><strong>🔍 Phân tích chi tiết:</strong><br>- 口 (Khẩu): cái miệng.<br>- 未 (Vị): chưa (chưa tới).</p><p><strong>💡 Cách nhớ:</strong> Đưa lên miệng (口) nếm thử cái cây chưa (未) chín xem VỊ thế nào.</p></div>")'>
+                            <div id="svg-container-味" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">味</span></div>
+                            <div class="zoom-hint">👆 Vẽ nét</div>
+                        </div>
+                        <div class="kanji-meaning">Vị</div>
+                        <div class="kanji-reading">あじ / ミ</div>
+                        <div class="kanji-example">味 (あじ): Vị<br>意味 (いみ): Ý nghĩa</div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Modal hiển thị nét chữ -->
+    <div id="kanji-modal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-close" onclick="closeModal(event)">×</div>
+            <div class="modal-left">
+                <div id="modal-char-container" class="modal-char-container"></div>
+                <button class="btn-animate" onclick="triggerAnimation()">▶ Vẽ lại nét</button>
             </div>
-        </section>
-<section><h2>Kanji Bài 26 (Phần 1)</h2><div class="kanji-grid">
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("悪", "Ác", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 亜 (Á): ngục tối. Gồm: 一 (Nhất - trần nhà), 口 (Khẩu - ô giam), 丷 (Bát - 2 vách ngăn), 一 (Nhất - nền nhà).<br>- 心 (Tâm): trái tim.</p><p><strong>💡 Cách nhớ:</strong> Trái tim (心) bị giam trong ngục tối (亜) 4 bề bị kẹp chặt, lâu ngày sinh ra độc ÁC!</p></div>")'>
-                    <div id="svg-container-悪" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">悪</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Ác</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> アク、オ | <span class="badge kun">KUN</span> わる(い)</div>
-                    <div class="kanji-ex"><div>悪い(わるい - Ác): xấu</div><div>悪口(わるぐち - Ác Khẩu): nói xấu</div><div>最悪(さいあく - Tối Ác): tồi tệ nhất</div></div>
-                </div>
+            <div class="modal-right">
+                <div id="modal-title" class="modal-title"></div>
+                <div id="modal-desc" class="modal-desc"></div>
             </div>
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("急", "Cấp", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- ⺈ (Đao): con dao (biến thể nằm trên cùng).<br>- 彐 (Ký): cái mõm heo (ở giữa).<br>- 心 (Tâm): trái tim (dưới cùng).</p><p><strong>💡 Cách nhớ:</strong> Bị dí con dao (⺈) đuổi theo cái mõm heo (彐) khiến trái tim (心) đập thình thịch vội vã, CẤP bách!</p></div>")'>
-                    <div id="svg-container-急" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">急</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Cấp</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> キュウ | <span class="badge kun">KUN</span> いそ(ぐ)</div>
-                    <div class="kanji-ex"><div>急ぐ(いそぐ - Cấp): vội vã</div><div>急行(きゅうこう - Cấp Hành): tàu tốc hành</div><div>急に(きゅうに - Cấp): đột nhiên</div></div>
-                </div>
-            </div>
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("去", "Khứ", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 土 (Thổ): mặt đất (gồm 十 Thập và 一 Nhất cắm xuống đất).<br>- 厶 (Tư): riêng tư, một cá nhân.</p><p><strong>💡 Cách nhớ:</strong> Một cá nhân (厶) bỏ xứ rời vùng đất (土) này, để mọi chuyện vào QUÁ KHỨ.</p></div>")'>
-                    <div id="svg-container-去" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">去</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Khứ</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> キョ、コ | <span class="badge kun">KUN</span> さ(る)</div>
-                    <div class="kanji-ex"><div>去年(きょねん - Khứ Niên): năm ngoái</div><div>過去(かこ - Quá Khứ): quá khứ</div></div>
-                </div>
-            </div>
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("紙", "Chỉ", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 糸 (Mịch): sợi tơ (gồm 幺 Yêu - sợi tơ nhỏ, Tiểu 小 dưới).<br>- 氏 (Thị): dòng họ (gồm 丿 Phiệt - phẩy, 一 Nhất - ngang, 𠄌 Quyết - cong móc).</p><p><strong>💡 Cách nhớ:</strong> Giấy (CHỈ 紙) làm từ tơ (糸) để chép gia phả dòng họ (氏).</p></div>")'>
-                    <div id="svg-container-紙" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">紙</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Chỉ</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> シ | <span class="badge kun">KUN</span> かみ、がみ</div>
-                    <div class="kanji-ex"><div>紙(かみ - Chỉ): giấy</div><div>手紙(てがみ - Thủ Chỉ): bức thư</div><div>折り紙(おりがみ - Chiết Chỉ): xếp giấy Origami</div></div>
-                </div>
-            </div></div></section><section><h2>Kanji Bài 26 (Phần 2)</h2><div class="kanji-grid">
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("首", "Thủ", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 丷 (Bát): hai cái sừng/tóc mọc lún phún.<br>- 一 (Nhất): đường gạch ngang đỉnh.<br>- 自 (Tự): tự mình (gồm 丿 Phiệt phẩy và 目 Mục mắt).</p><p><strong>💡 Cách nhớ:</strong> Mọc 2 sừng (丷) trên đỉnh (一) của chính bản thân (自), đó là cái THỦ (đầu/cổ).</p></div>")'>
-                    <div id="svg-container-首" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">首</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Thủ</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> シュ | <span class="badge kun">KUN</span> くび</div>
-                    <div class="kanji-ex"><div>首(くび - Thủ): cái cổ</div><div>首都(しゅと - Thủ Đô): thủ đô</div><div>首相(しゅしょう - Thủ Tướng): thủ tướng</div></div>
-                </div>
-            </div>
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("県", "Huyện", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 目 (Mục): con mắt.<br>- 𠃊 (Ấn): nét gập che khuất.<br>- 小 (Tiểu): nhỏ bé (gồm J Quyết và 八 Bát 2 bên).</p><p><strong>💡 Cách nhớ:</strong> Quan mở to mắt (目) nhòm qua góc khuất (𠃊) giám sát các Tỉnh HUYỆN (県) nhỏ (小).</p></div>")'>
-                    <div id="svg-container-県" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">県</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Huyện</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> ケン | <span class="badge kun">KUN</span> —</div>
-                    <div class="kanji-ex"><div>県(けん - Huyện): tỉnh (đơn vị hành chính Nhật)</div><div>県知事(けんちじ - Huyện Tri Sự): chủ tịch tỉnh</div></div>
-                </div>
-            </div>
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("都", "Đô", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 者 (Giả): người. Gồm 耂 Lão (đất 土 + phẩy 丿) và 日 (Nhật - mặt trời).<br>- 阝 (Ấp): vùng đất.</p><p><strong>💡 Cách nhớ:</strong> Vùng đất (阝) mà có vô số người (者) đổ xô sống chen chúc là Kinh ĐÔ (都)!</p></div>")'>
-                    <div id="svg-container-都" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">都</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Đô</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> ト、ツ | <span class="badge kun">KUN</span> みやこ</div>
-                    <div class="kanji-ex"><div>都市(とし - Đô Thị): thành phố</div><div>首都(しゅと - Thủ Đô): thủ đô</div><div>京都(きょうと - Kinh Đô): thành phố Kyoto</div></div>
-                </div>
-            </div>
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("速", "Tốc", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 辶 (Xước): bước đi.<br>- 束 (Thúc): bó lại. Gồm 木 (Mộc - cây) bị vòng 口 (Khẩu - dây/bao) quấn ngang.</p><p><strong>💡 Cách nhớ:</strong> Bó (束) gọn hành lý lại rồi phóng đi (辶) vèo vèo với TỐC độ cao!</p></div>")'>
-                    <div id="svg-container-速" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">速</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Tốc</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> ソク | <span class="badge kun">KUN</span> はや(い)</div>
-                    <div class="kanji-ex"><div>速い(はやい - Tốc): nhanh</div><div>速度(そくど - Tốc Độ): tốc độ</div><div>速達(そくたつ - Tốc Đạt): chuyển phát nhanh</div></div>
-                </div>
-            </div></div></section><section><h2>Kanji Bài 26 (Phần 3)</h2><div class="kanji-grid">
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("直", "Trực", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 十 (Thập): số mười.<br>- 目 (Mục): con mắt.<br>- ∟ (Ấn góc vuông): đường thẳng.</p><p><strong>💡 Cách nhớ:</strong> Mười (十) con mắt (目) cùng lườm một đường thẳng (TRỰC) tắp để tìm lỗi sai mà sửa.</p></div>")'>
-                    <div id="svg-container-直" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">直</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Trực</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> チョク、ジキ | <span class="badge kun">KUN</span> なお(す)</div>
-                    <div class="kanji-ex"><div>直す(なおす - Trực): sửa chữa</div><div>直接(ちょくせつ - Trực Tiếp): trực tiếp</div><div>正直(しょうじき - Chính Trực): trung thực</div></div>
-                </div>
-            </div>
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("接", "Tiếp", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 扌 (Thủ): tay.<br>- 妾 (Thiếp): vợ lẽ. Gồm 立 (Lập - đứng) đội trên đầu 女 (Nữ - phụ nữ chéo chân).</p><p><strong>💡 Cách nhớ:</strong> Chìa tay (扌) ra TIẾP đón người phụ nữ (女) đang đứng (立) chờ.</p></div>")'>
-                    <div id="svg-container-接" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">接</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Tiếp</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> セツ | <span class="badge kun">KUN</span> つ(ぐ)</div>
-                    <div class="kanji-ex"><div>接する(せっする - Tiếp): tiếp xúc</div><div>接続(せつぞく - Tiếp Tục): kết nối internet</div><div>面接(めんせつ - Diện Tiếp): phỏng vấn</div></div>
-                </div>
-            </div>
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("湯", "Thang", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 氵 (Thủy): 3 giọt nước.<br>- 昜 (Bính): Gồm 日 (Nhật - mặt trời), 一 (Nhất - đường chân trời), 勿 (Vật - gồm 勹 Bao bọc và 2 nét phẩy 丿).</p><p><strong>💡 Cách nhớ:</strong> Nước (氵) phơi dưới ánh mặt trời (日) chói chang thì sôi sục như chảo THANG thuốc!</p></div>")'>
-                    <div id="svg-container-湯" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">湯</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Thang</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> トウ | <span class="badge kun">KUN</span> ゆ</div>
-                    <div class="kanji-ex"><div>お湯(おゆ - Thang): nước nóng</div><div>銭湯(せんとう - Tiền Thang): nhà tắm công cộng</div></div>
-                </div>
-            </div>
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("探", "Thám", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 扌 (Thủ): cái tay.<br>- 罙 (Thâm): sâu thẳm. Gồm 冖 (Mịch - trùm khăn/đêm tối), 八 (Bát - chia cắt), 木 (Mộc - cây).</p><p><strong>💡 Cách nhớ:</strong> Dùng tay (扌) thò vào hốc cây (木) vừa tối (冖) vừa sâu để THÁM thính xem có gì.</p></div>")'>
-                    <div id="svg-container-探" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">探</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Thám</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> タン | <span class="badge kun">KUN</span> さが(す)</div>
-                    <div class="kanji-ex"><div>探す(さがす - Thám): tìm kiếm</div><div>探検(たんけん - Thám Hiểm): thám hiểm</div></div>
-                </div>
-            </div></div></section><section><h2>Kanji Bài 26 (Phần 4)</h2><div class="kanji-grid">
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("参", "Tham", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 厶 (Tư): góc khuất riêng tư.<br>- 大 (Đại): to lớn (gồm 一 ngang và 人 người).<br>- 彡 (Sam): 3 nét phẩy liên tiếp.</p><p><strong>💡 Cách nhớ:</strong> Ba (彡) gã to lớn (大) lén lút (厶) THAM gia tổ chức hội nhóm bí mật!</p></div>")'>
-                    <div id="svg-container-参" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">参</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Tham</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> サン | <span class="badge kun">KUN</span> まい(る)</div>
-                    <div class="kanji-ex"><div>参加(さんか - Tham Gia): tham gia</div><div>参考(さんこう - Tham Khảo): tham khảo</div><div>参る(まいる - Tham): đi/đến (khiêm nhường)</div></div>
-                </div>
-            </div>
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("寺", "Tự", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 土 (Thổ): mặt đất (gồm 十 cắm trên ngang 一).<br>- 寸 (Thốn): tấc, đoạn rất ngắn (gồm đường ngang, sổ dọc cong móc và dấu phẩy chấm 丶).</p><p><strong>💡 Cách nhớ:</strong> Từng tấc (寸) đất (土) thời nay đều đắt đỏ, chỉ có xây TỰ (chùa) mới yên ổn.</p></div>")'>
-                    <div id="svg-container-寺" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">寺</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Tự</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> ジ | <span class="badge kun">KUN</span> てら</div>
-                    <div class="kanji-ex"><div>寺(てら - Tự): chùa</div><div>お寺(おてら - Tự): ngôi chùa</div></div>
-                </div>
-            </div>
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("勝", "Thắng", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 月 (Nhục): cơ bắp, mỡ.<br>- 龹 (Quyển): cuộn lại (gồm 丷 Bát, 二 Nhị và 人 Nhân).<br>- 力 (Lực): sức mạnh (nét phẩy ngang móc).</p><p><strong>💡 Cách nhớ:</strong> Dùng cơ bắp (月) bung hết sức (力) cuộn (龹) đối thủ lại để giành phần THẮNG!</p></div>")'>
-                    <div id="svg-container-勝" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">勝</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Thắng</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> ショウ | <span class="badge kun">KUN</span> か(つ)</div>
-                    <div class="kanji-ex"><div>勝つ(かつ - Thắng): chiến thắng</div><div>勝負(しょうぶ - Thắng Phụ): trận thi đấu</div><div>優勝(ゆうしょう - Ưu Thắng): vô địch</div></div>
-                </div>
-            </div>
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("負", "Phụ", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- ⺈ (Đao): con dao (viết dẹt ở trên cùng).<br>- 貝 (Bối): vỏ sò/tiền bạc (gồm 目 Mục mắt và ハ Bát chân rết ở dưới).</p><p><strong>💡 Cách nhớ:</strong> Nợ tiền (貝) đầm đìa bị kề con dao (⺈) vào cổ thì thôi, nhận PHỤ (thua) luôn cho giữ mạng!</p></div>")'>
-                    <div id="svg-container-負" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">負</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Phụ</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> フ | <span class="badge kun">KUN</span> ま(ける)</div>
-                    <div class="kanji-ex"><div>負ける(まける - Phụ): thua</div><div>負担(ふたん - Phụ Đảm): gánh vác, chịu chi phí</div></div>
-                </div>
-            </div></div></section><section><h2>Kanji Bài 26 (Phần 5)</h2><div class="kanji-grid">
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("願", "Nguyện", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 原 (Nguyên): cội nguồn. Gồm 厂 Hán (sườn núi), 白 Bạch (màu trắng), 小 Tiểu (nhỏ).<br>- 頁 (Hiệt): cái đầu (gồm 一 Nhất, 丆 phẩy, 目 Mục, 八 Bát).</p><p><strong>💡 Cách nhớ:</strong> Cúi đầu (頁) hướng về cội nguồn (原) tổ tiên cầu NGUYỆN trúng số.</p></div>")'>
-                    <div id="svg-container-願" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">願</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Nguyện</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> ガン | <span class="badge kun">KUN</span> ねが(う)</div>
-                    <div class="kanji-ex"><div>願う(ねがう - Nguyện): cầu mong</div><div>お願い(おねがい - Nguyện): xin nhờ vả</div><div>願書(がんしょ - Nguyện Thư): đơn xin</div></div>
-                </div>
-            </div>
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("座", "Tọa", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 广 (Nghiễm): mái hiên (gồm 丶 chấm và 厂 sườn ngang phẩy).<br>- 从 (Tòng): hai người (2 chữ 人 Nhân).<br>- 土 (Thổ): mặt đất.</p><p><strong>💡 Cách nhớ:</strong> Dưới mái hiên (广), hai người (从) nhàn rỗi TỌA (ngồi) bệt trên đất (土).</p></div>")'>
-                    <div id="svg-container-座" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">座</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Tọa</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> ザ | <span class="badge kun">KUN</span> すわ(る)</div>
-                    <div class="kanji-ex"><div>座る(すわる - Tọa): ngồi</div><div>座席(ざせき - Tọa Tịch): chỗ ngồi</div><div>星座(せいざ - Tinh Tọa): chòm sao</div></div>
-                </div>
-            </div>
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("眠", "Miên", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 目 (Mục): con mắt (hình chữ nhật có 2 gạch ngang).<br>- 民 (Dân): người dân. Gồm 尸 (Thi - thi thể/người cong lưng) + Nét ngang sổ móc lên.</p><p><strong>💡 Cách nhớ:</strong> Người dân (民) làm lụng cực nhọc, giờ chỉ muốn nhắm mắt (目) chìm vào giấc MIÊN (ngủ).</p></div>")'>
-                    <div id="svg-container-眠" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">眠</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Miên</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> ミン | <span class="badge kun">KUN</span> ねむ(る)</div>
-                    <div class="kanji-ex"><div>眠る(ねむる - Miên): ngủ</div><div>眠い(ねむい - Miên): buồn ngủ</div><div>睡眠(すいみん - Thụy Miên): giấc ngủ</div></div>
-                </div>
-            </div>
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("狭", "Hiệp", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 犭 (Khuyển): con chó (gồm phẩy 丶, sổ móc 亅, phẩy 丿).<br>- 夾 (Giáp): kẹp chặt. Gồm 大 Đại kẹp 2 chữ 人 Nhân 2 bên.</p><p><strong>💡 Cách nhớ:</strong> Tội nghiệp con chó (犭) chạy trốn bị kẹp (夾) trong hẻm HIỆP (hẹp) không lùi ra được.</p></div>")'>
-                    <div id="svg-container-狭" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">狭</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Hiệp</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> キョウ | <span class="badge kun">KUN</span> せま(い)</div>
-                    <div class="kanji-ex"><div>狭い(せまい - Hiệp): chật hẹp</div><div>狭める(せばめる - Hiệp): làm hẹp lại</div></div>
-                </div>
-            </div></div></section><section><h2>Kanji Bài 26 (Phần 6)</h2><div class="kanji-grid">
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("甘", "Cam", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 廿 (Nhập): số 20 (gồm 2 nét sổ dọc xuyên qua 1 nét ngang 一).<br>- Vạch ngang dưới cùng (一) tạo thành cái mồm (口) ngậm kẹo.</p><p><strong>💡 Cách nhớ:</strong> Cái miệng ngậm chặt thanh kẹo mút ở giữa thấy hương vị thật CAM (ngọt)!</p></div>")'>
-                    <div id="svg-container-甘" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">甘</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Cam</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> カン | <span class="badge kun">KUN</span> あま(い)</div>
-                    <div class="kanji-ex"><div>甘い(あまい - Cam): ngọt ngào</div><div>甘える(あまえる - Cam): làm nũng</div><div>甘口(あまくち - Cam Khẩu): vị ngọt</div></div>
-                </div>
-            </div>
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("辛", "Tân", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 立 (Lập): đứng. Gồm 亠 (Đầu) chấm ngang, và 丷 (Bát), 一 (Nhất) làm bệ đứng.<br>- 十 (Thập): số mười.</p><p><strong>💡 Cách nhớ:</strong> Bị bắt đứng (立) suốt mười (十) tiếng đồng hồ không nghỉ, đời đi làm thuê sao TÂN toan, cay đắng!</p></div>")'>
-                    <div id="svg-container-辛" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">辛</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Tân</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> シン | <span class="badge kun">KUN</span> から(い)</div>
-                    <div class="kanji-ex"><div>辛い(からい - Tân): cay</div><div>辛い(つらい - Tân): đau khổ, khó khăn</div><div>辛口(からくち - Tân Khẩu): vị cay</div></div>
-                </div>
-            </div>
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("卵", "Noãn", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- Hình 2 bộ 卩 (Tiết - người quỳ/đốt tre) đứng đối xứng nhau như vỏ trứng.<br>- Hai nét phẩy (丶) ở giữa tượng trưng cho 2 cục lòng đỏ.</p><p><strong>💡 Cách nhớ:</strong> Nhìn hình dáng y hệt 2 quả trứng (NOÃN) có lòng đỏ ở giữa đang cất trong rế!</p></div>")'>
-                    <div id="svg-container-卵" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">卵</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Noãn</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> ラン | <span class="badge kun">KUN</span> たまご</div>
-                    <div class="kanji-ex"><div>卵(たまご - Noãn): quả trứng</div><div>卵焼き(たまごやき - Noãn Thiêu): món trứng cuộn</div></div>
-                </div>
-            </div>
-            <div class="kanji-card fragment">
-                <div class="kanji-char-box" onclick='showModal("申", "Thân", "<div style=&apos;text-align:left;&apos;><p><strong>🧩 Phân tích chi tiết:</strong><br>- 田 (Điền): hình ô vuông (gồm 口 Khẩu và 十 Thập bên trong).<br>- 丨 (Cổn): đường sổ thẳng xuyên tắp từ trên xuống dưới.</p><p><strong>💡 Cách nhớ:</strong> Mở miệng (田) thật to, xướng 1 đường thẳng (丨) để THÂN thưa trình bày rõ ràng từ trên xuống dưới.</p></div>")'>
-                    <div id="svg-container-申" class="kanji-svg-container"><span style="font-size:3rem; font-weight:bold; color:#1976d2;">申</span></div>
-                    <div class="zoom-hint">▶ Vẽ nét</div>
-                    <div class="kanji-meaning">Thân</div>
-                </div>
-                <div class="kanji-details">
-                    <div class="kanji-reading"><span class="badge on">ON</span> シン | <span class="badge kun">KUN</span> もう(す)</div>
-                    <div class="kanji-ex"><div>申す(もうす - Thân): nói, gọi là (khiêm nhường)</div><div>申し込む(もうしこむ - Thân Vào): đăng ký</div><div>申請(しんせい - Thân Thỉnh): xin phép</div></div>
-                </div>
-            </div></div></section>
-    </div></div>
-    
-    <!-- Modal -->
-    <div id="kanji-modal">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <div id="modal-char-container" onclick="triggerAnimation()"></div>
-        <div class="modal-hint">Bấm vào ô vuông trắng để vẽ lại từ đầu</div>
-        <div id="modal-meaning"></div>
-        <div id="modal-memo"></div>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
@@ -451,7 +194,7 @@
             maxScale: 1.5,hash: true, transition: 'slide', fragments: true});
         
         let svgCache = {};
-        const kanjiStr = "悪急去紙首県都速直接湯探参寺勝負願座眠狭甘辛卵申";
+        const kanjiStr = "空業鳥通運転力色味";
         
         async function fetchSvg(char) {
             let hex = char.charCodeAt(0).toString(16).padStart(5, '0');
@@ -501,10 +244,9 @@
             let texts = svg.querySelectorAll('text');
             texts.forEach(t => {
                 t.style.fill = hideNumbers ? 'none' : '#d32f2f';
-                if(!hideNumbers) {
-                    t.style.fontSize = '8px';
-                    t.style.fontWeight = 'bold';
-                }
+                t.style.fontWeight = 'bold';
+                t.style.fontSize = '14px';
+                t.style.fontFamily = 'sans-serif';
             });
         }
 
@@ -516,7 +258,6 @@
             
             texts.forEach(t => t.style.opacity = '0');
             
-            let delay = 0;
             paths.forEach((p, idx) => {
                 let l = p.getTotalLength();
                 if(l === 0) l = 1000;
@@ -531,16 +272,14 @@
                     if(texts[idx]) {
                         setTimeout(() => { texts[idx].style.opacity = '1'; texts[idx].style.transition = 'opacity 0.3s'; }, 400);
                     }
-                }, delay);
-                delay += 800;
+                }, idx * 800 + 100);
             });
         }
-        
-        function showModal(char, meaning, memo) {
+
+        function showModal(char, title, descHTML) {
+            document.getElementById('modal-title').innerText = char + " - " + title;
+            document.getElementById('modal-desc').innerHTML = descHTML;
             let container = document.getElementById('modal-char-container');
-            
-            document.getElementById('modal-meaning').innerText = meaning;
-            document.getElementById('modal-memo').innerHTML = memo;
             
             document.getElementById('kanji-modal').classList.add('active');
             
@@ -558,40 +297,30 @@
             animateSVG(container);
         }
         
-        function closeModal() { document.getElementById('kanji-modal').classList.remove('active'); }
-    </script>
-
-    
-    <!-- Nút toàn màn hình (Subtle) -->
-    <button id="fs-btn" onclick="toggleFullScreen()" title="Toàn màn hình" style="position:fixed; bottom:15px; left:15px; z-index:9999; background:rgba(0,0,0,0.1); color:#333; border:none; width:35px; height:35px; border-radius:50%; font-weight:bold; cursor:pointer; transition: all 0.2s; opacity: 0.5; display: flex; justify-content: center; align-items: center;" onmouseover="this.style.opacity='1'; this.style.background='rgba(0,0,0,0.2)'" onmouseout="this.style.opacity='0.5'; this.style.background='rgba(0,0,0,0.1)'">
-        <span style="font-size:1.2rem; line-height: 1;">⛶</span>
-    </button>
-    <script>
-        function toggleFullScreen() {
-            if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen();
-                document.querySelector('#fs-btn span').innerText = '✖';
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                    document.querySelector('#fs-btn span').innerText = '⛶';
-                }
-            }
+        function closeModal(e) {
+            if(e) e.stopPropagation();
+            document.getElementById('kanji-modal').classList.remove('active');
         }
     </script>
     
     <!-- Whiteboard Script -->
     <script src="whiteboard.js"></script>
 
-        <div id="print-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#222; color:white; z-index:100000; align-items:center; justify-content:center; font-family:sans-serif; font-size:24px;">
-            Đang chuẩn bị trang in PDF... Vui lòng đợi.
-        </div>
-        <script>
-            if (window.location.search.match(/print-pdf/gi)) {
-                document.getElementById('print-overlay').style.display = 'flex';
-            }
-        </script>
+    <div id="print-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#222; color:white; z-index:100000; align-items:center; justify-content:center; font-family:sans-serif; font-size:24px;">
+        Đang chuẩn bị trang in PDF... Vui lòng đợi.
+    </div>
+    <script>
+        if (window.location.search.match(/print-pdf/gi)) {
+            document.getElementById('print-overlay').style.display = 'flex';
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    window.print();
+                    // Go back to normal slide mode after print dialog is closed
+                    window.location.href = window.location.pathname;
+                }, 1500);
+            });
+        }
+    </script>
         
 </body>
-
 </html>
