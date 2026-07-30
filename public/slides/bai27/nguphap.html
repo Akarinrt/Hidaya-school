@@ -617,34 +617,36 @@
                 </div>
             </section>
 
-            <!-- KỸ NĂNG: ĐỌC HIỂU -->
+            <!-- KỸ NĂNG: ĐỌC HIỂU & QUIZ -->
             <section data-background-color="#e8f5e9">
                 <h2 style="color: #1b5e20;">📖 読み物: ドラえもん</h2>
-                <div class="fragment" style="text-align: left; margin-top: 20px; font-size: 1.1rem; line-height: 1.8; padding: 20px; background: white; border-radius: 8px; border: 1px solid #c8e6c9;">
-                    <p>　皆さんは 「ドラえもん」を 知っていますか。「ドラえもん」は 日本の 子どもたちが 大好きな 漫画の 主人公です。猫の 形を した ロボットですが、不思議な ポケットを 持っています。</p>
-                    <p>　例えば、空を 自由に 飛びたい ときは、「タケコプター」を 頭に 付けます。タケコプターを 付けると、自分 で 空が 飛べます。それから、「どこでもドア」を 開けると、どこでも 好きな 所へ 行けます。</p>
-                    <p>　「ドラえもん」の 漫画は 世界の いろいろな 国で 読まれています。子どもたちは みんな 「ドラえもん」の ような 友達が 欲しいと 思っています。私も 将来 「ドラえもん」の ような ロボットが 買えたら いいなあ と 思っています。</p>
-                </div>
-            </section>
+                <div style="display: flex; gap: 20px; align-items: stretch; justify-content: space-between; flex-wrap: wrap;">
+                    
+                    <!-- Cột trái: Bài đọc -->
+                    <div class="fragment" style="flex: 1; min-width: 50%; text-align: left; font-size: 1.1rem; line-height: 1.8; padding: 20px; background: white; border-radius: 8px; border: 1px solid #c8e6c9;">
+                        <p>　皆さんは 「ドラえもん」を 知っていますか。「ドラえもん」は 日本の 子どもたちが 大好きな 漫画の 主人公です。猫の 形を した ロボットですが、不思議な ポケットを 持っています。</p>
+                        <p>　例えば、空を 自由に 飛びたい ときは、「タケコプター」を 頭に 付けます。タケコプターを 付けると、自分 で 空が 飛べます。それから、「どこでもドア」を 開けると、どこでも 好きな 所へ 行けます。</p>
+                        <p>　「ドラえもん」の 漫画は 世界の いろいろな 国で 読まれています。子どもたちは みんな 「ドラえもん」の ような 友達が 欲しいと 思っています。私も 将来 「ドラえもん」の ような ロボットが 買えたら いいなあ と 思っています。</p>
+                    </div>
 
-            <!-- ĐỌC HIỂU QUIZ -->
-            <section data-background-color="#e8f5e9">
-                <h2 style="color: #1b5e20;">✅ Đọc hiểu (True / False)</h2>
-                <div class="quiz-box fragment" style="text-align: left; margin-top: 20px;">
-                    <div class="fragment" style="margin-bottom: 15px;">
-                        <p>1. ドラえもんは 犬の ロボットです。</p>
-                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
-                        <div class="answer-content">→ ❌ (猫の ロボットです)</div>
-                    </div>
-                    <div class="fragment" style="margin-bottom: 15px;">
-                        <p>2. 「タケコプター」を 頭に 付けると、空が 飛べます。</p>
-                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
-                        <div class="answer-content">→ ⭕</div>
-                    </div>
-                    <div class="fragment" style="margin-bottom: 15px;">
-                        <p>3. 私も ドラえもんを 買いたいです。</p>
-                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
-                        <div class="answer-content">→ ⭕</div>
+                    <!-- Cột phải: Quiz -->
+                    <div class="quiz-box fragment" style="flex: 1; min-width: 30%; text-align: left; margin-top: 0;">
+                        <h3 style="color: #1b5e20; font-size: 1.2rem; margin-top: 0; margin-bottom: 15px;">✅ Đọc hiểu (True / False)</h3>
+                        <div class="fragment" style="margin-bottom: 15px;">
+                            <p>1. ドラえもんは 犬の ロボットです。</p>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
+                            <div class="answer-content">→ ❌ (猫の ロボットです)</div>
+                        </div>
+                        <div class="fragment" style="margin-bottom: 15px;">
+                            <p>2. 「タケコプター」を 頭に 付けると、空が 飛べます。</p>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
+                            <div class="answer-content">→ ⭕</div>
+                        </div>
+                        <div class="fragment" style="margin-bottom: 15px;">
+                            <p>3. 私も ドラえもんを 買いたいです。</p>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
+                            <div class="answer-content">→ ⭕</div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -826,6 +828,15 @@
         
         const furiganaDict = {"日本語": "<ruby>日本語<rt>にほんご</rt></ruby>", "話します": "<ruby>話<rt>はな</rt></ruby>します", "話せます": "<ruby>話<rt>はな</rt></ruby>せます", "話せる": "<ruby>話<rt>はな</rt></ruby>せる", "話す": "<ruby>話<rt>はな</rt></ruby>す", "書きます": "<ruby>書<rt>か</rt></ruby>きます", "書けます": "<ruby>書<rt>か</rt></ruby>けます", "書ける": "<ruby>書<rt>か</rt></ruby>ける", "書く": "<ruby>書<rt>か</rt></ruby>く", "読みます": "<ruby>読<rt>よ</rt></ruby>みます", "読めます": "<ruby>読<rt>よ</rt></ruby>めます", "読める": "<ruby>読<rt>よ</rt></ruby>める", "読む": "<ruby>読<rt>よ</rt></ruby>む", "泳ぎます": "<ruby>泳<rt>およ</rt></ruby>ぎます", "泳げます": "<ruby>泳<rt>およ</rt></ruby>げます", "泳げる": "<ruby>泳<rt>およ</rt></ruby>げる", "待ちます": "<ruby>待<rt>ま</rt></ruby>ちます", "待てます": "<ruby>待<rt>ま</rt></ruby>てます", "待てる": "<ruby>待<rt>ま</rt></ruby>てる", "起きます": "<ruby>起<rt>お</rt></ruby>きます", "起きられます": "<ruby>起<rt>お</rt></ruby>きられます", "起きられる": "<ruby>起<rt>お</rt></ruby>きられる", "起きる": "<ruby>起<rt>お</rt></ruby>きる", "借ります": "<ruby>借<rt>か</rt></ruby>ります", "借りられます": "<ruby>借<rt>か</rt></ruby>りられます", "借りられる": "<ruby>借<rt>か</rt></ruby>りられる", "借りる": "<ruby>借<rt>か</rt></ruby>りる", "食べられます": "<ruby>食<rt>た</rt></ruby>べられます", "食べられる": "<ruby>食<rt>た</rt></ruby>べられる", "食べます": "<ruby>食<rt>た</rt></ruby>べます", "食べる": "<ruby>食<rt>た</rt></ruby>べる", "見られます": "<ruby>見<rt>み</rt></ruby>られます", "見られる": "<ruby>見<rt>み</rt></ruby>られる", "見えます": "<ruby>見<rt>み</rt></ruby>えます", "見ます": "<ruby>見<rt>み</rt></ruby>ます", "見る": "<ruby>見<rt>み</rt></ruby>る", "来られます": "<ruby>来<rt>こ</rt></ruby>られます", "来られる": "<ruby>来<rt>こ</rt></ruby>られる", "来ます": "<ruby>来<rt>き</rt></ruby>ます", "来る": "<ruby>来<rt>く</rt></ruby>る", "分かります": "<ruby>分<rt>わ</rt></ruby>かります", "分かれます": "<ruby>分<rt>わ</rt></ruby>かれます", "病院": "<ruby>病院<rt>びょういん</rt></ruby>", "行きます": "<ruby>行<rt>い</rt></ruby>きます", "行けます": "<ruby>行<rt>い</rt></ruby>けます", "田中さん": "<ruby>田中<rt>たなか</rt></ruby>さん", "会えません": "<ruby>会<rt>あ</rt></ruby>えません", "会えます": "<ruby>会<rt>あ</rt></ruby>えます", "英語": "<ruby>英語<rt>えいご</rt></ruby>", "漢字": "<ruby>漢字<rt>かんじ</rt></ruby>", "銀行": "<ruby>銀行<rt>ぎんこう</rt></ruby>", "新幹線": "<ruby>新幹線<rt>しんかんせん</rt></ruby>", "富士山": "<ruby>富士山<rt>ふじさん</rt></ruby>", "聞こえます": "<ruby>聞<rt>き</rt></ruby>こえます", "聞けます": "<ruby>聞<rt>き</rt></ruby>けます", "新宿": "<ruby>新宿<rt>しんじゅく</rt></ruby>", "映画": "<ruby>映画<rt>えいが</rt></ruby>", "電話": "<ruby>電話<rt>でんわ</rt></ruby>", "天気予報": "<ruby>天気予報<rt>てんきよほう</rt></ruby>", "先生": "<ruby>先生<rt>せんせい</rt></ruby>", "友達": "<ruby>友達<rt>ともだち</rt></ruby>", "修理": "<ruby>修理<rt>しゅうり</rt></ruby>", "旅行": "<ruby>旅行<rt>りょこう</rt></ruby>", "沖縄": "<ruby>沖縄<rt>おきなわ</rt></ruby>", "飛行機": "<ruby>飛行機<rt>ひこうき</rt></ruby>", "日曜日": "<ruby>日曜日<rt>にちようび</rt></ruby>", "乗れます": "<ruby>乗<rt>の</rt></ruby>れます", "学校": "<ruby>学校<rt>がっこう</rt></ruby>", "時計": "<ruby>時計<rt>とけい</rt></ruby>", "一人": "<ruby>一人<rt>ひとり</rt></ruby>", "音": "<ruby>音<rt>おと</rt></ruby>", "声": "<ruby>声<rt>こえ</rt></ruby>", "足": "<ruby>足<rt>あし</rt></ruby>", "傷": "<ruby>傷<rt>きず</rt></ruby>", "駅": "<ruby>駅<rt>えき</rt></ruby>", "前": "<ruby>前<rt>まえ</rt></ruby>", "母": "<ruby>母<rt>はは</rt></ruby>", "朝": "<ruby>朝<rt>あさ</rt></ruby>", "日本": "<ruby>日本<rt>にほん</rt></ruby>", "茶": "<ruby>茶<rt>ちゃ</rt></ruby>", "山": "<ruby>山<rt>やま</rt></ruby>", "時": "<ruby>時<rt>じ</rt></ruby>", "飲みます": "<ruby>飲<rt>の</rt></ruby>みます", "可能動詞": "<ruby>可能動詞<rt>かのうどうし</rt></ruby>", "転んで": "<ruby>転<rt>ころ</rt></ruby>んで", "転びます": "<ruby>転<rt>ころ</rt></ruby>びます"};
 
+        // Add furigana dynamically
+        document.querySelectorAll('p, .trans, .box-highlight, .answer-content, h1, h2, h3, li, strong, .vocab-item').forEach(el => {
+            let html = el.innerHTML;
+            for (let kanji in furiganaDict) {
+                let re = new RegExp(kanji, "g");
+                html = html.replace(re, furiganaDict[kanji]);
+            }
+            el.innerHTML = html;
+        });
         // Dynamic font resizing based on container width
         const resizeObserver = new ResizeObserver(entries => {
             for (let entry of entries) {
