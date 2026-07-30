@@ -43,7 +43,7 @@ export default async function HomeworkDetailPage({ params }: { params: any }) {
         </div>
       ) : (
         <div className="card" style={{ padding: '20px', position: 'relative' }}>
-          {hw.type === 'QUIZ' && hw.quizData ? (
+          {hw.quizData ? (
             <QuizTaker 
               hwId={hw.id} 
               quizData={hw.quizData} 

@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import styles from './homework.module.css';
 import Link from 'next/link';
 import DeadlineEditor from './DeadlineEditor';
+import SeedHwButton from './SeedHwButton';
 
 const prisma = new PrismaClient();
 
@@ -25,7 +26,10 @@ export default async function HomeworkPage() {
           <h1 className={styles.title}>📝 Bài tập về nhà</h1>
           <p className={styles.subtitle}>{homeworks.length} bài đã tạo</p>
         </div>
-        <Link href="/teacher/homework/new" className={styles.addBtn}>+ Tạo bài mới</Link>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <Link href="/teacher/homework/new" className={styles.addBtn}>+ Tạo bài mới</Link>
+          <SeedHwButton />
+        </div>
       </div>
 
       <div className={styles.list}>
