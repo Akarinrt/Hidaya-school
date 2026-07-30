@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
-import styles from './homework.module.css';
+import styles from '../homework/homework.module.css';
 
 const prisma = new PrismaClient();
 
