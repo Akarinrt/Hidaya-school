@@ -451,9 +451,7 @@ export const testsData: Test[] = [
         correctOptionId: 'd', explanation: '「まだ　日本語で　手紙が　書けません」→ 手紙を書くことが　まだ　できません。'
       },
     ]
-  }
-,
-  [
+  },
   {
     id: "lesson-27-part2",
     title: "Bài Kiểm Tra Bài 27 (Nửa bài sau)",
@@ -784,5 +782,4 @@ export const testsData: Test[] = [
       }
     ]
   }
-]
 ];
