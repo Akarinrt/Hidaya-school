@@ -14,8 +14,8 @@ const navItems = [
   { href: '/teacher/homework', icon: '📝', label: 'Bài tập' },
   { href: '/teacher/grading', icon: '✅', label: 'Chấm bài' },
   { href: '/teacher/students', icon: '👥', label: 'Lớp học' },
-  { href: '/teacher/resources', icon: '📚', label: 'Tài liệu' },
-  { href: '/teacher/materials', icon: '📖', label: 'Tài liệu Bài học' },
+  { href: '/teacher/resources', icon: '📁', label: 'File chia sẻ' },
+  { href: '/teacher/materials', icon: '📖', label: 'Tóm tắt & In ấn' },
   { href: '/teacher/flashcards', icon: '🃏', label: 'Flashcard AI' },
   { href: '/teacher/users', icon: '🔐', label: 'Tài khoản' },
 ];
