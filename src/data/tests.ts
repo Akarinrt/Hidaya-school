@@ -374,75 +374,80 @@ export const testsData: Test[] = [
   },
 
   // ====================================================
-  // BÀI KIỂM TRA BÀI 27 - PHẦN 1 (10 câu)
+  // BÀI KIỂM TRA BÀI 27 - PHẦN 1 (10 câu - chỉ 可能動詞)
   // ====================================================
   {
     id: 'lesson-27-part1',
     title: 'Bài Kiểm Tra Bài 27 (Nửa bài đầu)',
-    description: 'Kiểm tra chia động từ khả năng (可能動詞) và phân biệt 見えます / 聞こえます.',
+    description: 'Kiểm tra chia động từ khả năng (可能動詞) — Nhóm 1, 2, 3 và cách dùng trong câu.',
     level: 'N4',
     durationMinutes: 15,
     questions: [
       {
         id: 'q1', type: 'multiple_choice',
-        text: 'Chia động từ sang thể Khả năng (可能動詞): 泳ぎます → ?',
+        text: 'Chia động từ sang thể Khả năng: 泳ぎます (Nhóm 1) → ?',
         options: [{ id: 'a', text: '泳がれます' }, { id: 'b', text: '泳げます' }, { id: 'c', text: '泳ぎられます' }, { id: 'd', text: '泳げられます' }],
-        correctOptionId: 'b', explanation: 'Động từ nhóm 1: Đổi hàng い sang hàng え + ます. (泳ぎます → 泳げます)'
+        correctOptionId: 'b', explanation: 'Động từ nhóm 1: Đổi âm hàng い sang hàng え rồi thêm ます. ぎ→げ: 泳ぎます → 泳げます.'
       },
       {
         id: 'q2', type: 'multiple_choice',
-        text: 'Chọn trợ từ đúng: わたしは 漢字（　　）読めます。',
-        options: [{ id: 'a', text: 'を' }, { id: 'b', text: 'に' }, { id: 'c', text: 'が' }, { id: 'd', text: 'で' }],
-        correctOptionId: 'c', explanation: 'Trong câu dùng động từ khả năng, tân ngữ "を" thường được đổi thành "が".'
+        text: 'Chia động từ sang thể Khả năng: 食べます (Nhóm 2) → ?',
+        options: [{ id: 'a', text: '食べれます' }, { id: 'b', text: '食べられます' }, { id: 'c', text: '食べえます' }, { id: 'd', text: '食べさせます' }],
+        correctOptionId: 'b', explanation: 'Động từ nhóm 2: bỏ ます rồi thêm られます. 食べ + られます = 食べられます.'
       },
       {
         id: 'q3', type: 'multiple_choice',
-        text: 'Phân biệt: Ở tầng 2 có thể nghe thấy tiếng chim hót (tự lọt vào tai).',
-        options: [{ id: 'a', text: '2階から 鳥の声が 聞けます。' }, { id: 'b', text: '2階から 鳥の声が 聞きます。' }, { id: 'c', text: '2階から 鳥の声が 聞こえます。' }, { id: 'd', text: '2階から 鳥の声を 聞こえます。' }],
-        correctOptionId: 'c', explanation: 'Âm thanh tự nhiên lọt vào tai dùng 聞こえます đi với trợ từ が.'
+        text: 'Chia động từ sang thể Khả năng: します (Nhóm 3) → ?',
+        options: [{ id: 'a', text: 'されます' }, { id: 'b', text: 'せられます' }, { id: 'c', text: 'できます' }, { id: 'd', text: 'しられます' }],
+        correctOptionId: 'c', explanation: 'します (Nhóm 3) biến đổi thành できます (quy tắc bất quy tắc).'
       },
       {
         id: 'q4', type: 'multiple_choice',
-        text: 'Chia động từ khả năng Nhóm 2: 食べます → ?',
-        options: [{ id: 'a', text: '食べれます' }, { id: 'b', text: '食べられます' }, { id: 'c', text: '食べえます' }, { id: 'd', text: '食べさせます' }],
-        correctOptionId: 'b', explanation: 'Động từ nhóm 2: bỏ ます, thêm られます.'
+        text: 'Chia động từ sang thể Khả năng: 来ます (Nhóm 3) → ?',
+        options: [{ id: 'a', text: '来れます' }, { id: 'b', text: '来られます' }, { id: 'c', text: '来えます' }, { id: 'd', text: '来させます' }],
+        correctOptionId: 'b', explanation: '来ます (くる/Nhóm 3) → 来られます (こられます).'
       },
       {
         id: 'q5', type: 'multiple_choice',
-        text: 'Phân biệt 見えます / 見られます: "Vì trời tối nên không nhìn thấy gì cả."',
-        options: [{ id: 'a', text: '暗いですから、何も 見られません。' }, { id: 'b', text: '暗いですから、何も 見えません。' }, { id: 'c', text: '暗いですから、何も 見ません。' }, { id: 'd', text: '暗いですから、何も 見させません。' }],
-        correctOptionId: 'b', explanation: 'Tự nhiên không thấy do điều kiện (trời tối) dùng 見えません.'
+        text: 'Chọn trợ từ đúng: わたしは 漢字（　　）読めます。',
+        options: [{ id: 'a', text: 'を' }, { id: 'b', text: 'に' }, { id: 'c', text: 'が' }, { id: 'd', text: 'で' }],
+        correctOptionId: 'c', explanation: 'Tân ngữ "を" đổi thành "が" khi dùng với động từ khả năng: 漢字が 読めます.'
       },
       {
         id: 'q6', type: 'multiple_choice',
-        text: 'Phân biệt 見えます / 見られます: "Ở rạp chiếu phim có thể xem được phim mới."',
-        options: [{ id: 'a', text: '映画館で 新しい映画が 見られます。' }, { id: 'b', text: '映画館で 新しい映画が 見えます。' }, { id: 'c', text: '映画館で 新しい映画を 見えます。' }, { id: 'd', text: '映画館で 新しい映画が 見させます。' }],
-        correctOptionId: 'a', explanation: 'Chủ động đi xem phim dùng 見られます (動詞可能形).'
+        text: 'Câu nào đúng ngữ pháp? (Bạn có thể nói tiếng Anh không?)',
+        options: [{ id: 'a', text: '英語が 話しますか。' }, { id: 'b', text: '英語が 話せますか。' }, { id: 'c', text: '英語を 話せますか。' }, { id: 'd', text: '英語に 話せますか。' }],
+        correctOptionId: 'b', explanation: '動詞可能形 + が: 英語が 話せますか。 (tân ngữ dùng が khi dùng khả năng)'
       },
       {
         id: 'q7', type: 'multiple_choice',
-        text: 'Dịch: "Vì bận nên tôi không thể đi chơi được."',
+        text: 'Dịch sang tiếng Nhật: "Vì bận nên tôi không thể đi chơi được."',
         options: [{ id: 'a', text: '忙しいですから、遊びに行けません。' }, { id: 'b', text: '忙しいですから、遊びに行きません。' }, { id: 'c', text: '忙しいですから、遊びに行かない。' }, { id: 'd', text: '忙しいですから、遊びに行けました。' }],
-        correctOptionId: 'a', explanation: '行きます → 行けます (Có thể đi) → 行けません (Không thể đi).'
+        correctOptionId: 'a', explanation: '行きます → 行けます (có thể đi) → 行けません (không thể đi).'
       },
       {
-        id: 'q8', type: 'text_input',
-        text: 'Chia sang thể khả năng rồi điền vào câu: 書きます → この漢字（　　）書けますか。 (Điền trợ từ + động từ)',
-        correctAnswers: ['が書けますか', 'が　書けますか', 'がかけますか'],
-        explanation: 'この漢字が 書けますか。 Tân ngữ を → が, 書きます → 書けます.'
+        id: 'q8', type: 'multiple_choice',
+        text: 'Trợ từ nào không thay đổi khi dùng động từ khả năng?',
+        options: [{ id: 'a', text: 'を → が' }, { id: 'b', text: 'に giữ nguyên' }, { id: 'c', text: 'で giữ nguyên' }, { id: 'd', text: 'Cả B và C đều đúng' }],
+        correctOptionId: 'd', explanation: 'Chỉ có tân ngữ を mới đổi thành が. Các trợ từ khác như に, へ, で, と đều giữ nguyên.'
       },
       {
-        id: 'q9', type: 'multiple_choice',
-        passage: 'アンさんは　日本語の　クラスで　勉強して　います。ひらがなと　カタカナが　読めます。簡単な　漢字も　少し　読めます。でも、日本語で　話すのは　まだ　難しいです。聞くのは　だいたい　大丈夫ですが、早い　日本語は　よく　聞こえません。',
-        text: '①　アンさんが　今　できないことは　何ですか。',
-        options: [{ id: 'a', text: 'ひらがなを　読むこと' }, { id: 'b', text: 'カタカナを　読むこと' }, { id: 'c', text: '日本語で　話すこと' }, { id: 'd', text: '簡単な　漢字を　読むこと' }],
-        correctOptionId: 'c', explanation: '「日本語で　話すのは　まだ　難しいです。」→ 話すことが　まだ　できません。しか は使いません！'
+        id: 'q9', type: 'text_input',
+        text: 'Chia sang thể khả năng và điền vào chỗ trống: 書きます → この漢字（　　）。 (Điền: trợ từ + động từ khả năng)',
+        correctAnswers: ['が書けます', 'が　書けます', 'がかけます'],
+        explanation: 'この漢字が 書けます。 Tân ngữ を → が, 書きます → 書けます (nhóm 1: き→け).'
       },
       {
         id: 'q10', type: 'multiple_choice',
-        text: '②　「早い　日本語は　よく　聞こえません」の　意味は　どれですか。',
-        options: [{ id: 'a', text: '早い　日本語を　聞きたく　ない。' }, { id: 'b', text: '早い　日本語が　自然に　耳に　入って　こない。' }, { id: 'c', text: '早い　日本語が　聞けない。（自分で　努力しているが）' }, { id: 'd', text: '早い　日本語は　聞きません。' }],
-        correctOptionId: 'b', explanation: '聞こえません = âm thanh tự nhiên không lọt vào tai, không phải do cố gắng. Đây là điểm phân biệt 聞こえます vs 聞けます.'
+        passage: 'アンさんは　ベトナム人です。日本語を　１年　勉強しました。今は　ひらがなと　カタカナが　読めます。簡単な　漢字も　少し　読めます。でも、まだ　日本語で　手紙が　書けません。これから　もっと　練習したいです。',
+        text: 'アンさんが　今　できないことは　何ですか。',
+        options: [
+          { id: 'a', text: 'ひらがなを　読むこと' },
+          { id: 'b', text: 'カタカナを　読むこと' },
+          { id: 'c', text: '簡単な　漢字を　読むこと' },
+          { id: 'd', text: '日本語で　手紙を　書くこと' }
+        ],
+        correctOptionId: 'd', explanation: '「まだ　日本語で　手紙が　書けません」→ 手紙を書くことが　まだ　できません。'
       },
     ]
   }
