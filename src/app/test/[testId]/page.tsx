@@ -27,7 +27,7 @@ export default function TestPage({ params }: { params: Promise<{ testId: string 
     setAnswers(prev => ({ ...prev, [questionId]: optionId }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (Object.keys(answers).length < testData.questions.length) {
       if (!confirm('Bạn chưa trả lời hết các câu hỏi. Vẫn nộp bài?')) {
         return;
@@ -51,6 +51,24 @@ export default function TestPage({ params }: { params: Promise<{ testId: string 
     
     setScore(correctCount);
     setSubmitted(true);
+
+    // Gửi kết quả lên server
+    try {
+      await fetch('/api/test-results', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          testId: testData.id,
+          testTitle: testData.title,
+          studentName,
+          score: correctCount,
+          totalQuestions: testData.questions.length,
+          answers,
+        }),
+      });
+    } catch (e) {
+      console.error('Không thể lưu kết quả:', e);
+    }
   };
 
   if (!hasStarted) {

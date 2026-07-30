@@ -243,3 +243,15 @@ model PostComment {
   author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
   createdAt   DateTime  @default(now())
 }
+
+model TestResult {
+  id           String   @id @default(uuid())
+  testId       String
+  testTitle    String
+  studentName  String
+  score        Int
+  totalQuestions Int
+  percentage   Float
+  answers      String   // JSON string of answers
+  submittedAt  DateTime @default(now())
+}
