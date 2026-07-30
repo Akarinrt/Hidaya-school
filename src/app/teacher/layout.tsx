@@ -15,6 +15,7 @@ const navItems = [
   { href: '/teacher/grading', icon: '✅', label: 'Chấm bài' },
   { href: '/teacher/students', icon: '👥', label: 'Lớp học' },
   { href: '/teacher/resources', icon: '📚', label: 'Tài liệu' },
+  { href: '/teacher/materials', icon: '📖', label: 'Tài liệu Bài học' },
   { href: '/teacher/flashcards', icon: '🃏', label: 'Flashcard AI' },
   { href: '/teacher/users', icon: '🔐', label: 'Tài khoản' },
 ];

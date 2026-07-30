@@ -11,6 +11,7 @@ const navItems = [
   { href: '/student/schedule', icon: '📅', label: 'Lịch học' },
   { href: '/student/homework', icon: '📝', label: 'Bài tập' },
   { href: '/student/tests', icon: '📋', label: 'Kiểm tra' },
+  { href: '/student/materials', icon: '📖', label: 'Tài liệu Bài học' },
   { href: '/student/messages', icon: '💬', label: 'Tin nhắn' },
 ];
 
