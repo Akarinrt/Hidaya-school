@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Kanji Bài 27, 28 - Phiếu luyện viết</title>
+  <style>
+    body {
+      font-family: "Noto Sans JP", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f9;
+      color: #333;
+    }
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 15mm;
+      margin: 10mm auto;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      page-break-after: always;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #333;
+      padding-bottom: 10px;
+    }
+    .header h1 {
+      margin: 0;
+      color: #b71c1c;
+      font-size: 24px;
+    }
+    .kanji-box {
+      border: 2px solid #444;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      page-break-inside: avoid;
+    }
+    .kanji-header {
+      background: #ffebee;
+      display: flex;
+      border-bottom: 1px solid #444;
+    }
+    .kanji-char {
+      font-size: 50px;
+      font-weight: bold;
+      width: 80px;
+      text-align: center;
+      padding: 5px;
+      border-right: 1px solid #444;
+      font-family: "Klee One", serif;
+      line-height: 1.2;
+    }
+    .kanji-info {
+      padding: 5px 15px;
+      flex: 1;
+    }
+    .kanji-info p {
+      margin: 2px 0;
+      font-size: 13px;
+    }
+    .grid-row {
+      display: flex;
+      height: 45px;
+    }
+    .grid-cell {
+      flex: 1;
+      border-right: 1px dashed #ccc;
+      position: relative;
+    }
+    .grid-cell:last-child {
+      border-right: none;
+    }
+    .grid-cell::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      border-top: 1px dashed #eee;
+    }
+    .grid-cell::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      border-left: 1px dashed #eee;
+    }
+    @media print {
+      body { background: white; }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        width: 100%;
+        padding: 10mm;
+      }
+      .no-print { display: none; }
+    }
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #1976d2;
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+    .print-btn:hover { background: #1565c0; }
+  </style>
+</head>
+<body>
+  <button class="print-btn no-print" onclick="window.print()">🖨 Xuất file PDF</button>
+
+  <div class="page">
+    <div class="header">
+      <h1>漢字練習 - 第27・28課 (ステップ1)</h1>
+      <div style="display: flex; justify-content: space-between; margin-top: 15px;">
+        <span>Tên: _____________________</span>
+        <span>Lớp: ____________</span>
+        <span>Điểm: _______/10</span>
+      </div>
+    </div>
+
+    <div class="kanji-box">
+      <div class="kanji-header">
+        <div class="kanji-char">空</div>
+        <div class="kanji-info">
+          <p><strong>Hán Việt:</strong> KHÔNG</p>
+          <p><strong>Kunyomi:</strong> そら、あ(く) &nbsp;&nbsp;&nbsp; <strong>Onyomi:</strong> クウ</p>
+          <p><strong>Ví dụ:</strong> 空 (そら - bầu trời), 空気 (くうき - không khí)</p>
+        </div>
+      </div>
+      <div class="grid-row" style="border-bottom: 1px solid #ddd;">
+        <div class="grid-cell" style="color: #ccc; font-size: 35px; text-align: center; line-height: 45px; font-family: serif;">空</div>
+        <div class="grid-cell" style="color: #eee; font-size: 35px; text-align: center; line-height: 45px; font-family: serif;">空</div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div>
+      </div>
+      <div class="grid-row">
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+      </div>
+    </div>
+
+    <div class="kanji-box">
+      <div class="kanji-header">
+        <div class="kanji-char">業</div>
+        <div class="kanji-info">
+          <p><strong>Hán Việt:</strong> NGHIỆP</p>
+          <p><strong>Kunyomi:</strong> わざ &nbsp;&nbsp;&nbsp; <strong>Onyomi:</strong> ギョウ</p>
+          <p><strong>Ví dụ:</strong> 工業 (こうぎょう - công nghiệp), 授業 (じゅぎょう - giờ học)</p>
+        </div>
+      </div>
+      <div class="grid-row" style="border-bottom: 1px solid #ddd;">
+        <div class="grid-cell" style="color: #ccc; font-size: 35px; text-align: center; line-height: 45px; font-family: serif;">業</div>
+        <div class="grid-cell" style="color: #eee; font-size: 35px; text-align: center; line-height: 45px; font-family: serif;">業</div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div>
+      </div>
+      <div class="grid-row">
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+      </div>
+    </div>
+
+    <div class="kanji-box">
+      <div class="kanji-header">
+        <div class="kanji-char">鳥</div>
+        <div class="kanji-info">
+          <p><strong>Hán Việt:</strong> ĐIỂU</p>
+          <p><strong>Kunyomi:</strong> とり &nbsp;&nbsp;&nbsp; <strong>Onyomi:</strong> チョウ</p>
+          <p><strong>Ví dụ:</strong> 鳥 (とり - con chim), 小鳥 (ことり - chim non)</p>
+        </div>
+      </div>
+      <div class="grid-row" style="border-bottom: 1px solid #ddd;">
+        <div class="grid-cell" style="color: #ccc; font-size: 35px; text-align: center; line-height: 45px; font-family: serif;">鳥</div>
+        <div class="grid-cell" style="color: #eee; font-size: 35px; text-align: center; line-height: 45px; font-family: serif;">鳥</div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div>
+      </div>
+      <div class="grid-row">
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+      </div>
+    </div>
+
+    <div class="kanji-box">
+      <div class="kanji-header">
+        <div class="kanji-char">通</div>
+        <div class="kanji-info">
+          <p><strong>Hán Việt:</strong> THÔNG</p>
+          <p><strong>Kunyomi:</strong> とお(る)、かよ(う) &nbsp;&nbsp;&nbsp; <strong>Onyomi:</strong> ツウ</p>
+          <p><strong>Ví dụ:</strong> 通ります (とおります - đi qua), 交通 (こうつう - giao thông)</p>
+        </div>
+      </div>
+      <div class="grid-row" style="border-bottom: 1px solid #ddd;">
+        <div class="grid-cell" style="color: #ccc; font-size: 35px; text-align: center; line-height: 45px; font-family: serif;">通</div>
+        <div class="grid-cell" style="color: #eee; font-size: 35px; text-align: center; line-height: 45px; font-family: serif;">通</div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div>
+      </div>
+      <div class="grid-row">
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+      </div>
+    </div>
+
+    <div class="kanji-box">
+      <div class="kanji-header">
+        <div class="kanji-char">味</div>
+        <div class="kanji-info">
+          <p><strong>Hán Việt:</strong> VỊ</p>
+          <p><strong>Kunyomi:</strong> あじ &nbsp;&nbsp;&nbsp; <strong>Onyomi:</strong> ミ</p>
+          <p><strong>Ví dụ:</strong> 味 (あじ - vị), 意味 (いみ - ý nghĩa)</p>
+        </div>
+      </div>
+      <div class="grid-row" style="border-bottom: 1px solid #ddd;">
+        <div class="grid-cell" style="color: #ccc; font-size: 35px; text-align: center; line-height: 45px; font-family: serif;">味</div>
+        <div class="grid-cell" style="color: #eee; font-size: 35px; text-align: center; line-height: 45px; font-family: serif;">味</div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div>
+      </div>
+      <div class="grid-row">
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="header">
+      <h1>漢字練習 - 第27・28課 (ステップ1)</h1>
+      <div style="display: flex; justify-content: space-between; margin-top: 15px;">
+        <span>Tên: _____________________</span>
+        <span>Lớp: ____________</span>
+        <span>Điểm: _______/10</span>
+      </div>
+    </div>
+
+    <div class="kanji-box">
+      <div class="kanji-header">
+        <div class="kanji-char">運</div>
+        <div class="kanji-info">
+          <p><strong>Hán Việt:</strong> VẬN</p>
+          <p><strong>Kunyomi:</strong> はこ(ぶ) &nbsp;&nbsp;&nbsp; <strong>Onyomi:</strong> ウン</p>
+          <p><strong>Ví dụ:</strong> 運びます (はこびます - vận chuyển), 運動 (うんどう - vận động)</p>
+        </div>
+      </div>
+      <div class="grid-row" style="border-bottom: 1px solid #ddd;">
+        <div class="grid-cell" style="color: #ccc; font-size: 35px; text-align: center; line-height: 45px; font-family: serif;">運</div>
+        <div class="grid-cell" style="color: #eee; font-size: 35px; text-align: center; line-height: 45px; font-family: serif;">運</div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div>
+      </div>
+      <div class="grid-row">
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+      </div>
+    </div>
+
+    <div class="kanji-box">
+      <div class="kanji-header">
+        <div class="kanji-char">転</div>
+        <div class="kanji-info">
+          <p><strong>Hán Việt:</strong> CHUYỂN</p>
+          <p><strong>Kunyomi:</strong> ころ(がる) &nbsp;&nbsp;&nbsp; <strong>Onyomi:</strong> テン</p>
+          <p><strong>Ví dụ:</strong> 自転車 (じてんしゃ - xe đạp), 運転 (うんてん - lái xe)</p>
+        </div>
+      </div>
+      <div class="grid-row" style="border-bottom: 1px solid #ddd;">
+        <div class="grid-cell" style="color: #ccc; font-size: 35px; text-align: center; line-height: 45px; font-family: serif;">転</div>
+        <div class="grid-cell" style="color: #eee; font-size: 35px; text-align: center; line-height: 45px; font-family: serif;">転</div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div>
+      </div>
+      <div class="grid-row">
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+      </div>
+    </div>
+
+    <div class="kanji-box">
+      <div class="kanji-header">
+        <div class="kanji-char">力</div>
+        <div class="kanji-info">
+          <p><strong>Hán Việt:</strong> LỰC</p>
+          <p><strong>Kunyomi:</strong> ちから &nbsp;&nbsp;&nbsp; <strong>Onyomi:</strong> リョク、リキ</p>
+          <p><strong>Ví dụ:</strong> 力 (ちから - sức mạnh), 電力 (でんりょく - điện lực)</p>
+        </div>
+      </div>
+      <div class="grid-row" style="border-bottom: 1px solid #ddd;">
+        <div class="grid-cell" style="color: #ccc; font-size: 35px; text-align: center; line-height: 45px; font-family: serif;">力</div>
+        <div class="grid-cell" style="color: #eee; font-size: 35px; text-align: center; line-height: 45px; font-family: serif;">力</div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div>
+      </div>
+      <div class="grid-row">
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+      </div>
+    </div>
+
+    <div class="kanji-box">
+      <div class="kanji-header">
+        <div class="kanji-char">色</div>
+        <div class="kanji-info">
+          <p><strong>Hán Việt:</strong> SẮC</p>
+          <p><strong>Kunyomi:</strong> いろ &nbsp;&nbsp;&nbsp; <strong>Onyomi:</strong> ショク、シキ</p>
+          <p><strong>Ví dụ:</strong> 色 (いろ - màu sắc), 景色 (けしき - phong cảnh)</p>
+        </div>
+      </div>
+      <div class="grid-row" style="border-bottom: 1px solid #ddd;">
+        <div class="grid-cell" style="color: #ccc; font-size: 35px; text-align: center; line-height: 45px; font-family: serif;">色</div>
+        <div class="grid-cell" style="color: #eee; font-size: 35px; text-align: center; line-height: 45px; font-family: serif;">色</div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div>
+      </div>
+      <div class="grid-row">
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+        <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
