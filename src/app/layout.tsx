@@ -3,6 +3,8 @@ import "./globals.css";
 
 import Providers from './providers';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Hidaya School LMS',
   description: 'Hệ thống quản lý học tập tiếng Nhật',
