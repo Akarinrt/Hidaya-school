@@ -43,7 +43,12 @@
         @media print {
             .fragment { opacity: 1 !important; visibility: visible !important; }
         }
-    </style>
+    
+        @media print {
+            #print-overlay { display: none !important; }
+        }
+        
+</style>
 </head>
 <body>
     <button onclick="window.location.href='?print-pdf'" class="print-btn-slide">
