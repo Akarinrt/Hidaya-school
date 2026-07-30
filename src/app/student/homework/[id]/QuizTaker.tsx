@@ -1,13 +1,32 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function QuizTaker({ hwId, quizData, maxScore }: { hwId: string, quizData: string, maxScore: number }) {
+export default function QuizTaker({ hwId, quizData, maxScore, timeLimit, audioUrl, isExam }: { hwId: string, quizData: string, maxScore: number, timeLimit?: number | null, audioUrl?: string | null, isExam?: boolean }) {
   const router = useRouter();
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [timeLeft, setTimeLeft] = useState<number | null>(timeLimit ? timeLimit * 60 : null);
+
+  useEffect(() => {
+    if (timeLeft === null) return;
+    if (timeLeft <= 0) {
+      handleSubmit(true);
+      return;
+    }
+    const timer = setInterval(() => {
+      setTimeLeft(prev => (prev !== null && prev > 0 ? prev - 1 : 0));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [timeLeft]);
+
+  const formatTime = (seconds: number) => {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+  };
 
   let questions = [];
   try {
@@ -20,8 +39,8 @@ export default function QuizTaker({ hwId, quizData, maxScore }: { hwId: string, 
     setAnswers(prev => ({ ...prev, [qIdx]: oIdx }));
   };
 
-  const handleSubmit = async () => {
-    if (Object.keys(answers).length < questions.length) {
+  const handleSubmit = async (autoSubmit: boolean = false) => {
+    if (!autoSubmit && Object.keys(answers).length < questions.length) {
       setError('Vui lòng hoàn thành tất cả các câu hỏi trước khi nộp bài!');
       return;
     }
@@ -37,7 +56,7 @@ export default function QuizTaker({ hwId, quizData, maxScore }: { hwId: string, 
       });
 
       if (res.ok) {
-        alert('Nộp bài thành công!');
+        alert(autoSubmit ? 'Hết giờ! Bài của bạn đã được tự động nộp.' : 'Nộp bài thành công!');
         router.refresh();
       } else {
         const data = await res.json();
@@ -52,6 +71,28 @@ export default function QuizTaker({ hwId, quizData, maxScore }: { hwId: string, 
 
   return (
     <div>
+      {isExam && (
+        <div style={{ position: 'sticky', top: '10px', zIndex: 100, display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--danger)', color: 'white', padding: '15px 20px', borderRadius: '12px', marginBottom: '20px', boxShadow: '0 5px 20px rgba(255,0,0,0.3)' }}>
+          <div style={{ fontWeight: 'bold', fontSize: '1.2em' }}>⚠️ Kỳ thi Mô phỏng JLPT</div>
+          {timeLeft !== null && (
+            <div style={{ fontSize: '1.8em', fontWeight: '900', fontFamily: 'monospace' }}>
+              ⏱️ {formatTime(timeLeft)}
+            </div>
+          )}
+        </div>
+      )}
+
+      {audioUrl && (
+        <div className="card" style={{ padding: '20px', marginBottom: '25px', background: 'var(--surface-hover)', border: '2px solid var(--primary)' }}>
+          <h4 style={{ margin: '0 0 10px 0', color: 'var(--primary)' }}>🎧 Bài nghe (Choukai)</h4>
+          <audio controls controlsList="nodownload" style={{ width: '100%' }}>
+            <source src={audioUrl} />
+            Trình duyệt của bạn không hỗ trợ thẻ audio.
+          </audio>
+          <div style={{ fontSize: '12px', color: 'var(--warning)', marginTop: '10px' }}>* Lưu ý: Trong kỳ thi thật, bạn chỉ được nghe 1 lần duy nhất. Hãy tập trung cao độ!</div>
+        </div>
+      )}
+
       <h3 style={{ marginBottom: '20px', color: 'var(--primary)' }}>Bài tập Trắc nghiệm ({questions.length} câu)</h3>
       
       {questions.map((q: any, idx: number) => (
@@ -89,7 +130,7 @@ export default function QuizTaker({ hwId, quizData, maxScore }: { hwId: string, 
       {error && <div style={{ color: 'var(--danger)', marginBottom: '15px', fontWeight: 'bold' }}>{error}</div>}
 
       <button 
-        onClick={handleSubmit} 
+        onClick={() => handleSubmit(false)} 
         disabled={loading}
         style={{ width: '100%', background: 'var(--primary)', color: 'white', padding: '15px', border: 'none', borderRadius: '10px', fontSize: '1.1em', fontWeight: 'bold', cursor: 'pointer', boxShadow: '0 4px 15px rgba(0,82,204,0.3)' }}
       >

@@ -13,7 +13,7 @@ async function getStudentId() {
   catch { return null; }
 }
 
-export default async function HomeworkDetailPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function HomeworkDetailPage({ params }: { params: any }) {
   const { id } = await params;
   const studentId = await getStudentId();
   if (!studentId) return <div>Vui lòng đăng nhập</div>;
@@ -32,7 +32,7 @@ export default async function HomeworkDetailPage({ params }: { params: Promise<{
 
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
-      <h1 style={{ color: 'var(--primary)', marginBottom: '10px' }}>{hw.title}</h1>
+      <h1 style={{ color: 'var(--primary)', marginBottom: '10px' }}>{hw.title} {hw.isExam ? '⏱️ (Thi thử JLPT)' : ''}</h1>
       <p style={{ color: 'var(--text-muted)', marginBottom: '20px' }}>{hw.description}</p>
       
       {submission ? (
@@ -42,9 +42,16 @@ export default async function HomeworkDetailPage({ params }: { params: Promise<{
           {submission.feedback && <p>Nhận xét: {submission.feedback}</p>}
         </div>
       ) : (
-        <div className="card" style={{ padding: '20px' }}>
+        <div className="card" style={{ padding: '20px', position: 'relative' }}>
           {hw.type === 'QUIZ' && hw.quizData ? (
-            <QuizTaker hwId={hw.id} quizData={hw.quizData} maxScore={hw.maxScore} />
+            <QuizTaker 
+              hwId={hw.id} 
+              quizData={hw.quizData} 
+              maxScore={hw.maxScore} 
+              timeLimit={hw.timeLimit} 
+              audioUrl={hw.audioUrl} 
+              isExam={hw.isExam}
+            />
           ) : (
             <form action={`/api/submit/${hw.id}`} method="POST">
               <textarea name="content" placeholder="Nhập câu trả lời..." style={{ width: '100%', padding: '10px', height: '100px', marginBottom: '10px', borderRadius: '8px', border: '1px solid var(--border)' }} required />

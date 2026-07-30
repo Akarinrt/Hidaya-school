@@ -94,6 +94,25 @@ export default function NewHomeworkPage() {
           </div>
         </div>
 
+        {type === 'QUIZ' && (
+          <div className={styles.field} style={{ background: 'var(--surface-hover)', padding: '15px', borderRadius: '8px', border: '1px dashed var(--warning)' }}>
+            <label style={{ color: 'var(--warning)', display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <input type="checkbox" name="isExam" value="true" />
+              <strong>⏱️ Bật chế độ Thi Thử (JLPT Mock Exam)</strong>
+            </label>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginTop: '15px' }}>
+              <div>
+                <label style={{ fontSize: '13px' }}>Thời gian làm bài (Phút)</label>
+                <input type="number" name="timeLimit" placeholder="VD: 105" className={styles.input} />
+              </div>
+              <div>
+                <label style={{ fontSize: '13px' }}>File Audio Nghe (Choukai)</label>
+                <input type="url" name="audioUrl" placeholder="Link Google Drive / MP3..." className={styles.input} />
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className={styles.field}>
           <label>Lớp học (Tùy chọn)</label>
           <select name="classId" className={styles.input}>

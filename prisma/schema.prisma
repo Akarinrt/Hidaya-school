@@ -80,10 +80,11 @@ model Resource {
 model FlashcardDeck {
   id          String   @id @default(uuid())
   title       String
-  classId     String
-  class       Class    @relation(fields: [classId], references: [id])
-  cards       Flashcard[]
+  classId     String?
+  class       Class?   @relation(fields: [classId], references: [id])
   createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  cards       Flashcard[]
 }
 
 model Flashcard {
@@ -149,6 +150,9 @@ model Homework {
   teacher     User      @relation(fields: [teacherId], references: [id])
   classId     String?
   class       Class?    @relation(fields: [classId], references: [id])
+  timeLimit   Int?      // Time limit in minutes for exams
+  isExam      Boolean   @default(false)
+  audioUrl    String?   // URL for listening exercises
   quizData    String?   // JSON string lưu câu hỏi trắc nghiệm
   submissions Submission[]
   createdAt   DateTime  @default(now())
