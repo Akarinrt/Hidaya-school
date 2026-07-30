@@ -11,10 +11,11 @@ const wbCss = `
     #wb-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9998; pointer-events: none; }
     #wb-text-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; pointer-events: none; overflow: hidden; }
     .wb-text-input { position: absolute; background: rgba(255,255,255,0.9); border: 2px dashed #0052cc; outline: none; font-size: 2rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: bold; pointer-events: auto; padding: 5px 10px; border-radius: 5px; min-width: 150px; z-index: 10000; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    .wb-text-box { position: absolute; font-size: 2rem; font-weight: bold; font-family: 'Plus Jakarta Sans', sans-serif; pointer-events: auto; cursor: pointer; padding: 5px 10px; border: 1px solid transparent; border-radius: 5px; background: transparent; }
+    .wb-text-box { position: absolute; font-size: 2rem; font-weight: bold; font-family: 'Plus Jakarta Sans', sans-serif; pointer-events: auto; cursor: move; padding: 5px 10px; border: 1px solid transparent; border-radius: 5px; background: transparent; user-select: none; }
     .wb-text-box:hover { border: 1px dashed #aaa; background: rgba(255,255,255,0.5); }
-    .wb-text-box::after { content: " (Click phải để xóa)"; font-size: 0.8rem; color: #999; opacity: 0; transition: opacity 0.2s; position:absolute; top:-20px; left:0; white-space:nowrap; }
+    .wb-text-box::after { content: " (Nháy đúp: Sửa | Cuộn chuột: Chỉnh size | Chuột phải: Xóa)"; font-size: 0.8rem; color: #999; opacity: 0; transition: opacity 0.2s; position:absolute; top:-25px; left:0; white-space:nowrap; pointer-events:none; }
     .wb-text-box:hover::after { opacity: 1; }
+    .wb-text-box.dragging { opacity: 0.8; border: 1px dashed #0052cc; cursor: grabbing; }
 `;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -132,11 +133,6 @@ function initWhiteboard() {
         if (undoStack.length > 0) {
             const lastState = undoStack.pop();
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // If we popped the last state, we need to show the state *before* it.
-            // Actually, undo stack contains states *including* the current one if we save after drawing.
-            // Better logic: undoStack stores previous states.
-            
             if (undoStack.length > 0) {
                 const img = new Image();
                 img.onload = () => ctx.drawImage(img, 0, 0);
@@ -217,8 +213,7 @@ function initWhiteboard() {
         }
     });
 
-    function createTextInput(x, y) {
-        // If an input already exists, focus it instead of making a new one
+    function createTextInput(x, y, existingDiv = null) {
         if (textLayer.querySelector('.wb-text-input')) {
             textLayer.querySelector('.wb-text-input').focus();
             return;
@@ -227,30 +222,43 @@ function initWhiteboard() {
         const input = document.createElement('input');
         input.type = 'text';
         input.className = 'wb-text-input';
-        input.style.left = x + 'px';
-        input.style.top = y + 'px';
-        input.style.color = currentColor;
+        
+        if (existingDiv) {
+            input.style.left = existingDiv.style.left;
+            input.style.top = existingDiv.style.top;
+            input.style.color = existingDiv.style.color;
+            input.style.fontSize = existingDiv.style.fontSize || '2rem';
+            input.value = existingDiv.innerText;
+            existingDiv.style.display = 'none';
+        } else {
+            input.style.left = x + 'px';
+            input.style.top = y + 'px';
+            input.style.color = currentColor;
+            input.style.fontSize = '2rem';
+        }
+        
         input.placeholder = "Gõ chữ...";
         textLayer.appendChild(input);
         
-        setTimeout(() => input.focus(), 50); // delay focus to avoid instant blur
+        setTimeout(() => input.focus(), 50);
 
         input.addEventListener('blur', () => {
             if (input.value.trim() !== '') {
-                const div = document.createElement('div');
-                div.className = 'wb-text-box';
+                let div = existingDiv;
+                if (!div) {
+                    div = document.createElement('div');
+                    div.className = 'wb-text-box';
+                    textLayer.appendChild(div);
+                    attachTextBoxEvents(div);
+                }
+                div.style.display = 'block';
                 div.style.left = input.style.left;
                 div.style.top = input.style.top;
                 div.style.color = input.style.color;
+                div.style.fontSize = input.style.fontSize;
                 div.innerText = input.value;
-                
-                div.addEventListener('contextmenu', (e) => {
-                    e.preventDefault();
-                    div.remove();
-                    saveSlideData();
-                });
-                
-                textLayer.appendChild(div);
+            } else if (existingDiv) {
+                existingDiv.remove(); // empty means delete
             }
             input.remove();
             saveSlideData();
@@ -259,6 +267,73 @@ function initWhiteboard() {
         input.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') input.blur();
         });
+    }
+
+    function attachTextBoxEvents(div) {
+        // Xóa
+        div.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            div.remove();
+            saveSlideData();
+        });
+        
+        // Sửa (nháy đúp)
+        div.addEventListener('dblclick', (e) => {
+            e.stopPropagation();
+            createTextInput(0, 0, div);
+        });
+
+        // Zoom (cuộn chuột)
+        div.addEventListener('wheel', (e) => {
+            if (mode !== 'text') return;
+            e.preventDefault();
+            let size = parseFloat(div.style.fontSize) || 2; // in rem
+            if (e.deltaY < 0) size += 0.2;
+            else size = Math.max(0.5, size - 0.2);
+            div.style.fontSize = size + 'rem';
+            saveSlideData();
+        });
+
+        // Kéo thả (Drag)
+        let isDragging = false;
+        let startX, startY, initialLeft, initialTop;
+
+        const onMouseDown = (e) => {
+            if (mode !== 'text') return;
+            isDragging = true;
+            startX = e.clientX || e.touches[0].clientX;
+            startY = e.clientY || e.touches[0].clientY;
+            initialLeft = parseFloat(div.style.left) || 0;
+            initialTop = parseFloat(div.style.top) || 0;
+            div.classList.add('dragging');
+            e.stopPropagation();
+        };
+
+        const onMouseMove = (e) => {
+            if (!isDragging) return;
+            let currentX = e.clientX || (e.touches ? e.touches[0].clientX : 0);
+            let currentY = e.clientY || (e.touches ? e.touches[0].clientY : 0);
+            let dx = currentX - startX;
+            let dy = currentY - startY;
+            div.style.left = (initialLeft + dx) + 'px';
+            div.style.top = (initialTop + dy) + 'px';
+        };
+
+        const onMouseUp = () => {
+            if (isDragging) {
+                isDragging = false;
+                div.classList.remove('dragging');
+                saveSlideData();
+            }
+        };
+
+        div.addEventListener('mousedown', onMouseDown);
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
+
+        div.addEventListener('touchstart', onMouseDown, {passive: false});
+        window.addEventListener('touchmove', onMouseMove, {passive: false});
+        window.addEventListener('touchend', onMouseUp);
     }
 
     // Storage Logic per Slide
@@ -298,11 +373,7 @@ function initWhiteboard() {
             if (data.texts) {
                 textLayer.innerHTML = data.texts;
                 textLayer.querySelectorAll('.wb-text-box').forEach(div => {
-                    div.addEventListener('contextmenu', (e) => {
-                        e.preventDefault();
-                        div.remove();
-                        saveSlideData();
-                    });
+                    attachTextBoxEvents(div);
                 });
             }
         } else {
