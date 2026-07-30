@@ -120,9 +120,38 @@
             padding: 15px !important;
             border-radius: 0 12px 12px 0 !important;
         }
+    
+        .print-btn-slide {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            z-index: 9999;
+            font-weight: bold;
+        }
+        .print-btn-slide:hover { background: #b71c1c; }
+        
+        @media print {
+            .print-btn-slide { display: none !important; }
+            .vocab-box { display: none !important; }
+            .audio-btn { display: none !important; }
+            /* Khắc phục lỗi bị đè chữ khi in Reveal.js */
+            .reveal .slides section { padding: 0 !important; margin: 0 !important; }
+            .reveal .slides { transform: none !important; }
+        }
     </style>
 </head>
 <body>
+    <!-- Nút in PDF -->
+    <button class="print-btn-slide no-print" onclick="window.location.search = '?print-pdf';">🖨 In trang PDF</button>
+
     <div class="reveal"><div class="slides">
         <section class="title-slide">
             <h1>Từ Vựng Kanji Bài 26</h1>
