@@ -74,11 +74,18 @@ export default async function LessonsPage() {
             {lesson.description && <p className={styles.cardDesc}>{lesson.description}</p>}
             <div className={styles.cardFooter}>
               <span className={styles.teacher}>👤 {lesson.teacher.fullName}</span>
-              {lesson.fileUrl && (
-                <a href={lesson.fileUrl} target="_blank" rel="noreferrer" className={styles.downloadBtn}>
-                  📥 Tải xuống
-                </a>
-              )}
+              <div style={{ display: 'flex', gap: '8px' }}>
+                {lesson.fileUrl && (
+                  <a href={lesson.fileUrl} target="_blank" rel="noreferrer" className={styles.downloadBtn}>
+                    📥 Tải xuống
+                  </a>
+                )}
+                {lesson.slideUrl && (
+                  <a href={lesson.slideUrl} target="_blank" rel="noreferrer" className={styles.downloadBtn} style={{ background: '#42a5f5', border: 'none', color: 'white' }}>
+                    ▶️ Trình chiếu
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         ))}

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/simple.min.css">
     
     
+    
     <style>
         /* Animated Gradient Background */
         body {
@@ -159,10 +160,10 @@
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
             border-radius: 16px !important;
             padding: 15px;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             z-index: 1000;
             text-align: left;
-            max-width: 250px; max-height: 70vh;
+            max-width: 250px;
         }
         .vocab-title { font-weight: bold; color: #ff9800; margin-bottom: 5px; font-size: 1rem; border-bottom: 1px solid #ff9800; padding-bottom: 5px; }
         #vocab-list div {
@@ -179,9 +180,22 @@
         }
     </style>
 
+
 </head>
 
+
 <body>
+    <!-- Floating Dynamic Vocabulary Box -->
+    <div id="vocab-box" class="vocab-box" style="resize: both; overflow: auto; min-width: 200px; min-height: 100px;">
+        <div id="vocab-header" class="vocab-title" style="cursor: move; background: #fff3e0; padding: 8px; margin: -15px -15px 10px -15px; border-bottom: 2px solid #ff9800; border-radius: 6px 6px 0 0; display: flex; justify-content: space-between; align-items: center;">
+            <span>🌟 Bảng Kanji</span>
+            <span style="font-size: 0.8rem; color: #ff9800; cursor: se-resize;">↘ Kéo to</span>
+        </div>
+        <div id="vocab-list">
+            <!-- Dynamic content will be injected here -->
+        </div>
+    </div>
+
     <!-- Floating Dynamic Vocabulary Box -->
     <div id="vocab-box" class="vocab-box" style="resize: both; overflow: auto; min-width: 200px; min-height: 100px;">
         <div id="vocab-header" class="vocab-title" style="cursor: move; background: #fff3e0; padding: 8px; margin: -15px -15px 10px -15px; border-bottom: 2px solid #ff9800; border-radius: 6px 6px 0 0; display: flex; justify-content: space-between; align-items: center;">
@@ -444,6 +458,18 @@
             }
         }
 
+        // Build translation dictionary from .vocab-item elements
+        const translationDict = {};
+        document.querySelectorAll('.vocab-item').forEach(item => {
+            const text = item.innerText || item.textContent;
+            const parts = text.split(':');
+            if (parts.length > 1) {
+                const termPart = parts[0].replace(/\(.*\)/g, '').replace(/（.*）/g, '').trim();
+                const meaning = parts.slice(1).join(':').trim();
+                translationDict[termPart] = meaning;
+            }
+        });
+
         // Populate Vocab Box dynamically per slide
         function updateVocabBox(currentSlide) {
             const vocabList = document.getElementById("vocab-list");
@@ -452,10 +478,89 @@
             const slideText = currentSlide.innerText || currentSlide.textContent;
             
             for (let kanji in furiganaDict) {
-                // If kanji is exactly found in the slide text, we add it to the box
                 if (slideText.includes(kanji)) {
+                    let meaning = translationDict[kanji] || kanji;
                     let div = document.createElement("div");
-                    div.innerHTML = furiganaDict[kanji] + " : " + kanji;
+                    div.innerHTML = furiganaDict[kanji] + " : " + meaning;
+                    vocabList.appendChild(div);
+                    addedCount++;
+                }
+            }
+            if (addedCount === 0) {
+                let div = document.createElement("div");
+                div.style.color = "#777";
+                div.style.fontStyle = "italic";
+                div.innerHTML = "Không có kanji mới";
+                vocabList.appendChild(div);
+            }
+        }
+        
+        Reveal.on('slidechanged', event => {
+            updateVocabBox(event.currentSlide);
+        });
+        
+        Reveal.on('ready', event => {
+            updateVocabBox(event.currentSlide);
+        });
+    
+        // Draggable Vocab Box
+        const vocabBox = document.getElementById("vocab-box");
+        const vocabHeader = document.getElementById("vocab-header");
+        let isDragging = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+        
+        vocabHeader.addEventListener("mousedown", dragStart);
+        window.addEventListener("mouseup", dragEnd);
+        window.addEventListener("mousemove", drag);
+        
+        function dragStart(e) {
+            initialX = e.clientX - xOffset;
+            initialY = e.clientY - yOffset;
+            if (e.target === vocabHeader || e.target.parentNode === vocabHeader) {
+                isDragging = true;
+            }
+        }
+        
+        function dragEnd(e) {
+            initialX = currentX;
+            initialY = currentY;
+            isDragging = false;
+        }
+        
+        function drag(e) {
+            if (isDragging) {
+                e.preventDefault();
+                currentX = e.clientX - initialX;
+                currentY = e.clientY - initialY;
+                xOffset = currentX;
+                yOffset = currentY;
+                vocabBox.style.transform = "translate3d(" + currentX + "px, " + currentY + "px, 0)";
+            }
+        }
+
+        // Build translation dictionary from .vocab-item elements
+        const translationDict = {};
+        document.querySelectorAll('.vocab-item').forEach(item => {
+            const text = item.innerText || item.textContent;
+            const parts = text.split(':');
+            if (parts.length > 1) {
+                const termPart = parts[0].replace(/\(.*\)/g, '').replace(/（.*）/g, '').trim();
+                const meaning = parts.slice(1).join(':').trim();
+                translationDict[termPart] = meaning;
+            }
+        });
+
+        // Populate Vocab Box dynamically per slide
+        function updateVocabBox(currentSlide) {
+            const vocabList = document.getElementById("vocab-list");
+            vocabList.innerHTML = "";
+            let addedCount = 0;
+            const slideText = currentSlide.innerText || currentSlide.textContent;
+            
+            for (let kanji in furiganaDict) {
+                if (slideText.includes(kanji)) {
+                    let meaning = translationDict[kanji] || kanji;
+                    let div = document.createElement("div");
+                    div.innerHTML = furiganaDict[kanji] + " : " + meaning;
                     vocabList.appendChild(div);
                     addedCount++;
                 }
@@ -479,4 +584,5 @@
     </script>
 </body>
 </html>
+
 
