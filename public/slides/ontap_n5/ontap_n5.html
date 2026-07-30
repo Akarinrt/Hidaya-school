@@ -55,7 +55,12 @@
         }
         .audio-btn:hover { transform: scale(1.3); }
         .audio-btn:active { transform: scale(0.9); }
-            </style>
+            
+        @media print {
+            .fragment { opacity: 1 !important; visibility: visible !important; }
+        }
+    
+</style>
 
     <style>
         /* Animated Gradient Background */
@@ -297,7 +302,12 @@
             /* Khắc phục lỗi bị đè chữ khi in Reveal.js */
             
         }
-    </style>
+    
+        @media print {
+            .fragment { opacity: 1 !important; visibility: visible !important; }
+        }
+    
+</style>
 </head>
 <body>
     <!-- Nút in PDF -->
@@ -485,7 +495,7 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
     <script>
-        Reveal.initialize({
+        Reveal.initialize({ pdfSeparateFragments: false,
             width: 1400,
             height: 900,
             margin: 0.12,

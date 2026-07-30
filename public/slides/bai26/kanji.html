@@ -145,7 +145,12 @@
             /* Khắc phục lỗi bị đè chữ khi in Reveal.js */
             
         }
-    </style>
+    
+        @media print {
+            .fragment { opacity: 1 !important; visibility: visible !important; }
+        }
+    
+</style>
 </head>
 <body>
     <!-- Nút in PDF -->
@@ -438,7 +443,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
     <script>
-        Reveal.initialize({
+        Reveal.initialize({ pdfSeparateFragments: false,
             width: 1400,
             height: 900,
             margin: 0.12,

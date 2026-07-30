@@ -46,7 +46,12 @@
             max-width: 250px;
         }
         .vocab-title { font-weight: bold; color: #ff9800; margin-bottom: 5px; font-size: 1rem; border-bottom: 1px solid #ff9800; padding-bottom: 5px; }
-    </style>
+    
+        @media print {
+            .fragment { opacity: 1 !important; visibility: visible !important; }
+        }
+    
+</style>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         .audio-btn {
@@ -55,7 +60,12 @@
         }
         .audio-btn:hover { transform: scale(1.3); }
         .audio-btn:active { transform: scale(0.9); }
-            </style>
+            
+        @media print {
+            .fragment { opacity: 1 !important; visibility: visible !important; }
+        }
+    
+</style>
 
     <style>
         /* Animated Gradient Background */
@@ -297,7 +307,12 @@
             /* Khắc phục lỗi bị đè chữ khi in Reveal.js */
             
         }
-    </style>
+    
+        @media print {
+            .fragment { opacity: 1 !important; visibility: visible !important; }
+        }
+    
+</style>
 </head>
 <body>
     <!-- Nút in PDF -->
@@ -730,7 +745,7 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
     <script>
-        Reveal.initialize({
+        Reveal.initialize({ pdfSeparateFragments: false,
             width: 1400,
             height: 900,
             margin: 0.12,
