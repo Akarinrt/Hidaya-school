@@ -7,8 +7,10 @@ import styles from './layout.module.css';
 
 const navItems = [
   { href: '/student/dashboard', icon: '🏠', label: 'Tổng quan' },
-  { href: '/student/classes', icon: '🏫', label: 'Lớp học của tôi' },
+  { href: '/student/classes', icon: '🏫', label: 'Lớp học' },
   { href: '/student/schedule', icon: '📅', label: 'Lịch học' },
+  { href: '/student/homework', icon: '📝', label: 'Bài tập' },
+  { href: '/student/tests', icon: '📋', label: 'Kiểm tra' },
   { href: '/student/messages', icon: '💬', label: 'Tin nhắn' },
 ];
 

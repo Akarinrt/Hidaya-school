@@ -701,85 +701,252 @@ export const testsData: Test[] = [
         id: "l27_hw_q1",
         type: "multiple_choice",
         skill: "Từ vựng (Vocabulary)",
-        text: "新しい空港が（　　）。",
+        text: "新しい駅が(　)。",
         options: [
-          {
-            id: "a",
-            text: "しました"
-          },
-          {
-            id: "b",
-            text: "できました"
-          },
-          {
-            id: "c",
-            text: "なりました"
-          },
-          {
-            id: "d",
-            text: "つくりました"
-          }
+          { id: "a", text: "できました" },
+          { id: "b", text: "つくりました" },
+          { id: "c", text: "ひらきました" },
+          { id: "d", text: "はじめました" }
         ],
-        correctOptionId: "b",
+        correctOptionId: "a",
         explanation: "Xây xong/hoàn thành dùng できました."
       },
       {
         id: "l27_hw_q2",
         type: "multiple_choice",
-        skill: "Động từ Khả năng",
-        text: "わたしは 英語が（　　）。",
+        skill: "Ngữ pháp (Grammar)",
+        text: "漢字が 少し(　)。",
         options: [
-          {
-            id: "a",
-            text: "話せます"
-          },
-          {
-            id: "b",
-            text: "話します"
-          },
-          {
-            id: "c",
-            text: "話られます"
-          },
-          {
-            id: "d",
-            text: "話しられます"
-          }
+          { id: "a", text: "読めます" },
+          { id: "b", text: "読みます" },
+          { id: "c", text: "読ませます" },
+          { id: "d", text: "読まれます" }
         ],
         correctOptionId: "a",
-        explanation: "Thể khả năng của 話す là 話せる (話せます)."
+        explanation: "Thể khả năng của 読みます là 読めます (có thể đọc)."
       },
       {
         id: "l27_hw_q3",
-        type: "text_input",
+        type: "multiple_choice",
         skill: "Trợ từ (Particles)",
-        text: "Điền trợ từ thích hợp: わたしは 日曜日（　）休めません。",
-        correctAnswers: [
-          "しか"
+        text: "私は 日本語(　) 話せます。",
+        options: [
+          { id: "a", text: "を" },
+          { id: "b", text: "が" },
+          { id: "c", text: "に" },
+          { id: "d", text: "で" }
         ],
-        explanation: "Chỉ có thể nghỉ vào Chủ Nhật -> 日曜日しか 休めません."
+        correctOptionId: "b",
+        explanation: "Trợ từ を chuyển thành が khi dùng động từ thể khả năng."
       },
       {
         id: "l27_hw_q4",
-        type: "text_input",
-        skill: "Trợ từ (Particles)",
-        text: "Điền trợ từ thích hợp: 外から 車の音（　）聞こえます。",
-        correctAnswers: [
-          "が"
+        type: "multiple_choice",
+        skill: "Ngữ pháp (Grammar)",
+        text: "ここから 富士山が(　)。",
+        options: [
+          { id: "a", text: "見られます" },
+          { id: "b", text: "見えます" },
+          { id: "c", text: "見ます" },
+          { id: "d", text: "見せます" }
         ],
-        explanation: "聞こえます đi với trợ từ が."
+        correctOptionId: "b",
+        explanation: "見えます (nhìn thấy tự nhiên, không cần cố gắng) phù hợp khi nói về phong cảnh đập vào mắt."
       },
       {
         id: "l27_hw_q5",
-        type: "text_input",
-        skill: "Từ vựng (Vocabulary)",
-        text: "Dịch sang tiếng Nhật (chỉ dùng Hiragana): Tiếng (của người/động vật)",
-        correctAnswers: [
-          "こえ",
-          "声"
+        type: "multiple_choice",
+        skill: "Ngữ pháp (Grammar)",
+        text: "隣の 部屋から 変な声が(　)。",
+        options: [
+          { id: "a", text: "聞かれます" },
+          { id: "b", text: "聞こえます" },
+          { id: "c", text: "聞けます" },
+          { id: "d", text: "聞きます" }
         ],
-        explanation: "Tiếng động vật/người là 声 (こえ)."
+        correctOptionId: "b",
+        explanation: "聞こえます (nghe thấy tự nhiên) phù hợp khi âm thanh vô tình lọt vào tai."
+      },
+      {
+        id: "l27_hw_q6",
+        type: "multiple_choice",
+        skill: "Ngữ pháp (Grammar)",
+        text: "ローマ字(　) 書けません。",
+        options: [
+          { id: "a", text: "だけ" },
+          { id: "b", text: "しか" },
+          { id: "c", text: "も" },
+          { id: "d", text: "が" }
+        ],
+        correctOptionId: "b",
+        explanation: "しか + phủ định (chỉ... ngoài ra không). しか書けません = chỉ có thể viết..."
+      },
+      {
+        id: "l27_hw_q7",
+        type: "multiple_choice",
+        skill: "Ngữ pháp (Grammar)",
+        text: "日曜日(　) 休みます。",
+        options: [
+          { id: "a", text: "しか" },
+          { id: "b", text: "だけ" },
+          { id: "c", text: "でも" },
+          { id: "d", text: "まで" }
+        ],
+        correctOptionId: "b",
+        explanation: "だけ + khẳng định. だけ休みます = chỉ nghỉ ngày Chủ nhật."
+      },
+      {
+        id: "l27_hw_q8",
+        type: "multiple_choice",
+        skill: "Từ vựng (Vocabulary)",
+        text: "この店は(　)が いいですね。",
+        options: [
+          { id: "a", text: "けしき" },
+          { id: "b", text: "どうぐ" },
+          { id: "c", text: "マンション" },
+          { id: "d", text: "ペット" }
+        ],
+        correctOptionId: "a",
+        explanation: "景色 (けしき - phong cảnh) phù hợp ngữ cảnh khen nhà hàng/quán ăn có view đẹp."
+      },
+      {
+        id: "l27_hw_q9",
+        type: "multiple_choice",
+        skill: "Ngữ pháp (Grammar)",
+        text: "ワインは(　)が、ビールは(　)。",
+        options: [
+          { id: "a", text: "飲みます／飲みます" },
+          { id: "b", text: "飲みません／飲みません" },
+          { id: "c", text: "飲みます／飲みません" },
+          { id: "d", text: "飲みません／飲みます" }
+        ],
+        correctOptionId: "c",
+        explanation: "Dùng は...が、は... để so sánh đối lập. Rượu thì uống, nhưng bia thì không uống."
+      },
+      {
+        id: "l27_hw_q10",
+        type: "multiple_choice",
+        skill: "Động từ Khả năng",
+        text: "来ます -> (Thể khả năng)?",
+        options: [
+          { id: "a", text: "きれます" },
+          { id: "b", text: "こられます" },
+          { id: "c", text: "これます" },
+          { id: "d", text: "きられます" }
+        ],
+        correctOptionId: "b",
+        explanation: "来ます (kimasu) nhóm 3, thể khả năng là こられます (koraremasu)."
+      },
+      {
+        id: "l27_hw_q11",
+        type: "text_input",
+        skill: "Trợ từ (Particles)",
+        text: "Điền trợ từ thích hợp: ２０メートル（　）泳げます。",
+        correctAnswers: ["まで", "ぐらい"],
+        explanation: "Có thể bơi ĐẾN 20 mét (まで), hoặc KHOẢNG 20 mét (ぐらい)."
+      },
+      {
+        id: "l27_hw_q12",
+        type: "multiple_choice",
+        skill: "Ngữ pháp (Grammar)",
+        text: "新宿(　) 映画が見られます。",
+        options: [
+          { id: "a", text: "に" },
+          { id: "b", text: "を" },
+          { id: "c", text: "で" },
+          { id: "d", text: "が" }
+        ],
+        correctOptionId: "c",
+        explanation: "Địa điểm + で + Động từ (có thể làm gì ở đâu)."
+      },
+      {
+        id: "l27_hw_q13",
+        type: "text_input",
+        skill: "Ngữ pháp (Grammar)",
+        text: "Chuyển sang thể khả năng: 歌います -> ?",
+        correctAnswers: ["歌えます", "うたえます"],
+        explanation: "歌います nhóm 1, đổi đuôi い thành え -> 歌えます."
+      },
+      {
+        id: "l27_hw_q14",
+        type: "text_input",
+        skill: "Ngữ pháp (Grammar)",
+        text: "Chuyển sang thể khả năng: 食べます -> ?",
+        correctAnswers: ["食べられます", "たべられます"],
+        explanation: "食べます nhóm 2, thêm られます -> 食べられます."
+      },
+      {
+        id: "l27_hw_q15",
+        type: "multiple_choice",
+        skill: "Từ vựng (Vocabulary)",
+        text: "クリーニング屋は(　)です。",
+        options: [
+          { id: "a", text: "どこ" },
+          { id: "b", text: "いつ" },
+          { id: "c", text: "どれ" },
+          { id: "d", text: "だれ" }
+        ],
+        correctOptionId: "a",
+        explanation: "Tiệm giặt ủi (クリーニング屋) thì ở đâu (どこ)."
+      },
+      {
+        id: "l27_hw_q16",
+        type: "multiple_choice",
+        skill: "Kanji",
+        text: "Chữ 交通 đọc là gì?",
+        options: [
+          { id: "a", text: "こうつう" },
+          { id: "b", text: "きょうつう" },
+          { id: "c", text: "こうどう" },
+          { id: "d", text: "きょうどう" }
+        ],
+        correctOptionId: "a",
+        explanation: "交通 (Giao thông) đọc là こうつう."
+      },
+      {
+        id: "l27_hw_q17",
+        type: "multiple_choice",
+        skill: "Kanji",
+        text: "Chữ 自転車 đọc là gì?",
+        options: [
+          { id: "a", text: "じどうしゃ" },
+          { id: "b", text: "じてんしゃ" },
+          { id: "c", text: "じどうてん" },
+          { id: "d", text: "じてんしゃ" }
+        ],
+        correctOptionId: "b",
+        explanation: "自転車 (Xe đạp - Tự chuyển xa) đọc là じてんしゃ."
+      },
+      {
+        id: "l27_hw_q18",
+        type: "text_input",
+        skill: "Ngữ pháp (Grammar)",
+        text: "Điền trợ từ: 鳥の声（　）聞こえます。",
+        correctAnswers: ["が"],
+        explanation: "Nghe thấy (聞こえます) tự nhiên, dùng trợ từ が."
+      },
+      {
+        id: "l27_hw_q19",
+        type: "multiple_choice",
+        skill: "Từ vựng (Vocabulary)",
+        text: "家を(　)。",
+        options: [
+          { id: "a", text: "たちます" },
+          { id: "b", text: "たてます" },
+          { id: "c", text: "たのみます" },
+          { id: "d", text: "たしかめます" }
+        ],
+        correctOptionId: "b",
+        explanation: "建てます (たてます) là xây nhà."
+      },
+      {
+        id: "l27_hw_q20",
+        type: "text_input",
+        skill: "Ngữ pháp (Grammar)",
+        text: "Dịch sang tiếng Nhật (chỉ dùng Hiragana/Kanji, không có Romaji): Tôi chỉ có thể nói một chút tiếng Nhật.",
+        correctAnswers: ["日本語が少ししか話せません", "日本語がすこししか話せません", "にほんごがすこししかはなせません", "日本語は少ししか話せません", "日本語は少しだけ話せます"],
+        explanation: "少ししか話せません (chỉ có thể nói một chút) hoặc 少しだけ話せます."
       }
-    ]
+]
   }
 ];

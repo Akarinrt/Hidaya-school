@@ -1,55 +1,55 @@
-'use client';
-
-import { useState } from 'react';
-import styles from '../lessons/lessons.module.css';
-import { testsData } from '../../../data/tests';
+import { PrismaClient } from '@prisma/client';
+import styles from '../homework/homework.module.css';
 import Link from 'next/link';
+import DeadlineEditor from '../homework/DeadlineEditor';
 
-export default function TestsPage() {
-  const [copiedId, setCopiedId] = useState<string | null>(null);
+const prisma = new PrismaClient();
 
-  const copyToClipboard = (testId: string) => {
-    const url = `${window.location.origin}/test/${testId}`;
-    navigator.clipboard.writeText(url);
-    setCopiedId(testId);
-    setTimeout(() => setCopiedId(null), 2000);
-  };
+export default async function HomeworkPage() {
+  const homeworks = await prisma.homework.findMany({
+    where: { type: { in: ['TEST', 'QUIZ'] } },
+    orderBy: { createdAt: 'desc' },
+    include: {
+      _count: { select: { submissions: true } },
+      teacher: true,
+    },
+  });
+
+  const formatDate = (d: Date | null) => d ? new Date(d).toLocaleDateString('vi-VN') : 'Không giới hạn';
+  const isOverdue = (d: Date | null) => d && new Date(d) < new Date();
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <div>
-          <h1 className={styles.title}>📑 Quản lý Bài Kiểm Tra</h1>
-          <p className={styles.subtitle}>Tạo link gửi cho học sinh làm bài trực tuyến tự động chấm điểm.</p>
+          <h1 className={styles.title}>📋 Bài kiểm tra</h1>
+          <p className={styles.subtitle}>{homeworks.length} bài đã tạo</p>
         </div>
+        <Link href="/teacher/homework/new" className={styles.addBtn}>+ Tạo bài mới</Link>
       </div>
 
-      <div className={styles.grid} style={{ marginTop: '20px' }}>
-        {testsData.map(test => (
-          <div key={test.id} className={styles.card} style={{ borderLeft: '4px solid #ef5350' }}>
-            <div className={styles.cardTop}>
-              <span className={styles.level} style={{ background: '#ef535022', color: '#ef5350' }}>
-                {test.level}
+      <div className={styles.list}>
+        {homeworks.map(hw => (
+          <div key={hw.id} className={styles.card}>
+            <div className={styles.cardLeft}>
+              <span className={`${styles.typeBadge} ${hw.type === 'TEST' ? styles.test : styles.homework}`}>
+                {hw.type === 'TEST' ? '📋 Bài test' : '📝 Bài tập'}
               </span>
-              <span className={styles.badge} style={{ background: '#f5f5f5', color: '#555' }}>
-                ⏱ {test.durationMinutes} phút
-              </span>
+              <h3 className={styles.cardTitle}>{hw.title}</h3>
+              {hw.description && <p className={styles.cardDesc}>{hw.description}</p>}
+              <div className={styles.cardMeta}>
+                <span className={isOverdue(hw.deadline) ? styles.overdue : styles.deadline}>
+                  📅 Hạn nộp: {formatDate(hw.deadline)}
+                </span>
+                <DeadlineEditor homeworkId={hw.id} currentDeadline={hw.deadline} />
+                <span className={styles.metaItem}>👤 {hw.teacher.fullName}</span>
+                <span className={styles.metaItem}>📨 {hw._count.submissions} bài đã nộp</span>
+              </div>
             </div>
-            <h3 className={styles.cardTitle}>{test.title}</h3>
-            <p className={styles.cardLesson}>{test.questions.length} câu hỏi</p>
-            <p className={styles.cardDesc}>{test.description}</p>
-            
-            <div className={styles.cardFooter} style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end', width: '100%' }}>
-              <Link href={`/test/${test.id}`} target="_blank" rel="noreferrer" className={styles.downloadBtn} style={{ background: '#f0f0f0', color: '#333' }}>
-                👀 Xem trước
+            <div className={styles.cardRight}>
+              <Link href={`/teacher/grading?homeworkId=${hw.id}`} className={styles.gradeBtn}>
+                Chấm bài ({hw._count.submissions})
               </Link>
-              <button 
-                onClick={() => copyToClipboard(test.id)}
-                className={styles.downloadBtn}
-                style={{ background: copiedId === test.id ? '#4caf50' : '#42a5f5', border: 'none', color: 'white', cursor: 'pointer' }}
-              >
-                {copiedId === test.id ? '✅ Đã copy' : '🔗 Copy Link'}
-              </button>
             </div>
           </div>
         ))}

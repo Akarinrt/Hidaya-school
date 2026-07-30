@@ -1,11 +1,13 @@
 import { PrismaClient } from '@prisma/client';
 import styles from './homework.module.css';
 import Link from 'next/link';
+import DeadlineEditor from './DeadlineEditor';
 
 const prisma = new PrismaClient();
 
 export default async function HomeworkPage() {
   const homeworks = await prisma.homework.findMany({
+    where: { type: 'HOMEWORK' },
     orderBy: { createdAt: 'desc' },
     include: {
       _count: { select: { submissions: true } },
@@ -20,7 +22,7 @@ export default async function HomeworkPage() {
     <div className={styles.container}>
       <div className={styles.header}>
         <div>
-          <h1 className={styles.title}>📝 Bài tập & Bài test</h1>
+          <h1 className={styles.title}>📝 Bài tập về nhà</h1>
           <p className={styles.subtitle}>{homeworks.length} bài đã tạo</p>
         </div>
         <Link href="/teacher/homework/new" className={styles.addBtn}>+ Tạo bài mới</Link>
@@ -39,6 +41,7 @@ export default async function HomeworkPage() {
                 <span className={isOverdue(hw.deadline) ? styles.overdue : styles.deadline}>
                   📅 Hạn nộp: {formatDate(hw.deadline)}
                 </span>
+                <DeadlineEditor homeworkId={hw.id} currentDeadline={hw.deadline} />
                 <span className={styles.metaItem}>👤 {hw.teacher.fullName}</span>
                 <span className={styles.metaItem}>📨 {hw._count.submissions} bài đã nộp</span>
               </div>

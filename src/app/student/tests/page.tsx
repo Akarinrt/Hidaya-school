@@ -22,7 +22,7 @@ export default async function StudentHomeworkPage() {
   const homeworks = await prisma.homework.findMany({
     where: { 
       isPublished: true,
-      type: 'HOMEWORK',
+      type: { in: ['TEST', 'QUIZ'] },
       OR: [
         { classId: { in: classIds } },
         { classId: null }
@@ -37,8 +37,8 @@ export default async function StudentHomeworkPage() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>📝 Bài tập về nhà</h1>
-      <p className={styles.subtitle}>Nộp bài và xem kết quả chấm điểm</p>
+      <h1 className={styles.title}>📋 Bài kiểm tra</h1>
+      <p className={styles.subtitle}>Làm bài kiểm tra và thi thử</p>
       <div className={styles.list}>
         {homeworks.map((hw: any) => {
           const submission = hw.submissions?.[0];
