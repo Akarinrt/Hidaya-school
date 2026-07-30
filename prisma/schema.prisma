@@ -33,6 +33,8 @@ model User {
   teachingClasses   Class[]           @relation("TeacherClasses")
   classEnrollments  ClassEnrollment[]
   attendances       Attendance[]
+  classPosts        ClassPost[]
+  postComments      PostComment[]
 }
 
 model Schedule {
@@ -63,6 +65,7 @@ model Class {
   homeworks     Homework[]
   resources     Resource[]
   flashcardDecks FlashcardDeck[]
+  posts         ClassPost[]
   createdAt     DateTime          @default(now())
   updatedAt     DateTime          @updatedAt
 }
@@ -217,4 +220,26 @@ model AIAnalysis {
   advice      String   
   testCreated Boolean  @default(false)
   createdAt   DateTime @default(now())
+}
+
+model ClassPost {
+  id          String   @id @default(uuid())
+  content     String
+  classId     String
+  class       Class    @relation(fields: [classId], references: [id], onDelete: Cascade)
+  authorId    String
+  author      User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  comments    PostComment[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PostComment {
+  id          String   @id @default(uuid())
+  content     String
+  postId      String
+  post        ClassPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  authorId    String
+  author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now())
 }

@@ -1,11 +1,22 @@
 import { PrismaClient } from '@prisma/client';
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
+import ClassForum from './ClassForum';
 
 const prisma = new PrismaClient();
 
 export default async function ClassFeedPage({ params }: { params: any }) {
   const { id } = await params;
+  const cookieStore = await cookies();
+  const token = cookieStore.get('token')?.value;
+  let currentUser = null;
+  
+  if (token) {
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as any;
+      currentUser = await prisma.user.findUnique({ select: { id: true, fullName: true, role: true }, where: { id: decoded.id } });
+    } catch (e) {}
+  }
   
   // Lấy dữ liệu học sinh trong lớp để làm Bảng xếp hạng
   const classStudents = await prisma.classEnrollment.findMany({
@@ -38,12 +49,8 @@ export default async function ClassFeedPage({ params }: { params: any }) {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '20px' }}>
       <div>
-        <div className="card" style={{ padding: '20px' }}>
-          <h2 style={{ color: 'var(--primary)', marginBottom: '15px' }}>📢 Thông báo lớp học</h2>
-          <div style={{ padding: '20px', background: 'var(--surface-hover)', borderRadius: '10px', color: 'var(--text-muted)' }}>
-            Hiện chưa có thông báo mới nào từ giáo viên.
-          </div>
-        </div>
+        <h2 style={{ color: 'var(--primary)', marginBottom: '20px' }}>📢 Diễn đàn Lớp học (Q&A)</h2>
+        <ClassForum classId={id} currentUser={currentUser} />
       </div>
 
       <div>
