@@ -35,7 +35,7 @@ export default function MaterialPrintPage() {
 
       <header style={{ textAlign: 'center', marginBottom: '30px' }}>
         <h1 style={{ margin: '0 0 10px 0', fontSize: '24pt' }}>Tài liệu Học tập - Bài 27</h1>
-        <p style={{ margin: 0, fontStyle: 'italic' }}>Chủ đề: Năng lực & Giao thông</p>
+        <p style={{ margin: 0, fontStyle: 'italic' }}>Chủ đề: Năng lực &amp; Giao thông</p>
       </header>
 
       <section>
@@ -63,7 +63,7 @@ export default function MaterialPrintPage() {
           <li>時間が10分しかありません。(<strong>Chỉ</strong> có 10 phút thôi - Cảm giác quá ít)</li>
         </ul>
 
-        <h3>3. 見えます (miemasu) & 聞こえます (kikoemasu)</h3>
+        <h3>3. 見えます (miemasu) &amp; 聞こえます (kikoemasu)</h3>
         <p><strong>Ý nghĩa:</strong></p>
         <ul>
           <li>見えます: Đập vào mắt, nhìn thấy một cách tự nhiên (không cần cố gắng).</li>
