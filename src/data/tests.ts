@@ -1,9 +1,16 @@
 export interface Question {
   id: string;
-  type: 'multiple_choice';
+  type: 'multiple_choice' | 'text_input';
   text: string;
-  options: { id: string; text: string }[];
-  correctOptionId: string;
+  passage?: string; // Đoạn văn đọc hiểu (nếu có)
+  
+  // Dành cho trắc nghiệm
+  options?: { id: string; text: string }[];
+  correctOptionId?: string;
+  
+  // Dành cho tự luận / điền từ
+  correctAnswers?: string[]; // Danh sách các đáp án được chấp nhận
+  
   explanation: string;
 }
 
@@ -67,22 +74,23 @@ export const testsData: Test[] = [
         correctOptionId: 'd', explanation: 'Tất cả các vị trí trên đều dùng được với trợ từ に và あります.'
       },
       {
-        id: 'q8', type: 'multiple_choice',
-        text: 'Chia động từ sang thể て: 泳ぐ → ?',
-        options: [{ id: 'a', text: '泳ぎて' }, { id: 'b', text: '泳いで' }, { id: 'c', text: '泳って' }, { id: 'd', text: '泳んで' }],
-        correctOptionId: 'b', explanation: 'Động từ kết thúc bằng ぐ đổi thành いで.'
+        id: 'q8', type: 'text_input',
+        text: 'Viết câu: "Tôi đã mua táo ở siêu thị." (Viết bằng Hiragana/Kanji, không dùng Romaji)',
+        correctAnswers: ['スーパーでりんごをかいました。', 'スーパーでりんごを買いました。', 'スーパーで リンゴを 買いました。'],
+        explanation: 'Địa điểm xảy ra hành động dùng で (スーパーで). Đã mua dùng quá khứ 買いました (かいました).'
       },
       {
         id: 'q9', type: 'multiple_choice',
-        text: 'Mẫu câu V-たい: "Tôi muốn uống nước" nói như thế nào?',
-        options: [{ id: 'a', text: '水が 飲みたいです。' }, { id: 'b', text: '水を 飲みたいです。' }, { id: 'c', text: 'Cả A và B đều đúng' }, { id: 'd', text: 'Cả A và B đều sai' }],
-        correctOptionId: 'c', explanation: 'Với động từ V-たい, tân ngữ có thể dùng を hoặc が.'
+        passage: 'きのうは 日曜日でした。わたしは 家族と デパートへ 行きました。デパートで 服を 買いました。それから、レストランで 晩ごはんを 食べました。とても 楽しかったです。',
+        text: 'Đọc đoạn văn trên và cho biết: "Hôm qua người này đã ăn tối ở đâu?"',
+        options: [{ id: 'a', text: 'Ở nhà' }, { id: 'b', text: 'Ở nhà hàng' }, { id: 'c', text: 'Ở siêu thị' }, { id: 'd', text: 'Ở công viên' }],
+        correctOptionId: 'b', explanation: 'Trong bài có câu: 「レストランで 晩ごはんを 食べました。」 (Đã ăn tối ở nhà hàng).'
       },
       {
         id: 'q10', type: 'multiple_choice',
-        text: 'Tình huống: Xin phép về sớm.',
-        options: [{ id: 'a', text: '早く 帰っても いいですか。' }, { id: 'b', text: '早く 帰らなければ なりません。' }, { id: 'c', text: '早く 帰らないで ください。' }, { id: 'd', text: '早く 帰ってから、行きます。' }],
-        correctOptionId: 'a', explanation: 'V-ても いいですか dùng để xin phép làm gì đó.'
+        text: 'Dựa vào đoạn văn trên: "Người này đã đi chơi với ai?"',
+        options: [{ id: 'a', text: 'Bạn bè' }, { id: 'b', text: 'Gia đình' }, { id: 'c', text: 'Một mình' }, { id: 'd', text: 'Người yêu' }],
+        correctOptionId: 'b', explanation: 'Câu số 2 nói: 「わたしは 家族と... 行きました」 (Tôi đã đi với gia đình).'
       }
     ]
   },
