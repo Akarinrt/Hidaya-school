@@ -452,4 +452,337 @@ export const testsData: Test[] = [
       },
     ]
   }
+,
+  [
+  {
+    id: "lesson-27-part2",
+    title: "Bài Kiểm Tra Bài 27 (Nửa bài sau)",
+    description: "Kiểm tra kiến thức: 見えます, 聞こえます, しか...ません, できます.",
+    level: "N4",
+    durationMinutes: 10,
+    questions: [
+      {
+        id: "l27_p2_q1",
+        type: "multiple_choice",
+        skill: "Từ vựng (Vocabulary)",
+        text: "富士山が（　　）ます。",
+        options: [
+          {
+            id: "a",
+            text: "見え"
+          },
+          {
+            id: "b",
+            text: "見られ"
+          },
+          {
+            id: "c",
+            text: "見せ"
+          },
+          {
+            id: "d",
+            text: "見"
+          }
+        ],
+        correctOptionId: "a",
+        explanation: "Nhìn thấy (một cách tự nhiên) dùng 見えます."
+      },
+      {
+        id: "l27_p2_q2",
+        type: "multiple_choice",
+        skill: "Từ vựng (Vocabulary)",
+        text: "波の音が（　　）ます。",
+        options: [
+          {
+            id: "a",
+            text: "聞け"
+          },
+          {
+            id: "b",
+            text: "聞こえ"
+          },
+          {
+            id: "c",
+            text: "聞かせ"
+          },
+          {
+            id: "d",
+            text: "聞き"
+          }
+        ],
+        correctOptionId: "b",
+        explanation: "Nghe thấy (âm thanh đập vào tai tự nhiên) dùng 聞こえます."
+      },
+      {
+        id: "l27_p2_q3",
+        type: "multiple_choice",
+        skill: "Trợ từ (Particles)",
+        text: "ローマ字（　　）書けません。",
+        options: [
+          {
+            id: "a",
+            text: "だけ"
+          },
+          {
+            id: "b",
+            text: "しか"
+          },
+          {
+            id: "c",
+            text: "が"
+          },
+          {
+            id: "d",
+            text: "を"
+          }
+        ],
+        correctOptionId: "b",
+        explanation: "しか đi với phủ định (ません) mang nghĩa 'chỉ'."
+      },
+      {
+        id: "l27_p2_q4",
+        type: "multiple_choice",
+        skill: "Trợ từ (Particles)",
+        text: "駅の前に大きいスーパー（　　）できました。",
+        options: [
+          {
+            id: "a",
+            text: "を"
+          },
+          {
+            id: "b",
+            text: "で"
+          },
+          {
+            id: "c",
+            text: "が"
+          },
+          {
+            id: "d",
+            text: "に"
+          }
+        ],
+        correctOptionId: "c",
+        explanation: "Hoàn thành, được xây lên dùng ができます."
+      },
+      {
+        id: "l27_p2_q5",
+        type: "multiple_choice",
+        skill: "Động từ Khả năng",
+        text: "わたしは ひらがな（　　）わかります。",
+        options: [
+          {
+            id: "a",
+            text: "だけ"
+          },
+          {
+            id: "b",
+            text: "しか"
+          },
+          {
+            id: "c",
+            text: "も"
+          },
+          {
+            id: "d",
+            text: "で"
+          }
+        ],
+        correctOptionId: "a",
+        explanation: "だけ đi với khẳng định (わかります) mang nghĩa 'chỉ'."
+      },
+      {
+        id: "l27_p2_q6",
+        type: "multiple_choice",
+        skill: "Động/Tính từ (Verbs/Adj)",
+        text: "ワインは 飲みますが、ビールは（　　）。",
+        options: [
+          {
+            id: "a",
+            text: "飲みます"
+          },
+          {
+            id: "b",
+            text: "飲みません"
+          },
+          {
+            id: "c",
+            text: "飲めます"
+          },
+          {
+            id: "d",
+            text: "飲めません"
+          }
+        ],
+        correctOptionId: "b",
+        explanation: "Đối chiếu: rượu thì uống nhưng bia thì KHÔNG uống (không dùng thể khả năng ở đây vì là thói quen)."
+      },
+      {
+        id: "l27_p2_q7",
+        type: "multiple_choice",
+        skill: "Trợ từ (Particles)",
+        text: "あの店では いいワイン（　　）買えません。",
+        options: [
+          {
+            id: "a",
+            text: "だけ"
+          },
+          {
+            id: "b",
+            text: "しか"
+          },
+          {
+            id: "c",
+            text: "が"
+          },
+          {
+            id: "d",
+            text: "は"
+          }
+        ],
+        correctOptionId: "b",
+        explanation: "しか + phủ định: Chỉ có thể mua... (không mua được cái khác)."
+      },
+      {
+        id: "l27_p2_q8",
+        type: "text_input",
+        skill: "Ngữ pháp (Grammar)",
+        text: "Chuyển sang dùng しか...ません: \nローマ字だけ わかります。 \n👉 ローマ字しか （　　　　　）。",
+        correctAnswers: [
+          "わかりません",
+          "わかりません。"
+        ],
+        explanation: "しか đi với động từ phủ định."
+      },
+      {
+        id: "l27_p2_q9",
+        type: "text_input",
+        skill: "Ngữ pháp (Grammar)",
+        text: "Hoàn thành câu: \nここから 山（　） 見えます。",
+        correctAnswers: [
+          "が"
+        ],
+        explanation: "見えます đi với trợ từ が."
+      },
+      {
+        id: "l27_p2_q10",
+        type: "multiple_choice",
+        skill: "Từ vựng (Vocabulary)",
+        text: "鳥の（　　）が聞こえます。",
+        options: [
+          {
+            id: "a",
+            text: "声"
+          },
+          {
+            id: "b",
+            text: "音"
+          },
+          {
+            id: "c",
+            text: "歌"
+          },
+          {
+            id: "d",
+            text: "言葉"
+          }
+        ],
+        correctOptionId: "a",
+        explanation: "Tiếng động vật/người dùng 声 (こえ), tiếng đồ vật dùng 音 (おと)."
+      }
+    ]
+  },
+  {
+    id: "lesson-27-part2-hw",
+    title: "Bài Tập Về Nhà Bài 27 (Nửa bài sau)",
+    description: "Bài tập củng cố kiến thức cuối bài 27.",
+    level: "N4",
+    durationMinutes: 15,
+    questions: [
+      {
+        id: "l27_hw_q1",
+        type: "multiple_choice",
+        skill: "Từ vựng (Vocabulary)",
+        text: "新しい空港が（　　）。",
+        options: [
+          {
+            id: "a",
+            text: "しました"
+          },
+          {
+            id: "b",
+            text: "できました"
+          },
+          {
+            id: "c",
+            text: "なりました"
+          },
+          {
+            id: "d",
+            text: "つくりました"
+          }
+        ],
+        correctOptionId: "b",
+        explanation: "Xây xong/hoàn thành dùng できました."
+      },
+      {
+        id: "l27_hw_q2",
+        type: "multiple_choice",
+        skill: "Động từ Khả năng",
+        text: "わたしは 英語が（　　）。",
+        options: [
+          {
+            id: "a",
+            text: "話せます"
+          },
+          {
+            id: "b",
+            text: "話します"
+          },
+          {
+            id: "c",
+            text: "話られます"
+          },
+          {
+            id: "d",
+            text: "話しられます"
+          }
+        ],
+        correctOptionId: "a",
+        explanation: "Thể khả năng của 話す là 話せる (話せます)."
+      },
+      {
+        id: "l27_hw_q3",
+        type: "text_input",
+        skill: "Trợ từ (Particles)",
+        text: "Điền trợ từ thích hợp: わたしは 日曜日（　）休めません。",
+        correctAnswers: [
+          "しか"
+        ],
+        explanation: "Chỉ có thể nghỉ vào Chủ Nhật -> 日曜日しか 休めません."
+      },
+      {
+        id: "l27_hw_q4",
+        type: "text_input",
+        skill: "Trợ từ (Particles)",
+        text: "Điền trợ từ thích hợp: 外から 車の音（　）聞こえます。",
+        correctAnswers: [
+          "が"
+        ],
+        explanation: "聞こえます đi với trợ từ が."
+      },
+      {
+        id: "l27_hw_q5",
+        type: "text_input",
+        skill: "Từ vựng (Vocabulary)",
+        text: "Dịch sang tiếng Nhật (chỉ dùng Hiragana): Tiếng (của người/động vật)",
+        correctAnswers: [
+          "こえ",
+          "声"
+        ],
+        explanation: "Tiếng động vật/người là 声 (こえ)."
+      }
+    ]
+  }
+]
 ];
