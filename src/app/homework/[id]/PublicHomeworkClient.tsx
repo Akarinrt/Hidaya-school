@@ -271,21 +271,6 @@ export default function PublicHomeworkClient({
 
         {/* ── Toolbar row ── */}
         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center', marginBottom: '16px' }}>
-          {/* Global furigana toggle — only shown if questions actually have furigana */}
-          {anyFurigana && (
-            <button
-              onClick={() => setGlobalFurigana(v => !v)}
-              style={{
-                padding: '8px 14px', borderRadius: '20px', border: `2px solid ${globalFurigana ? '#7c3aed' : '#c4b5fd'}`,
-                background: globalFurigana ? '#7c3aed' : 'white', color: globalFurigana ? 'white' : '#7c3aed',
-                fontWeight: 700, fontSize: '13px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px',
-                transition: 'all 0.2s'
-              }}
-            >
-              {globalFurigana ? '🈳 Ẩn furigana' : '🈳 Hiện furigana'}
-            </button>
-          )}
-
           {/* Progress */}
           {!submitted && questions.length > 0 && (
             <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '10px', minWidth: '120px' }}>
