@@ -245,6 +245,37 @@ export default function VocabPage({ lessonId }: { lessonId: string }) {
 
   return (
     <>
+      <style>{`
+        @media (max-width: 600px) {
+          .vocab-row {
+            grid-template-columns: 35px 1fr !important;
+            grid-template-rows: auto auto auto !important;
+            gap: 4px 8px !important;
+            padding: 10px 14px !important;
+          }
+          .vocab-index {
+            grid-row: 1 / span 3 !important;
+            align-self: start !important;
+            margin-top: 4px !important;
+          }
+          .vocab-ja {
+            grid-column: 2 !important;
+            font-size: 18px !important;
+          }
+          .vocab-kana {
+            grid-column: 2 !important;
+            color: #64748b !important;
+            font-size: 13px !important;
+          }
+          .vocab-vi {
+            grid-column: 2 !important;
+            font-size: 14px !important;
+            margin-top: 4px !important;
+            border-top: 1px dashed #f1f5f9;
+            padding-top: 4px;
+          }
+        }
+      `}</style>
       {studyItems && <FlashcardModal items={studyItems} onClose={() => setStudyItems(null)} />}
 
       <div style={{
@@ -313,6 +344,7 @@ export default function VocabPage({ lessonId }: { lessonId: string }) {
                 {group.items.map((item, ii) => (
                   <div
                     key={ii}
+                    className="vocab-row"
                     style={{
                       display: 'grid', gridTemplateColumns: '40px 1fr 1fr 1fr',
                       padding: '12px 18px', borderBottom: ii < group.items.length - 1 ? '1px solid #f1f5f9' : 'none',
@@ -323,16 +355,16 @@ export default function VocabPage({ lessonId }: { lessonId: string }) {
                     onMouseEnter={e => (e.currentTarget.style.background = '#eff6ff')}
                     onMouseLeave={e => (e.currentTarget.style.background = ii % 2 === 0 ? '#fff' : '#fafbff')}
                   >
-                    <span style={{ color: '#94a3b8', fontWeight: 600, fontSize: '13px', textAlign: 'center' }}>
+                    <span className="vocab-index" style={{ color: '#94a3b8', fontWeight: 600, fontSize: '13px', textAlign: 'center' }}>
                       {ii + 1}
                     </span>
-                    <span style={{ fontSize: '20px', fontWeight: 700, color: '#1e3a8a', fontFamily: '"Noto Sans JP", serif' }}>
+                    <span className="vocab-ja" style={{ fontSize: '20px', fontWeight: 700, color: '#1e3a8a', fontFamily: '"Noto Sans JP", serif' }}>
                       {item.ja}
                     </span>
-                    <span style={{ fontSize: '14px', color: '#475569', fontFamily: '"Noto Sans JP", serif' }}>
+                    <span className="vocab-kana" style={{ fontSize: '14px', color: '#475569', fontFamily: '"Noto Sans JP", serif' }}>
                       {item.kana}
                     </span>
-                    <span style={{ fontSize: '14px', color: '#374151', lineHeight: 1.4 }}>
+                    <span className="vocab-vi" style={{ fontSize: '14px', color: '#374151', lineHeight: 1.4 }}>
                       {item.vi}
                     </span>
                   </div>
