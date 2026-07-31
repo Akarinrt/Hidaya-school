@@ -383,7 +383,7 @@ export default function PublicHomeworkClient({
                   <button
                     onClick={() => toggleHint(q.id)}
                     className="q-hint-btn"
-                    title="Xem gợi ý / furigana"
+                    title={hasHint ? "Xem gợi ý / furigana" : "Xem furigana"}
                     style={{
                       padding: '5px 10px', borderRadius: '20px', border: `1.5px solid ${hintOpen[q.id] ? '#f59e0b' : '#fde68a'}`,
                       background: hintOpen[q.id] ? '#fef3c7' : 'white', color: '#b45309',
@@ -391,7 +391,9 @@ export default function PublicHomeworkClient({
                       transition: 'all 0.15s'
                     }}
                   >
-                    💡 {hintOpen[q.id] ? 'Ẩn' : 'Gợi ý'}
+                    {hasHint 
+                      ? (hintOpen[q.id] ? '💡 Ẩn gợi ý' : '💡 Gợi ý') 
+                      : (hintOpen[q.id] ? '🈳 Ẩn Furigana' : '🈳 Hiện Furigana')}
                   </button>
                 )}
               </div>
