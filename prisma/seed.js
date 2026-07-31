@@ -198,6 +198,100 @@ async function main() {
     });
   }
 
+  // Seeding Flashcards
+  const vocabDecks = [
+    {
+      title: "Từ vựng Bài 26: Thể thông thường + んです",
+      cards: [
+        { front: "診ます (みます)", back: "xem, khám (bệnh)" },
+        { front: "探します (さがします)", back: "tìm, tìm kiếm" },
+        { front: "遅れます (おくれます)", back: "trễ, muộn (giờ)" },
+        { front: "間に合います (まにあいます)", back: "kịp (giờ)" },
+        { front: "やります", back: "làm" },
+        { front: "拾います (ひろいます)", back: "nhặt được, lượm" },
+        { front: "連絡します (れんらくします)", back: "liên lạc" },
+        { front: "ずいぶん", back: "cực kỳ, khá là" },
+        { front: "直接 (ちょくせつ)", back: "trực tiếp" },
+        { front: "いつでも", back: "bất kỳ lúc nào" },
+        { front: "どこدهも", back: "bất kỳ nơi đâu" },
+        { front: "だれでも", back: "bất kỳ ai" },
+        { front: "何でも (なんでも)", back: "bất kỳ cái gì" },
+        { front: "こんな", back: "như thế này" },
+        { front: "そんな", back: "như thế đó" },
+        { front: "あんな", back: "như thế kia" }
+      ]
+    },
+    {
+      title: "Từ vựng Bài 27: Thể khả năng & Chỉ",
+      cards: [
+        { front: "飼います (かいます)", back: "nuôi (động vật)" },
+        { front: "建てます (たてます)", back: "xây dựng" },
+        { front: "走ります (はしります)", back: "chạy" },
+        { front: "見えます (みえます)", back: "nhìn thấy, có thể nhìn thấy" },
+        { front: "聞こえます (きこえます)", back: "nghe thấy, có thể nghe thấy" },
+        { front: "できます", back: "hoàn thành, có thể làm" },
+        { front: "開きます (ひらきます)", back: "mở, tổ chức (lớp học)" },
+        { front: "ペット", back: "thú cưng" },
+        { front: "鳥 (とり)", back: "chim" },
+        { front: "声 (こえ)", back: "tiếng, giọng nói" },
+        { front: "波 (なみ)", back: "sóng" },
+        { front: "花火 (はなび)", back: "pháo hoa" },
+        { front: "道具 (どうぐ)", back: "dụng cụ, công cụ" },
+        { front: "クリーニング", back: "giặt là" },
+        { front: "マンション", back: "căn hộ chung cư" },
+        { front: "キッチン", back: "nhà bếp" }
+      ]
+    },
+    {
+      title: "Từ vựng Bài 28: Vừa... vừa & Thói quen",
+      cards: [
+        { front: "売れます (うれます) [パンが~]", back: "bán chạy, bán được (bánh mì)" },
+        { front: "踊ります (おどります)", back: "nhảy, khiêu vũ" },
+        { front: "かみます", back: "nhai, cắn" },
+        { front: "選びます (えらびます)", back: "chọn, lựa chọn" },
+        { front: "違います (ちがいます)", back: "khác, khác biệt" },
+        { front: "通います (かよいます) [大学に~]", back: "đi học, đi làm (đi đi về về) [trường đại học]" },
+        { front: "まじめ [na]", back: "nghiêm túc, ngoan ngoãn" },
+        { front: "熱心 (ねっしん) [na]", back: "nhiệt tình, nhiệt huyết" },
+        { front: "優しい (やさしい)", back: "hiền lành, dịu dàng, tốt bụng" },
+        { front: "偉い (えらい)", back: "vĩ đại, giỏi giang" },
+        { front: "習慣 (しゅうかん)", back: "thói quen, tập quán" },
+        { front: "経験 (けいけん)", back: "kinh nghiệm" },
+        { front: "力 (ちから)", back: "sức mạnh, lực" },
+        { front: "人気 (にんき) [が あります]", back: "được yêu thích, phổ biến" },
+        { front: "値段 (ねだん)", back: "giá cả, giá tiền" },
+        { front: "給料 (きゅうりょう)", back: "lương" },
+        { front: "番組 (ばんぐみ)", back: "chương trình (TV)" },
+        { front: "歌手 (かしゅ)", back: "ca sĩ" }
+      ]
+    }
+  ];
+
+  vocabDecks[0].cards[10].front = "どこでも";
+
+  for (const d of vocabDecks) {
+    const existing = await prisma.flashcardDeck.findFirst({
+      where: { title: d.title, classId: defaultClass.id }
+    });
+    if (!existing) {
+      const createdDeck = await prisma.flashcardDeck.create({
+        data: {
+          title: d.title,
+          classId: defaultClass.id,
+        }
+      });
+      for (const card of d.cards) {
+        await prisma.flashcardCard.create({
+          data: {
+            front: card.front,
+            back: card.back,
+            deckId: createdDeck.id
+          }
+        });
+      }
+    }
+  }
+
   console.log('✅ Database seeded successfully!');
 }
 
