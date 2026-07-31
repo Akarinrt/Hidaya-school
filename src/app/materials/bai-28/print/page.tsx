@@ -158,15 +158,15 @@ export default function MaterialPrintPage28() {
         <p><strong>Các ví dụ mở rộng:</strong></p>
         <ul className="example-list">
           <li className="example-item">
-            <div>このスーパーは<ruby>値段<rt>ねだん</rt></ruby>も<strong>安いし</strong>、<ruby>魚<rt>さかな</rt></ruby>も<strong>新鮮<rt>しんせん</rt>だし</strong>、いつもここで<ruby>買<rt>か</rt></ruby>い<ruby>物<rt>もの</rt></ruby>をします。</div>
+            <div>このスーパーは<ruby>値段<rt>ねだん</rt></ruby>も<strong>安いし</strong>, <ruby>魚<rt>さかな</rt></ruby>も<strong>新鮮<rt>しんせん</rt>だし</strong>, いつもここで<ruby>買<rt>か</rt></ruby>い<ruby>物<rt>もの</rt></ruby>をします。</div>
             <div className="translation">Siêu thị này giá cả vừa rẻ, cá lại tươi ngon, nên tôi lúc nào cũng đi chợ mua sắm ở đây.</div>
           </li>
           <li className="example-item">
-            <div><ruby>彼<rt>かれ</rt></ruby>は<ruby>頭<rt>あたま</rt></ruby>も<strong>いいし</strong>、<ruby>親切<rt>しんせつ</rt>だし</strong>、それにスポーツもできますから、<ruby>人気<rt>にんき</rt></ruby>があります。</div>
+            <div><ruby>彼<rt>かれ</rt></ruby>は<ruby>頭<rt>あたま</rt></ruby>も<strong>いいし</strong>, <ruby>親切<rt>しんせつ</rt></ruby><strong>だし</strong>, それにスポーツもできますから, <ruby>人気<rt>にんき</rt></ruby>があります。</div>
             <div className="translation">Anh ấy vừa thông minh, vừa tốt bụng, thêm vào đó lại chơi được thể thao nên rất được mọi người yêu mến.</div>
           </li>
           <li className="example-item">
-            <div>ここは<ruby>駅<rt>えき</rt></ruby>から<strong>近いし</strong>、<ruby>部屋<rt>へや</rt></ruby>も<strong>広いし</strong>、とてもいいマンションです。</div>
+            <div>ここは<ruby>駅<rt>えき</rt></ruby>から<strong>近いし</strong>, <ruby>部屋<rt>へや</rt></ruby>も<strong>広いし</strong>, とてもいいマンションです。</div>
             <div className="translation">Căn hộ chung cư này vừa gần ga tàu, phòng ốc lại rộng rãi, đúng là một nơi ở lý tưởng.</div>
           </li>
         </ul>
