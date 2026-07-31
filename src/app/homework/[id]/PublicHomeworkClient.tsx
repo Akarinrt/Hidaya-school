@@ -135,9 +135,6 @@ export default function PublicHomeworkClient({
           <h1 style={{ fontSize: 'clamp(18px,4vw,28px)', fontWeight: 800, margin: '0 0 6px 0', lineHeight: 1.3 }}>
             {title}
           </h1>
-          {description && (
-            <p style={{ opacity: 0.85, margin: '0 0 14px 0', fontSize: '14px', lineHeight: 1.6 }}>{description}</p>
-          )}
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', fontSize: '12px', opacity: 0.8 }}>
             <span>📋 {questions.length} câu</span>
             {timeLimit && <span>⏱️ {timeLimit} phút</span>}
