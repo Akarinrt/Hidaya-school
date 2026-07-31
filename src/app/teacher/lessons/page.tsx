@@ -12,7 +12,8 @@ export default async function LessonsPage() {
   });
 
   const homeworks = await prisma.homework.findMany({
-    orderBy: { createdAt: 'desc' }
+    orderBy: { createdAt: 'desc' },
+    include: { class: true }
   });
 
   const levelColors: Record<string, string> = {
@@ -73,7 +74,7 @@ export default async function LessonsPage() {
                     <CopyLinkButton 
                       key={h.id} 
                       path={`/student/homework/${h.id}`} 
-                      label={`Copy ${h.type === 'TEST' ? 'Kiểm tra' : 'Bài tập'}`} 
+                      label={`Copy ${h.type === 'TEST' ? 'Kiểm tra' : 'Bài tập'}${h.class ? ` (${h.class.name})` : ''}`} 
                       style={{ 
                         width: '100%', 
                         justifyContent: 'center', 
@@ -117,7 +118,7 @@ export default async function LessonsPage() {
                     <CopyLinkButton 
                       key={h.id} 
                       path={`/student/homework/${h.id}`} 
-                      label={`Copy ${h.type === 'TEST' ? 'Kiểm tra' : 'Bài tập'}`} 
+                      label={`Copy ${h.type === 'TEST' ? 'Kiểm tra' : 'Bài tập'}${h.class ? ` (${h.class.name})` : ''}`} 
                       style={{ 
                         width: '100%', 
                         justifyContent: 'center', 
