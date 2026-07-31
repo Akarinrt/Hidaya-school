@@ -42,7 +42,7 @@ export default async function ClassTestsPage({ params }: { params: any }) {
           {tests.map(test => {
             const sub = test.submissions[0];
             return (
-              <div key={test.id} className="card" style={{ padding: '20px', display: 'flex', justifycontent: 'space-between', alignItems: 'center' }}>
+              <div key={test.id} className="card" style={{ padding: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div style={{ flex: 1 }}>
                   <h3 style={{ margin: '0 0 5px 0', color: 'var(--text-main)' }}>{test.title}</h3>
                   <div style={{ fontSize: '13px', color: 'var(--text-muted)' }}>
