@@ -191,10 +191,32 @@ export default function PublicHomeworkClient({
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f8fafc', fontFamily: '"Inter","Noto Sans JP",sans-serif', paddingBottom: '60px' }}>
+    <>
+      <style>{`
+        @media (max-width: 500px) {
+          .hero-header {
+            padding: 20px 16px !important;
+          }
+          .q-header {
+            display: grid !important;
+            grid-template-columns: 30px 1fr !important;
+            gap: 8px !important;
+          }
+          .q-text-wrapper {
+            grid-column: 2 !important;
+          }
+          .q-hint-btn {
+            grid-column: 2 !important;
+            justify-self: start !important;
+            margin-top: 6px !important;
+            margin-left: 0 !important;
+          }
+        }
+      `}</style>
+      <div style={{ minHeight: '100vh', background: '#f8fafc', fontFamily: '"Inter","Noto Sans JP",sans-serif', paddingBottom: '60px' }}>
 
       {/* ── Hero header ── */}
-      <div style={{
+      <div className="hero-header" style={{
         background: isExam
           ? 'linear-gradient(135deg,#7f1d1d,#dc2626)'
           : 'linear-gradient(135deg,#1e3a8a,#2563eb)',
@@ -346,11 +368,11 @@ export default function PublicHomeworkClient({
               <div style={{ background: 'white', borderRadius: '14px', padding: '20px', marginBottom: '14px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', border: cardBorder }}>
 
               {/* Q header row */}
-              <div style={{ display: 'flex', gap: '10px', marginBottom: '14px', alignItems: 'flex-start' }}>
+              <div className="q-header" style={{ display: 'flex', gap: '10px', marginBottom: '14px', alignItems: 'flex-start' }}>
                 <span style={{ minWidth: '30px', height: '30px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '13px', flexShrink: 0, background: numberBg, color: numberColor }}>
                   {idx + 1}
                 </span>
-                <div style={{ flex: 1 }}>
+                <div className="q-text-wrapper" style={{ flex: 1 }}>
                   <div style={{ fontWeight: 600, fontSize: '15px', color: '#1e293b', lineHeight: 1.6 }}>
                     <JapaneseText text={qText} showFurigana={showHint} />
                   </div>
@@ -360,6 +382,7 @@ export default function PublicHomeworkClient({
                 {(hasHint || hasFuri) && !submitted && (
                   <button
                     onClick={() => toggleHint(q.id)}
+                    className="q-hint-btn"
                     title="Xem gợi ý / furigana"
                     style={{
                       padding: '5px 10px', borderRadius: '20px', border: `1.5px solid ${hintOpen[q.id] ? '#f59e0b' : '#fde68a'}`,
@@ -482,5 +505,6 @@ export default function PublicHomeworkClient({
         )}
       </div>
     </div>
-  );
+  </>
+);
 }
