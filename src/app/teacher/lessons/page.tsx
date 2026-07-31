@@ -91,7 +91,7 @@ export default async function LessonsPage() {
                   {lessonHws.map(h => (
                     <CopyLinkButton 
                       key={h.id} 
-                      path={`/student/homework/${h.id}`} 
+                      path={`/homework/${h.id}`} 
                       label={`Copy ${getHomeworkLabel(h.title, h.type)}${h.class ? ` (${h.class.name})` : ''}`} 
                       style={{ 
                         width: '100%', 
@@ -147,7 +147,7 @@ export default async function LessonsPage() {
                   {lessonHws.map(h => (
                     <CopyLinkButton 
                       key={h.id} 
-                      path={`/student/homework/${h.id}`} 
+                      path={`/homework/${h.id}`} 
                       label={`Copy ${getHomeworkLabel(h.title, h.type)}${h.class ? ` (${h.class.name})` : ''}`} 
                       style={{ 
                         width: '100%', 
