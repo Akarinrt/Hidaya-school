@@ -220,7 +220,17 @@ export async function GET(req: NextRequest) {
           }
         });
 
-        if (!existing) {
+        if (existing) {
+          await prisma.homework.update({
+            where: { id: existing.id },
+            data: {
+              description: item.description,
+              type: item.type,
+              quizData: JSON.stringify(sourceTest.questions)
+            }
+          });
+          createdHwCount++;
+        } else {
           await prisma.homework.create({
             data: {
               title: item.title,

@@ -7,7 +7,7 @@ export default function SeedHwButton() {
   const [loading, setLoading] = useState(false);
 
   const handleSeed = async () => {
-    if (!confirm('Bạn có muốn khởi tạo nhanh bộ Bài tập và Bài kiểm tra mẫu (Bài 26, 27) cho tất cả các lớp học không?')) {
+    if (!confirm('Bạn có muốn khởi tạo nhanh bộ Bài tập và Bài kiểm tra mẫu (Bài 26, 27, 28) cho tất cả các lớp học không?')) {
       return;
     }
     setLoading(true);
