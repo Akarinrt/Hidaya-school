@@ -107,55 +107,136 @@ export default function MaterialPrintPage() {
               <td style={{ textAlign: 'center', fontSize: '24pt', fontWeight: 'bold' }}>空</td>
               <td>Không</td>
               <td>クウ / そら、あ(く)</td>
-              <td>空気 (Không khí)<br/>空 (Bầu trời)</td>
+              <td>
+                <strong>空気 (Không khí)</strong>
+                <div style={{ fontSize: '9.5pt', color: '#555', marginLeft: '10px', marginBottom: '5px' }}>
+                  例: この部屋は空気がきれいです。 (Không khí phòng này sạch.)
+                </div>
+                <strong>空 (Bầu trời)</strong>
+                <div style={{ fontSize: '9.5pt', color: '#555', marginLeft: '10px' }}>
+                  例: 今日の空は青いです。 (Bầu trời hôm nay xanh.)
+                </div>
+              </td>
             </tr>
             <tr>
               <td style={{ textAlign: 'center', fontSize: '24pt', fontWeight: 'bold' }}>業</td>
               <td>Nghiệp</td>
               <td>ギョウ / わざ</td>
-              <td>授業 (Giờ học)<br/>工業 (Công nghiệp)</td>
+              <td>
+                <strong>授業 (Giờ học)</strong>
+                <div style={{ fontSize: '9.5pt', color: '#555', marginLeft: '10px', marginBottom: '5px' }}>
+                  例: もうすぐ日本語の授業が始まります。 (Giờ học tiếng Nhật sắp bắt đầu.)
+                </div>
+                <strong>工業 (Công nghiệp)</strong>
+                <div style={{ fontSize: '9.5pt', color: '#555', marginLeft: '10px' }}>
+                  例: 日本は工業が進んでいる国です。 (Nhật Bản là nước có công nghiệp phát triển.)
+                </div>
+              </td>
             </tr>
             <tr>
               <td style={{ textAlign: 'center', fontSize: '24pt', fontWeight: 'bold' }}>鳥</td>
               <td>Điểu</td>
               <td>チョウ / とり</td>
-              <td>鳥 (Con chim)<br/>小鳥 (Chim non)</td>
+              <td>
+                <strong>鳥 (Con chim)</strong>
+                <div style={{ fontSize: '9.5pt', color: '#555', marginLeft: '10px', marginBottom: '5px' }}>
+                  例: 空に鳥がたくさん飛んでいます。 (Trên trời có nhiều chim đang bay.)
+                </div>
+                <strong>小鳥 (Chim non)</strong>
+                <div style={{ fontSize: '9.5pt', color: '#555', marginLeft: '10px' }}>
+                  例: 庭で小鳥が歌っています。 (Chim non đang hót ngoài vườn.)
+                </div>
+              </td>
             </tr>
             <tr>
               <td style={{ textAlign: 'center', fontSize: '24pt', fontWeight: 'bold' }}>通</td>
               <td>Thông</td>
               <td>ツウ / とお(る)</td>
-              <td>交通 (Giao thông)<br/>通る (Đi qua)</td>
+              <td>
+                <strong>交通 (Giao thông)</strong>
+                <div style={{ fontSize: '9.5pt', color: '#555', marginLeft: '10px', marginBottom: '5px' }}>
+                  例: ベトナムは交通量が多いです。 (Việt Nam có lượng giao thông đông đúc.)
+                </div>
+                <strong>通る (Đi qua)</strong>
+                <div style={{ fontSize: '9.5pt', color: '#555', marginLeft: '10px' }}>
+                  例: このバスは駅の前を通ります。 (Xe buýt này đi qua trước nhà ga.)
+                </div>
+              </td>
             </tr>
             <tr>
               <td style={{ textAlign: 'center', fontSize: '24pt', fontWeight: 'bold' }}>運</td>
               <td>Vận</td>
               <td>ウン / はこ(ぶ)</td>
-              <td>運動 (Vận động)<br/>運ぶ (Vận chuyển)</td>
+              <td>
+                <strong>運動 (Vận động)</strong>
+                <div style={{ fontSize: '9.5pt', color: '#555', marginLeft: '10px', marginBottom: '5px' }}>
+                  例: 健康のために毎日運動します。 (Tôi vận động hằng ngày vì sức khỏe.)
+                </div>
+                <strong>運ぶ (Vận chuyển)</strong>
+                <div style={{ fontSize: '9.5pt', color: '#555', marginLeft: '10px' }}>
+                  例: 重い荷物を部屋へ運びました。 (Tôi đã vận chuyển hành lý nặng vào phòng.)
+                </div>
+              </td>
             </tr>
             <tr>
               <td style={{ textAlign: 'center', fontSize: '24pt', fontWeight: 'bold' }}>転</td>
               <td>Chuyển</td>
               <td>テン / ころ(がる)</td>
-              <td>自転車 (Xe đạp)<br/>運転 (Lái xe)</td>
+              <td>
+                <strong>自転車 (Xe đạp)</strong>
+                <div style={{ fontSize: '9.5pt', color: '#555', marginLeft: '10px', marginBottom: '5px' }}>
+                  例: 自転車で学校に通っています。 (Tôi đi học bằng xe đạp.)
+                </div>
+                <strong>運転 (Lái xe)</strong>
+                <div style={{ fontSize: '9.5pt', color: '#555', marginLeft: '10px' }}>
+                  例: 彼は車の運転がとても上手です。 (Anh ấy lái xe ô tô rất giỏi.)
+                </div>
+              </td>
             </tr>
             <tr>
               <td style={{ textAlign: 'center', fontSize: '24pt', fontWeight: 'bold' }}>力</td>
               <td>Lực</td>
               <td>リョク / ちから</td>
-              <td>力 (Sức lực)<br/>電力 (Điện lực)</td>
+              <td>
+                <strong>力 (Sức lực)</strong>
+                <div style={{ fontSize: '9.5pt', color: '#555', marginLeft: '10px', marginBottom: '5px' }}>
+                  例: 彼は力が强くて優しい人です。 (Anh ấy là người khỏe mạnh và hiền lành.)
+                </div>
+                <strong>電力 (Điện lực)</strong>
+                <div style={{ fontSize: '9.5pt', color: '#555', marginLeft: '10px' }}>
+                  例: 夏は電力をたくさん使います。 (Mùa hè sử dụng nhiều điện lực.)
+                </div>
+              </td>
             </tr>
             <tr>
               <td style={{ textAlign: 'center', fontSize: '24pt', fontWeight: 'bold' }}>色</td>
               <td>Sắc</td>
               <td>ショク / いろ</td>
-              <td>色 (Màu sắc)<br/>景色 (Phong cảnh)</td>
+              <td>
+                <strong>色 (Màu sắc)</strong>
+                <div style={{ fontSize: '9.5pt', color: '#555', marginLeft: '10px', marginBottom: '5px' }}>
+                  例: シャツの色はどれが好きですか。 (Bạn thích màu áo sơ mi nào?)
+                </div>
+                <strong>景色 (Phong cảnh)</strong>
+                <div style={{ fontSize: '9.5pt', color: '#555', marginLeft: '10px' }}>
+                  例: 山の上からの景色は本当に綺麗でした。 (Phong cảnh nhìn từ đỉnh núi thực sự rất đẹp.)
+                </div>
+              </td>
             </tr>
             <tr>
               <td style={{ textAlign: 'center', fontSize: '24pt', fontWeight: 'bold' }}>味</td>
               <td>Vị</td>
               <td>ミ / あじ</td>
-              <td>味 (Vị)<br/>意味 (Ý nghĩa)</td>
+              <td>
+                <strong>味 (Vị)</strong>
+                <div style={{ fontSize: '9.5pt', color: '#555', marginLeft: '10px', marginBottom: '5px' }}>
+                  例: このスープは少し味が薄いです。 (Món súp này vị hơi nhạt.)
+                </div>
+                <strong>意味 (Ý nghĩa)</strong>
+                <div style={{ fontSize: '9.5pt', color: '#555', marginLeft: '10px' }}>
+                  例: この言葉の意味がよくわかりません。 (Tôi không hiểu rõ ý nghĩa của từ này.)
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
