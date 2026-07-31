@@ -194,6 +194,13 @@ export async function GET(req: NextRequest) {
         description: "Kiểm tra ngữ pháp cấu trúc ながら, ています, và し.",
         type: "TEST",
         sourceTestId: "lesson-28",
+      },
+      {
+        slug: "lesson-28-workbook-hw",
+        title: "Bài tập về nhà Bài 28 (Trọn bộ Mondai & Renshuu)",
+        description: "Trọn bộ bài tập về nhà theo sát sách bài tập Minna no Nihongo Bài 28: Cấu trúc ながら, ています, し, và trạng từ liên kết.",
+        type: "HOMEWORK",
+        sourceTestId: "lesson-28-hw",
       }
     ];
 
