@@ -3,6 +3,7 @@ import styles from './homework.module.css';
 import Link from 'next/link';
 import DeadlineEditor from './DeadlineEditor';
 import SeedHwButton from './SeedHwButton';
+import CopyLinkButton from '../CopyLinkButton';
 
 const prisma = new PrismaClient();
 
@@ -50,10 +51,11 @@ export default async function HomeworkPage() {
                 <span className={styles.metaItem}>📨 {hw._count.submissions} bài đã nộp</span>
               </div>
             </div>
-            <div className={styles.cardRight}>
+            <div className={styles.cardRight} style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-end' }}>
               <Link href={`/teacher/grading?homeworkId=${hw.id}`} className={styles.gradeBtn}>
                 Chấm bài ({hw._count.submissions})
               </Link>
+              <CopyLinkButton path={`/student/homework/${hw.id}`} label="Gửi HS" />
             </div>
           </div>
         ))}

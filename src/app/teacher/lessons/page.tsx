@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import styles from './lessons.module.css';
 import Link from 'next/link';
+import CopyLinkButton from '../CopyLinkButton';
 
 const prisma = new PrismaClient();
 
@@ -46,13 +47,20 @@ export default async function LessonsPage() {
             </div>
             <h3 className={styles.cardTitle}>Bài {lessonNumber}</h3>
             <p className={styles.cardLesson}>Giáo án Minna II - Bài {lessonNumber}</p>
-            <div className={styles.cardFooter} style={{ display: 'flex', gap: '8px', width: '100%' }}>
+            <div className={styles.cardFooter} style={{ display: 'flex', gap: '8px', width: '100%', marginBottom: '8px' }}>
               <a href={`/slides/bai${lessonNumber}/kanji.html`} target="_blank" rel="noreferrer" className={styles.downloadBtn} style={{ flex: 1, textAlign: 'center', background: '#ab47bc', color: 'white', border: 'none' }}>
                 漢字 Kanji
               </a>
               <a href={`/slides/bai${lessonNumber}/nguphap.html`} target="_blank" rel="noreferrer" className={styles.downloadBtn} style={{ flex: 1, textAlign: 'center', background: '#42a5f5', color: 'white', border: 'none' }}>
                 文法 Ngữ pháp
               </a>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', width: '100%' }}>
+              <div style={{ display: 'flex', gap: '6px' }}>
+                <CopyLinkButton path={`/slides/bai${lessonNumber}/kanji.html`} label="Copy Kanji" style={{ flex: 1, justifyContent: 'center' }} />
+                <CopyLinkButton path={`/slides/bai${lessonNumber}/nguphap.html`} label="Copy Ngữ pháp" style={{ flex: 1, justifyContent: 'center' }} />
+              </div>
+              <CopyLinkButton path={`/materials/bai-${lessonNumber}/print`} label="Copy Link in ấn A4" style={{ width: '100%', justifyContent: 'center' }} />
             </div>
           </div>
         ))}
@@ -70,12 +78,13 @@ export default async function LessonsPage() {
             </div>
             <h3 className={styles.cardTitle}>Bài {lessonNumber}</h3>
             <p className={styles.cardLesson}>Ngữ pháp Minna II - Bài {lessonNumber}</p>
-            <div className={styles.cardFooter}>
+            <div className={styles.cardFooter} style={{ marginBottom: '8px' }}>
               <span className={styles.teacher}>🤖 Auto-generated</span>
               <a href={`/slides/bai${lessonNumber}/index.html`} target="_blank" rel="noreferrer" className={styles.downloadBtn}>
                 ▶️ Giáo án
               </a>
             </div>
+            <CopyLinkButton path={`/slides/bai${lessonNumber}/index.html`} label="Copy Link slide" style={{ width: '100%', justifyContent: 'center' }} />
           </div>
         ))}
       </div>
