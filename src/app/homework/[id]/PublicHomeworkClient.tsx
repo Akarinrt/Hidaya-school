@@ -9,12 +9,14 @@ type Question = {
   q?: string;
   explanation?: string;
   hint?: string;
+  passage?: string;
   options?: { id: string; text: string }[];
   correctOptionId?: string;
   correctAnswers?: string[];
 };
 
 type Props = {
+  id: string;
   title: string;
   description: string;
   teacherName: string;
@@ -66,21 +68,65 @@ function JapaneseText({ text, showFurigana }: { text: string; showFurigana: bool
 }
 
 export default function PublicHomeworkClient({
-  title, description, teacherName, questions, audioUrl, isExam, timeLimit
+  id, title, description, teacherName, questions, audioUrl, isExam, timeLimit
 }: Props) {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [score, setScore] = useState(0);
-  const [timeLeft, setTimeLeft] = useState<number | null>(timeLimit ? timeLimit * 60 : null);
+  const [timeLeft, setTimeLeft] = useState<number | null>(null);
   const [globalFurigana, setGlobalFurigana] = useState(false);
   const [hintOpen, setHintOpen] = useState<Record<string, boolean>>({});
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Load progress from localStorage on mount
+  useEffect(() => {
+    try {
+      const savedAnswers = localStorage.getItem(`hw-answers-${id}`);
+      const savedSubmitted = localStorage.getItem(`hw-submitted-${id}`);
+      const savedScore = localStorage.getItem(`hw-score-${id}`);
+      const savedTimeLeft = localStorage.getItem(`hw-timeleft-${id}`);
+
+      if (savedAnswers) {
+        setAnswers(JSON.parse(savedAnswers));
+      }
+      if (savedSubmitted) {
+        setSubmitted(JSON.parse(savedSubmitted));
+      }
+      if (savedScore) {
+        setScore(JSON.parse(savedScore));
+      }
+      if (savedTimeLeft) {
+        setTimeLeft(JSON.parse(savedTimeLeft));
+      } else if (timeLimit) {
+        setTimeLeft(timeLimit * 60);
+      }
+    } catch (e) {
+      console.error("Failed to load progress from localStorage", e);
+    }
+    setIsLoaded(true);
+  }, [id, timeLimit]);
+
+  // Save progress to localStorage on change
+  useEffect(() => {
+    if (!isLoaded) return;
+    try {
+      localStorage.setItem(`hw-answers-${id}`, JSON.stringify(answers));
+      localStorage.setItem(`hw-submitted-${id}`, JSON.stringify(submitted));
+      localStorage.setItem(`hw-score-${id}`, JSON.stringify(score));
+      if (timeLeft !== null) {
+        localStorage.setItem(`hw-timeleft-${id}`, JSON.stringify(timeLeft));
+      }
+    } catch (e) {
+      console.error("Failed to save progress to localStorage", e);
+    }
+  }, [answers, submitted, score, timeLeft, id, isLoaded]);
 
   useEffect(() => {
-    if (timeLeft === null || submitted) return;
+    if (!isLoaded || timeLeft === null || submitted) return;
     if (timeLeft <= 0) { handleSubmit(); return; }
     const t = setInterval(() => setTimeLeft(p => (p !== null && p > 0 ? p - 1 : 0)), 1000);
     return () => clearInterval(t);
-  }, [timeLeft, submitted]);
+  }, [timeLeft, submitted, isLoaded]);
 
   const formatTime = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
   const answeredCount = Object.keys(answers).length;
@@ -95,6 +141,21 @@ export default function PublicHomeworkClient({
     });
     setScore(correct);
     setSubmitted(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleReset = () => {
+    try {
+      localStorage.removeItem(`hw-answers-${id}`);
+      localStorage.removeItem(`hw-submitted-${id}`);
+      localStorage.removeItem(`hw-score-${id}`);
+      localStorage.removeItem(`hw-timeleft-${id}`);
+    } catch (e) {}
+    setAnswers({});
+    setSubmitted(false);
+    setScore(0);
+    setHintOpen({});
+    if (timeLimit) setTimeLeft(timeLimit * 60);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -117,6 +178,16 @@ export default function PublicHomeworkClient({
   // check if any question has furigana markers
   const anyFurigana = questions.some(q => hasFuriganaMarkers(q.text || q.q || '') ||
     q.options?.some(o => hasFuriganaMarkers(o.text)));
+
+  if (!isLoaded) {
+    return (
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f8fafc', fontFamily: 'sans-serif' }}>
+        <div style={{ textAlign: 'center', color: '#64748b' }}>
+          Đang tải bài tập...
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={{ minHeight: '100vh', background: '#f8fafc', fontFamily: '"Inter","Noto Sans JP",sans-serif', paddingBottom: '60px' }}>
@@ -169,7 +240,7 @@ export default function PublicHomeworkClient({
               {percent >= 80 ? 'Xuất sắc! 🎉' : percent >= 50 ? 'Tốt! Cần ôn thêm một chút.' : 'Cần luyện tập thêm nhé!'} ({percent}%)
             </div>
             <button
-              onClick={() => { setAnswers({}); setSubmitted(false); setScore(0); setHintOpen({}); if (timeLimit) setTimeLeft(timeLimit * 60); window.scrollTo({ top: 0 }); }}
+              onClick={handleReset}
               style={{ marginTop: '14px', background: '#2563eb', color: 'white', border: 'none', borderRadius: '10px', padding: '10px 22px', fontWeight: 700, fontSize: '14px', cursor: 'pointer' }}
             >🔄 Làm lại từ đầu</button>
           </div>
@@ -239,6 +310,18 @@ export default function PublicHomeworkClient({
 
           return (
             <div key={q.id} style={{ background: 'white', borderRadius: '14px', padding: '20px', marginBottom: '14px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', border: cardBorder }}>
+
+              {/* Passage rendering if present */}
+              {q.passage && (
+                <div style={{
+                  background: '#f8fafc', borderLeft: '4px solid #3b82f6', borderRadius: '8px',
+                  padding: '16px', marginBottom: '16px', fontSize: '15px', color: '#334155',
+                  lineHeight: 1.8, whiteSpace: 'pre-line', border: '1px solid #e2e8f0',
+                  borderLeftWidth: '4px'
+                }}>
+                  <JapaneseText text={q.passage} showFurigana={showHint} />
+                </div>
+              )}
 
               {/* Q header row */}
               <div style={{ display: 'flex', gap: '10px', marginBottom: '14px', alignItems: 'flex-start' }}>

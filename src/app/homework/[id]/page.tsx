@@ -28,6 +28,7 @@ export default async function PublicHomeworkPage({ params }: { params: any }) {
 
   return (
     <PublicHomeworkClient
+      id={id}
       title={hw.title}
       description={hw.description || ''}
       teacherName={hw.teacher?.fullName || 'Giáo viên'}
