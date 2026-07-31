@@ -7,16 +7,39 @@ export default function MaterialPrintPage28() {
   }, []);
 
   return (
-    <div style={{ fontFamily: '"Times New Roman", serif', color: '#000', background: '#fff', padding: '10px', maxWidth: '850px', margin: '0 auto', fontSize: '13pt', lineHeight: 1.6 }}>
+    <div className="print-container">
       {/* CSS for printing */}
       <style dangerouslySetInnerHTML={{__html: `
+        .print-container {
+          font-family: "Times New Roman", Times, serif;
+          color: #000;
+          background: #fff;
+          padding: 20px;
+          max-width: 850px;
+          margin: 0 auto;
+          font-size: 13pt;
+          line-height: 1.6;
+        }
         @media print {
-          body { background: white; margin: 0; padding: 0; }
+          html, body {
+            background: #fff !important;
+            color: #000 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+          }
           .no-print { display: none !important; }
           .page-break { page-break-before: always; }
-          h2, h3 { page-break-after: avoid; }
-          tr { page-break-inside: avoid; }
-          li { page-break-inside: avoid; }
+          .print-container {
+            max-width: 100% !important;
+            width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            font-size: 12pt;
+          }
+          h2, h3 { page-break-after: avoid !important; }
+          tr { page-break-inside: avoid !important; }
+          li { page-break-inside: avoid !important; }
         }
         @page { margin: 1.2cm 1.5cm; }
         table { width: 100%; border-collapse: collapse; margin-top: 12px; margin-bottom: 15px; }
