@@ -3,9 +3,23 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function QuizTaker({ hwId, quizData, maxScore, timeLimit, audioUrl, isExam }: { hwId: string, quizData: string, maxScore: number, timeLimit?: number | null, audioUrl?: string | null, isExam?: boolean }) {
+export default function QuizTaker({ 
+  hwId, 
+  quizData, 
+  maxScore, 
+  timeLimit, 
+  audioUrl, 
+  isExam 
+}: { 
+  hwId: string, 
+  quizData: string, 
+  maxScore: number, 
+  timeLimit?: number | null, 
+  audioUrl?: string | null, 
+  isExam?: boolean 
+}) {
   const router = useRouter();
-  const [answers, setAnswers] = useState<Record<number, number>>({});
+  const [answers, setAnswers] = useState<Record<string, string>>({}); // Map question ID -> student answer
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [timeLeft, setTimeLeft] = useState<number | null>(timeLimit ? timeLimit * 60 : null);
@@ -28,16 +42,12 @@ export default function QuizTaker({ hwId, quizData, maxScore, timeLimit, audioUr
     return `${m}:${s < 10 ? '0' : ''}${s}`;
   };
 
-  let questions = [];
+  let questions: any[] = [];
   try {
     questions = JSON.parse(quizData);
   } catch {
     return <div>Dữ liệu bài tập bị lỗi.</div>;
   }
-
-  const handleSelect = (qIdx: number, oIdx: number) => {
-    setAnswers(prev => ({ ...prev, [qIdx]: oIdx }));
-  };
 
   const handleSubmit = async (autoSubmit: boolean = false) => {
     if (!autoSubmit && Object.keys(answers).length < questions.length) {
@@ -93,37 +103,67 @@ export default function QuizTaker({ hwId, quizData, maxScore, timeLimit, audioUr
         </div>
       )}
 
-      <h3 style={{ marginBottom: '20px', color: 'var(--primary)' }}>Bài tập Trắc nghiệm ({questions.length} câu)</h3>
+      <h3 style={{ marginBottom: '20px', color: 'var(--primary)' }}>Bài tập Trắc nghiệm & Tự luận ({questions.length} câu)</h3>
       
       {questions.map((q: any, idx: number) => (
-        <div key={idx} style={{ marginBottom: '25px', padding: '15px', background: 'var(--surface-hover)', borderRadius: '10px' }}>
-          <div style={{ fontWeight: 'bold', marginBottom: '10px', fontSize: '1.1em' }}>Câu {idx + 1}: {q.q}</div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '10px' }}>
-            {q.options.map((opt: string, oIdx: number) => (
-              <label 
-                key={oIdx} 
-                style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '10px', 
-                  padding: '10px', 
-                  background: answers[idx] === oIdx ? 'var(--primary-light)' : 'var(--surface)', 
-                  border: answers[idx] === oIdx ? '2px solid var(--primary)' : '1px solid var(--border)', 
-                  borderRadius: '8px', 
-                  cursor: 'pointer' 
-                }}
-              >
-                <input 
-                  type="radio" 
-                  name={`q-${idx}`} 
-                  checked={answers[idx] === oIdx} 
-                  onChange={() => handleSelect(idx, oIdx)} 
-                  style={{ transform: 'scale(1.2)' }}
-                />
-                <span style={{ fontSize: '1em' }}>{opt}</span>
-              </label>
-            ))}
+        <div key={q.id || idx} style={{ marginBottom: '25px', padding: '20px', background: 'var(--surface-hover)', borderRadius: '10px', border: '1px solid var(--border)' }}>
+          <div style={{ fontWeight: 'bold', marginBottom: '15px', fontSize: '1.1em', color: 'var(--text-main)' }}>
+            Câu {idx + 1}: {q.text || q.q}
           </div>
+          
+          {q.type === 'multiple_choice' ? (
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '10px' }}>
+              {q.options && q.options.map((opt: any, oIdx: number) => {
+                const optId = opt.id || String(oIdx);
+                const optText = opt.text || opt;
+                const isSelected = answers[q.id] === optId;
+                return (
+                  <label 
+                    key={optId} 
+                    style={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      gap: '10px', 
+                      padding: '12px 15px', 
+                      background: isSelected ? 'rgba(0, 82, 204, 0.08)' : 'var(--surface)', 
+                      border: isSelected ? '2px solid var(--primary)' : '1px solid var(--border)', 
+                      borderRadius: '8px', 
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    <input 
+                      type="radio" 
+                      name={`q-${q.id}`} 
+                      checked={isSelected} 
+                      onChange={() => setAnswers(prev => ({ ...prev, [q.id]: optId }))} 
+                      style={{ transform: 'scale(1.2)' }}
+                    />
+                    <span style={{ fontSize: '1em', color: 'var(--text-main)' }}>{optText}</span>
+                  </label>
+                );
+              })}
+            </div>
+          ) : (
+            <div>
+              <input 
+                type="text" 
+                value={answers[q.id] || ''} 
+                onChange={(e) => setAnswers(prev => ({ ...prev, [q.id]: e.target.value }))} 
+                placeholder="Nhập câu trả lời bằng Hiragana / Kanji..." 
+                style={{ 
+                  width: '100%', 
+                  padding: '12px 15px', 
+                  borderRadius: '8px', 
+                  border: '1px solid var(--border)', 
+                  background: 'var(--surface)',
+                  color: 'var(--text-main)',
+                  fontSize: '1em',
+                  boxSizing: 'border-box'
+                }}
+              />
+            </div>
+          )}
         </div>
       ))}
 

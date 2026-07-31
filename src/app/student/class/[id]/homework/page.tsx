@@ -57,7 +57,7 @@ export default async function ClassHomeworkPage({ params }: { params: any }) {
                 </div>
                 
                 <Link href={`/student/homework/${hw.id}`} style={{ background: sub ? 'var(--surface-hover)' : 'var(--primary)', color: sub ? 'var(--text-main)' : 'white', padding: '10px 20px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', border: sub ? '1px solid var(--border)' : 'none' }}>
-                  {sub ? 'Xem chi tiết' : (hw.type === 'QUIZ' ? 'Làm bài thi' : 'Nộp bài')}
+                  {sub ? 'Xem chi tiết' : (hw.quizData ? 'Làm bài' : 'Nộp bài')}
                 </Link>
               </div>
             );

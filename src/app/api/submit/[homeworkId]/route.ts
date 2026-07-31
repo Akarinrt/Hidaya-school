@@ -26,14 +26,25 @@ export async function POST(req: Request, { params }: { params: Promise<{ homewor
     if (contentType.includes('application/json')) {
       const body = await req.json();
       
-      if (body.answers && hw.type === 'QUIZ' && hw.quizData) {
+      if (body.answers && hw.quizData) {
         let questions = [];
         try { questions = JSON.parse(hw.quizData); } catch (e) {}
         
         let correctCount = 0;
-        questions.forEach((q: any, idx: number) => {
-          if (body.answers[idx] === q.correct) {
-            correctCount++;
+        questions.forEach((q: any) => {
+          const studentAnswer = body.answers[q.id];
+          if (!studentAnswer) return;
+
+          if (q.type === 'multiple_choice') {
+            if (studentAnswer === q.correctOptionId) {
+              correctCount++;
+            }
+          } else if (q.type === 'text_input') {
+            const cleanAns = String(studentAnswer).trim().toLowerCase();
+            const hasMatch = q.correctAnswers && q.correctAnswers.some((ans: string) => String(ans).trim().toLowerCase() === cleanAns);
+            if (hasMatch) {
+              correctCount++;
+            }
           }
         });
 
