@@ -292,19 +292,38 @@ async function main() {
     }
   }
 
-  // ── Migration: replace "Thể từ điển" → "Thể thường" in all homework quizData ──
-  const allHomework = await prisma.homework.findMany({ select: { id: true, quizData: true } });
-  let migratedCount = 0;
-  for (const hw of allHomework) {
-    if (!hw.quizData) continue;
-    if (!hw.quizData.includes('Thể từ điển') && !hw.quizData.includes('thể từ điển')) continue;
-    const updated = hw.quizData
-      .replace(/Thể từ điển/g, 'Thể thường')
-      .replace(/thể từ điển/g, 'thể thường');
-    await prisma.homework.update({ where: { id: hw.id }, data: { quizData: updated } });
-    migratedCount++;
+  // ── Sync: Update all existing seeded homeworks/tests quizData from testsData ──
+  const hwsToSync = [
+    { title: "Bài kiểm tra trắc nghiệm Bài 26", sourceTestId: "lesson-26" },
+    { title: "Bài kiểm tra trắc nghiệm Bài 27 (Nửa bài đầu)", sourceTestId: "lesson-27-part1" },
+    { title: "Bài kiểm tra trắc nghiệm Bài 27 (Nửa bài sau)", sourceTestId: "lesson-27-part2" },
+    { title: "Bài tập về nhà Bài 27 (Trọn bộ Mondai & Renshuu)", sourceTestId: "lesson-27-part2-hw" },
+    { title: "Bài kiểm tra trắc nghiệm Bài 28", sourceTestId: "lesson-28" },
+    { title: "Bài tập về nhà Bài 28 (Trọn bộ Mondai & Renshuu)", sourceTestId: "lesson-28-hw" },
+  ];
+
+  let syncCount = 0;
+  for (const item of hwsToSync) {
+    const sourceTest = testsData.find(t => t.id === item.sourceTestId);
+    if (!sourceTest) continue;
+
+    const existingList = await prisma.homework.findMany({
+      where: { title: item.title }
+    });
+
+    for (const existing of existingList) {
+      await prisma.homework.update({
+        where: { id: existing.id },
+        data: {
+          quizData: JSON.stringify(sourceTest.questions)
+        }
+      });
+      syncCount++;
+    }
   }
-  if (migratedCount > 0) console.log(`✅ Migrated ${migratedCount} homework(s): "Thể từ điển" → "Thể thường"`);
+  if (syncCount > 0) {
+    console.log(`✅ Synced ${syncCount} homework records with the latest questions from testsData.`);
+  }
 
   console.log('✅ Database seeded successfully!');
 }

@@ -949,86 +949,86 @@ export const testsData: Test[] = [
       }
 ,
 
-  // Exercise 1: Potential form conjugation
+    // Exercise 1: Potential form conjugation
   {
     id: "l27_wb_1_1",
     type: "text_input",
     skill: "Ngữ pháp (Thể khả năng)",
-    text: "Chia sang thể khả năng (Masu): 見られます -> Thể từ điển (Khả năng)?",
+    text: "Chuyển động từ thể khả năng dạng Masu sang thể thường: 見られます -> ?",
     correctAnswers: ["見られる", "みられる"],
-    explanation: "見られます (mieraremasu) thể từ điển là 見られる."
+    explanation: "見られます (thể khả năng dạng Masu) chuyển sang thể thường là 見られる."
   },
   {
     id: "l27_wb_1_2",
     type: "text_input",
     skill: "Ngữ pháp (Thể khả năng)",
-    text: "Chia sang thể khả năng (Masu): 建てます -> Thể khả năng (Masu)?",
+    text: "Chuyển sang thể khả năng dạng Masu: 建てます -> ?",
     correctAnswers: ["建てられます", "たてられます"],
-    explanation: "建てます nhóm 2 -> 建てられます."
+    explanation: "建てます (Nhóm 2) chuyển sang thể khả năng dạng Masu là 建てられます."
   },
   {
     id: "l27_wb_1_3",
     type: "text_input",
     skill: "Ngữ pháp (Thể khả năng)",
-    text: "Chia sang thể khả năng (Từ điển): 走れる -> Thể khả năng (Masu)?",
+    text: "Chuyển động từ thể khả năng dạng thường sang dạng Masu: 走れる -> ?",
     correctAnswers: ["走れます", "はしれます"],
-    explanation: "走れる là thể từ điển, sang masu là 走れます."
+    explanation: "走れる (thể khả năng dạng thường) chuyển sang dạng Masu là 走れます."
   },
   {
     id: "l27_wb_1_4",
     type: "text_input",
     skill: "Ngữ pháp (Thể khả năng)",
-    text: "Chia sang thể khả năng (Masu): 借ります -> Thể khả năng (Masu)?",
+    text: "Chuyển sang thể khả năng dạng Masu: 借ります -> ?",
     correctAnswers: ["借りられます", "かりられます"],
-    explanation: "借ります nhóm 2 -> 借りられます."
+    explanation: "借ります (Nhóm 2) chuyển sang thể khả năng dạng Masu là 借りられます."
   },
   {
     id: "l27_wb_1_5",
     type: "text_input",
     skill: "Ngữ pháp (Thể khả năng)",
-    text: "Chia sang thể khả năng (Từ điển): 捜せます -> Thể từ điển?",
+    text: "Chuyển động từ thể khả năng dạng Masu sang thể thường: 捜せます -> ?",
     correctAnswers: ["捜せる", "さがせる"],
-    explanation: "捜せます -> 捜せる."
+    explanation: "捜せます (thể khả năng dạng Masu) chuyển sang thể thường là 捜せる."
   },
   {
     id: "l27_wb_1_6",
     type: "text_input",
     skill: "Ngữ pháp (Thể khả năng)",
-    text: "Chia sang thể khả năng (Masu): 連絡します -> Thể khả năng (Masu)?",
+    text: "Chuyển sang thể khả năng dạng Masu: 連絡します -> ?",
     correctAnswers: ["連絡できます", "れんらくできます"],
-    explanation: "連絡します nhóm 3 -> 連絡できます."
+    explanation: "連絡します (Nhóm 3) chuyển sang thể khả năng dạng Masu là 連絡できます."
   },
   {
     id: "l27_wb_1_7",
     type: "text_input",
     skill: "Ngữ pháp (Thể khả năng)",
-    text: "Chia sang thể khả năng (Masu): 起きます -> Thể khả năng (Masu)?",
+    text: "Chuyển sang thể khả năng dạng Masu: 起きます -> ?",
     correctAnswers: ["起きられます", "おきられます"],
-    explanation: "起きます nhóm 2 -> 起きられます."
+    explanation: "起きます (Nhóm 2) chuyển sang thể khả năng dạng Masu là 起きられます."
   },
   {
     id: "l27_wb_1_8",
     type: "text_input",
     skill: "Ngữ pháp (Thể khả năng)",
-    text: "Chia sang thể khả năng (Từ điển): 置けます -> Thể từ điển?",
+    text: "Chuyển động từ thể khả năng dạng Masu sang thể thường: 置けます -> ?",
     correctAnswers: ["置ける", "おける"],
-    explanation: "置けます -> 置ける."
+    explanation: "置けます (thể khả năng dạng Masu) chuyển sang thể thường là 置ける."
   },
   {
     id: "l27_wb_1_9",
     type: "text_input",
     skill: "Ngữ pháp (Thể khả năng)",
-    text: "Chia sang thể khả năng (Masu): 開ける -> Thể khả năng (Masu)?",
+    text: "Chuyển động từ thể khả năng dạng thường sang dạng Masu: 開ける -> ?",
     correctAnswers: ["開けられます", "あけられます"],
-    explanation: "開ける là thể từ điển của khả năng -> 開けられます."
+    explanation: "開ける (thể khả năng dạng thường) chuyển sang dạng Masu là 開けられます."
   },
   {
     id: "l27_wb_1_10",
     type: "text_input",
     skill: "Ngữ pháp (Thể khả năng)",
-    text: "Chia sang thể khả năng (Masu): 来ます -> Thể khả năng (Masu)?",
+    text: "Chuyển sang thể khả năng dạng Masu: 来ます -> ?",
     correctAnswers: ["こられます", "来られます"],
-    explanation: "来ます nhóm 3 -> こられます."
+    explanation: "来ます (Nhóm 3) chuyển sang thể khả năng dạng Masu là こられます."
   },
   
   // Exercise 2: Combine sentences
@@ -1036,33 +1036,33 @@ export const testsData: Test[] = [
     id: "l27_wb_2_1",
     type: "text_input",
     skill: "Ngữ pháp",
-    text: "Viết lại câu sử dụng thể khả năng phủ định: 簡単な料理だったら、自分で(作ります -> ✖)",
+    text: "Chia động từ trong ngoặc sang thể khả năng phủ định: 簡単な料理だったら、自分で (作ります -> ...)",
     correctAnswers: ["作れません", "つくれません"],
-    explanation: "作ります -> 作れます. Phủ định là 作れません."
+    explanation: "作ります -> thể khả năng phủ định là 作れません (không thể làm)."
   },
   {
     id: "l27_wb_2_2",
     type: "text_input",
     skill: "Ngữ pháp",
-    text: "Viết lại câu sử dụng thể khả năng phủ định: 早く漢字を覚えたいですが、なかなか(覚えます -> ✖)",
+    text: "Chia động từ trong ngoặc sang thể khả năng phủ định: 早く漢字を覚えたいですが、なかなか (覚えます -> ...)",
     correctAnswers: ["覚えられません", "おぼえられません"],
-    explanation: "覚えます -> 覚えられます -> 覚えられません."
+    explanation: "覚えます -> thể khả năng phủ định là 覚えられません (không thể nhớ)."
   },
   {
     id: "l27_wb_2_3",
     type: "text_input",
     skill: "Ngữ pháp",
-    text: "Viết lại câu sử dụng thể khả năng phủ định: また会いたいですね。今度いつ(会います -> 〇)?",
+    text: "Chia động từ trong ngoặc sang thể khả năng nghi vấn: また会いたいですね。今度いつ (会います -> ...)？",
     correctAnswers: ["会えますか", "あえますか"],
-    explanation: "Câu hỏi: 今度いつ会えますか (Lần tới khi nào có thể gặp?)"
+    explanation: "会います -> thể khả năng nghi vấn là 会えますか (có thể gặp không?)."
   },
   {
     id: "l27_wb_2_4",
     type: "text_input",
     skill: "Ngữ pháp",
-    text: "Viết lại câu sử dụng thể khả năng phủ định: 去年は忙しかったですから、長い旅行に(行きます -> ✖)",
+    text: "Chia động từ trong ngoặc sang thể khả năng phủ định quá khứ: 去年は忙しかったですから、長い旅行に (行きます -> ...)",
     correctAnswers: ["行けませんでした", "いけませんでした"],
-    explanation: "Quá khứ phủ định của 行けます là 行けませんでした."
+    explanation: "行きます -> thể khả năng phủ định quá khứ là 行けませんでした (đã không thể đi)."
   },
 
   // Exercise 3: Rewrite ことができます -> potential
