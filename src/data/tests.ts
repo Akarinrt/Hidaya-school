@@ -1169,5 +1169,129 @@ export const testsData: Test[] = [
     explanation: "ゴルフは好きですが、ほかのスポーツは好きじゃありません (Golf thì thích, nhưng môn khác thì không)."
   }
 ]
+  },
+  {
+    id: "lesson-28",
+    title: "Bài kiểm tra Bài 28",
+    description: "Kiểm tra ngữ pháp cấu trúc ながら (vừa... vừa), ています (thói quen), và し (liệt kê lý do).",
+    level: "N4",
+    durationMinutes: 15,
+    questions: [
+      {
+        id: "l28_q1",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp điền vào chỗ trống: 音楽を聞き（　）勉強します。",
+        options: [
+          { id: "a", text: "ながら" },
+          { id: "b", text: "て" },
+          { id: "c", text: "で" },
+          { id: "d", text: "から" }
+        ],
+        correctOptionId: "a",
+        explanation: "V-masu + ながら + V2: Vừa làm V1 vừa làm V2 (hành động chính đứng sau)."
+      },
+      {
+        id: "l28_q2",
+        type: "multiple_choice",
+        text: "Diễn tả thói quen chạy bộ mỗi sáng: 毎朝ジョギングを（　）。",
+        options: [
+          { id: "a", text: "します" },
+          { id: "b", text: "しています" },
+          { id: "c", text: "しました" },
+          { id: "d", text: "する" }
+        ],
+        correctOptionId: "b",
+        explanation: "V-te imasu dùng để diễn tả một hành động, thói quen lặp đi lặp lại thường xuyên."
+      },
+      {
+        id: "l28_q3",
+        type: "multiple_choice",
+        text: "Chọn từ nối lý do thích hợp: この店は値段も安い（　）、味もいいから、いつも混んでいます。",
+        options: [
+          { id: "a", text: "し" },
+          { id: "b", text: "て" },
+          { id: "c", text: "から" },
+          { id: "d", text: "と" }
+        ],
+        correctOptionId: "a",
+        explanation: "Cấu trúc Thể thông thường + し để liệt kê các lý do bổ sung cho nhau."
+      },
+      {
+        id: "l28_q4",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: 彼は頭がいいし、（　）優しいから、人気があります。",
+        options: [
+          { id: "a", text: "それに" },
+          { id: "b", text: "それで" },
+          { id: "c", text: "だから" },
+          { id: "d", text: "しかし" }
+        ],
+        correctOptionId: "a",
+        explanation: "それに (hơn thế nữa, vả lại) dùng để bổ sung thông tin hoặc lý do tích cực/tiêu cực cùng chiều."
+      },
+      {
+        id: "l28_q5",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: お腹が痛いし、熱があるし、（　）学校を休みました。",
+        options: [
+          { id: "a", text: "それで" },
+          { id: "b", text: "それに" },
+          { id: "c", text: "chậm" },
+          { id: "d", text: "また" }
+        ],
+        correctOptionId: "a",
+        explanation: "それで (vì thế, do đó) đứng đầu câu để chỉ kết quả dẫn ra từ các nguyên nhân đã nói trước đó."
+      },
+      {
+        id: "l28_q6",
+        type: "text_input",
+        skill: "Ngữ pháp (ながら)",
+        text: "Điền từ thích hợp: 歩き(　)話します。 (Vừa đi bộ vừa nói chuyện)",
+        correctAnswers: ["ながら"],
+        explanation: "歩きます bỏ ます + ながら."
+      },
+      {
+        id: "l28_q7",
+        type: "text_input",
+        skill: "Ngữ pháp (ながら)",
+        text: "Điền từ thích hợp: 働き(　)大学に通っています。 (Vừa đi làm vừa đi học đại học)",
+        correctAnswers: ["ながら"],
+        explanation: "働きます bỏ ます + ながら."
+      },
+      {
+        id: "l28_q8",
+        type: "text_input",
+        skill: "Ngữ pháp (ています)",
+        text: "Điền từ thích hợp diễn tả thói quen: 毎晩牛乳を飲んで(　)。 (Mỗi tối tôi đều uống sữa)",
+        correctAnswers: ["います"],
+        explanation: "V-te imasu diễn tả thói quen hàng ngày."
+      },
+      {
+        id: "l28_q9",
+        type: "multiple_choice",
+        text: "Chọn cách chia đúng: 食べます + し ➔ （　）",
+        options: [
+          { id: "a", text: "食べるし" },
+          { id: "b", text: "食べし" },
+          { id: "c", text: "食べますし" },
+          { id: "d", text: "食べだし" }
+        ],
+        correctOptionId: "a",
+        explanation: "Động từ chia về thể từ điển (Thông thường) + し."
+      },
+      {
+        id: "l28_q10",
+        type: "multiple_choice",
+        text: "Chọn cách chia đúng cho tính từ đuôi -na: 親切です + し ➔ （　）",
+        options: [
+          { id: "a", text: "親切だし" },
+          { id: "b", text: "親切し" },
+          { id: "c", text: "親切いし" },
+          { id: "d", text: "親切なし" }
+        ],
+        correctOptionId: "a",
+        explanation: "Tính từ đuôi -na / Danh từ + だ + し."
+      }
+    ]
   }
 ];
