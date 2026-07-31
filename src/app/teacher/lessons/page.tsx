@@ -5,6 +5,18 @@ import CopyLinkButton from '../CopyLinkButton';
 
 const prisma = new PrismaClient();
 
+function getHomeworkLabel(title: string, type: string) {
+  let label = type === 'TEST' ? 'Kiểm tra' : 'Bài tập';
+  if (title.includes('Nửa bài đầu')) {
+    label += ' Nửa đầu';
+  } else if (title.includes('Nửa bài sau')) {
+    label += ' Nửa sau';
+  } else if (title.includes('Mondai')) {
+    label += ' Full';
+  }
+  return label;
+}
+
 export default async function LessonsPage() {
   const lessons = await prisma.lessonPlan.findMany({
     orderBy: { createdAt: 'desc' },
@@ -74,7 +86,7 @@ export default async function LessonsPage() {
                     <CopyLinkButton 
                       key={h.id} 
                       path={`/student/homework/${h.id}`} 
-                      label={`Copy ${h.type === 'TEST' ? 'Kiểm tra' : 'Bài tập'}${h.class ? ` (${h.class.name})` : ''}`} 
+                      label={`Copy ${getHomeworkLabel(h.title, h.type)}${h.class ? ` (${h.class.name})` : ''}`} 
                       style={{ 
                         width: '100%', 
                         justifyContent: 'center', 
@@ -118,7 +130,7 @@ export default async function LessonsPage() {
                     <CopyLinkButton 
                       key={h.id} 
                       path={`/student/homework/${h.id}`} 
-                      label={`Copy ${h.type === 'TEST' ? 'Kiểm tra' : 'Bài tập'}${h.class ? ` (${h.class.name})` : ''}`} 
+                      label={`Copy ${getHomeworkLabel(h.title, h.type)}${h.class ? ` (${h.class.name})` : ''}`} 
                       style={{ 
                         width: '100%', 
                         justifyContent: 'center', 
