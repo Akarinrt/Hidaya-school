@@ -348,6 +348,310 @@ export default function MaterialPrintPage28() {
           </tbody>
         </table>
       </section>
+
+      <section className="page-break">
+        <h2 className="section-title">III. Danh Sách Từ Vựng Bài 28 (語彙リスト)</h2>
+        <p style={{margin: '5px 0 15px 0', fontSize: '11pt', color: '#444'}}>
+          Bảng từ vựng tổng hợp đầy đủ chữ Kanji, phiên âm Furigana và nghĩa tiếng Việt chi tiết:
+        </p>
+        
+        <h3>1. Động từ (動詞 - Doushi)</h3>
+        <table>
+          <thead>
+            <tr>
+              <th style={{ width: '10%', textAlign: 'center' }}>STT</th>
+              <th style={{ width: '45%' }}>Từ vựng (Kanji / Hiragana)</th>
+              <th style={{ width: '45%' }}>Ý nghĩa Tiếng Việt</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style={{ textAlign: 'center' }}>1</td>
+              <td><ruby>売<rt>う</rt></ruby>れます [パンが~]</td>
+              <td>bán chạy, bán được (bánh mì)</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>2</td>
+              <td><ruby>踊<rt>おど</rt></ruby>ります</td>
+              <td>nhảy, khiêu vũ</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>3</td>
+              <td>かみます</td>
+              <td>nhai, cắn</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>4</td>
+              <td><ruby>選<rt>えら</rt></ruby>びます</td>
+              <td>chọn, lựa chọn</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>5</td>
+              <td><ruby>違<rt>ちが</rt></ruby>います</td>
+              <td>khác, khác biệt</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>6</td>
+              <td><ruby>通<rt>かよ</rt></ruby>います [大学に~]</td>
+              <td>đi học, đi làm (đi đi về về) [trường đại học]</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>7</td>
+              <td>メモします</td>
+              <td>ghi chép, ghi nhớ (take a memo)</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>8</td>
+              <td>おしゃべりします</td>
+              <td>trò chuyện, tán ngẫu, nói chuyện phiếm</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>2. Tính từ (形容詞 - Keiyoushi)</h3>
+        <table>
+          <thead>
+            <tr>
+              <th style={{ width: '10%', textAlign: 'center' }}>STT</th>
+              <th style={{ width: '45%' }}>Từ vựng (Kanji / Hiragana)</th>
+              <th style={{ width: '45%' }}>Ý nghĩa Tiếng Việt</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style={{ textAlign: 'center' }}>1</td>
+              <td>まじめ [na]</td>
+              <td>nghiêm túc, ngoan ngoãn, chăm chỉ</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>2</td>
+              <td><ruby>熱心<rt>ねっしん</rt></ruby> [na]</td>
+              <td>nhiệt tình, nhiệt huyết, tận tâm</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>3</td>
+              <td><ruby>優しい<rt>やさしい</rt></ruby></td>
+              <td>hiền lành, tốt bụng, dịu dàng</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>4</td>
+              <td><ruby>偉<rt>えら</rt></ruby>い</td>
+              <td>vĩ đại, đáng kính, giỏi giang</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>5</td>
+              <td>ちょうどいい</td>
+              <td>vừa vặn, vừa khéo, vừa khít</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>3. Danh từ (名詞 - Meishi)</h3>
+        <table>
+          <thead>
+            <tr>
+              <th style={{ width: '10%', textAlign: 'center' }}>STT</th>
+              <th style={{ width: '45%' }}>Từ vựng (Kanji / Hiragana)</th>
+              <th style={{ width: '45%' }}>Ý nghĩa Tiếng Việt</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style={{ textAlign: 'center' }}>1</td>
+              <td><ruby>習慣<rt>しゅうかん</rt></ruby></td>
+              <td>thói quen, tập quán</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>2</td>
+              <td><ruby>経験<rt>けいけん</rt></ruby></td>
+              <td>kinh nghiệm</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>3</td>
+              <td><ruby>力<rt>ちから</rt></ruby></td>
+              <td>sức lực, sức mạnh, lực</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>4</td>
+              <td><ruby>人気<rt>にんき</rt></ruby> [が あります]</td>
+              <td>được yêu thích, phổ biến (sự hâm mộ)</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>5</td>
+              <td><ruby>形<rt>かたち</rt></ruby></td>
+              <td>hình dáng, hình dạng, khuôn mẫu</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>6</td>
+              <td><ruby>色<rt>いろ</rt></ruby></td>
+              <td>màu sắc</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>7</td>
+              <td><ruby>味<rt>あじ</rt></ruby></td>
+              <td>mùi vị, hương vị</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>8</td>
+              <td>ガム</td>
+              <td>kẹo cao su, chewing gum</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>9</td>
+              <td><ruby>品物<rt>しなもの</rt></ruby></td>
+              <td>hàng hóa, sản phẩm, vật phẩm</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>10</td>
+              <td><ruby>値段<rt>ねだん</rt></ruby></td>
+              <td>giá cả, giá tiền</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>11</td>
+              <td><ruby>給料<rt>きゅうりょう</rt></ruby></td>
+              <td>lương</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>12</td>
+              <td>ボーナス</td>
+              <td>tiền thưởng, tiền bonus</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>13</td>
+              <td><ruby>番組<rt>ばんぐみ</rt></ruby></td>
+              <td>chương trình (truyền hình, radio...)</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>14</td>
+              <td>ドラマ</td>
+              <td>kịch, phim truyền hình (drama)</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>15</td>
+              <td><ruby>小説<rt>しょうせつ</rt></ruby></td>
+              <td>tiểu thuyết</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>16</td>
+              <td><ruby>小説家<rt>しょうせつか</rt></ruby></td>
+              <td>nhà văn, tiểu thuyết gia</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>17</td>
+              <td><ruby>歌手<rt>かしゅ</rt></ruby></td>
+              <td>ca sĩ</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>18</td>
+              <td><ruby>管理人<rt>かんりにん</rt></ruby></td>
+              <td>người quản lý, người coi nhà</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>19</td>
+              <td><ruby>息子<rt>むすこ</rt></ruby></td>
+              <td>con trai (của mình)</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>20</td>
+              <td><ruby>息子<rt>むすこ</rt></ruby>さん</td>
+              <td>con trai (của người khác)</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>21</td>
+              <td><ruby>娘<rt>むすめ</rt></ruby></td>
+              <td>con gái (của mình)</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>22</td>
+              <td><ruby>娘<rt>むすめ</rt></ruby>さん</td>
+              <td>con gái (của người khác)</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>23</td>
+              <td><ruby>自分<rt>じぶん</rt></ruby></td>
+              <td>bản thân, tự mình</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>24</td>
+              <td><ruby>将来<rt>しょうらい</rt></ruby></td>
+              <td>tương lai</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>4. Phó từ, liên từ &amp; khác</h3>
+        <table>
+          <thead>
+            <tr>
+              <th style={{ width: '10%', textAlign: 'center' }}>STT</th>
+              <th style={{ width: '45%' }}>Từ vựng (Kanji / Hiragana)</th>
+              <th style={{ width: '45%' }}>Ý nghĩa Tiếng Việt</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style={{ textAlign: 'center' }}>1</td>
+              <td>しばらく</td>
+              <td>một lát, một loáng, một khoảng thời gian ngắn</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>2</td>
+              <td>たいてい</td>
+              <td>thông thường, hầu hết, nhìn chung</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>3</td>
+              <td>それに</td>
+              <td>hơn nữa, thêm vào đó, vả lại</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>4</td>
+              <td>それで</td>
+              <td>vì thế, cho nên, do đó</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>5</td>
+              <td>[ちょっと]<ruby>お願い<rt>おねがい</rt></ruby>があるんですが</td>
+              <td>Tôi có chút việc muốn nhờ vả / Tôi có thỉnh cầu...</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>6</td>
+              <td>ホームステイ</td>
+              <td>homestay (ở cùng nhà với người bản địa)</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>7</td>
+              <td><ruby>会話<rt>かいわ</rt></ruby></td>
+              <td>hội thoại, đàm thoại</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>8</td>
+              <td>お<ruby>知<rt>し</rt></ruby>らせ</td>
+              <td>thông báo, bản tin</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>9</td>
+              <td><ruby>日<rt>ひ</rt></ruby>にち</td>
+              <td>ngày tháng, ngày giờ</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>10</td>
+              <td><ruby>土<rt>ど</rt></ruby></td>
+              <td>thứ Bảy (viết tắt)</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>11</td>
+              <td><ruby>体育館<rt>たいいくかん</rt></ruby></td>
+              <td>nhà thi đấu thể thao, phòng thể dục</td>
+            </tr>
+            <tr>
+              <td style={{ textAlign: 'center' }}>12</td>
+              <td><ruby>無料<rt>むりょう</rt></ruby></td>
+              <td>miễn phí, không tốn tiền</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
       
       <footer style={{ marginTop: '40px', borderTop: '1px solid #000', paddingTop: '15px', fontSize: '10pt', textAlign: 'center', color: '#444' }}>
         <p>© Tài liệu giảng dạy Minna no Nihongo II - Lưu hành nội bộ - Hidaya School</p>
