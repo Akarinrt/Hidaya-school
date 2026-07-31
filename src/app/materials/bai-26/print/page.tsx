@@ -14,18 +14,20 @@ export default function MaterialPrintPage26() {
           body { background: white; margin: 0; padding: 0; }
           .no-print { display: none !important; }
           .page-break { page-break-before: always; }
-          table { page-break-inside: avoid; }
+          h2, h3 { page-break-after: avoid; }
+          tr { page-break-inside: avoid; }
+          li { page-break-inside: avoid; }
         }
-        @page { margin: 1.5cm; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 25px; }
-        th, td { border: 1px solid #000; padding: 10px; text-align: left; vertical-align: middle; }
+        @page { margin: 1.2cm 1.5cm; }
+        table { width: 100%; border-collapse: collapse; margin-top: 12px; margin-bottom: 15px; }
+        th, td { border: 1px solid #000; padding: 6px 10px; text-align: left; vertical-align: middle; }
         th { background-color: #f5f5f5; font-weight: bold; font-size: 11pt; }
-        h1, h2, h3 { color: #000; margin-top: 25px; margin-bottom: 10px; }
-        h1 { font-size: 26pt; font-weight: bold; text-align: center; }
-        h2 { font-size: 18pt; border-bottom: 2px solid #000; padding-bottom: 5px; margin-top: 35px; }
-        h3 { font-size: 14pt; font-weight: bold; margin-top: 20px; color: #111; }
-        ul, ol { margin-top: 5px; margin-bottom: 15px; padding-left: 25px; }
-        li { margin-bottom: 6px; }
+        h1, h2, h3 { color: #000; margin-top: 15px; margin-bottom: 8px; }
+        h1 { font-size: 22pt; font-weight: bold; text-align: center; }
+        h2 { font-size: 16pt; border-bottom: 2px solid #000; padding-bottom: 3px; margin-top: 22px; }
+        h3 { font-size: 12pt; font-weight: bold; margin-top: 15px; color: #111; }
+        ul, ol { margin-top: 4px; margin-bottom: 10px; padding-left: 20px; }
+        li { margin-bottom: 4px; }
         rt {
           font-size: 0.55em;
           color: #333;

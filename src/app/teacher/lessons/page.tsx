@@ -28,6 +28,11 @@ export default async function LessonsPage() {
     include: { class: true }
   });
 
+  const decks = await prisma.flashcardDeck.findMany({
+    include: { class: true },
+    orderBy: { createdAt: 'desc' }
+  });
+
   const levelColors: Record<string, string> = {
     'N5': '#66bb6a', 'N4': '#42a5f5', 'N3': '#ab47bc', 'N2': '#ef5350',
   };
@@ -54,6 +59,7 @@ export default async function LessonsPage() {
         {/* Special Lessons 26, 27, 28 */}
         {specialLessons.map(lessonNumber => {
           const lessonHws = homeworks.filter(h => h.title.includes(`Bài ${lessonNumber}`));
+          const lessonDecks = decks.filter(d => d.title.includes(`Bài ${lessonNumber}`));
           return (
             <div key={`bai${lessonNumber}`} className={styles.card} style={{ borderLeft: '4px solid #ff9800' }}>
               <div className="kanji-card-inner" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -95,6 +101,20 @@ export default async function LessonsPage() {
                       }} 
                     />
                   ))}
+                  {/* Dynamic Vocabulary Decks */}
+                  {lessonDecks.map(d => (
+                    <CopyLinkButton 
+                      key={d.id} 
+                      path={`/student/class/${d.classId}/flashcards?deckId=${d.id}`} 
+                      label={`Copy Từ vựng${d.class ? ` (${d.class.name})` : ''}`} 
+                      style={{ 
+                        width: '100%', 
+                        justifyContent: 'center', 
+                        background: '#e0f7fa', 
+                        color: '#006064' 
+                      }} 
+                    />
+                  ))}
                 </div>
               </div>
             </div>
@@ -104,6 +124,7 @@ export default async function LessonsPage() {
         {/* Regular Lessons 29-50 */}
         {interactiveLessons.map(lessonNumber => {
           const lessonHws = homeworks.filter(h => h.title.includes(`Bài ${lessonNumber}`));
+          const lessonDecks = decks.filter(d => d.title.includes(`Bài ${lessonNumber}`));
           return (
             <div key={`bai${lessonNumber}`} className={styles.card} style={{ borderLeft: '4px solid var(--primary-color)' }}>
               <div className="kanji-card-inner" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -136,6 +157,20 @@ export default async function LessonsPage() {
                         justifyContent: 'center', 
                         background: h.type === 'TEST' ? '#ffebee' : '#e8f5e9', 
                         color: h.type === 'TEST' ? '#c62828' : '#2e7d32' 
+                      }} 
+                    />
+                  ))}
+                  {/* Dynamic Vocabulary Decks */}
+                  {lessonDecks.map(d => (
+                    <CopyLinkButton 
+                      key={d.id} 
+                      path={`/student/class/${d.classId}/flashcards?deckId=${d.id}`} 
+                      label={`Copy Từ vựng${d.class ? ` (${d.class.name})` : ''}`} 
+                      style={{ 
+                        width: '100%', 
+                        justifyContent: 'center', 
+                        background: '#e0f7fa', 
+                        color: '#006064' 
                       }} 
                     />
                   ))}

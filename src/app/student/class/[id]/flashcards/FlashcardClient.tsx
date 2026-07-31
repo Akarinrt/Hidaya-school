@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 interface Card {
   id: string;
@@ -14,8 +15,20 @@ interface Deck {
 }
 
 export default function FlashcardClient({ decks }: { decks: Deck[] }) {
+  const searchParams = useSearchParams();
+  const deckIdParam = searchParams.get('deckId');
+
   const [activeDeck, setActiveDeck] = useState<Deck | null>(null);
   const [mode, setMode] = useState<'study' | 'test'>('study');
+
+  useEffect(() => {
+    if (deckIdParam && decks.length > 0) {
+      const found = decks.find(d => d.id === deckIdParam);
+      if (found) {
+        setActiveDeck(found);
+      }
+    }
+  }, [deckIdParam, decks]);
   
   // Study state
   const [currentIndex, setCurrentIndex] = useState(0);
