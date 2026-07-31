@@ -101,20 +101,17 @@ export default async function LessonsPage() {
                       }} 
                     />
                   ))}
-                  {/* Dynamic Vocabulary Decks */}
-                  {lessonDecks.map(d => (
-                    <CopyLinkButton 
-                      key={d.id} 
-                      path={`/student/class/${d.classId}/flashcards?deckId=${d.id}`} 
-                      label={`Copy Từ vựng${d.class ? ` (${d.class.name})` : ''}`} 
-                      style={{ 
-                        width: '100%', 
-                        justifyContent: 'center', 
-                        background: '#e0f7fa', 
-                        color: '#006064' 
-                      }} 
-                    />
-                  ))}
+                  {/* Vocabulary public link */}
+                  <CopyLinkButton 
+                    path={`/vocab/bai-${lessonNumber}`} 
+                    label="🔤 Copy Link Từ vựng (Public)" 
+                    style={{ 
+                      width: '100%', 
+                      justifyContent: 'center', 
+                      background: '#e0f7fa', 
+                      color: '#006064' 
+                    }} 
+                  />
                 </div>
               </div>
             </div>
@@ -160,20 +157,17 @@ export default async function LessonsPage() {
                       }} 
                     />
                   ))}
-                  {/* Dynamic Vocabulary Decks */}
-                  {lessonDecks.map(d => (
-                    <CopyLinkButton 
-                      key={d.id} 
-                      path={`/student/class/${d.classId}/flashcards?deckId=${d.id}`} 
-                      label={`Copy Từ vựng${d.class ? ` (${d.class.name})` : ''}`} 
-                      style={{ 
-                        width: '100%', 
-                        justifyContent: 'center', 
-                        background: '#e0f7fa', 
-                        color: '#006064' 
-                      }} 
-                    />
-                  ))}
+                  {/* Vocabulary public link */}
+                  <CopyLinkButton 
+                    path={`/vocab/bai-${lessonNumber}`} 
+                    label="🔤 Copy Link Từ vựng (Public)" 
+                    style={{ 
+                      width: '100%', 
+                      justifyContent: 'center', 
+                      background: '#e0f7fa', 
+                      color: '#006064' 
+                    }} 
+                  />
                 </div>
               </div>
             </div>
