@@ -39,8 +39,8 @@ async function main() {
 
   const teacher = await prisma.user.upsert({
     where: { username: 'teacher' },
-    update: {},
-    create: { username: 'teacher', password: teacherPassword, role: 'TEACHER', fullName: 'Giáo viên Hồng Khuông', email: 'teacher@hidaya.edu.vn' },
+    update: { fullName: 'Giáo viên Hồng Khương' },
+    create: { username: 'teacher', password: teacherPassword, role: 'TEACHER', fullName: 'Giáo viên Hồng Khương', email: 'teacher@hidaya.edu.vn' },
   });
 
   const student = await prisma.user.upsert({
