@@ -76,6 +76,7 @@ export default function PublicHomeworkClient({
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
   const [globalFurigana, setGlobalFurigana] = useState(false);
   const [hintOpen, setHintOpen] = useState<Record<string, boolean>>({});
+  const [passageFurigana, setPassageFurigana] = useState<Record<string, boolean>>({});
   const [isLoaded, setIsLoaded] = useState(false);
 
   // Load progress from localStorage on mount
@@ -308,20 +309,41 @@ export default function PublicHomeworkClient({
             ? (q.type === 'multiple_choice' ? (answers[q.id] === q.correctOptionId ? '#16a34a' : '#dc2626') : (correctTextResult ? '#16a34a' : '#dc2626'))
             : '#475569';
 
-          return (
-            <div key={q.id} style={{ background: 'white', borderRadius: '14px', padding: '20px', marginBottom: '14px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', border: cardBorder }}>
+          const isNewPassage = q.passage && (idx === 0 || questions[idx - 1].passage !== q.passage);
 
-              {/* Passage rendering if present */}
-              {q.passage && (
+          return (
+            <div key={q.id}>
+              {/* Grouped Passage rendering */}
+              {isNewPassage && (
                 <div style={{
-                  background: '#f8fafc', borderLeft: '4px solid #3b82f6', borderRadius: '8px',
-                  padding: '16px', marginBottom: '16px', fontSize: '15px', color: '#334155',
-                  lineHeight: 1.8, whiteSpace: 'pre-line', border: '1px solid #e2e8f0',
-                  borderLeftWidth: '4px'
+                  background: 'white', borderRadius: '14px', padding: '20px', marginBottom: '14px',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.04)', border: '1px solid #cbd5e1',
+                  borderLeft: '6px solid #2563eb'
                 }}>
-                  <JapaneseText text={q.passage} showFurigana={showHint} />
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                    <span style={{ fontWeight: 700, color: '#1e3a8a', fontSize: '15px' }}>📖 Bài đọc hiểu (読解)</span>
+                    {(() => {
+                      const currentPassage = q.passage || '';
+                      return (
+                        <button
+                          onClick={() => setPassageFurigana(p => ({ ...p, [currentPassage]: !p[currentPassage] }))}
+                          style={{
+                            padding: '4px 10px', borderRadius: '20px', border: '1.5px solid #cbd5e1',
+                            background: 'white', color: '#4f46e5', fontWeight: 700, fontSize: '11px', cursor: 'pointer'
+                          }}
+                        >
+                          🈳 {passageFurigana[currentPassage] ? 'Ẩn Furigana' : 'Hiện Furigana'}
+                        </button>
+                      );
+                    })()}
+                  </div>
+                  <div style={{ fontSize: '15px', color: '#334155', lineHeight: 1.9, whiteSpace: 'pre-line' }}>
+                    <JapaneseText text={q.passage || ''} showFurigana={!!passageFurigana[q.passage || ''] || globalFurigana} />
+                  </div>
                 </div>
               )}
+
+              <div style={{ background: 'white', borderRadius: '14px', padding: '20px', marginBottom: '14px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', border: cardBorder }}>
 
               {/* Q header row */}
               <div style={{ display: 'flex', gap: '10px', marginBottom: '14px', alignItems: 'flex-start' }}>
@@ -423,8 +445,9 @@ export default function PublicHomeworkClient({
                 </div>
               )}
             </div>
-          );
-        })}
+          </div>
+        );
+      })}
 
         {/* ── Submit button ── */}
         {!submitted && questions.length > 0 && (

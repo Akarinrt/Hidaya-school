@@ -1168,50 +1168,50 @@ export const testsData: Test[] = [
     correctAnswers: ["ゴルフは好きですが、ほかのスポーツは好きじゃありません", "ゴルフは好きですが、ほかのスポーツは好きではありません"],
     explanation: "ゴルフは好きですが、ほかのスポーツは好きじゃありません (Golf thì thích, nhưng môn khác thì không)."
   },
-  {
+    {
     id: "l27_dokkai_1",
     type: "multiple_choice",
     skill: "Đọc hiểu",
     passage: "【ペット】\n\n《日本|にほん》では、マンションで《犬|いぬ》や《猫|ねこ》などのペットを《飼|か》う《人|ひと》が《増|ふ》えています。\nしかし、マンションの《規則|きそく》でペットを《飼|か》ってはいけないところもあります。\n《私|わたし》が《住|す》んでいるマンションもペットが《飼|か》えません。\nですから、《私|わたし》はペットが《飼|か》える《家|いえ》に《住|す》みたいです。\n《将来|しょうらい》、《庭|にわ》のある《家|いえ》を《建|た》てて、《犬|いぬ》を《飼|か》いたいです。",
-    text: "Q1: Đoạn văn trên nói về điều gì?",
+    text: "Q1: この《文章|ぶんしょう》は《何|なに》について《書|か》かれていますか。",
     options: [
-      { id: "a", text: "Việc nuôi thú cưng ở Nhật và mong muốn của tác giả" },
-      { id: "b", text: "Cách nuôi chó mèo ở chung cư" },
-      { id: "c", text: "Cách xây nhà có sân vườn" },
-      { id: "d", text: "Quy định nghiêm khắc của chung cư Nhật" }
+      { id: "a", text: "《日本|にほん》のペットの《事情|じじょう》と《筆者|ひっしゃ》の《夢|ゆめ》" },
+      { id: "b", text: "マンションでの《犬|いぬ》や《猫|ねこ》の《飼|か》い《方|かた》" },
+      { id: "c", text: "《庭|にわ》のある《家|いえ》の《建|た》て《方|かた》" },
+      { id: "d", text: "マンションの《厳|きび》しい《規則|きそく》について" }
     ],
     correctOptionId: "a",
-    explanation: "Đoạn văn giới thiệu việc nuôi thú cưng ở Nhật và bày tỏ ước mơ có nhà riêng có vườn để nuôi chó của tác giả."
+    explanation: "この文章は、日本のマンションにおけるペットの状況と、筆者が将来庭のある家を建てて犬を飼いたいという夢について書かれています。"
   },
   {
     id: "l27_dokkai_2",
     type: "multiple_choice",
     skill: "Đọc hiểu",
     passage: "【ペット】\n\n《日本|にほん》では、マンションで《犬|いぬ》や《猫|ねこ》などのペットを《飼|か》う《人|ひと》が《増|ふ》えています。\nしかし、マンションの《規則|きそく》でペットを《飼|か》ってはいけないところもあります。\n《私|わたし》が《住|す》んでいるマンションもペットが《飼|か》えません。\nですから、《私|わたし》はペットが《飼|か》える《家|いえ》に《住|す》みたいです。\n《将来|しょうらい》、《庭|にわ》のある《家|いえ》を《建|た》てて、《犬|いぬ》を《飼|か》いたいです。",
-    text: "Q2: Tại sao tác giả muốn sống ở ngôi nhà nuôi được thú cưng?",
+    text: "Q2: 《筆者|ひっしゃ》はなぜペットが《飼|か》える《家|いえ》に《住|す》みたいのですか。",
     options: [
-      { id: "a", text: "Vì tác giả ghét sống ở chung cư" },
-      { id: "b", text: "Vì chung cư hiện tại của tác giả không cho phép nuôi thú cưng" },
-      { id: "c", text: "Vì tác giả muốn có sân vườn rộng" },
-      { id: "d", text: "Vì nuôi thú cưng ở chung cư rất đắt" }
+      { id: "a", text: "マンションに《住|す》むのが《嫌|きら》いだから" },
+      { id: "b", text: "今のマンションではペットが《飼|か》えないから" },
+      { id: "c", text: "《広|ひろ》い《庭|にわ》が《欲|ほ》しいから" },
+      { id: "d", text: "マンションでペットを《飼|か》うと《金|かね》がかかるから" }
     ],
     correctOptionId: "b",
-    explanation: "Trong bài viết:「私が住んでいるマンションもペットが飼えません。ですから、私はペットが飼える家に住みたいです。」(Chung cư tôi sống không nuôi được thú cưng. Vì thế tôi muốn sống ở nhà nuôi được)."
+    explanation: "文章の中に「私が住んでいるマンションもペットが飼えません。ですから、私はペットが飼える家に住みたいです」と書かれています。"
   },
   {
     id: "l27_dokkai_3",
     type: "multiple_choice",
     skill: "Đọc hiểu",
     passage: "【ペット】\n\n《日本|にほん》では、マンションで《犬|いぬ》や《猫|ねこ》などのペットを《飼|か》う《人|ひと》が《増|ふ》えています。\nしかし、マンションの《規則|きそく》でペットを《飼|か》ってはいけないところもあります。\n《私|わたし》が《住|す》んでいるマンションもペットが《飼|か》えません。\nですから、《私|わたし》はペットが《飼|か》える《家|いえ》に《住|す》みたいです。\n《将来|しょうらい》、《庭|にわ》のある《家|いえ》を《建|た》てて、《犬|いぬ》を《飼|か》いたいです。",
-    text: "Q3: Tác giả muốn làm gì trong tương lai?",
+    text: "Q3: 《筆者|ひっしゃ》は《将来|しょうらい》《何|なに》をしたいですか。",
     options: [
-      { id: "a", text: "Xây nhà có vườn để nuôi chó" },
-      { id: "b", text: "Mua căn hộ chung cư mới" },
-      { id: "c", text: "Đi du lịch nước ngoài" },
-      { id: "d", text: "Mua một chú mèo con" }
+      { id: "a", text: "《庭|にわ》のある《家|いえ》を《建|た》てて、《犬|いぬ》を《飼|か》う" },
+      { id: "b", text: "《新|あたら》しいマンションを《買|か》う" },
+      { id: "c", text: "《外国|がいこく》へ《旅行|りょこう》する" },
+      { id: "d", text: "かわいい《猫|ねこ》を《飼|か》う" }
     ],
     correctOptionId: "a",
-    explanation: "Trong bài viết:「将来、庭のある家を建てて、犬を飼いたいです。」(Tương lai, tôi muốn xây nhà có vườn và nuôi chó)."
+    explanation: "文章の最後に「将来、庭のある家を建てて、犬を飼いたいです」と書かれています。"
   }
 ]
   },
