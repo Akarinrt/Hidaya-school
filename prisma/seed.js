@@ -292,6 +292,20 @@ async function main() {
     }
   }
 
+  // ── Migration: replace "Thể từ điển" → "Thể thường" in all homework quizData ──
+  const allHomework = await prisma.homework.findMany({ select: { id: true, quizData: true } });
+  let migratedCount = 0;
+  for (const hw of allHomework) {
+    if (!hw.quizData) continue;
+    if (!hw.quizData.includes('Thể từ điển') && !hw.quizData.includes('thể từ điển')) continue;
+    const updated = hw.quizData
+      .replace(/Thể từ điển/g, 'Thể thường')
+      .replace(/thể từ điển/g, 'thể thường');
+    await prisma.homework.update({ where: { id: hw.id }, data: { quizData: updated } });
+    migratedCount++;
+  }
+  if (migratedCount > 0) console.log(`✅ Migrated ${migratedCount} homework(s): "Thể từ điển" → "Thể thường"`);
+
   console.log('✅ Database seeded successfully!');
 }
 
