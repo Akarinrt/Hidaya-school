@@ -11,6 +11,10 @@ export default async function LessonsPage() {
     include: { teacher: true },
   });
 
+  const homeworks = await prisma.homework.findMany({
+    orderBy: { createdAt: 'desc' }
+  });
+
   const levelColors: Record<string, string> = {
     'N5': '#66bb6a', 'N4': '#42a5f5', 'N3': '#ab47bc', 'N2': '#ef5350',
   };
@@ -35,58 +39,98 @@ export default async function LessonsPage() {
       
       <div className={styles.grid}>
         {/* Special Lessons 26, 27, 28 */}
-        {specialLessons.map(lessonNumber => (
-          <div key={`bai${lessonNumber}`} className={styles.card} style={{ borderLeft: '4px solid #ff9800' }}>
-            <div className={styles.cardTop}>
-              <span className={styles.level} style={{ background: 'rgba(66, 165, 245, 0.22)', color: '#42a5f5' }}>
-                N4
-              </span>
-              <span className={`${styles.badge} ${styles.public}`}>
-                ✨ Giáo án
-              </span>
-            </div>
-            <h3 className={styles.cardTitle}>Bài {lessonNumber}</h3>
-            <p className={styles.cardLesson}>Giáo án Minna II - Bài {lessonNumber}</p>
-            <div className={styles.cardFooter} style={{ display: 'flex', gap: '8px', width: '100%', marginBottom: '8px' }}>
-              <a href={`/slides/bai${lessonNumber}/kanji.html`} target="_blank" rel="noreferrer" className={styles.downloadBtn} style={{ flex: 1, textAlign: 'center', background: '#ab47bc', color: 'white', border: 'none' }}>
-                漢字 Kanji
-              </a>
-              <a href={`/slides/bai${lessonNumber}/nguphap.html`} target="_blank" rel="noreferrer" className={styles.downloadBtn} style={{ flex: 1, textAlign: 'center', background: '#42a5f5', color: 'white', border: 'none' }}>
-                文法 Ngữ pháp
-              </a>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', width: '100%' }}>
-              <div style={{ display: 'flex', gap: '6px' }}>
-                <CopyLinkButton path={`/slides/bai${lessonNumber}/kanji.html`} label="Copy Kanji" style={{ flex: 1, justifyContent: 'center' }} />
-                <CopyLinkButton path={`/slides/bai${lessonNumber}/nguphap.html`} label="Copy Ngữ pháp" style={{ flex: 1, justifyContent: 'center' }} />
+        {specialLessons.map(lessonNumber => {
+          const lessonHws = homeworks.filter(h => h.title.includes(`Bài ${lessonNumber}`));
+          return (
+            <div key={`bai${lessonNumber}`} className={styles.card} style={{ borderLeft: '4px solid #ff9800' }}>
+              <div className="kanji-card-inner" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                <div className={styles.cardTop}>
+                  <span className={styles.level} style={{ background: 'rgba(66, 165, 245, 0.22)', color: '#42a5f5' }}>
+                    N4
+                  </span>
+                  <span className={`${styles.badge} ${styles.public}`}>
+                    ✨ Giáo án
+                  </span>
+                </div>
+                <h3 className={styles.cardTitle}>Bài {lessonNumber}</h3>
+                <p className={styles.cardLesson}>Giáo án Minna II - Bài {lessonNumber}</p>
+                <div className={styles.cardFooter} style={{ display: 'flex', gap: '8px', width: '100%', marginBottom: '8px' }}>
+                  <a href={`/slides/bai${lessonNumber}/kanji.html`} target="_blank" rel="noreferrer" className={styles.downloadBtn} style={{ flex: 1, textAlign: 'center', background: '#ab47bc', color: 'white', border: 'none' }}>
+                    漢字 Kanji
+                  </a>
+                  <a href={`/slides/bai${lessonNumber}/nguphap.html`} target="_blank" rel="noreferrer" className={styles.downloadBtn} style={{ flex: 1, textAlign: 'center', background: '#42a5f5', color: 'white', border: 'none' }}>
+                    文法 Ngữ pháp
+                  </a>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', width: '100%', marginTop: 'auto' }}>
+                  <div style={{ display: 'flex', gap: '6px' }}>
+                    <CopyLinkButton path={`/slides/bai${lessonNumber}/kanji.html`} label="Copy Kanji" style={{ flex: 1, justifyContent: 'center' }} />
+                    <CopyLinkButton path={`/slides/bai${lessonNumber}/nguphap.html`} label="Copy Ngữ pháp" style={{ flex: 1, justifyContent: 'center' }} />
+                  </div>
+                  <CopyLinkButton path={`/materials/bai-${lessonNumber}/print`} label="Copy Link in ấn A4" style={{ width: '100%', justifyContent: 'center' }} />
+                  {/* Dynamic Homeworks */}
+                  {lessonHws.map(h => (
+                    <CopyLinkButton 
+                      key={h.id} 
+                      path={`/student/homework/${h.id}`} 
+                      label={`Copy ${h.type === 'TEST' ? 'Kiểm tra' : 'Bài tập'}`} 
+                      style={{ 
+                        width: '100%', 
+                        justifyContent: 'center', 
+                        background: h.type === 'TEST' ? '#ffebee' : '#e8f5e9', 
+                        color: h.type === 'TEST' ? '#c62828' : '#2e7d32' 
+                      }} 
+                    />
+                  ))}
+                </div>
               </div>
-              <CopyLinkButton path={`/materials/bai-${lessonNumber}/print`} label="Copy Link in ấn A4" style={{ width: '100%', justifyContent: 'center' }} />
             </div>
-          </div>
-        ))}
+          );
+        })}
 
         {/* Regular Lessons 29-50 */}
-        {interactiveLessons.map(lessonNumber => (
-          <div key={`bai${lessonNumber}`} className={styles.card} style={{ borderLeft: '4px solid var(--primary-color)' }}>
-            <div className={styles.cardTop}>
-              <span className={styles.level} style={{ background: 'rgba(66, 165, 245, 0.22)', color: '#42a5f5' }}>
-                N4
-              </span>
-              <span className={`${styles.badge} ${styles.public}`}>
-                ✨ Tương tác
-              </span>
+        {interactiveLessons.map(lessonNumber => {
+          const lessonHws = homeworks.filter(h => h.title.includes(`Bài ${lessonNumber}`));
+          return (
+            <div key={`bai${lessonNumber}`} className={styles.card} style={{ borderLeft: '4px solid var(--primary-color)' }}>
+              <div className="kanji-card-inner" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                <div className={styles.cardTop}>
+                  <span className={styles.level} style={{ background: 'rgba(66, 165, 245, 0.22)', color: '#42a5f5' }}>
+                    N4
+                  </span>
+                  <span className={`${styles.badge} ${styles.public}`}>
+                    ✨ Tương tác
+                  </span>
+                </div>
+                <h3 className={styles.cardTitle}>Bài {lessonNumber}</h3>
+                <p className={styles.cardLesson}>Ngữ pháp Minna II - Bài {lessonNumber}</p>
+                <div className={styles.cardFooter} style={{ marginBottom: '8px' }}>
+                  <span className={styles.teacher}>🤖 Auto-generated</span>
+                  <a href={`/slides/bai${lessonNumber}/index.html`} target="_blank" rel="noreferrer" className={styles.downloadBtn}>
+                    ▶️ Giáo án
+                  </a>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', width: '100%', marginTop: 'auto' }}>
+                  <CopyLinkButton path={`/slides/bai${lessonNumber}/index.html`} label="Copy Link slide" style={{ width: '100%', justifyContent: 'center' }} />
+                  {/* Dynamic Homeworks */}
+                  {lessonHws.map(h => (
+                    <CopyLinkButton 
+                      key={h.id} 
+                      path={`/student/homework/${h.id}`} 
+                      label={`Copy ${h.type === 'TEST' ? 'Kiểm tra' : 'Bài tập'}`} 
+                      style={{ 
+                        width: '100%', 
+                        justifyContent: 'center', 
+                        background: h.type === 'TEST' ? '#ffebee' : '#e8f5e9', 
+                        color: h.type === 'TEST' ? '#c62828' : '#2e7d32' 
+                      }} 
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
-            <h3 className={styles.cardTitle}>Bài {lessonNumber}</h3>
-            <p className={styles.cardLesson}>Ngữ pháp Minna II - Bài {lessonNumber}</p>
-            <div className={styles.cardFooter} style={{ marginBottom: '8px' }}>
-              <span className={styles.teacher}>🤖 Auto-generated</span>
-              <a href={`/slides/bai${lessonNumber}/index.html`} target="_blank" rel="noreferrer" className={styles.downloadBtn}>
-                ▶️ Giáo án
-              </a>
-            </div>
-            <CopyLinkButton path={`/slides/bai${lessonNumber}/index.html`} label="Copy Link slide" style={{ width: '100%', justifyContent: 'center' }} />
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <h2 style={{ marginTop: '40px', marginBottom: '15px', color: '#555' }}>
