@@ -36,6 +36,7 @@ export default async function PublicHomeworkPage({ params }: { params: any }) {
       audioUrl={hw.audioUrl || null}
       isExam={hw.isExam || false}
       timeLimit={hw.timeLimit || null}
+      type={hw.type}
     />
   );
 }

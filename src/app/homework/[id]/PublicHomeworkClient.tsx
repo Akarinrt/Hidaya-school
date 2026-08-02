@@ -24,12 +24,10 @@ type Props = {
   audioUrl: string | null;
   isExam: boolean;
   timeLimit: number | null;
+  type?: string;
 };
 
 // ── Furigana parser ──────────────────────────────────────────────
-// Supports two syntaxes in question text:
-//   《漢字|かんじ》  →  <ruby>漢字<rt>かんじ</rt></ruby>
-//   [漢字|かんじ]    →  same
 function parseFurigana(text: string): React.ReactNode[] {
   const pattern = /[《\[]([\s\S]+?)[|｜]([\s\S]+?)[》\]]/g;
   const parts: React.ReactNode[] = [];
@@ -50,7 +48,6 @@ function parseFurigana(text: string): React.ReactNode[] {
   return parts;
 }
 
-// Strip furigana markers to get plain text (for hint button check)
 function stripFurigana(text: string): string {
   return text.replace(/[《\[]([\s\S]+?)[|｜]([\s\S]+?)[》\]]/g, '$1');
 }
@@ -59,7 +56,6 @@ function hasFuriganaMarkers(text: string): boolean {
   return /[《\[]([\s\S]+?)[|｜]([\s\S]+?)[》\]]/.test(text);
 }
 
-// Renders text with furigana when showFurigana=true, plain when false
 function JapaneseText({ text, showFurigana }: { text: string; showFurigana: boolean }) {
   if (showFurigana && hasFuriganaMarkers(text)) {
     return <span>{parseFurigana(text)}</span>;
@@ -68,7 +64,7 @@ function JapaneseText({ text, showFurigana }: { text: string; showFurigana: bool
 }
 
 export default function PublicHomeworkClient({
-  id, title, description, teacherName, questions, audioUrl, isExam, timeLimit
+  id, title, description, teacherName, questions, audioUrl, isExam, timeLimit, type
 }: Props) {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
@@ -78,6 +74,10 @@ export default function PublicHomeworkClient({
   const [hintOpen, setHintOpen] = useState<Record<string, boolean>>({});
   const [passageFurigana, setPassageFurigana] = useState<Record<string, boolean>>({});
   const [isLoaded, setIsLoaded] = useState(false);
+  const [studentName, setStudentName] = useState('');
+  const [hasStarted, setHasStarted] = useState(false);
+
+  const isTest = isExam || type === 'TEST' || type === 'QUIZ';
 
   // Load progress from localStorage on mount
   useEffect(() => {
@@ -86,16 +86,15 @@ export default function PublicHomeworkClient({
       const savedSubmitted = localStorage.getItem(`hw-submitted-${id}`);
       const savedScore = localStorage.getItem(`hw-score-${id}`);
       const savedTimeLeft = localStorage.getItem(`hw-timeleft-${id}`);
+      const savedStudentName = localStorage.getItem(`hw-studentName-${id}`);
+      const savedHasStarted = localStorage.getItem(`hw-hasStarted-${id}`);
 
-      if (savedAnswers) {
-        setAnswers(JSON.parse(savedAnswers));
-      }
-      if (savedSubmitted) {
-        setSubmitted(JSON.parse(savedSubmitted));
-      }
-      if (savedScore) {
-        setScore(JSON.parse(savedScore));
-      }
+      if (savedAnswers) setAnswers(JSON.parse(savedAnswers));
+      if (savedSubmitted) setSubmitted(JSON.parse(savedSubmitted));
+      if (savedScore) setScore(JSON.parse(savedScore));
+      if (savedStudentName) setStudentName(savedStudentName);
+      if (savedHasStarted) setHasStarted(JSON.parse(savedHasStarted));
+
       if (savedTimeLeft) {
         setTimeLeft(JSON.parse(savedTimeLeft));
       } else if (timeLimit) {
@@ -114,25 +113,27 @@ export default function PublicHomeworkClient({
       localStorage.setItem(`hw-answers-${id}`, JSON.stringify(answers));
       localStorage.setItem(`hw-submitted-${id}`, JSON.stringify(submitted));
       localStorage.setItem(`hw-score-${id}`, JSON.stringify(score));
+      localStorage.setItem(`hw-studentName-${id}`, studentName);
+      localStorage.setItem(`hw-hasStarted-${id}`, JSON.stringify(hasStarted));
       if (timeLeft !== null) {
         localStorage.setItem(`hw-timeleft-${id}`, JSON.stringify(timeLeft));
       }
     } catch (e) {
       console.error("Failed to save progress to localStorage", e);
     }
-  }, [answers, submitted, score, timeLeft, id, isLoaded]);
+  }, [answers, submitted, score, timeLeft, studentName, hasStarted, id, isLoaded]);
 
   useEffect(() => {
-    if (!isLoaded || timeLeft === null || submitted) return;
+    if (!isLoaded || timeLeft === null || submitted || (isTest && !hasStarted)) return;
     if (timeLeft <= 0) { handleSubmit(); return; }
     const t = setInterval(() => setTimeLeft(p => (p !== null && p > 0 ? p - 1 : 0)), 1000);
     return () => clearInterval(t);
-  }, [timeLeft, submitted, isLoaded]);
+  }, [timeLeft, submitted, isLoaded, hasStarted, isTest]);
 
   const formatTime = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
   const answeredCount = Object.keys(answers).length;
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     let correct = 0;
     questions.forEach(q => {
       const ans = answers[q.id];
@@ -143,6 +144,25 @@ export default function PublicHomeworkClient({
     setScore(correct);
     setSubmitted(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (isTest && studentName.trim()) {
+      try {
+        await fetch('/api/test-results', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            testId: id,
+            testTitle: title,
+            studentName: studentName.trim(),
+            score: correct,
+            totalQuestions: questions.length,
+            answers: answers
+          })
+        });
+      } catch (e) {
+        console.error("Failed to save test result", e);
+      }
+    }
   };
 
   const handleReset = () => {
@@ -151,11 +171,15 @@ export default function PublicHomeworkClient({
       localStorage.removeItem(`hw-submitted-${id}`);
       localStorage.removeItem(`hw-score-${id}`);
       localStorage.removeItem(`hw-timeleft-${id}`);
+      localStorage.removeItem(`hw-studentName-${id}`);
+      localStorage.removeItem(`hw-hasStarted-${id}`);
     } catch (e) {}
     setAnswers({});
     setSubmitted(false);
     setScore(0);
     setHintOpen({});
+    setStudentName('');
+    setHasStarted(false);
     if (timeLimit) setTimeLeft(timeLimit * 60);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -185,6 +209,107 @@ export default function PublicHomeworkClient({
       <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f8fafc', fontFamily: 'sans-serif' }}>
         <div style={{ textAlign: 'center', color: '#64748b' }}>
           Đang tải bài tập...
+        </div>
+      </div>
+    );
+  }
+  
+  if (isTest && !hasStarted) {
+    return (
+      <div style={{
+        minHeight: '100vh',
+        background: '#f8fafc',
+        fontFamily: '"Inter","Noto Sans JP",sans-serif',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '20px'
+      }}>
+        <div style={{
+          maxWidth: '600px',
+          width: '100%',
+          backgroundColor: '#fff',
+          color: '#1e293b',
+          borderRadius: '16px',
+          boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+          border: '1px solid #e2e8f0',
+          overflow: 'hidden'
+        }}>
+          {/* Header */}
+          <div style={{
+            background: 'linear-gradient(135deg,#7f1d1d,#dc2626)',
+            padding: '30px 24px',
+            color: 'white',
+            textAlign: 'center'
+          }}>
+            <div style={{ fontSize: '12px', opacity: 0.8, marginBottom: '6px', letterSpacing: '1.5px', textTransform: 'uppercase', fontWeight: 700 }}>
+              ⏱️ BÀI KIỂM TRA TRỰC TUYẾN · {teacherName}
+            </div>
+            <h1 style={{ fontSize: '24px', fontWeight: 800, margin: 0, lineHeight: 1.3 }}>
+              {title}
+            </h1>
+          </div>
+
+          <div style={{ padding: '30px 24px' }}>
+            <p style={{ color: '#64748b', fontSize: '15px', lineHeight: 1.6, margin: '0 0 24px 0', textAlign: 'center' }}>
+              {description || 'Vui lòng điền họ tên và bấm Bắt đầu làm bài để tham gia bài kiểm tra.'}
+            </p>
+
+            <div style={{ background: '#f0fdf4', color: '#166534', padding: '16px', borderRadius: '12px', marginBottom: '24px', border: '1px solid #bbf7d0', fontSize: '14px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <div>📋 <strong>Số câu hỏi:</strong> {questions.length} câu</div>
+                {timeLimit && <div>⏱️ <strong>Thời gian làm bài:</strong> {timeLimit} phút</div>}
+                <div>🔓 <strong>Chế độ:</strong> Tự do (Không cần đăng nhập)</div>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <label style={{ fontWeight: 700, color: '#334155', fontSize: '14px' }}>Họ và tên của bạn:</label>
+              <input
+                type="text"
+                value={studentName}
+                onChange={e => setStudentName(e.target.value)}
+                placeholder="Ví dụ: Nguyễn Văn A"
+                style={{
+                  padding: '14px',
+                  borderRadius: '10px',
+                  border: '1.5px solid #cbd5e1',
+                  fontSize: '16px',
+                  color: '#1e293b',
+                  backgroundColor: '#fff',
+                  outline: 'none',
+                  transition: 'border-color 0.2s'
+                }}
+              />
+              <button
+                onClick={() => {
+                  if (!studentName.trim()) {
+                    alert('Vui lòng nhập họ tên của bạn!');
+                    return;
+                  }
+                  setHasStarted(true);
+                  if (timeLimit && timeLeft === null) {
+                    setTimeLeft(timeLimit * 60);
+                  }
+                }}
+                style={{
+                  background: 'linear-gradient(135deg,#2563eb,#7c3aed)',
+                  color: 'white',
+                  border: 'none',
+                  padding: '16px',
+                  borderRadius: '10px',
+                  fontSize: '16px',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  marginTop: '10px',
+                  boxShadow: '0 4px 15px rgba(37,99,235,0.2)',
+                  transition: 'all 0.2s'
+                }}
+              >
+                🚀 Bắt đầu làm bài
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -256,6 +381,11 @@ export default function PublicHomeworkClient({
             <div style={{ fontSize: '44px', marginBottom: '6px' }}>
               {percent >= 80 ? '🏆' : percent >= 50 ? '📈' : '💪'}
             </div>
+            {studentName && (
+              <div style={{ fontSize: '18px', fontWeight: 'bold', color: '#1e293b', marginBottom: '8px' }}>
+                Học viên: {studentName}
+              </div>
+            )}
             <div style={{ fontSize: '34px', fontWeight: 900, color: percent >= 80 ? '#16a34a' : percent >= 50 ? '#d97706' : '#dc2626' }}>
               {score} / {questions.length} câu
             </div>

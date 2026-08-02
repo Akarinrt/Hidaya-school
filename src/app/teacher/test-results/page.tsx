@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { testsData } from '../../../data/tests';
+import { testsData, Test } from '../../../data/tests';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from 'recharts';
 
 interface TestResult {
@@ -18,6 +18,7 @@ interface TestResult {
 
 export default function TestResultsPage() {
   const [results, setResults] = useState<TestResult[]>([]);
+  const [homeworks, setHomeworks] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedTestId, setSelectedTestId] = useState<string>('all');
   const [detailResult, setDetailResult] = useState<TestResult | null>(null);
@@ -25,6 +26,13 @@ export default function TestResultsPage() {
   const fetchResults = useCallback(async () => {
     setLoading(true);
     try {
+      // Fetch dynamic homeworks
+      const hwRes = await fetch('/api/homework');
+      if (hwRes.ok) {
+        const hwData = await hwRes.json();
+        setHomeworks(hwData);
+      }
+
       const url = selectedTestId === 'all'
         ? '/api/test-results'
         : `/api/test-results?testId=${selectedTestId}`;
@@ -39,6 +47,44 @@ export default function TestResultsPage() {
   }, [selectedTestId]);
 
   useEffect(() => { fetchResults(); }, [fetchResults]);
+
+  const getTestData = useCallback((testId: string): Test | null => {
+    // Check static first
+    const staticTest = testsData.find(t => t.id === testId);
+    if (staticTest) return staticTest;
+
+    // Check dynamic
+    const dynamicHw = homeworks.find(h => h.id === testId);
+    if (dynamicHw) {
+      let questions = [];
+      if (dynamicHw.quizData) {
+        try {
+          questions = JSON.parse(dynamicHw.quizData);
+        } catch (e) {
+          console.error("Failed to parse quizData for", dynamicHw.id, e);
+        }
+      }
+      return {
+        id: dynamicHw.id,
+        title: dynamicHw.title,
+        description: dynamicHw.description || '',
+        level: dynamicHw.level || 'N/A',
+        durationMinutes: dynamicHw.timeLimit || 0,
+        questions: questions.map((q: any) => ({
+          id: q.id,
+          type: q.type,
+          text: q.text || q.q || '',
+          passage: q.passage || '',
+          options: q.options || [],
+          correctOptionId: q.correctOptionId || '',
+          correctAnswers: q.correctAnswers || [],
+          explanation: q.explanation || '',
+          skill: q.skill || 'Khác'
+        }))
+      };
+    }
+    return null;
+  }, [homeworks]);
 
   const formatDate = (iso: string) => {
     const d = new Date(iso);
@@ -55,7 +101,7 @@ export default function TestResultsPage() {
 
   // --- Detail Modal ---
   const DetailModal = ({ result }: { result: TestResult }) => {
-    const testData = testsData.find(t => t.id === result.testId);
+    const testData = getTestData(result.testId);
     const answers: Record<string, string> = JSON.parse(result.answers || '{}');
 
     return (
@@ -248,6 +294,17 @@ export default function TestResultsPage() {
     );
   };
 
+  // Create a combined list of tests for filtering
+  const allTestsList: { id: string; title: string }[] = [];
+  testsData.forEach(t => {
+    allTestsList.push({ id: t.id, title: t.title });
+  });
+  results.forEach(r => {
+    if (r.testId && !allTestsList.some(t => t.id === r.testId)) {
+      allTestsList.push({ id: r.testId, title: r.testTitle });
+    }
+  });
+
   return (
     <div style={{ padding: '30px', fontFamily: 'Arial, sans-serif', maxWidth: '1100px', margin: '0 auto' }}>
       {detailResult && <DetailModal result={detailResult} />}
@@ -264,7 +321,7 @@ export default function TestResultsPage() {
           style={{ padding: '8px 14px', borderRadius: '6px', border: '1px solid #ccc', fontSize: '14px', color: '#333', background: '#fff' }}
         >
           <option value="all">Tất cả bài kiểm tra</option>
-          {testsData.map(t => (
+          {allTestsList.map(t => (
             <option key={t.id} value={t.id}>{t.title}</option>
           ))}
         </select>
