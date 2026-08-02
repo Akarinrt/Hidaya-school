@@ -21,8 +21,8 @@ const wbCss = `
     
     .wb-size-wrapper { position: relative; margin-top: 5px; border-top: 1px solid #ddd; padding-top: 10px; text-align: center; cursor: pointer; display: flex; justify-content: center; align-items: center; height: 30px; }
     .wb-size-preview { background: #d32f2f; border-radius: 50%; transition: all 0.1s; pointer-events: none; }
-    .wb-size-popup { display: none; position: absolute; right: 100%; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.95); padding: 12px; border-radius: 10px; box-shadow: -5px 0 20px rgba(0,0,0,0.15); margin-right: 15px; border: 1px solid #eee; width: 150px; z-index: 10001; }
-    .wb-size-wrapper:hover .wb-size-popup { display: flex; flex-direction: column; align-items: center; }
+    .wb-size-popup { display: flex; flex-direction: column; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0s linear 1s; position: absolute; right: 100%; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.95); padding: 12px; border-radius: 10px; box-shadow: -5px 0 20px rgba(0,0,0,0.15); margin-right: 15px; border: 1px solid #eee; width: 150px; z-index: 10001; }
+    .wb-size-wrapper:hover .wb-size-popup { opacity: 1; visibility: visible; transition-delay: 0s; }
     .wb-size-popup label { font-size: 0.8rem; color: #555; margin-bottom: 8px; font-weight: bold; }
     .wb-size-slider { width: 100%; cursor: pointer; }
     
