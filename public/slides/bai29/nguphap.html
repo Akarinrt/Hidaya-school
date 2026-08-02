@@ -46,39 +46,6 @@
             max-width: 250px;
         }
         .vocab-title { font-weight: bold; color: #ff9800; margin-bottom: 5px; font-size: 1rem; border-bottom: 1px solid #ff9800; padding-bottom: 5px; }
-        /* Font Scaling and Overflow Protection */
-        .reveal .slides section {
-            font-size: 2.2rem !important;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            line-height: 1.6;
-        }
-        .grammar-example p {
-            font-size: 2.2rem !important;
-            line-height: 1.6;
-        }
-        .box-highlight {
-            font-size: 2.4rem !important;
-            line-height: 1.6;
-        }
-        .quiz-title {
-            font-size: 2.4rem !important;
-            font-weight: bold;
-            color: #d32f2f;
-            margin-bottom: 20px;
-        }
-        .quiz-box li {
-            font-size: 2rem !important;
-            margin-bottom: 20px !important;
-        }
-        .answer-btn {
-            font-size: 1.6rem !important;
-            padding: 8px 16px !important;
-        }
-        .answer-content {
-            font-size: 2rem !important;
-            margin-top: 10px;
-        }
     </style>
     
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -324,174 +291,114 @@
     <div class="reveal">
         <div class="slides">
             <section class="title-slide">
-                <h1>Bài 29: Trạng thái của sự vật</h1>
+                <h1>Bài 29</h1>
                 <h3>Tiếng Nhật N4</h3>
                 <p class="fragment" style="color:#d32f2f; font-size:1.1rem; margin-top:30px;">(Nhấn phím Mũi tên hoặc Space để bắt đầu)</p>
             </section>
 
             <!-- PHẦN I -->
             <section>
-                <h2>I. 1. Vて-form います (Trạng thái kết quả của hành động)</h2>
+                <h2>I. 1. N (Tự động từ) が V-ています</h2>
                 <div class="fragment" style="text-align: left; margin-top: 20px;">
                     <div class="box-highlight">
-                        <strong>Công thức:</strong> N が Vて-form います
+                        <strong>Công thức:</strong><br/> N が V-ています
                     </div>
                     <div class="grammar-example fragment" style="margin-top: 20px;">
                         <p style="color:#d32f2f; font-weight:bold;">📌 Ý nghĩa & Cách dùng:</p>
-                        <p>Mẫu câu Vて-form います diễn tả trạng thái là kết quả của một hành động đã xảy ra. Khi người nói miêu tả trạng thái mình nhìn thấy, chủ thể của hành động được đi kèm với trợ từ が. Các động từ được sử dụng thường là tự động từ mang tính khoảnh khắc.</p>
+                        <p>Mẫu câu này dùng để diễn tả trạng thái của một sự vật, kết quả của một hành động đã xảy ra trong quá khứ và trạng thái đó vẫn còn lưu giữ lại ở hiện tại.</p>
                     </div>
                 </div>
             </section>
 
             <section>
-                <h2>I. Ví dụ minh họa</h2>
-                <div class="fragment" style="text-align: left; margin-top: 20px;">
+                <h2>I. Ví dụ minh họa (1)</h2>
+                <div style="text-align: left; margin-top: 20px;">
                     
-                    <div class="grammar-example fragment">
-                        <p><ruby>窓<rt>まど</rt></ruby>が<ruby>割<rt>わ</rt></ruby>れています。</p>
-                        <span class="trans">→ Cửa sổ bị vỡ.</span>
+                    <div class="grammar-example fragment" style="margin-bottom: 20px;">
+                        <p>窓<ruby>が<rt>まど</rt></ruby> <ruby>開<rt>あ</rt></ruby>いています。</p>
+                        <span class="trans">→ Cửa sổ đang mở.</span>
                     </div>
-                    <div class="grammar-example fragment">
-                        <p><ruby>電気<rt>でんき</rt></ruby>がついています。</p>
-                        <span class="trans">→ Điện đang sáng.</span>
-                    </div>
-                    <div class="grammar-example fragment">
-                        <p>けさは<ruby>道<rt>みち</rt></ruby>が<ruby>込<rt>こ</rt></ruby>んでいました。</p>
-                        <span class="trans">→ Sáng nay đường đã rất đông.</span>
-                    </div>
-                    <div class="grammar-example fragment">
-                        <p>このいすは<ruby>壊<rt>こわ</rt></ruby>れています。</p>
-                        <span class="trans">→ Cái ghế này bị hỏng.</span>
+                    <div class="grammar-example fragment" style="margin-bottom: 20px;">
+                        <p>電気が消えています。</p>
+                        <span class="trans">→ Điện đang tắt.</span>
                     </div>
                 </div>
             </section>
-            
+
             <section>
-                <h2>I. Luyện tập (Quiz)</h2>
+                <h2>I. Luyện tập 1</h2>
                 <div class="quiz-box fragment" style="text-align: left;">
-                    <div class="quiz-title">✍️ Trắc nghiệm Vて-form います</div>
-                    <ul style="list-style: none; padding-left: 0;">
-                        
-                        <li class="fragment" style="margin-bottom:10px;">1. Chọn từ điền vào chỗ trống: 窓が（　　　）。 (Cửa sổ đang mở) 
-                            <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
-                            <div class="answer-content">→ あいています</div>
-                        </li>
-                        <li class="fragment" style="margin-bottom:10px;">2. Chọn từ điền vào chỗ trống: 電気が（　　　）。 (Điện đang sáng) 
-                            <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
-                            <div class="answer-content">→ ついています</div>
-                        </li>
-                    </ul>
+                    <div class="quiz-title">✍️ Dịch câu sau sang tiếng Nhật</div>
+                    
+                    <div class="fragment" style="margin-bottom: 20px;">
+                        <p>1. Cái ghế này đang bị hỏng.</p>
+                        <button class="answer-btn" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">Xem đáp án</button>
+                        <div class="answer-content" style="display:none; color:#1976d2; font-weight:bold; margin-top:10px;">→ この椅子は壊れています。</div>
+                    </div>
+                    <div class="fragment" style="margin-bottom: 20px;">
+                        <p>2. Cái cốc đang bị vỡ.</p>
+                        <button class="answer-btn" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">Xem đáp án</button>
+                        <div class="answer-content" style="display:none; color:#1976d2; font-weight:bold; margin-top:10px;">→ コップが割れています。</div>
+                    </div>
+                    <div class="fragment" style="margin-bottom: 20px;">
+                        <p>3. Áo của tôi đang bị bẩn.</p>
+                        <button class="answer-btn" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">Xem đáp án</button>
+                        <div class="answer-content" style="display:none; color:#1976d2; font-weight:bold; margin-top:10px;">→ 私のシャツが汚れています。</div>
+                    </div>
                 </div>
             </section>
-            
 
             <!-- PHẦN II -->
             <section>
-                <h2>II. 2. Vて-form しまいました／しまいます (Hoàn thành xong / Tiếc nuối)</h2>
+                <h2>II. 2. V-て しまいました</h2>
                 <div class="fragment" style="text-align: left; margin-top: 20px;">
                     <div class="box-highlight">
-                        <strong>Công thức:</strong> Vて-form しまいました／しまいます
+                        <strong>Công thức:</strong><br/> V-て しまいました
                     </div>
                     <div class="grammar-example fragment" style="margin-top: 20px;">
                         <p style="color:#d32f2f; font-weight:bold;">📌 Ý nghĩa & Cách dùng:</p>
-                        <p>Mẫu câu Vて-form しまいました nhấn mạnh việc một hành động hay sự kiện đã hoàn thành xong toàn bộ. Đôi khi nó mang sắc thái tiếc nuối hoặc bối rối trong một tình huống khó khăn. Vて-form しまいます biểu thị việc sẽ hoàn thành một hành động trong tương lai.</p>
+                        <p>Mẫu câu này mang 2 ý nghĩa: (1) Hoàn thành xong toàn bộ một việc gì đó. (2) Thể hiện sự hối hận, tiếc nuối về một việc lỡ xảy ra.</p>
                     </div>
                 </div>
             </section>
 
             <section>
-                <h2>II. Ví dụ minh họa</h2>
-                <div class="fragment" style="text-align: left; margin-top: 20px;">
+                <h2>II. Ví dụ minh họa (1)</h2>
+                <div style="text-align: left; margin-top: 20px;">
                     
-                    <div class="grammar-example fragment">
-                        <p>シュミットさんが<ruby>持<rt>も</rt></ruby>って<ruby>来<rt>く</rt></ruby>たワインは<ruby>全部<rt>ぜんぶ</rt></ruby><ruby>飲<rt>の</rt></ruby>んでしまいました。</p>
-                        <span class="trans">→ Chúng tôi đã uống hết rượu mà anh Schmidt mang đến.</span>
+                    <div class="grammar-example fragment" style="margin-bottom: 20px;">
+                        <p>漢字の宿題はもう<ruby>全部<rt>ぜんぶ</rt></ruby>やってしまいました。</p>
+                        <span class="trans">→ Tôi đã làm xong toàn bộ bài tập Kanji rồi.</span>
                     </div>
-                    <div class="grammar-example fragment">
-                        <p><ruby>漢字<rt>かんじ</rt></ruby>の<ruby>宿題<rt>しゅくだい</rt></ruby>はもうやってしまいました。</p>
-                        <span class="trans">→ Tôi đã làm xong bài tập chữ Hán rồi.</span>
-                    </div>
-                    <div class="grammar-example fragment">
-                        <p><ruby>昼<rt>ひる</rt></ruby>ごはんまでに レポートを <ruby>書<rt>か</rt></ruby>いて しまいます。</p>
-                        <span class="trans">→ Tôi định sẽ viết xong báo cáo trước bữa trưa.</span>
-                    </div>
-                    <div class="grammar-example fragment">
-                        <p>パスポートを なくして しまいました。</p>
-                        <span class="trans">→ Tôi đã đánh mất hộ chiếu mất rồi.</span>
+                    <div class="grammar-example fragment" style="margin-bottom: 20px;">
+                        <p>パスポートを<ruby>落<rt>お</rt></ruby>としてしまいました。</p>
+                        <span class="trans">→ Tôi đã lỡ làm rơi mất hộ chiếu rồi.</span>
                     </div>
                 </div>
             </section>
-            
+
             <section>
-                <h2>II. Luyện tập (Quiz)</h2>
+                <h2>II. Luyện tập 1</h2>
                 <div class="quiz-box fragment" style="text-align: left;">
-                    <div class="quiz-title">✍️ Trắc nghiệm Vて-form しまいました</div>
-                    <ul style="list-style: none; padding-left: 0;">
-                        
-                        <li class="fragment" style="margin-bottom:10px;">1. Chọn từ điền vào chỗ trống: パスポートを（　　　）。 (Đánh mất hộ chiếu mất rồi) 
-                            <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
-                            <div class="answer-content">→ なくしてしまいました</div>
-                        </li>
-                        <li class="fragment" style="margin-bottom:10px;">2. Chọn từ điền vào chỗ trống: ワインを全部（　　　）。 (Đã uống hết rượu) 
-                            <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
-                            <div class="answer-content">→ 飲んでしまいました</div>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-            
-
-            <!-- PHẦN III -->
-            <section>
-                <h2>III. 3. どこかで／どこかに (Ở đâu đó)</h2>
-                <div class="fragment" style="text-align: left; margin-top: 20px;">
-                    <div class="box-highlight">
-                        <strong>Công thức:</strong> どこかで／どこかに
-                    </div>
-                    <div class="grammar-example fragment" style="margin-top: 20px;">
-                        <p style="color:#d32f2f; font-weight:bold;">📌 Ý nghĩa & Cách dùng:</p>
-                        <p>Không giống như どこかへ (có thể bỏ へ) hay なにかを (có thể bỏ を), trợ từ で trong どこかで và に trong どこかに không thể bị lược bỏ.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <h2>III. Ví dụ minh họa</h2>
-                <div class="fragment" style="text-align: left; margin-top: 20px;">
+                    <div class="quiz-title">✍️ Dịch câu sau sang tiếng Việt</div>
                     
-                    <div class="grammar-example fragment">
-                        <p>どこかで <ruby>財布<rt>さいふ</rt></ruby>を なくして しまいました。</p>
-                        <span class="trans">→ Tôi đã đánh mất ví ở đâu đó mất rồi.</span>
+                    <div class="fragment" style="margin-bottom: 20px;">
+                        <p>1. 電車に傘を忘れてしまいました。</p>
+                        <button class="answer-btn" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">Xem đáp án</button>
+                        <div class="answer-content" style="display:none; color:#1976d2; font-weight:bold; margin-top:10px;">→ Tôi lỡ để quên ô trên tàu mất rồi.</div>
                     </div>
-                    <div class="grammar-example fragment">
-                        <p>どこかに <ruby>電話<rt>でんわ</rt></ruby>が ありませんか。</p>
-                        <span class="trans">→ Có điện thoại công cộng ở đâu đó quanh đây không?</span>
+                    <div class="fragment" style="margin-bottom: 20px;">
+                        <p>2. パソコンが壊れてしまいました。</p>
+                        <button class="answer-btn" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">Xem đáp án</button>
+                        <div class="answer-content" style="display:none; color:#1976d2; font-weight:bold; margin-top:10px;">→ Máy tính lỡ bị hỏng mất rồi.</div>
                     </div>
-                    <div class="grammar-example fragment">
-                        <p>どこかで <ruby>休<rt>やす</rt></ruby>みませんか。</p>
-                        <span class="trans">→ Chúng ta có nghỉ ngơi ở đâu đó không?</span>
+                    <div class="fragment" style="margin-bottom: 20px;">
+                        <p>3. 買った本は全部読んでしまいました。</p>
+                        <button class="answer-btn" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'">Xem đáp án</button>
+                        <div class="answer-content" style="display:none; color:#1976d2; font-weight:bold; margin-top:10px;">→ Cuốn sách đã mua tôi đã đọc xong toàn bộ rồi.</div>
                     </div>
                 </div>
             </section>
-            
-            <section>
-                <h2>III. Luyện tập (Quiz)</h2>
-                <div class="quiz-box fragment" style="text-align: left;">
-                    <div class="quiz-title">✍️ Trắc nghiệm どこかで／どこかに</div>
-                    <ul style="list-style: none; padding-left: 0;">
-                        
-                        <li class="fragment" style="margin-bottom:10px;">1. Điền trợ từ thích hợp: どこか（　）財布をなくしました。 
-                            <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
-                            <div class="answer-content">→ で</div>
-                        </li>
-                        <li class="fragment" style="margin-bottom:10px;">2. Điền trợ từ thích hợp: どこか（　）電話がありませんか。 
-                            <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
-                            <div class="answer-content">→ に</div>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-            
 
             
 </div>
@@ -530,26 +437,36 @@
 
     <script>
                         const vocabDict = {
-            "開きます": "mở (cửa)",
-            "閉まります": "đóng (cửa)",
-            "つきます": "sáng (điện)",
-            "消えます": "tắt (điện), biến mất",
-            "込みます": "đông đúc (đường)",
-            "すきます": "vắng (đường)",
-            "壊れます": "hỏng (ghế)",
-            "割れます": "vỡ (cốc)",
-            "折れます": "gãy (cây)",
-            "破れます": "rách (giấy)",
-            "汚れます": "bẩn (quần áo)",
-            "付きます": "được đính kèm (túi)",
-            "外れます": "tuột (nút)",
-            "止まります": "dừng (thang máy)",
-            "まちがえます": "làm sai, nhầm lẫn",
+            "開きます": "mở (cửa mở)",
+            "閉まります": "đóng (cửa đóng)",
+            "つきます": "sáng (điện sáng)",
+            "消えます": "tắt (điện tắt)",
+            "壊れます": "hỏng (ghế hỏng)",
+            "割れます": "vỡ (cốc vỡ)",
+            "折れます": "gãy (cành cây gãy)",
+            "破れます": "rách (giấy rách)",
+            "汚れます": "bẩn (quần áo bẩn)",
+            "付きます": "kèm theo (túi kèm theo)",
+            "外れます": "tuột, bung (cúc áo tuột)",
+            "止まります": "dừng (thang máy dừng)",
+            "まちがえます": "nhầm lẫn, sai",
             "落とします": "làm rơi, đánh mất",
-            "掛かります": "bị khóa",
-            "お皿": "cái đĩa",
-            "おちゃわん": "cái bát",
-            "コップ": "cái cốc",
+            "掛かります": "khóa (cửa khóa)",
+            "ふきます": "lau chùi",
+            "取り替えます": "thay, thay thế",
+            "片付けます": "dọn dẹp, sắp xếp",
+            "お皿": "đĩa",
+            "おちゃわん": "bát",
+            "コップ": "cốc",
+            "ガラス": "thủy tinh",
+            "袋": "túi",
+            "書類": "giấy tờ, tài liệu",
+            "枝": "cành cây",
+            "駅員": "nhân viên nhà ga",
+            "交番": "đồn cảnh sát",
+            "スピーチ": "bài diễn thuyết",
+            "返事": "trả lời",
+            "お先にどうぞ": "xin mời anh/chị đi trước",
         };
         //
             "音楽": "Âm nhạc",
