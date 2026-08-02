@@ -19,8 +19,11 @@ const wbCss = `
     
     .wb-tools-container { display: none; flex-direction: column; gap: 8px; margin-top: 8px; }
     
-    .wb-size-slider-container { display: flex; flex-direction: column; align-items: center; border-top: 1px solid #ddd; padding-top: 8px; margin-top: 5px; }
-    .wb-size-slider-container label { font-size: 0.7rem; color: #555; margin-bottom: 3px; font-weight: bold; }
+    .wb-size-wrapper { position: relative; margin-top: 5px; border-top: 1px solid #ddd; padding-top: 10px; text-align: center; cursor: pointer; display: flex; justify-content: center; align-items: center; height: 30px; }
+    .wb-size-preview { background: #d32f2f; border-radius: 50%; transition: all 0.1s; pointer-events: none; }
+    .wb-size-popup { display: none; position: absolute; right: 100%; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.95); padding: 12px; border-radius: 10px; box-shadow: -5px 0 20px rgba(0,0,0,0.15); margin-right: 15px; border: 1px solid #eee; width: 150px; z-index: 10001; }
+    .wb-size-wrapper:hover .wb-size-popup { display: flex; flex-direction: column; align-items: center; }
+    .wb-size-popup label { font-size: 0.8rem; color: #555; margin-bottom: 8px; font-weight: bold; }
     .wb-size-slider { width: 100%; cursor: pointer; }
     
     .wb-colors { display: flex; flex-direction: column; gap: 5px; margin-top: 5px; border-top: 1px solid #ddd; padding-top: 8px; align-items: center; }
@@ -43,11 +46,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button class="wb-btn" id="wb-select" title="Chọn & Di chuyển (Pointer)">🖱️</button>
                 <button class="wb-btn" id="wb-pen" title="Bút vẽ">✏️</button>
                 <button class="wb-btn" id="wb-text" title="Gõ chữ (Text)">T</button>
+                <button class="wb-btn" id="wb-undo" title="Hoàn tác (Ctrl+Z)">↩️</button>
                 <button class="wb-btn" id="wb-clear" title="Xóa toàn bộ trang">🗑️</button>
                 
-                <div class="wb-size-slider-container">
-                    <label>Size</label>
-                    <input type="range" id="wb-size" class="wb-size-slider" min="1" max="20" value="5">
+                <div class="wb-size-wrapper" title="Kích thước bút/chữ">
+                    <div class="wb-size-preview" id="wb-size-preview" style="width: 5px; height: 5px;"></div>
+                    <div class="wb-size-popup">
+                        <label>Độ lớn nét vẽ</label>
+                        <input type="range" id="wb-size" class="wb-size-slider" min="1" max="30" value="5">
+                    </div>
                 </div>
                 
                 <div class="wb-colors" id="wb-color-picker">
@@ -74,14 +81,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 let fabricCanvases = {}; // mapping slide section to fabric canvas
+let undoStacks = {}; // mapping slide section to undo history
 
 function initWhiteboard() {
     let isWhiteboardActive = false;
     let mode = 'none'; // 'select', 'pen', 'text'
     let currentColor = '#d32f2f';
     let currentSize = 5;
+    let isUndoing = false;
     
-    // Keybinds: Delete key to remove selected objects
+    // Keybinds: Delete key and Ctrl+Z
     document.addEventListener('keydown', (e) => {
         const navKeys = ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'PageDown', 'PageUp'];
         if (isWhiteboardActive && navKeys.includes(e.code) && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
@@ -101,6 +110,11 @@ function initWhiteboard() {
                     canvas.requestRenderAll();
                 }
             }
+        }
+        
+        if (isWhiteboardActive && (e.ctrlKey || e.metaKey) && e.key === 'z') {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+            performUndo();
         }
     });
 
@@ -141,12 +155,18 @@ function initWhiteboard() {
     document.getElementById('wb-select').addEventListener('click', () => setMode('select', 'wb-select'));
     document.getElementById('wb-pen').addEventListener('click', () => setMode('pen', 'wb-pen'));
     document.getElementById('wb-text').addEventListener('click', () => setMode('text', 'wb-text'));
+    document.getElementById('wb-undo').addEventListener('click', performUndo);
     
     document.getElementById('wb-clear').addEventListener('click', () => {
         let canvas = getActiveCanvas();
         if (canvas) {
             if (confirm('Bạn có chắc muốn xóa sạch toàn bộ nội dung vẽ trên trang này?')) {
                 canvas.clear();
+                // Clear undo stack for this slide
+                const slide = document.querySelector('.reveal .slides section.present');
+                if (slide && slide.dataset.wbId) {
+                    undoStacks[slide.dataset.wbId] = [];
+                }
             }
         }
     });
@@ -156,6 +176,7 @@ function initWhiteboard() {
             document.querySelectorAll('.wb-color').forEach(btn => btn.classList.remove('active'));
             e.currentTarget.classList.add('active');
             currentColor = e.currentTarget.dataset.color;
+            document.getElementById('wb-size-preview').style.background = currentColor;
             updateBrushSettings();
             
             // If objects are selected, change their color
@@ -176,6 +197,8 @@ function initWhiteboard() {
     
     document.getElementById('wb-size').addEventListener('input', (e) => {
         currentSize = parseInt(e.target.value, 10);
+        document.getElementById('wb-size-preview').style.width = currentSize + 'px';
+        document.getElementById('wb-size-preview').style.height = currentSize + 'px';
         updateBrushSettings();
     });
 
@@ -185,6 +208,23 @@ function initWhiteboard() {
         const slideId = slide.dataset.wbId;
         if (!slideId) return null;
         return fabricCanvases[slideId];
+    }
+    
+    function performUndo() {
+        let canvas = getActiveCanvas();
+        if (!canvas) return;
+        const slide = document.querySelector('.reveal .slides section.present');
+        if (!slide) return;
+        const stack = undoStacks[slide.dataset.wbId];
+        if (stack && stack.length > 0) {
+            const lastAction = stack.pop();
+            isUndoing = true;
+            if (lastAction.type === 'added') {
+                canvas.remove(lastAction.object);
+            }
+            isUndoing = false;
+            canvas.requestRenderAll();
+        }
     }
     
     function updateBrushSettings() {
@@ -251,6 +291,8 @@ function initWhiteboard() {
             slide.dataset.wbId = 'slide_' + Math.random().toString(36).substr(2, 9);
         }
         
+        undoStacks[slide.dataset.wbId] = [];
+        
         const canvasEl = document.createElement('canvas');
         canvasEl.id = 'canvas_' + slide.dataset.wbId;
         layer.appendChild(canvasEl);
@@ -265,6 +307,15 @@ function initWhiteboard() {
             height: height,
             isDrawingMode: false,
             selection: true // enable group selection
+        });
+        
+        // Hook up Undo tracking
+        fabricCanvas.on('object:added', function(e) {
+            if (isUndoing) return;
+            // Only track paths (strokes) and texts
+            if (e.target && (e.target.type === 'path' || e.target.type === 'i-text')) {
+                undoStacks[slide.dataset.wbId].push({ type: 'added', object: e.target });
+            }
         });
         
         fabricCanvases[slide.dataset.wbId] = fabricCanvas;
