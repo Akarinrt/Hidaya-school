@@ -1,3 +1,4 @@
+@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
 
 @keyframes fadeUp { from { opacity:0; transform:translateY(12px) } to { opacity:1; transform:translateY(0) } }
@@ -305,4 +306,9 @@ input, select, textarea, button { font-family: inherit; }
 /* === MOBILE === */
 @media (max-width: 768px) {
   .login-card { padding: 32px 24px; }
+}
+
+/* Hide Next.js Dev Error Overlay to prevent browser extensions from blocking dev workflow */
+nextjs-portal {
+  display: none !important;
 }

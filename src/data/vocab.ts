@@ -152,4 +152,54 @@ export const VOCAB_DATA: Record<string, LessonVocab> = {
       },
     ]
   }
+  'bai-27': {
+    title: 'Bài 27 – Thể khả năng',
+    lesson: 27,
+    groups: [
+      {
+        name: 'Từ vựng chung',
+        items: [
+          { ja: '飼います', kana: 'かいます', vi: 'nuôi (động vật)' },
+          { ja: '建てます', kana: 'たてます', vi: 'xây dựng' },
+          { ja: '走ります', kana: 'はしります', vi: 'chạy (trên đường)' },
+          { ja: '取ります', kana: 'とります', vi: 'lấy (nghỉ phép)' },
+          { ja: '見えます', kana: 'みえます', vi: 'có thể nhìn thấy' },
+          { ja: '聞こえます', kana: 'きこえます', vi: 'có thể nghe thấy' },
+          { ja: 'できます', kana: 'できます', vi: 'được hoàn thành, được xây lên' },
+          { ja: '開きます', kana: 'ひらきます', vi: 'mở (lớp học, tổ chức)' },
+          { ja: '', kana: 'ペット', vi: 'thú cưng' },
+          { ja: '鳥', kana: 'とり', vi: 'chim' },
+          { ja: '声', kana: 'こえ', vi: 'giọng nói' },
+          { ja: '波', kana: 'なみ', vi: 'sóng' },
+          { ja: '花火', kana: 'はなび', vi: 'pháo hoa' },
+          { ja: '景色', kana: 'けしき', vi: 'phong cảnh' },
+          { ja: '昼間', kana: 'ひるま', vi: 'ban ngày' },
+          { ja: '昔', kana: 'むかし', vi: 'ngày xưa' },
+          { ja: '道具', kana: 'どうぐ', vi: 'dụng cụ' },
+          { ja: '自動販売機', kana: 'じどうはんばいき', vi: 'máy bán hàng tự động' },
+          { ja: '通信販売', kana: 'つうしんはんばい', vi: 'mua sắm qua mạng/thư tín' },
+          { ja: '', kana: 'クリーニング', vi: 'giặt là' },
+          { ja: '', kana: 'マンション', vi: 'chung cư' },
+          { ja: '台所', kana: 'だいどころ', vi: 'nhà bếp' },
+          { ja: '教室', kana: 'きょうしつ', vi: 'lớp học' },
+          { ja: '', kana: 'パーティールーム', vi: 'phòng tiệc' },
+          { ja: '後', kana: 'ご', vi: 'sau (khoảng thời gian)' },
+          { ja: '', kana: 'しか', vi: 'chỉ (dùng với phủ định)' },
+          { ja: '', kana: 'ほかの', vi: 'khác' },
+          { ja: '材料', kana: 'ざいりょう', vi: 'nguyên liệu' },
+          { ja: '石', kana: 'いし', vi: 'đá' },
+          { ja: '', kana: 'ピラミッド', vi: 'kim tự tháp' },
+          { ja: '', kana: 'データ', vi: 'dữ liệu' },
+          { ja: '', kana: 'ファイル', vi: 'tệp tin' },
+          { ja: '', kana: 'ある', vi: 'một cái ~ nào đó' },
+          { ja: '一生懸命', kana: 'いっしょうけんめい', vi: 'cố gắng hết sức' },
+          { ja: '', kana: 'なぜ', vi: 'tại sao' },
+          { ja: '国連', kana: 'こくれん', vi: 'Liên Hợp Quốc' },
+          { ja: '', kana: 'エリーゼのために', vi: 'bản Für Elise' },
+          { ja: '', kana: 'ベートーベン', vi: 'Beethoven' },
+          { ja: '', kana: 'ポーランド', vi: 'Ba Lan' },
+        ]
+      }
+    ]
+  },
 };
