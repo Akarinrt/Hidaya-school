@@ -169,6 +169,56 @@ export const VOCAB_DATA: Record<string, LessonVocab> = {
           { ja: '', kana: 'ポーランド', vi: 'Ba Lan' },
         ]
       }
+  'bai-29': {
+    title: 'Bài 29 – Tự động từ & V-て しまいました',
+    lesson: 29,
+    groups: [
+      {
+        name: 'Tự động từ',
+        items: [
+          { ja: '開きます', kana: 'あきます', vi: 'mở (cửa mở)' },
+          { ja: '閉まります', kana: 'しまります', vi: 'đóng (cửa đóng)' },
+          { ja: 'つきます', kana: 'つきます', vi: 'sáng (điện sáng)' },
+          { ja: '消えます', kana: 'きえます', vi: 'tắt (điện tắt)' },
+          { ja: '壊れます', kana: 'こわれます', vi: 'hỏng (ghế hỏng)' },
+          { ja: '割れます', kana: 'われます', vi: 'vỡ (cốc vỡ)' },
+          { ja: '折れます', kana: 'おれます', vi: 'gãy (cành cây gãy)' },
+          { ja: '破れます', kana: 'やぶれます', vi: 'rách (giấy rách)' },
+          { ja: '汚れます', kana: 'よごれます', vi: 'bẩn (quần áo bẩn)' },
+          { ja: '付きます', kana: 'つきます', vi: 'kèm theo (túi kèm theo)' },
+          { ja: '外れます', kana: 'はずれます', vi: 'tuột, bung (cúc áo tuột)' },
+          { ja: '止まります', kana: 'とまります', vi: 'dừng (thang máy dừng)' },
+        ]
+      },
+      {
+        name: 'Động từ khác',
+        items: [
+          { ja: 'まちがえます', kana: 'まちがえます', vi: 'nhầm lẫn, sai' },
+          { ja: '落とします', kana: 'おとします', vi: 'làm rơi, đánh mất' },
+          { ja: '掛かります', kana: 'かかります', vi: 'khóa (cửa khóa)' },
+          { ja: 'ふきます', kana: 'ふきます', vi: 'lau chùi' },
+          { ja: '取り替えます', kana: 'とりかえます', vi: 'thay, thay thế' },
+          { ja: '片付けます', kana: 'かたづけます', vi: 'dọn dẹp, sắp xếp' },
+        ]
+      },
+      {
+        name: 'Danh từ',
+        items: [
+          { ja: 'お皿', kana: 'おさら', vi: 'đĩa' },
+          { ja: 'おちゃわん', kana: 'おちゃわん', vi: 'bát' },
+          { ja: 'コップ', kana: 'コップ', vi: 'cốc' },
+          { ja: 'ガラス', kana: 'ガラス', vi: 'thủy tinh' },
+          { ja: '袋', kana: 'ふくろ', vi: 'túi' },
+          { ja: '書類', kana: 'しょるい', vi: 'giấy tờ, tài liệu' },
+          { ja: '枝', kana: 'えだ', vi: 'cành cây' },
+          { ja: '駅員', kana: 'えきいん', vi: 'nhân viên nhà ga' },
+          { ja: '交番', kana: 'こうばん', vi: 'đồn cảnh sát' },
+          { ja: 'スピーチ', kana: 'スピーチ', vi: 'bài diễn thuyết' },
+          { ja: '返事', kana: 'へんじ', vi: 'trả lời' },
+          { ja: 'お先にどうぞ', kana: 'おさきにどうぞ', vi: 'xin mời anh/chị đi trước' }
+        ]
+      }
     ]
   },
 };
+
