@@ -169,6 +169,8 @@ export const VOCAB_DATA: Record<string, LessonVocab> = {
           { ja: '', kana: 'ポーランド', vi: 'Ba Lan' },
         ]
       }
+    ]
+  },
   'bai-29': {
     title: 'Bài 29 – Tự động từ & V-て しまいました',
     lesson: 29,
