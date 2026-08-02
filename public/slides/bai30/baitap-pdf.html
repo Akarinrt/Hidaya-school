@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài tập Bài 30</title>
+  <style>
+    body {
+      font-family: "Noto Sans JP", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f9;
+      color: #333;
+    }
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 20mm;
+      margin: 10mm auto;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      font-size: 14pt;
+      line-height: 1.8;
+      page-break-after: always;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #333;
+      padding-bottom: 10px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 24pt;
+    }
+    .name-section {
+      text-align: right;
+      font-size: 16pt;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    .exercise {
+      margin-bottom: 30px;
+    }
+    .exercise-title {
+      font-weight: bold;
+      font-size: 16pt;
+      margin-bottom: 10px;
+    }
+    .example {
+      color: #555;
+    }
+    .blank {
+      display: inline-block;
+      border-bottom: 1px solid #333;
+      min-width: 150px;
+    }
+    .blank-long {
+      display: inline-block;
+      border-bottom: 1px solid #333;
+      min-width: 250px;
+    }
+    .word-box {
+      border: 1px solid #333;
+      padding: 10px;
+      margin-bottom: 15px;
+      font-size: 13pt;
+      border-radius: 5px;
+    }
+    @media print {
+      body { background: white; }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        width: 100%;
+        padding: 10mm;
+      }
+      .no-print { display: none; }
+    }
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #1976d2;
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+    .print-btn:hover { background: #1565c0; }
+  </style>
+</head>
+<body>
+  <button class="print-btn no-print" onclick="window.print()">🖨 Xuất file PDF</button>
+
+  <div class="page">
+    <div class="header">
+      <h1>第 30 課 - 練習</h1>
+    </div>
+    <div class="name-section">
+      名前：<span class="blank-long"></span>
+    </div>
+    
+    <div class="exercise">
+      <div class="exercise-title">1. ～ています / ～てあります (Chọn dạng đúng của động từ)</div>
+      <div class="example">例：窓が（ 閉まっています ）。窓を（ 閉めてあります ）。</div>
+      <div>1) 机の上に本が（ <span class="blank"></span> ）あります。 (置きます)</div>
+      <div>2) カレンダーが壁に（ <span class="blank"></span> ）あります。 (掛けます)</div>
+      <div>3) 交番に地図が（ <span class="blank"></span> ）あります。 (貼ります)</div>
+      <div>4) 部屋の電気が（ <span class="blank"></span> ）ています。 (消えます)</div>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">2. ～ておきます (Hoàn thành câu chuẩn bị trước)</div>
+      <div>1) 友達が来る前に、部屋を（ <span class="blank-long"></span> ）。 (掃除します)</div>
+      <div>2) 旅行の前に、切符を（ <span class="blank-long"></span> ）。 (買います)</div>
+      <div>3) 授業の前に、新出語彙を（ <span class="blank-long"></span> ）。 (予習します)</div>
+      <div>4) 使ったハサmiは元の所に（ <span class="blank-long"></span> ）。 (戻します)</div>
+    </div>
+    
+  </div>
+</body>
+</html>

@@ -1528,5 +1528,1423 @@ export const testsData: Test[] = [
         explanation: "Trong bài có câu: 働きながら勉強するのは大変ですが、新しい友達がたくさんできますから、毎日とても楽しいです。"
       }
     ]
+  },
+  // ====================================================
+  // BÀI KIỂM TRA BÀI 29
+  // ====================================================
+  {
+    id: "lesson-29",
+    title: "Bài kiểm tra Bài 29",
+    description: "Kiểm tra ngữ pháp cấu trúc Vて-form います (trạng thái), Vて-form しまいました (tiếc nuối/hoàn thành).",
+    level: "N4",
+    durationMinutes: 15,
+    questions: [
+      {
+        id: "l29_q1",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp điền vào chỗ trống: 窓が（　）います。",
+        options: [{"id": "a", "text": "開いて"}, {"id": "b", "text": "開けて"}, {"id": "c", "text": "閉めて"}, {"id": "d", "text": "つけて"}],
+        correctOptionId: "a",
+        explanation: "窓が開いています: Cửa sổ đang mở (tự động từ + ています)."
+      },
+      {
+        id: "l29_q2",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp điền vào chỗ trống: パスポートを（　）しまいました。",
+        options: [{"id": "a", "text": "なくして"}, {"id": "b", "text": "なくって"}, {"id": "c", "text": "忘れて"}, {"id": "d", "text": "落として"}],
+        correctOptionId: "a",
+        explanation: "パスポートをなくしてしまいました: Tôi lỡ làm mất hộ chiếu rồi (tiếc nuối)."
+      },
+      {
+        id: "l29_q3",
+        type: "multiple_choice",
+        text: "Chọn tự động từ thích hợp: コップが（　）います。",
+        options: [{"id": "a", "text": "割れて"}, {"id": "b", "text": "割って"}, {"id": "c", "text": "壊して"}, {"id": "d", "text": "折れて"}],
+        correctOptionId: "a",
+        explanation: "コップが割れています: Cái cốc bị vỡ (tự động từ 割れる)."
+      },
+      {
+        id: "l29_q4",
+        type: "multiple_choice",
+        text: "Chọn động từ thích hợp: 漢字の宿題はもう（　）しまいました。",
+        options: [{"id": "a", "text": "やって"}, {"id": "b", "text": "し"}, {"id": "c", "text": "書き"}, {"id": "d", "text": "終り"}],
+        correctOptionId: "a",
+        explanation: "宿題はもうやってしまいました: Đã làm xong bài tập rồi (hoàn thành)."
+      },
+      {
+        id: "l29_q5",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: どこかで財布を（　）しまいました。",
+        options: [{"id": "a", "text": "落として"}, {"id": "b", "text": "落ちて"}, {"id": "c", "text": "なくって"}, {"id": "d", "text": "忘れて"}],
+        correctOptionId: "a",
+        explanation: "財布を落としてしまいました: Tôi lỡ làm rơi ví ở đâu mất rồi."
+      },
+      {
+        id: "l29_q6",
+        type: "text_input",
+        skill: "Ngữ pháp (ています)",
+        text: "Điền dạng đúng của động từ: 電気が（　）います。 (Đèn đang tắt - dùng động từ 消えます)",
+        correctAnswers: ["消えて", "きえて"],
+        explanation: "消えます (tự động từ nhóm II) -> 消えて."
+      },
+      {
+        id: "l29_q7",
+        type: "text_input",
+        skill: "Ngữ pháp (ています)",
+        text: "Điền dạng đúng của động từ: ドアが（　）います。 (Cửa đang đóng - dùng động từ 閉まります)",
+        correctAnswers: ["閉まって", "しまって"],
+        explanation: "閉まります (tự động từ nhóm I) -> 閉まって."
+      },
+      {
+        id: "l29_q8",
+        type: "text_input",
+        skill: "Ngữ pháp (てしまいました)",
+        text: "Điền dạng đúng của động từ: 電車に傘を（　）しまいました。 (Tôi lỡ để quên ô trên tàu mất rồi - dùng động từ 忘れます)",
+        correctAnswers: ["忘れて", "わすれて"],
+        explanation: "忘れます -> 忘れて + しまいました."
+      },
+      {
+        id: "l29_q9",
+        type: "multiple_choice",
+        text: "Chọn câu đúng nghĩa 'Cái túi bị bẩn':",
+        options: [{"id": "a", "text": "袋が汚れています。"}, {"id": "b", "text": "袋が汚してあります。"}, {"id": "c", "text": "袋を汚しています。"}, {"id": "d", "text": "袋が破れています。"}],
+        correctOptionId: "a",
+        explanation: "袋が汚れています: Cái túi đang bị bẩn."
+      },
+      {
+        id: "l29_q10",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: どこ（　）財布をなくしてしまいました。",
+        options: [{"id": "a", "text": "かで"}, {"id": "b", "text": "かに"}, {"id": "c", "text": "を"}, {"id": "d", "text": "で"}],
+        correctOptionId: "a",
+        explanation: "どこかで: làm mất ở đâu đó (xảy ra hành động tại địa điểm nào đó)."
+      }
+    ]
+  },
+  // ====================================================
+  // BÀI TẬP VỀ NHÀ BÀI 29 (TRỌN BỘ MONDAI & RENSHUU)
+  // ====================================================
+  {
+    id: "lesson-29-hw",
+    title: "Bài tập về nhà Bài 29 (Trọn bộ Mondai & Renshuu)",
+    description: "Trọn bộ bài tập về nhà theo sát sách bài tập Minna no Nihongo Bài 29: Cấu trúc Vて います, Vて しまいました, và trợ từ.",
+    level: "N4",
+    durationMinutes: 20,
+    questions: [
+      {
+        id: "l29_hw_1_1",
+        type: "text_input",
+        skill: "Ngữ pháp (Trợ từ)",
+        text: "Điền trợ từ thích hợp: このスーパー（　）夜9時（　）開いています。 (Điền 2 trợ từ cách nhau bởi dấu phẩy, VD: は, まで)",
+        correctAnswers: ["は, まで", "は、まで"],
+        explanation: "スーパーは: chủ ngữ; 9時まで: đến 9 giờ."
+      },
+      {
+        id: "l29_hw_1_2",
+        type: "text_input",
+        skill: "Ngữ pháp (Trợ từ)",
+        text: "Điền trợ từ thích hợp: 電車（　）網棚（　）忘れ物（　）してしまいました。 (Điền 3 trợ từ cách nhau bởi dấu phẩy, VD: の, に, を)",
+        correctAnswers: ["の, に, を", "の、に、を"],
+        explanation: "電車の網棚に (trên giá lưới của tàu) 忘れ物を (đồ bỏ quên)."
+      },
+      {
+        id: "l29_hw_1_3",
+        type: "text_input",
+        skill: "Ngữ pháp (Trợ từ)",
+        text: "Điền trợ từ thích hợp: このかばん（　）はポケット（　）たくさん付いています。 (Điền 2 trợ từ cách nhau bởi dấu phẩy, VD: に, が)",
+        correctAnswers: ["に, が", "に、が"],
+        explanation: "かばんには (ở chiếc cặp này thì) ポケットがたくさん付いています (được gắn nhiều túi)."
+      },
+      {
+        id: "l29_hw_1_4",
+        type: "text_input",
+        skill: "Ngữ pháp (Trợ từ)",
+        text: "Điền trợ từ thích hợp: どこか（　）ちょっと休みませんか。 (Chúng ta nghỉ một lát ở đâu đó nhé?)",
+        correctAnswers: ["で"],
+        explanation: "Nghỉ ngơi tại một địa điểm dùng trợ từ で (どこかで)."
+      },
+      {
+        id: "l29_hw_2_1",
+        type: "text_input",
+        skill: "Từ vựng (Tự/Tha động từ)",
+        text: "Chọn từ thích hợp điền vào chỗ trống: 木の（　）が折れています。 (Cành cây đang bị gãy)",
+        correctAnswers: ["枝", "えだ"],
+        explanation: "木の枝 (cành cây) が折れています (đang gãy)."
+      },
+      {
+        id: "l29_hw_2_2",
+        type: "text_input",
+        skill: "Từ vựng (Tự/Tha động từ)",
+        text: "Chọn từ thích hợp điền vào chỗ trống: シャツが（　）てしまいました。 (Áo sơ mi bị rách mất rồi - dùng động từ 破れます)",
+        correctAnswers: ["破れ", "やぶれ"],
+        explanation: "破れます -> 破れてしまいました."
+      },
+      {
+        id: "l29_hw_2_3",
+        type: "text_input",
+        skill: "Từ vựng (Tự/Tha động từ)",
+        text: "Chọn từ thích hợp điền vào chỗ trống: ボタンが（　）ていますよ。 (Cái cúc áo đang bị tuột kìa - dùng động từ 外れます)",
+        correctAnswers: ["外れ", "はずれ"],
+        explanation: "外れます -> 外れています."
+      },
+      {
+        id: "l29_hw_3_1",
+        type: "text_input",
+        skill: "Ngữ pháp (ています)",
+        text: "Điền dạng đúng của động từ: エアコンが（　）から、窓を開けないでください。 (Vì điều hòa đang bật - dùng động từ つきます)",
+        correctAnswers: ["ついている", "ついています"],
+        explanation: "エアコンがついている (điều hòa đang bật)."
+      },
+      {
+        id: "l29_hw_3_2",
+        type: "text_input",
+        skill: "Ngữ pháp (ています)",
+        text: "Điền dạng đúng của động từ: コップが（　）から、洗ってください。 (Vì cái cốc đang bị bẩn - dùng động từ よごれます)",
+        correctAnswers: ["汚れている", "よごれている", "汚れています", "よごれています"],
+        explanation: "コップが汚れている (cốc đang bẩn)."
+      },
+      {
+        id: "l29_hw_3_3",
+        type: "text_input",
+        skill: "Ngữ pháp (ています)",
+        text: "Điền dạng đúng của động từ: 隣のうちは電気が（　）から、だれもいないと思います。 (Vì nhà bên cạnh đang tắt đèn - dùng động từ きえます)",
+        correctAnswers: ["消えている", "きえている", "消えています", "きえています"],
+        explanation: "電気が消えている (đèn đang tắt)."
+      },
+      {
+        id: "l29_hw_4_1",
+        type: "text_input",
+        skill: "Ngữ pháp (てしまいます)",
+        text: "Điền dạng đúng của động từ: ミラーさんにもらったケーキはもう全部（　）しまいました。 (Bánh ngọt Miller cho tôi đã ăn sạch mất rồi - dùng động từ 食べます)",
+        correctAnswers: ["食べて", "たべて"],
+        explanation: "食べてしまいました (đã ăn sạch rồi)."
+      },
+      {
+        id: "l29_hw_4_2",
+        type: "text_input",
+        skill: "Ngữ pháp (てしまいます)",
+        text: "Điền dạng đúng của động từ: その本はもう（　）しまいましたから、貸しましょうか。 (Quyển sách đó tôi đã đọc xong rồi - dùng động từ 読みます)",
+        correctAnswers: ["読めて", "よめて", "読んで", "よんで"],
+        explanation: "読んでしまいました (đã đọc xong rồi)."
+      },
+      {
+        id: "l29_hw_5_1",
+        type: "text_input",
+        skill: "Ngữ pháp (てしまいました - tiếc nuối)",
+        text: "Điền dạng đúng của động từ: わたしが結婚したかった人は、ほかの人と（　）しまいました。 (Người tôi muốn kết hôn đã đi kết hôn với người khác mất rồi - dùng động từ 結婚します)",
+        correctAnswers: ["結婚して", "けっこんして"],
+        explanation: "結婚してしまいました (tiếc nuối)."
+      },
+      {
+        id: "l29_hw_5_2",
+        type: "text_input",
+        skill: "Ngữ pháp (てしまいました - tiếc nuối)",
+        text: "Điền dạng đúng của động từ: どこかで財布を（　）しまったんです。 (Tôi lỡ làm rơi ví ở đâu đó mất rồi - dùng động từ おとします)",
+        correctAnswers: ["落として", "おとして"],
+        explanation: "落としてしまいました (lỡ làm rơi)."
+      },
+      {
+        id: "l29_hw_6_1",
+        type: "text_input",
+        skill: "Đọc hiểu",
+        text: "Trả lời câu hỏi dựa trên bài đọc: この人は昨日、どこに何を忘れましたか。 (Mỗi sáng vừa làm gì vừa làm gì?)",
+        passage: "昨日、電車に傘を忘れてしまいました。駅員に聞きましたが、見つかりませんでした。今日は雨が降っていますから、とても困っています。それから、さっきスマホを落としてしまいました。画面が割れています。今日は本当に運が悪い日です。",
+        correctAnswers: ["電車に傘を忘れてしまいました", "電車に傘を忘れた", "電車に傘を忘れたこと"],
+        explanation: "Trong bài đọc có câu: 昨日、電車に傘を忘れてしまいました。"
+      },
+      {
+        id: "l29_hw_6_2",
+        type: "text_input",
+        skill: "Đọc hiểu",
+        text: "Trả lời câu hỏi dựa trên bài đọc: 駅員に聞いて、傘は見つかりましたか。 (Tìm thấy ô chưa?)",
+        passage: "昨日、電車に傘を忘れてしまいました。駅員に聞きましたが、見つかりませんでした。今日は雨が降っていますから、とても困っています。それから、さっきスマホを落としてしまいました。画面が割れています。今日は本当に運が悪い日です。",
+        correctAnswers: ["いいえ、見つかりませんでした", "見つかりませんでした", "いいえ、みつかりませんでした"],
+        explanation: "Trong bài đọc có câu: 駅員に聞きましたが、見つかりませんでした。"
+      },
+      {
+        id: "l29_hw_6_3",
+        type: "text_input",
+        skill: "Đọc hiểu",
+        text: "Trả lời câu hỏi dựa trên bài đọc: スマホはどうなっていますか。 (Điện thoại bị làm sao?)",
+        passage: "昨日、電車に傘を忘れてしまいました。駅員に聞きましたが、見つかりませんでした。今日は雨が降っていますから、とても困っています。それから、さっきスマホを落としてしまいました。画面が割れています。今日は本当に運が悪い日です。",
+        correctAnswers: ["画面が割れています", "がめんがわれています", "画面が割れている"],
+        explanation: "Trong bài đọc có câu: 画面が割れています。"
+      }
+    ]
+  },
+  // ====================================================
+  // BÀI KIỂM TRA BÀI 30
+  // ====================================================
+  {
+    id: "lesson-30",
+    title: "Bài kiểm tra Bài 30",
+    description: "Kiểm tra cấu trúc Vてあります, Vておきます, まだ Vています.",
+    level: "N4",
+    durationMinutes: 15,
+    questions: [
+      {
+        id: "l30_q1",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: 壁にカレンダーが（　）あります。",
+        options: [{"id": "a", "text": "掛けて"}, {"id": "b", "text": "掛けてい"}, {"id": "c", "text": "掛かる"}, {"id": "d", "text": "掛かって"}],
+        correctOptionId: "a",
+        explanation: "Vてあります dùng với tha động từ chỉ trạng thái có chủ ý."
+      },
+      {
+        id: "l30_q2",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: 旅行の前に、切符を（　）おきます。",
+        options: [{"id": "a", "text": "買って"}, {"id": "b", "text": "買いて"}, {"id": "c", "text": "買わ"}, {"id": "d", "text": "買い"}],
+        correctOptionId: "a",
+        explanation: "Vておきます: chuẩn bị sẵn trước một việc."
+      },
+      {
+        id: "l30_q3",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: はさみを使ったら、元の所に（　）おいてください。",
+        options: [{"id": "a", "text": "戻して"}, {"id": "b", "text": "戻り"}, {"id": "c", "text": "戻って"}, {"id": "d", "text": "戻そう"}],
+        correctOptionId: "a",
+        explanation: "戻して置いてください: cất về chỗ cũ."
+      },
+      {
+        id: "l30_q4",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: まだ雨が（　）います。",
+        options: [{"id": "a", "text": "降って"}, {"id": "b", "text": "降りて"}, {"id": "c", "text": "降ら"}, {"id": "d", "text": "降る"}],
+        correctOptionId: "a",
+        explanation: "まだ + Vています: vẫn đang làm gì."
+      },
+      {
+        id: "l30_q5",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: テーブルの上にきれいな花が（　）あります。",
+        options: [{"id": "a", "text": "飾って"}, {"id": "b", "text": "飾り"}, {"id": "c", "text": "飾る"}, {"id": "d", "text": "飾ってい"}],
+        correctOptionId: "a",
+        explanation: "花が飾ってあります (hoa được trang trí)."
+      },
+      {
+        id: "l30_q6",
+        type: "text_input",
+        skill: "Ngữ pháp (てあります)",
+        text: "Điền dạng đúng của động từ: 交番に町の地図が（　）あります。 (Bản đồ thị trấn đang được dán ở bốt cảnh sát - dùng động từ はります)",
+        correctAnswers: ["はって", "貼って"],
+        explanation: "はります -> はって."
+      },
+      {
+        id: "l30_q7",
+        type: "text_input",
+        skill: "Ngữ pháp (ておきます)",
+        text: "Điền dạng đúng của động từ: 授業の前に、（　）おきます。 (Trước giờ học tôi chuẩn bị bài trước - dùng động từ 予習します)",
+        correctAnswers: ["予習して", "よしゅうして"],
+        explanation: "予習します -> 予習して."
+      },
+      {
+        id: "l30_q8",
+        type: "text_input",
+        skill: "Ngữ pháp (ておきます)",
+        text: "Điền dạng đúng của động từ: 予定表に来月の予定を（　）おきます。 (Ghi sẵn lịch tháng sau vào lịch trình - dùng động từ 書きます)",
+        correctAnswers: ["書いて", "かいて"],
+        explanation: "書きます -> 書いて."
+      },
+      {
+        id: "l30_q9",
+        type: "multiple_choice",
+        text: "Chọn câu đúng nghĩa 'Cái gương được treo ở sảnh':",
+        options: [{"id": "a", "text": "玄関に鏡が掛けてあります。"}, {"id": "b", "text": "玄関に鏡が掛かっています。"}, {"id": "c", "text": "玄関に鏡が掛けておきます。"}, {"id": "d", "text": "玄関に鏡が掛けています。"}],
+        correctOptionId: "a",
+        explanation: "Trạng thái có chủ ý dùng NがVてあります."
+      },
+      {
+        id: "l30_q10",
+        type: "multiple_choice",
+        text: "Chọn trợ từ thích hợp: テーブル（　）上に予定表が置いてあります。",
+        options: [{"id": "a", "text": "の"}, {"id": "b", "text": "に"}, {"id": "c", "text": "が"}, {"id": "d", "text": "は"}],
+        correctOptionId: "a",
+        explanation: "N1 の N2: sở hữu/vị trí."
+      }
+    ]
+  },
+  // ====================================================
+  // BÀI TẬP VỀ NHÀ BÀI 30 (TRỌN BỘ MONDAI & RENSHUU)
+  // ====================================================
+  {
+    id: "lesson-30-hw",
+    title: "Bài tập về nhà Bài 30 (Trọn bộ Mondai & Renshuu)",
+    description: "Trọn bộ bài tập về nhà theo sát sách bài tập Minna no Nihongo Bài 30: Cấu trúc Vてあります, Vておきます, まだ Vています.",
+    level: "N4",
+    durationMinutes: 20,
+    questions: [
+      {
+        id: "l30_hw_1_1",
+        type: "text_input",
+        skill: "Ngữ pháp (Trợ từ)",
+        text: "Điền trợ từ thích hợp: 授業（　）まえに、予習しておきます。",
+        correctAnswers: ["の"],
+        explanation: "授業(の)まえに."
+      },
+      {
+        id: "l30_hw_1_2",
+        type: "text_input",
+        skill: "Ngữ pháp (Trợ từ)",
+        text: "Điền trợ từ thích hợp: 予定表（　）来月の予定（　）書いておきます。 (Điền 2 trợ từ cách nhau bởi dấu phẩy, VD: に, が)",
+        correctAnswers: ["に, を", "に、を"],
+        explanation: "予定表に (vào lịch trình) 予定を (kế hoạch)."
+      },
+      {
+        id: "l30_hw_1_3",
+        type: "text_input",
+        skill: "Ngữ pháp (Trợ từ)",
+        text: "Điền trợ từ thích hợp: 廊下（　）壁（　）お知らせがはってあります。 (Điền 2 trợ từ cách nhau bởi dấu phẩy, VD: の, に)",
+        correctAnswers: ["の, に", "の、に"],
+        explanation: "廊下の壁に (trên tường hành lang)."
+      },
+      {
+        id: "l30_hw_2_1",
+        type: "text_input",
+        skill: "Ngữ pháp (てあります)",
+        text: "Điền dạng đúng của động từ: 部屋の真ん中にテーブルが（　）あります。 (Ở giữa phòng có đặt cái bàn - dùng động từ 置きます)",
+        correctAnswers: ["置いて", "おいて"],
+        explanation: "置きます -> 置いて."
+      },
+      {
+        id: "l30_hw_2_2",
+        type: "text_input",
+        skill: "Ngữ pháp (てあります)",
+        text: "Điền dạng đúng của động từ: 壁にポスターが（　）あります。 (Trên tường có treo tấm áp phích - dùng động từ はります)",
+        correctAnswers: ["はって", "貼って"],
+        explanation: "はります -> はって."
+      },
+      {
+        id: "l30_hw_3_1",
+        type: "text_input",
+        skill: "Ngữ pháp (てあります)",
+        text: "Điền dạng đúng của động từ: 会議の資料はあの箱に（　）あります。 (Tài liệu họp đã được cất trong hộp đó - dùng động từ 入れます)",
+        correctAnswers: ["入れて", "いれて"],
+        explanation: "入れます -> 入れて."
+      },
+      {
+        id: "l30_hw_3_2",
+        type: "text_input",
+        skill: "Ngữ pháp (ておきます)",
+        text: "Điền dạng đúng của động từ: 友達が来るまえに、部屋を（　）おきます。 (Trước khi bạn đến, tôi dọn phòng sẵn - dùng động từ 掃除します)",
+        correctAnswers: ["掃除して", "そうじして"],
+        explanation: "掃除します -> 掃除して."
+      },
+      {
+        id: "l30_hw_4_1",
+        type: "text_input",
+        skill: "Ngữ pháp (ておきます)",
+        text: "Điền dạng đúng của động từ: 使わない部屋の電気は（　）おいてください。 (Đèn phòng không dùng hãy tắt đi sẵn - dùng động từ 消します)",
+        correctAnswers: ["消して", "けして"],
+        explanation: "消します -> 消して."
+      },
+      {
+        id: "l30_hw_5_1",
+        type: "text_input",
+        skill: "Ngữ pháp (まだ)",
+        text: "Điền dạng đúng: まだ雨が（　）いますから、傘を持っていきます。 (Trời vẫn đang mưa - dùng động từ 降ります)",
+        correctAnswers: ["降って", "ふって"],
+        explanation: "まだ + 降っています."
+      },
+      {
+        id: "l30_hw_5_2",
+        type: "text_input",
+        skill: "Ngữ pháp (Tổng hợp)",
+        text: "Điền dạng đúng: 新幹線の時間を調べて（　）ましょう。 (Hãy tra sẵn giờ tàu đi - dùng động từ おきます)",
+        correctAnswers: ["おき"],
+        explanation: "調べておきましょう."
+      },
+      {
+        id: "l30_hw_6_1",
+        type: "text_input",
+        skill: "Đọc hiểu",
+        text: "Trả lời câu hỏi dựa trên bài đọc: 今晩どこでパーティーがありますか。 (Tối nay tiệc ở đâu?)",
+        passage: "今晩うちでパーティーがありますから、昼ごはんのあとで部屋を掃除しておきました。飲み物はもう冷蔵庫に入れてあります。テーブルの上にはきれいな花が飾ってあります。",
+        correctAnswers: ["うちで", "うちであります", "家で", "いえで"],
+        explanation: "Trong bài đọc có câu: 今晩うちでパーティーがありますから..."
+      },
+      {
+        id: "l30_hw_6_2",
+        type: "text_input",
+        skill: "Đọc hiểu",
+        text: "Trả lời câu hỏi dựa trên bài đọc: 飲み物はどうしてありますか。 (Đồ uống được chuẩn bị thế nào?)",
+        passage: "今晩うちでパーティーがありますから、昼ごはんのあとで部屋を掃除しておきました。飲み物はもう冷蔵庫に入れてあります。テーブルの上にはきれいな花が飾ってあります。",
+        correctAnswers: ["冷蔵庫に入れてあります", "れいぞうこにいれてあります"],
+        explanation: "Trong bài đọc có câu: 飲み物はもう冷蔵庫に入れてあります。"
+      },
+      {
+        id: "l30_hw_6_3",
+        type: "text_input",
+        skill: "Đọc hiểu",
+        text: "Trả lời câu hỏi dựa trên bài đọc: テーブルの上には何が飾ってありますか。 (Cái gì được trang trí trên bàn?)",
+        passage: "今晩うちでパーティーがありますから、昼ごはんのあとで部屋を掃除しておきました。飲み物はもう冷蔵庫に入れてあります。テーブルの上にはきれいな花が飾ってあります。",
+        correctAnswers: ["きれいな花が飾ってあります", "きれいなはながかざってあります", "きれいな花", "花"],
+        explanation: "Trong bài đọc có câu: テーブルの上にはきれいな花が飾ってあります。"
+      }
+    ]
+  },
+  // ====================================================
+  // BÀI KIỂM TRA BÀI 31
+  // ====================================================
+  {
+    id: "lesson-31",
+    title: "Bài kiểm tra Bài 31",
+    description: "Kiểm tra Thể ý định (Volitional form), と思っています, つもりです, 予定です.",
+    level: "N4",
+    durationMinutes: 15,
+    questions: [
+      {
+        id: "l31_q1",
+        type: "multiple_choice",
+        text: "Chọn thể ý định của 休む: 疲れたから、ちょっと（　）。",
+        options: [{"id": "a", "text": "休もう"}, {"id": "b", "text": "休めば"}, {"id": "c", "text": "休みよう"}, {"id": "d", "text": "休むそう"}],
+        correctOptionId: "a",
+        explanation: "Động từ nhóm I: đuôi u -> o + う -> 休もう."
+      },
+      {
+        id: "l31_q2",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: 将来自分の会社を作（　）と思っています。",
+        options: [{"id": "a", "text": "ろう"}, {"id": "b", "text": "りましょう"}, {"id": "c", "text": "る"}, {"id": "d", "text": "った"}],
+        correctOptionId: "a",
+        explanation: "V意向形 + と思っています: định làm gì."
+      },
+      {
+        id: "l31_q3",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: 明日からはたばこを（　）つもりです。",
+        options: [{"id": "a", "text": "吸わない"}, {"id": "b", "text": "吸う"}, {"id": "c", "text": "吸わなくて"}, {"id": "d", "text": "吸おう"}],
+        correctOptionId: "a",
+        explanation: "Vないつもりです: định không làm gì."
+      },
+      {
+        id: "l31_q4",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: 来週の月曜日に日本へ行く（　）です。",
+        options: [{"id": "a", "text": "予定"}, {"id": "b", "text": "つもり"}, {"id": "c", "text": "思う"}, {"id": "d", "text": "こと"}],
+        correctOptionId: "a",
+        explanation: "Vる予定です: có kế hoạch, lịch trình cụ thể."
+      },
+      {
+        id: "l31_q5",
+        type: "multiple_choice",
+        text: "Chọn thể ý định đúng của 食べる: ",
+        options: [{"id": "a", "text": "食べよう"}, {"id": "b", "text": "食べろう"}, {"id": "c", "text": "食べるよう"}, {"id": "d", "text": "食べましょう"}],
+        correctOptionId: "a",
+        explanation: "Động từ nhóm II: bỏ masu + よう -> 食べよう."
+      },
+      {
+        id: "l31_q6",
+        type: "text_input",
+        skill: "Ngữ pháp (Thể ý định)",
+        text: "Điền thể ý định của động từ: 買い（　）。 (Định mua - dùng động từ 買います)",
+        correctAnswers: ["よう"],
+        explanation: "買います -> 買おう."
+      },
+      {
+        id: "l31_q7",
+        type: "text_input",
+        skill: "Ngữ pháp (Thể ý định)",
+        text: "Điền thể ý định của động từ: 勉強し（　）。 (Định học - dùng động từ 勉強します)",
+        correctAnswers: ["よう"],
+        explanation: "勉強します -> 勉強しよう."
+      },
+      {
+        id: "l31_q8",
+        type: "text_input",
+        skill: "Ngữ pháp (つもりです)",
+        text: "Điền dạng đúng của động từ: 週末はどこへも（　）つもりです。 (Cuối tuần tôi định không đi đâu cả - dùng động từ 行きます)",
+        correctAnswers: ["行かない", "いかない"],
+        explanation: "行かないつもりです."
+      },
+      {
+        id: "l31_q9",
+        type: "multiple_choice",
+        text: "Chọn câu đúng nghĩa 'Tôi dự định kết hôn vào năm sau':",
+        options: [{"id": "a", "text": "来年結婚する予定です。"}, {"id": "b", "text": "来年結婚しよう予定です。"}, {"id": "c", "text": "来年結婚するつもりと思っています。"}, {"id": "d", "text": "来年結婚する予定です。"}],
+        correctOptionId: "a",
+        explanation: "Dự định/kế hoạch cụ thể dùng Vる予定です."
+      },
+      {
+        id: "l31_q10",
+        type: "multiple_choice",
+        text: "Chọn thể ý định đúng của 来る (きます):",
+        options: [{"id": "a", "text": "来よう"}, {"id": "b", "text": "来ろう"}, {"id": "c", "text": "こよう"}, {"id": "d", "text": "きよう"}],
+        correctOptionId: "c",
+        explanation: "きます -> こよう."
+      }
+    ]
+  },
+  // ====================================================
+  // BÀI TẬP VỀ NHÀ BÀI 31 (TRỌN BỘ MONDAI & RENSHUU)
+  // ====================================================
+  {
+    id: "lesson-31-hw",
+    title: "Bài tập về nhà Bài 31 (Trọn bộ Mondai & Renshuu)",
+    description: "Trọn bộ bài tập về nhà theo sát sách bài tập Minna no Nihongo Bài 31: Thể ý định, つもり, 予定.",
+    level: "N4",
+    durationMinutes: 20,
+    questions: [
+      {
+        id: "l31_hw_1_1",
+        type: "text_input",
+        skill: "Ngữ pháp (Thể ý định)",
+        text: "Điền thể ý định của động từ: 続けます -> （　）",
+        correctAnswers: ["続けよう", "つづけよう"],
+        explanation: "続けます -> 続けよう (Nhóm II)."
+      },
+      {
+        id: "l31_hw_1_2",
+        type: "text_input",
+        skill: "Ngữ pháp (Thể ý định)",
+        text: "Điền thể ý định của động từ: 戻します -> （　）",
+        correctAnswers: ["戻そう", "もどそう"],
+        explanation: "戻します -> 戻そう (Nhóm I)."
+      },
+      {
+        id: "l31_hw_1_3",
+        type: "text_input",
+        skill: "Ngữ pháp (Thể ý định)",
+        text: "Điền thể ý định của động từ: 来ます -> （　）",
+        correctAnswers: ["来よう", "こよう"],
+        explanation: "来ます -> こよう (Nhóm III)."
+      },
+      {
+        id: "l31_hw_2_1",
+        type: "text_input",
+        skill: "Ngữ pháp (Thể ý định)",
+        text: "Điền dạng đúng: 時間がありませんから、急ぎ（　）。 (Vì không có thời gian chúng ta hãy vội lên nào - dùng thể ý định)",
+        correctAnswers: ["ましょう", "よう"],
+        explanation: "急ごう."
+      },
+      {
+        id: "l31_hw_3_1",
+        type: "text_input",
+        skill: "Ngữ pháp (と思っています)",
+        text: "Điền dạng đúng: 会社をやめて、もう一度大学で（　）と思っています。 (Tôi định nghỉ việc và học đại học lần nữa - dùng động từ 勉強します)",
+        correctAnswers: ["勉強しよう", "べんきょうしよう"],
+        explanation: "勉強しようと思っています."
+      },
+      {
+        id: "l31_hw_3_2",
+        type: "text_input",
+        skill: "Ngữ pháp (と思っています)",
+        text: "Điền dạng đúng: 今度の休みは子どもを動物園へ（　）と思っています。 (Nghỉ tới định dẫn con đi vườn bách thú - dùng động từ 連れて行きます)",
+        correctAnswers: ["連れて行こう", "つれていこう"],
+        explanation: "連れて行こうと思っています."
+      },
+      {
+        id: "l31_hw_4_1",
+        type: "text_input",
+        skill: "Ngữ pháp (つもりです)",
+        text: "Điền dạng đúng: 疲れたから、明日は何もし（　）つもりです。 (Vì mệt nên ngày mai định không làm gì - dùng động từ します)",
+        correctAnswers: ["ない"],
+        explanation: "何もしないつもりです."
+      },
+      {
+        id: "l31_hw_4_2",
+        type: "text_input",
+        skill: "Ngữ pháp (つもりです)",
+        text: "Điền dạng đúng: お金がありませんから、車は（　）つもりです。 (Không có tiền nên định không mua xe - dùng động từ 買います)",
+        correctAnswers: ["買わない", "かわない"],
+        explanation: "買わないつもりです."
+      },
+      {
+        id: "l31_hw_5_1",
+        type: "text_input",
+        skill: "Ngữ pháp (予定です)",
+        text: "Điền dạng đúng: 出張は1週間ぐらいの（　）です。 (Chuyến công tác dự kiến khoảng 1 tuần - dùng danh từ 予定)",
+        correctAnswers: ["予定", "よてい"],
+        explanation: "予定です."
+      },
+      {
+        id: "l31_hw_5_2",
+        type: "text_input",
+        skill: "Ngữ pháp (予定です)",
+        text: "Điền dạng đúng: 午後から会議が（　）予定です。 (Chiều nay dự kiến có cuộc họp - dùng động từ あります)",
+        correctAnswers: ["ある"],
+        explanation: "ある予定です."
+      },
+      {
+        id: "l31_hw_6_1",
+        type: "text_input",
+        skill: "Đọc hiểu",
+        text: "Trả lời câu hỏi dựa trên bài đọc: この人は大学を卒業したら、どうしようと思っていますか。 (Định làm gì sau tốt nghiệp?)",
+        passage: "大学を卒業したら、日本の会社で働こうと思っています。ですから、今一生懸命日本語を勉強しています。来年日本語能力試験のN3を受ける予定です。日本で5年ぐらい働いてから、ベトナムへ帰って日本語の先生になるつもりです。",
+        correctAnswers: ["日本の会社で働こうと思っています", "日本の会社で働くこと", "にほんのかいしゃではたらこうとおもっています"],
+        explanation: "Trong bài đọc có câu: 大学を卒業したら、日本の会社で働こうと思っています。"
+      },
+      {
+        id: "l31_hw_6_2",
+        type: "text_input",
+        skill: "Đọc hiểu",
+        text: "Trả lời câu hỏi dựa trên bài đọc: 来年何をする予定ですか。 (Kế hoạch năm sau là gì?)",
+        passage: "大学を卒業したら、日本の会社で働こうと思っています。ですから、今一生懸命日本語を勉強しています。来年日本語能力試験のN3を受ける予定です。日本で5年ぐらい働いてから、ベトナムへ帰って日本語の先生になるつもりです。",
+        correctAnswers: ["日本語能力試験のN3を受ける予定です", "にほんごのうりょくしけんのN3をうけるよていです"],
+        explanation: "Trong bài đọc có câu: 来年日本語能力試験のN3を受ける予定です。"
+      },
+      {
+        id: "l31_hw_6_3",
+        type: "text_input",
+        skill: "Đọc hiểu",
+        text: "Trả lời câu hỏi dựa trên bài đọc: ベトナムへ帰ってから、何になるつもりですか。 (Về Việt Nam định làm nghề gì?)",
+        passage: "大学を卒業したら、日本の会社で働こうと思っています。ですから、今一生懸命日本語を勉強しています。来年日本語能力試験 of N3を受ける予定です。日本で5年ぐらい働いてから、ベトナムへ帰って日本語の先生になるつもりです。",
+        correctAnswers: ["日本語の先生になるつもりです", "にほんごのせんせいになるつもりです"],
+        explanation: "Trong bài đọc có câu: ベトナムへ帰って日本語の先生になるつもりです。"
+      }
+    ]
+  },
+  // ====================================================
+  // BÀI KIỂM TRA BÀI 32
+  // ====================================================
+  {
+    id: "lesson-32",
+    title: "Bài kiểm tra Bài 32",
+    description: "Kiểm tra cấu trúc Vた/Vないほうがいいです, でしょう, かもしれません.",
+    level: "N4",
+    durationMinutes: 15,
+    questions: [
+      {
+        id: "l32_q1",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: 熱があるなら、早く（　）ほうがいいですよ。",
+        options: [{"id": "a", "text": "休んだ"}, {"id": "b", "text": "休む"}, {"id": "c", "text": "休んで"}, {"id": "d", "text": "休むの"}],
+        correctOptionId: "a",
+        explanation: "Khuyên nên làm gì: Vたほうがいいです."
+      },
+      {
+        id: "l32_q2",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: 明日は天気が（　）でしょう。",
+        options: [{"id": "a", "text": "いい"}, {"id": "b", "text": "よく"}, {"id": "c", "text": "いいの"}, {"id": "d", "text": "よければ"}],
+        correctOptionId: "a",
+        explanation: "Dự đoán chắc chắn cao: Thể thông thường + でしょう."
+      },
+      {
+        id: "l32_q3",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: 約束の時間に（　）かもしれません。",
+        options: [{"id": "a", "text": "間に合わない"}, {"id": "b", "text": "間に合おう"}, {"id": "c", "text": "間に合う"}, {"id": "d", "text": "間に合って"}],
+        correctOptionId: "a",
+        explanation: "Có lẽ là (dự báo thấp): Thể thông thường + かもしれません."
+      },
+      {
+        id: "l32_q4",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: 無理を（　）ほうがいいです。",
+        options: [{"id": "a", "text": "しない"}, {"id": "b", "text": "した"}, {"id": "c", "text": "しなくて"}, {"id": "d", "text": "しなかった"}],
+        correctOptionId: "a",
+        explanation: "Khuyên không nên làm gì: Vないほうがいいです."
+      },
+      {
+        id: "l32_q5",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: 明日は雪が（　）かもしれません。",
+        options: [{"id": "a", "text": "降る"}, {"id": "b", "text": "降って"}, {"id": "c", "text": "降り"}, {"id": "d", "text": "降ら"}],
+        correctOptionId: "a",
+        explanation: "Có lẽ tuyết sẽ rơi: 降るかもしれません."
+      },
+      {
+        id: "l32_q6",
+        type: "text_input",
+        skill: "Ngữ pháp (ほうがいいです)",
+        text: "Điền dạng đúng: タバコは（　）ほうがいいです。 (Nên bỏ thuốc lá đi - dùng động từ やめます)",
+        correctAnswers: ["やめた"],
+        explanation: "やめます -> やめた."
+      },
+      {
+        id: "l32_q7",
+        type: "text_input",
+        skill: "Ngữ pháp (ほうがいいです)",
+        text: "Điền dạng đúng: お酒を飲みすぎ（　）ほうがいいです。 (Không nên uống quá nhiều rượu - dùng động từ ない)",
+        correctAnswers: ["ない"],
+        explanation: "飲みすぎないほうがいいです."
+      },
+      {
+        id: "l32_q8",
+        type: "text_input",
+        skill: "Ngữ pháp (かもしれません)",
+        text: "Điền dạng đúng: 午後から雨が（　）かもしれません。 (Chiều có thể trời sẽ mưa - dùng động từ 降ります)",
+        correctAnswers: ["降る", "ふる"],
+        explanation: "降るかもしれません."
+      },
+      {
+        id: "l32_q9",
+        type: "multiple_choice",
+        text: "Chọn câu đúng nghĩa 'Ngày mai có lẽ sẽ lạnh':",
+        options: [{"id": "a", "text": "明日は寒くなるでしょう。"}, {"id": "b", "text": "明日は寒いでしょう。"}, {"id": "c", "text": "明日は寒くになるでしょう。"}, {"id": "d", "text": "明日は寒ければいいでしょう。"}],
+        correctOptionId: "b",
+        explanation: "寒いです (tính từ đuôi i) -> 寒いでしょう."
+      },
+      {
+        id: "l32_q10",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: 駅まで30分ですから、歩いて行（　）ほうがいいです。",
+        options: [{"id": "a", "text": "った"}, {"id": "b", "text": "く"}, {"id": "c", "text": "き"}, {"id": "d", "text": "くの"}],
+        correctOptionId: "a",
+        explanation: "歩いて行ったほうがいいです (nên đi bộ)."
+      }
+    ]
+  },
+  // ====================================================
+  // BÀI TẬP VỀ NHÀ BÀI 32 (TRỌN BỘ MONDAI & RENSHUU)
+  // ====================================================
+  {
+    id: "lesson-32-hw",
+    title: "Bài tập về nhà Bài 32 (Trọn bộ Mondai & Renshuu)",
+    description: "Trọn bộ bài tập về nhà theo sát sách bài tập Minna no Nihongo Bài 32: Cấu trúc ほうがいいです, でしょう, かもしれません.",
+    level: "N4",
+    durationMinutes: 20,
+    questions: [
+      {
+        id: "l32_hw_1_1",
+        type: "text_input",
+        skill: "Ngữ pháp (ほうがいいです)",
+        text: "Điền dạng đúng: 体の調子が悪い時は、無理を（　）ほうがいいです。 (Khi người không khỏe thì không nên quá sức - dùng động từ しません)",
+        correctAnswers: ["しない"],
+        explanation: "無理をしないほうがいいです."
+      },
+      {
+        id: "l32_hw_1_2",
+        type: "text_input",
+        skill: "Ngữ pháp (ほうがいいです)",
+        text: "Điền dạng đúng: パソコンを買う前に、よく（　）ほうがいいです。 (Trước khi mua máy tính nên tìm hiểu kỹ - dùng động từ 調べます)",
+        correctAnswers: ["調べた", "しらべた"],
+        explanation: "調べたほうがいいです."
+      },
+      {
+        id: "l32_hw_2_1",
+        type: "text_input",
+        skill: "Ngữ pháp (でしょう)",
+        text: "Điền dạng đúng: 明日は北の風が（　）でしょう。 (Ngày mai gió phương bắc có lẽ sẽ mạnh - dùng tính từ 強い)",
+        correctAnswers: ["強い", "つよい"],
+        explanation: "強いでしょう."
+      },
+      {
+        id: "l32_hw_2_2",
+        type: "text_input",
+        skill: "Ngữ pháp (でしょう)",
+        text: "Điền dạng đúng: 今夜の月は（　）でしょう。 (Trăng đêm nay chắc sẽ tròn - dùng tính từ 丸い)",
+        correctAnswers: ["丸い", "まるい"],
+        explanation: "丸いでしょう."
+      },
+      {
+        id: "l32_hw_3_1",
+        type: "text_input",
+        skill: "Ngữ pháp (かもしれません)",
+        text: "Điền dạng đúng: 約束の時間に（　）かもしれません。 (Có lẽ tôi sẽ không kịp giờ hẹn - dùng động từ 間に合いません)",
+        correctAnswers: ["間に合わない", "まにあわない"],
+        explanation: "間に合わないかもしれません."
+      },
+      {
+        id: "l32_hw_3_2",
+        type: "text_input",
+        skill: "Ngữ pháp (かもしれません)",
+        text: "Điền dạng đúng: 故障かもしれないから、電気屋に（　）ほうがいいです。 (Vì có thể bị hỏng nên hãy liên hệ thợ điện - dùng động từ 見せます)",
+        correctAnswers: ["見せた", "みせた"],
+        explanation: "見せたほうがいいです."
+      },
+      {
+        id: "l32_hw_4_1",
+        type: "text_input",
+        skill: "Ngữ pháp (Tổng hợp)",
+        text: "Điền dạng đúng: 寒いですから、コートを（　）ほうがいいですよ。 (Lạnh nên mặc áo khoác vào đi - dùng động từ 着ます)",
+        correctAnswers: ["着た", "きた"],
+        explanation: "着たほうがいい."
+      },
+      {
+        id: "l32_hw_4_2",
+        type: "text_input",
+        skill: "Ngữ pháp (Tổng hợp)",
+        text: "Điền dạng đúng: 忘れるかもしれないから、メモを（　）おいてください。 (Có thể sẽ quên nên hãy ghi chép lại sẵn - dùng động từ 書きます)",
+        correctAnswers: ["書いて", "かいて"],
+        explanation: "書いておいてください."
+      },
+      {
+        id: "l32_hw_5_1",
+        type: "text_input",
+        skill: "Đọc hiểu",
+        text: "Trả lời câu hỏi dựa trên bài đọc: 明日の朝の天気はどうなるでしょう。 (Thời tiết sáng mai thế nào?)",
+        passage: "天気予報によると、明日は朝から雨が降るでしょう。午後からは風も強くなるかもしれませんから、外出する時は注意したほうがいいです。夜には雨がやむでしょうが、気温が下がって寒くなりますから、暖かい服を着て出かけたほうがいいです。",
+        correctAnswers: ["雨が降るでしょう", "あめがふるでしょう"],
+        explanation: "Trong bài đọc có câu: 明日は朝から雨が降るでしょう。"
+      },
+      {
+        id: "l32_hw_5_2",
+        type: "text_input",
+        skill: "Đọc hiểu",
+        text: "Trả lời câu hỏi dựa trên bài đọc: どうして午後から外出する時に注意したほうがいいですか。 (Tại sao chiều mai ra ngoài nên chú ý?)",
+        passage: "天気予報によると、明日は朝から雨が降るでしょう。午後からは風も強くなるかもしれませんから、外出する時は注意したほうがいいです。夜には雨がやむでしょうg...",
+        correctAnswers: ["風が強くなるかもしれないからです", "かぜがつよくなるかもしれないからです"],
+        explanation: "Trong bài đọc có câu: 午後からは風も強くなるかもしれませんから..."
+      },
+      {
+        id: "l32_hw_5_3",
+        type: "text_input",
+        skill: "Đọc hiểu",
+        text: "Trả lời câu hỏi dựa trên bài đọc: 夜に出かける時はどんな服を着たほうがいいですか。 (Tối mai đi nên mặc đồ thế nào?)",
+        passage: "天気予報によると、明日は朝から雨が降るでしょう。午後からは風も強くなるかもしれませんから、外出する時は注意したほうがいいです。夜には雨がやむでしょうが、気温が下がって寒くなりますから、暖かい服を着て出かけたほうがいいです。",
+        correctAnswers: ["暖かい服を着たほうがいいです", "あたたかいふくをきたほうがいいです"],
+        explanation: "Trong bài đọc có câu: 暖かい服を着て出かけたほうがいいです。"
+      }
+    ]
+  },
+  // ====================================================
+  // BÀI KIỂM TRA BÀI 33
+  // ====================================================
+  {
+    id: "lesson-33",
+    title: "Bài kiểm tra Bài 33",
+    description: "Kiểm tra Thể mệnh lệnh, Thể cấm chỉ, ~という意味です, ~と書いてあります.",
+    level: "N4",
+    durationMinutes: 15,
+    questions: [
+      {
+        id: "l33_q1",
+        type: "multiple_choice",
+        text: "Chọn thể mệnh lệnh đúng của 走る: ",
+        options: [{"id": "a", "text": "走れ"}, {"id": "b", "text": "走ろ"}, {"id": "c", "text": "走りなさい"}, {"id": "d", "text": "走れな"}],
+        correctOptionId: "a",
+        explanation: "Động từ nhóm I: u -> e -> 走れ."
+      },
+      {
+        id: "l33_q2",
+        type: "multiple_choice",
+        text: "Chọn thể cấm chỉ đúng của 食べる: ",
+        options: [{"id": "a", "text": "食べるな"}, {"id": "b", "text": "食べな"}, {"id": "c", "text": "食べろな"}, {"id": "d", "text": "食べ禁止"}],
+        correctOptionId: "a",
+        explanation: "Thể cấm chỉ = Thể từ điển + な."
+      },
+      {
+        id: "l33_q3",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: あそこに「止まれ」と（　）あります。",
+        options: [{"id": "a", "text": "書いて"}, {"id": "b", "text": "書き"}, {"id": "c", "text": "書く"}, {"id": "d", "text": "書かれてい"}],
+        correctOptionId: "a",
+        explanation: "Nと書いてあります (được viết là N)."
+      },
+      {
+        id: "l33_q4",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: すみませんが、山田さんに明日会議があると（　）いただけませんか。",
+        options: [{"id": "a", "text": "伝えて"}, {"id": "b", "text": "話し"}, {"id": "c", "text": "言う"}, {"id": "d", "text": "言わせて"}],
+        correctOptionId: "a",
+        explanation: "Vと伝えていただけませんか (nhắn lại giúp tôi...)."
+      },
+      {
+        id: "l33_q5",
+        type: "multiple_choice",
+        text: "Chọn thể cấm chỉ đúng của する: ",
+        options: [{"id": "a", "text": "するな"}, {"id": "b", "text": "しな"}, {"id": "c", "text": "しろな"}, {"id": "d", "text": "せよな"}],
+        correctOptionId: "a",
+        explanation: "する -> するな."
+      },
+      {
+        id: "l33_q6",
+        type: "text_input",
+        skill: "Ngữ pháp (Thể mệnh lệnh)",
+        text: "Điền thể mệnh lệnh của động từ: がんばります -> （　）。 (Cố lên - dùng thể mệnh lệnh)",
+        correctAnswers: ["がんばれ"],
+        explanation: "がんばります -> がんばれ."
+      },
+      {
+        id: "l33_q7",
+        type: "text_input",
+        skill: "Ngữ pháp (Thể cấm chỉ)",
+        text: "Điền thể cấm chỉ của động từ: 捨てます -> （　）。 (Cấm vứt - dùng thể cấm chỉ)",
+        correctAnswers: ["捨てるな", "すてるな"],
+        explanation: "捨てます -> 捨てるな."
+      },
+      {
+        id: "l33_q8",
+        type: "text_input",
+        skill: "Ngữ pháp (という意味です)",
+        text: "Điền dạng đúng: 「使用禁止」は「使（　）」という意味です。 (Cấm dùng nghĩa là không được dùng - dùng thể cấm chỉ)",
+        correctAnswers: ["うな"],
+        explanation: "使う -> 使うな."
+      },
+      {
+        id: "l33_q9",
+        type: "multiple_choice",
+        text: "Chọn câu đúng nghĩa 'Biển báo kia viết là lối thoát hiểm':",
+        options: [{"id": "a", "text": "あそこに「非常口」と書いてあります。"}, {"id": "b", "text": "あそこに「非常口」と書いておきます。"}, {"id": "c", "text": "あそこに「非常口」と書いています。"}, {"id": "d", "text": "あそこに「非常口」と書かれています。"}],
+        correctOptionId: "a",
+        explanation: "Nと書いてあります."
+      },
+      {
+        id: "l33_q10",
+        type: "multiple_choice",
+        text: "Chọn thể mệnh lệnh đúng của 来る (きます):",
+        options: [{"id": "a", "text": "来い"}, {"id": "b", "text": "こい"}, {"id": "c", "text": "こさせ"}, {"id": "d", "text": "きよう"}],
+        correctOptionId: "b",
+        explanation: "きます -> こい."
+      }
+    ]
+  },
+  // ====================================================
+  // BÀI TẬP VỀ NHÀ BÀI 33 (TRỌN BỘ MONDAI & RENSHUU)
+  // ====================================================
+  {
+    id: "lesson-33-hw",
+    title: "Bài tập về nhà Bài 33 (Trọn bộ Mondai & Renshuu)",
+    description: "Trọn bộ bài tập về nhà theo sát sách bài tập Minna no Nihongo Bài 33: Thể mệnh lệnh, Thể cấm chỉ, ~という意味です, ~と伝えていただけませんか.",
+    level: "N4",
+    durationMinutes: 20,
+    questions: [
+      {
+        id: "l33_hw_1_1",
+        type: "text_input",
+        skill: "Ngữ pháp (Mệnh lệnh)",
+        text: "Điền thể mệnh lệnh của động từ: 逃げます -> （　）",
+        correctAnswers: ["逃げろ", "にげろ"],
+        explanation: "逃げます -> 逃げろ (Nhóm II)."
+      },
+      {
+        id: "l33_hw_1_2",
+        type: "text_input",
+        skill: "Ngữ pháp (Mệnh lệnh)",
+        text: "Điền thể mệnh lệnh của động từ: 泳ぎます -> （　）",
+        correctAnswers: ["泳げ", "およげ"],
+        explanation: "泳ぎます -> 泳げ (Nhóm I)."
+      },
+      {
+        id: "l33_hw_1_3",
+        type: "text_input",
+        skill: "Ngữ pháp (Cấm chỉ)",
+        text: "Điền thể cấm chỉ của động từ: 運転します -> （　）",
+        correctAnswers: ["運転するな", "うんてんするな"],
+        explanation: "運転します -> 運転するな."
+      },
+      {
+        id: "l33_hw_2_1",
+        type: "text_input",
+        skill: "Ngữ pháp (という意味です)",
+        text: "Điền dạng đúng: 「立入禁止」は「ここに入る（　）」という意味です。 (Lập nhập cấm chỉ nghĩa là cấm vào đây - dùng trợ từ thể cấm chỉ)",
+        correctAnswers: ["な"],
+        explanation: "入るな."
+      },
+      {
+        id: "l33_hw_2_2",
+        type: "text_input",
+        skill: "Ngữ pháp (という意味です)",
+        text: "Điền dạng đúng: 「無料」は「お金がいら（　）」という意味です。 (Miễn phí có nghĩa là không cần tiền - dùng động từ あります)",
+        correctAnswers: ["ない", "ないの"],
+        explanation: "いらないという意味です."
+      },
+      {
+        id: "l33_hw_3_1",
+        type: "text_input",
+        skill: "Ngữ pháp (伝えていただけませんか)",
+        text: "Điền dạng đúng: 山田さんに、「3時までに事務所に来てください」と（　）いただけませんか。 (Nhắn hộ Yamada là hãy đến văn phòng trước 3h - dùng động từ 伝えます)",
+        correctAnswers: ["伝えて", "つたえて"],
+        explanation: "伝えていただけませんか."
+      },
+      {
+        id: "l33_hw_4_1",
+        type: "text_input",
+        skill: "Ngữ pháp (Tổng hợp)",
+        text: "Điền dạng đúng: 信号が赤ですから、あそこを（　）な。 (Đèn đỏ nên cấm đi qua đó - dùng động từ 渡ります)",
+        correctAnswers: ["渡る", "わたる"],
+        explanation: "渡るな."
+      },
+      {
+        id: "l33_hw_4_2",
+        type: "text_input",
+        skill: "Ngữ pháp (Tổng hợp)",
+        text: "Điền dạng đúng: 遅れますから、もっと早く（　）なさい。 (Sắp muộn rồi hãy đi nhanh lên - dùng động từ 走ります)",
+        correctAnswers: ["走り", "はしり"],
+        explanation: "走りなさい (yêu cầu nhẹ nhàng)."
+      },
+      {
+        id: "l33_hw_5_1",
+        type: "text_input",
+        skill: "Đọc hiểu",
+        text: "Trả lời câu hỏi dựa trên bài đọc: 道路の横に何と書いてありますか。 (Bên đường viết gì?)",
+        passage: "道路の横に「工事中」と書いてあります。これは「今道路を直していますから、入るな」という意味です。車はここを通ることができませんから、向こうの道を通りなさい。",
+        correctAnswers: ["工事中と書いてあります", "こうじちゅうとかいてあります"],
+        explanation: "Trong bài đọc có câu: 道路の横に「工事中」と書いてあります。"
+      },
+      {
+        id: "l33_hw_5_2",
+        type: "text_input",
+        skill: "Đọc hiểu",
+        text: "Trả lời câu hỏi dựa trên bài đọc: 「工事中」はどういう意味ですか。 (Nghĩa của nó là gì?)",
+        passage: "道路の横に「工事中」と書いてあります。これは「今道路を直していますから、入るな」という意味です。車はここを通ることができませんから、向こうの道を通りなさい。",
+        correctAnswers: ["今道路を直していますから入るなという意味です", "いまどうろをなおしていますから、はいるなという意味です"],
+        explanation: "Trong bài đọc có câu: これは「今道路を直していますから、入るな」という意味です。"
+      }
+    ]
+  },
+  // ====================================================
+  // BÀI KIỂM TRA BÀI 34
+  // ====================================================
+  {
+    id: "lesson-34",
+    title: "Bài kiểm tra Bài 34",
+    description: "Kiểm tra cấu trúc V1とおりに V2, V1あとで V2, V1て/ないで V2.",
+    level: "N4",
+    durationMinutes: 15,
+    questions: [
+      {
+        id: "l34_q1",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: 私が言う（　）に、書いてください。",
+        options: [{"id": "a", "text": "とおり"}, {"id": "b", "text": "あとで"}, {"id": "c", "text": "とおりで"}, {"id": "d", "text": "まま"}],
+        correctOptionId: "a",
+        explanation: "V1とおりに V2: làm V2 theo như V1."
+      },
+      {
+        id: "l34_q2",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: 仕事が終わった（　）、飲みに行きましょう。",
+        options: [{"id": "a", "text": "あとで"}, {"id": "b", "text": "まえに"}, {"id": "c", "text": "ときに"}, {"id": "d", "text": "とおりに"}],
+        correctOptionId: "a",
+        explanation: "Vたあとで V2: làm V2 sau khi làm V1."
+      },
+      {
+        id: "l34_q3",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: 砂糖を（　）コーヒーを飲みます。",
+        options: [{"id": "a", "text": "入れないで"}, {"id": "b", "text": "入れて"}, {"id": "c", "text": "入れなく"}, {"id": "d", "text": "入れない"}],
+        correctOptionId: "a",
+        explanation: "V1ないで V2: làm V2 mà không làm V1 (trạng thái đi kèm)."
+      },
+      {
+        id: "l34_q4",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: 説明書（　）に、ロボットを組み立てました。",
+        options: [{"id": "a", "text": "のとおり"}, {"id": "b", "text": "とおり"}, {"id": "c", "text": "のとおりで"}, {"id": "d", "text": "とおりの"}],
+        correctOptionId: "a",
+        explanation: "N のとおりに V: theo như N."
+      },
+      {
+        id: "l34_q5",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: ご飯を食べた（　）、薬を飲みます。",
+        options: [{"id": "a", "text": "あとで"}, {"id": "b", "text": "まえに"}, {"id": "c", "text": "とおりに"}, {"id": "d", "text": "ときに"}],
+        correctOptionId: "a",
+        explanation: "Vたあとで (sau khi)."
+      },
+      {
+        id: "l34_q6",
+        type: "text_input",
+        skill: "Ngữ pháp (とおりに)",
+        text: "Điền dạng đúng: 先生が書いた（　）に、書いてください。 (Hãy viết theo như giáo viên đã viết - dùng danh từ とおり)",
+        correctAnswers: ["とおり"],
+        explanation: "書いたとおりに."
+      },
+      {
+        id: "l34_q7",
+        type: "text_input",
+        skill: "Ngữ pháp (あとで)",
+        text: "Điền dạng đúng: スポーツの（　）で、シャワーを浴びます。 (Sau khi chơi thể thao tôi đi tắm - dùng danh từ あと)",
+        correctAnswers: ["あと"],
+        explanation: "スポーツのあとで."
+      },
+      {
+        id: "l34_q8",
+        type: "text_input",
+        skill: "Ngữ pháp (ないで)",
+        text: "Điền dạng đúng: 昨夜は傘を持た（　）出かけました。 (Tối qua tôi ra ngoài mà không mang ô - dùng từ cản/phủ định)",
+        correctAnswers: ["ないで"],
+        explanation: "持たないで出かけました."
+      },
+      {
+        id: "l34_q9",
+        type: "multiple_choice",
+        text: "Chọn câu đúng nghĩa 'Hãy gấp giấy theo đường vẽ':",
+        options: [{"id": "a", "text": "線のとおりに紙を折ってください。"}, {"id": "b", "text": "線とおりに紙を折ってください。"}, {"id": "c", "text": "線に折ってください。"}, {"id": "d", "text": "線のあとで紙を折ってください。"}],
+        correctOptionId: "a",
+        explanation: "線のとおりに (theo như đường vẽ)."
+      },
+      {
+        id: "l34_q10",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: 醤油を（　）寿司を食べました。",
+        options: [{"id": "a", "text": "つけないで"}, {"id": "b", "text": "つけて"}, {"id": "c", "text": "つけなく"}, {"id": "d", "text": "つけるな"}],
+        correctOptionId: "a",
+        explanation: "醤油をつけないで (không chấm nước tương)."
+      }
+    ]
+  },
+  // ====================================================
+  // BÀI TẬP VỀ NHÀ BÀI 34 (TRỌN BỘ MONDAI & RENSHUU)
+  // ====================================================
+  {
+    id: "lesson-34-hw",
+    title: "Bài tập về nhà Bài 34 (Trọn bộ Mondai & Renshuu)",
+    description: "Trọn bộ bài tập về nhà theo sát sách bài tập Minna no Nihongo Bài 34: Cấu trúc とおりに, あとで, ないで.",
+    level: "N4",
+    durationMinutes: 20,
+    questions: [
+      {
+        id: "l34_hw_1_1",
+        type: "text_input",
+        skill: "Ngữ pháp (とおりに)",
+        text: "Điền dạng đúng: 図の（　）に、紙を折ってください。 (Hãy gấp giấy theo như hình vẽ - dùng danh từ とおり)",
+        correctAnswers: ["とおり"],
+        explanation: "図のとおりに."
+      },
+      {
+        id: "l34_hw_1_2",
+        type: "text_input",
+        skill: "Ngữ pháp (とおりに)",
+        text: "Điền dạng đúng: わたしがやった（　）に、やってください。 (Hãy làm theo đúng những gì tôi làm - dùng danh từ とおり)",
+        correctAnswers: ["とおり"],
+        explanation: "やったとおりに."
+      },
+      {
+        id: "l34_hw_2_1",
+        type: "text_input",
+        skill: "Ngữ pháp (あとで)",
+        text: "Điền dạng đúng: 仕事の（　）で、飲みに行きましょう。 (Sau công việc chúng ta đi uống nhé - dùng từ chỉ sau)",
+        correctAnswers: ["あと"],
+        explanation: "仕事のあとで."
+      },
+      {
+        id: "l34_hw_2_2",
+        type: "text_input",
+        skill: "Ngữ pháp (あとで)",
+        text: "Điền dạng đúng: ご飯を（　）あとで、歯を磨きます。 (Sau khi ăn cơm xong tôi đánh răng - dùng động từ 食べます)",
+        correctAnswers: ["食べた", "たべた"],
+        explanation: "食べたあとで."
+      },
+      {
+        id: "l34_hw_3_1",
+        type: "text_input",
+        skill: "Ngữ pháp (ないで)",
+        text: "Điền dạng đúng: 今日はエレベーターを使わ（　）階段を登りました。 (Hôm nay tôi leo thang bộ mà không dùng thang máy - dùng trợ từ)",
+        correctAnswers: ["ないで"],
+        explanation: "使わないで階段を登りました."
+      },
+      {
+        id: "l34_hw_3_2",
+        type: "text_input",
+        skill: "Ngữ pháp (ないで)",
+        text: "Điền dạng đúng: 醤油を（　）寿司を食べました。 (Tôi ăn sushi mà không chấm xì dầu - dùng động từ つけます)",
+        correctAnswers: ["つけないで"],
+        explanation: "つけないで."
+      },
+      {
+        id: "l34_hw_4_1",
+        type: "text_input",
+        skill: "Ngữ pháp (Tổng hợp)",
+        text: "Điền dạng đúng: シャワーを（　）あとで、ビールを飲みました。 (Sau khi tắm xong tôi đã uống bia - dùng động từ 浴びます)",
+        correctAnswers: ["浴びた", "あびた"],
+        explanation: "浴びたあとで."
+      },
+      {
+        id: "l34_hw_4_2",
+        type: "text_input",
+        skill: "Ngữ pháp (Tổng hợp)",
+        text: "Điền dạng đúng: 傘を（　）で出かけましたから、濡れてしまいました。 (Tôi ra ngoài mà không mang ô nên bị ướt - dùng động từ 持ちます)",
+        correctAnswers: ["持たない", "もたない"],
+        explanation: "持たないで出かけました."
+      },
+      {
+        id: "l34_hw_5_1",
+        type: "text_input",
+        skill: "Đọc hiểu",
+        text: "Trả lời câu hỏi dựa trên bài đọc: 寿司を作る時、最初に何を作りますか。 (Khi làm sushi đầu tiên làm gì?)",
+        passage: "日本の寿司を作る時は、まず酢と砂糖を混ぜてご飯を作ります。そのあとで、ご飯を小さく丸めます。ご飯の上にわさびを少しのせてから、魚の刺身をのせます。",
+        correctAnswers: ["酢と砂糖を混ぜてご飯を作ります", "すとおさとうをまぜてごはんをつくります"],
+        explanation: "Trong bài đọc có câu: 寿司を作る時は、まず酢と砂糖を混ぜてご飯を作ります。"
+      },
+      {
+        id: "l34_hw_5_2",
+        type: "text_input",
+        skill: "Đọc hiểu",
+        text: "Trả lời câu hỏi dựa trên bài đọc: ご飯を丸めたあとで、何をしますか。 (Sau khi nặn cơm xong làm gì?)",
+        passage: "日本の寿司を作る時は、まず酢と砂糖を混ぜてご飯を作ります。そのあとで、ご飯を小さく丸めます。ご飯の上にわさびを少しのせてから、魚の刺身をのせます。",
+        correctAnswers: ["わさびを少しのせて魚の刺身をのせます", "わさびを少しのせて魚のさしみをのせます", "わさびをのせて魚をのせます"],
+        explanation: "Trong bài đọc có câu: ご飯を小さく丸めます。ご飯の上にわさびを少しのせてから、魚の刺身をのせます。"
+      }
+    ]
+  },
+  // ====================================================
+  // BÀI KIỂM TRA BÀI 35
+  // ====================================================
+  {
+    id: "lesson-35",
+    title: "Bài kiểm tra Bài 35",
+    description: "Kiểm tra Thể điều kiện (ば-form), Nなら, VばVるほど.",
+    level: "N4",
+    durationMinutes: 15,
+    questions: [
+      {
+        id: "l35_q1",
+        type: "multiple_choice",
+        text: "Chọn dạng chia đúng thể điều kiện của 安い: ",
+        options: [{"id": "a", "text": "安ければ"}, {"id": "b", "text": "安かったら"}, {"id": "c", "text": "安いなら"}, {"id": "d", "text": "安くれば"}],
+        correctOptionId: "a",
+        explanation: "Tính từ đuôi i: bỏ i + ければ -> 安ければ."
+      },
+      {
+        id: "l35_q2",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: 日本語は話せ（　）話すほど上手になります。",
+        options: [{"id": "a", "text": "ば"}, {"id": "b", "text": "たら"}, {"id": "c", "text": "なら"}, {"id": "d", "text": "ると"}],
+        correctOptionId: "a",
+        explanation: "Vば Vるほど: càng... càng..."
+      },
+      {
+        id: "l35_q3",
+        type: "multiple_choice",
+        text: "Chọn từ thích hợp: カメラを買う（　）、秋葉原がいいですよ。",
+        options: [{"id": "a", "text": "なら"}, {"id": "b", "text": "たら"}, {"id": "c", "text": "ば"}, {"id": "d", "text": "と"}],
+        correctOptionId: "a",
+        explanation: "Nなら: đưa ra gợi ý/lời khuyên về chủ đề N."
+      },
+      {
+        id: "l35_q4",
+        type: "multiple_choice",
+        text: "Chọn dạng chia đúng thể điều kiện của いい: ",
+        options: [{"id": "a", "text": "よければ"}, {"id": "b", "text": "いいければ"}, {"id": "c", "text": "よければいい"}, {"id": "d", "text": "よければ"}],
+        correctOptionId: "a",
+        explanation: "いい -> よければ (Bất quy tắc)."
+      },
+      {
+        id: "l35_q5",
+        type: "multiple_choice",
+        text: "Chọn dạng chia đúng thể điều kiện của 行く: ",
+        options: [{"id": "a", "text": "行けば"}, {"id": "b", "text": "行こう"}, {"id": "c", "text": "行くなら"}, {"id": "d", "text": "行ったら"}],
+        correctOptionId: "a",
+        explanation: "Động từ nhóm I: u -> e + ば -> 行けば."
+      },
+      {
+        id: "l35_q6",
+        type: "text_input",
+        skill: "Ngữ pháp (Thể điều kiện)",
+        text: "Điền thể điều kiện của động từ: あります -> （　）。 (Nếu có - dùng thể điều kiện)",
+        correctAnswers: ["あれば"],
+        explanation: "あります -> あれば."
+      },
+      {
+        id: "l35_q7",
+        type: "text_input",
+        skill: "Ngữ pháp (Thể điều kiện)",
+        text: "Điền thể điều kiện của động từ: 読みます -> （　）。 (Nếu đọc - dùng thể điều kiện)",
+        correctAnswers: ["読めば", "よめば"],
+        explanation: "読みます -> 読めば."
+      },
+      {
+        id: "l35_q8",
+        type: "text_input",
+        skill: "Ngữ pháp (Nなら)",
+        text: "Điền dạng đúng SUGGESTION: 日本料理を食べる（　）、あの店が有名ですよ。 (Nếu ăn món Nhật thì tiệm kia nổi tiếng đó - dùng trợ từ điều kiện)",
+        correctAnswers: ["なら"],
+        explanation: "Nなら (Nếu là N)."
+      },
+      {
+        id: "l35_q9",
+        type: "multiple_choice",
+        text: "Chọn câu đúng nghĩa 'Càng học càng thấy thú vị':",
+        options: [{"id": "a", "text": "勉強すれば勉強するほどおもしろくなります。"}, {"id": "b", "text": "勉強するならおもしろくなります。"}, {"id": "c", "text": "勉強すればおもしろいになります。"}, {"id": "d", "text": "勉強すれば勉強するおもしろいになります。"}],
+        correctOptionId: "a",
+        explanation: "Vば Vるほど (Càng học càng thú vị)."
+      },
+      {
+        id: "l35_q10",
+        type: "multiple_choice",
+        text: "Chọn thể điều kiện đúng của する: ",
+        options: [{"id": "a", "text": "すれば"}, {"id": "b", "text": "するば"}, {"id": "c", "text": "しれば"}, {"id": "d", "text": "しよう"}],
+        correctOptionId: "a",
+        explanation: "する -> すれば."
+      }
+    ]
+  },
+  // ====================================================
+  // BÀI TẬP VỀ NHÀ BÀI 35 (TRỌN BỘ MONDAI & RENSHUU)
+  // ====================================================
+  {
+    id: "lesson-35-hw",
+    title: "Bài tập về nhà Bài 35 (Trọn bộ Mondai & Renshuu)",
+    description: "Trọn bộ bài tập về nhà theo sát sách bài tập Minna no Nihongo Bài 35: Cấu trúc thể điều kiện Vば, Nなら, Vば Vるほど.",
+    level: "N4",
+    durationMinutes: 20,
+    questions: [
+      {
+        id: "l35_hw_1_1",
+        type: "text_input",
+        skill: "Ngữ pháp (Thể điều kiện)",
+        text: "Điền thể điều kiện của động từ: 走ります -> （　）",
+        correctAnswers: ["走れば", "はしれば"],
+        explanation: "走ります -> 走れば."
+      },
+      {
+        id: "l35_hw_1_2",
+        type: "text_input",
+        skill: "Ngữ pháp (Thể điều kiện)",
+        text: "Điền thể điều kiện của động từ: 覚えます -> （　）",
+        correctAnswers: ["覚えれば", "おぼえれば"],
+        explanation: "覚えます -> 覚えれば (Nhóm II)."
+      },
+      {
+        id: "l35_hw_1_3",
+        type: "text_input",
+        skill: "Ngữ pháp (Thể điều kiện)",
+        text: "Điền thể điều kiện của động từ: 来ます -> （　）",
+        correctAnswers: ["来れば", "くれば"],
+        explanation: "来ます -> 来れば (Nhóm III)."
+      },
+      {
+        id: "l35_hw_2_1",
+        type: "text_input",
+        skill: "Ngữ pháp (Thể điều kiện)",
+        text: "Điền dạng đúng: 天気が（　）ば、山に登りましょう。 (Nếu thời tiết đẹp chúng ta cùng leo núi - dùng tính từ いい)",
+        correctAnswers: ["よけれ"],
+        explanation: "いい -> よければ."
+      },
+      {
+        id: "l35_hw_2_2",
+        type: "text_input",
+        skill: "Ngữ pháp (Thể điều kiện)",
+        text: "Điền dạng đúng: 安（　）ば、もう一台買います。 (Nếu rẻ tôi mua thêm chiếc nữa - dùng tính từ 安い)",
+        correctAnswers: ["けれ"],
+        explanation: "安い -> 安ければ."
+      },
+      {
+        id: "l35_hw_3_1",
+        type: "text_input",
+        skill: "Ngữ pháp (Nなら)",
+        text: "Điền dạng đúng: 日本旅行（　）、春か秋がいいですよ。 (Nếu du lịch Nhật Bản thì mùa xuân hay mùa thu là đẹp - dùng trợ từ)",
+        correctAnswers: ["なら"],
+        explanation: "Nなら (Nếu là...)."
+      },
+      {
+        id: "l35_hw_4_1",
+        type: "text_input",
+        skill: "Ngữ pháp (ば～ほど)",
+        text: "Điền dạng đúng: パソコンは使えば（　）ほど、上手になります。 (Máy tính càng dùng nhiều càng thành thạo - dùng động từ 使い)",
+        correctAnswers: ["使う", "つかう"],
+        explanation: "使えば使うほど."
+      },
+      {
+        id: "l35_hw_4_2",
+        type: "text_input",
+        skill: "Ngữ pháp (Tổng hợp)",
+        text: "Điền dạng đúng: 時間が（　）ば、旅行に行きたいです。 (Nếu có thời gian tôi muốn đi du lịch - dùng động từ あります)",
+        correctAnswers: ["あれ"],
+        explanation: "あれば."
+      },
+      {
+        id: "l35_hw_5_1",
+        type: "text_input",
+        skill: "Đọc hiểu",
+        text: "Trả lời câu hỏi dựa trên bài đọc: 日本へ旅行に行くなら、いつ行けばいいですか。 (Nên đi du lịch Nhật vào khi nào?)",
+        passage: "日本へ旅行に行くなら、春か秋に行けばいいと思います。春なら桜がきれいですし、秋なら紅葉が美しいからです。もし冬に行けば、北海道でスキーができます。",
+        correctAnswers: ["春か秋に行けばいいと思います", "春か秋", "はるかあきにいけばいいとおもいます"],
+        explanation: "Trong bài đọc có câu: 日本へ旅行に行くなら、春か秋に行けばいいと思います。"
+      },
+      {
+        id: "l35_hw_5_2",
+        type: "text_input",
+        skill: "Đọc hiểu",
+        text: "Trả lời câu hỏi dựa trên bài đọc: 安く旅行したければ、どうしたほうがいいですか。 (Muốn đi rẻ thì nên làm gì?)",
+        passage: "日本へ旅行に行くなら、春か秋に行けばいいと思います。春なら桜がきれいですし、秋なら紅葉が美しいからです。もし冬に行けば、北海道でスキーができます。安く旅行したければ、LCCの飛行機を早く予約したほうがいいです。",
+        correctAnswers: ["LCCの飛行機を早く予約したほうがいいです", "LCCのひこうきをはやくよやくしたほうがいいです"],
+        explanation: "Trong bài đọc có câu: 安く旅行したければ、LCCの飛行機を早く予約したほうがいいです。"
+      }
+    ]
   }
 ];
