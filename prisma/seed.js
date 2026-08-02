@@ -107,62 +107,68 @@ async function main() {
   const testsData = loadTestsData();
 
   // Homework & Tests
-  const existingHw = await prisma.homework.count();
-  if (existingHw <= 2) { // Seed if database is clean or contains only old simple seed homeworks
-    // Delete existing simple seed homeworks to rebuild them cleanly with class association
-    await prisma.homework.deleteMany({
-      where: { classId: null }
+  const itemsToSeed = [
+    {
+      slug: "lesson-26-quiz",
+      title: "Bài kiểm tra trắc nghiệm Bài 26",
+      description: "Kiểm tra kiến thức ngữ pháp thể thông thường + んです, ていただけませんか.",
+      type: "TEST",
+      sourceTestId: "lesson-26",
+    },
+    {
+      slug: "lesson-27-part1-quiz",
+      title: "Bài kiểm tra trắc nghiệm Bài 27 (Nửa bài đầu)",
+      description: "Kiểm tra chia động từ thể khả năng và cấu trúc câu khả năng.",
+      type: "TEST",
+      sourceTestId: "lesson-27-part1",
+    },
+    {
+      slug: "lesson-27-part2-quiz",
+      title: "Bài kiểm tra trắc nghiệm Bài 27 (Nửa bài sau)",
+      description: "Kiểm tra kiến thức miemasu, kikoemasu, shika...masen.",
+      type: "TEST",
+      sourceTestId: "lesson-27-part2",
+    },
+    {
+      slug: "lesson-27-workbook-hw",
+      title: "Bài tập về nhà Bài 27 (Trọn bộ Mondai & Renshuu)",
+      description: "Trọn bộ bài tập về nhà theo sát sách bài tập Minna no Nihongo Bài 27: Điền trợ từ, viết lại câu với しか, thể khả năng.",
+      type: "HOMEWORK",
+      sourceTestId: "lesson-27-part2-hw",
+    },
+    {
+      slug: "lesson-28-quiz",
+      title: "Bài kiểm tra trắc nghiệm Bài 28",
+      description: "Kiểm tra ngữ pháp cấu trúc ながら, ています, và し.",
+      type: "TEST",
+      sourceTestId: "lesson-28",
+    },
+    {
+      slug: "lesson-28-workbook-hw",
+      title: "Bài tập về nhà Bài 28 (Trọn bộ Mondai & Renshuu)",
+      description: "Trọn bộ bài tập về nhà theo sát sách bài tập Minna no Nihongo Bài 28: Cấu trúc ながら, ています, し, và trạng từ liên kết.",
+      type: "HOMEWORK",
+      sourceTestId: "lesson-28-hw",
+    }
+  ];
+
+  for (const item of itemsToSeed) {
+    const sourceTest = testsData.find(t => t.id === item.sourceTestId);
+    if (!sourceTest) continue;
+
+    const existing = await prisma.homework.findFirst({
+      where: { title: item.title }
     });
 
-    const itemsToSeed = [
-      {
-        slug: "lesson-26-quiz",
-        title: "Bài kiểm tra trắc nghiệm Bài 26",
-        description: "Kiểm tra kiến thức ngữ pháp thể thông thường + んです, ていただけませんか.",
-        type: "TEST",
-        sourceTestId: "lesson-26",
-      },
-      {
-        slug: "lesson-27-part1-quiz",
-        title: "Bài kiểm tra trắc nghiệm Bài 27 (Nửa bài đầu)",
-        description: "Kiểm tra chia động từ thể khả năng và cấu trúc câu khả năng.",
-        type: "TEST",
-        sourceTestId: "lesson-27-part1",
-      },
-      {
-        slug: "lesson-27-part2-quiz",
-        title: "Bài kiểm tra trắc nghiệm Bài 27 (Nửa bài sau)",
-        description: "Kiểm tra kiến thức miemasu, kikoemasu, shika...masen.",
-        type: "TEST",
-        sourceTestId: "lesson-27-part2",
-      },
-      {
-        slug: "lesson-27-workbook-hw",
-        title: "Bài tập về nhà Bài 27 (Trọn bộ Mondai & Renshuu)",
-        description: "Trọn bộ bài tập về nhà theo sát sách bài tập Minna no Nihongo Bài 27: Điền trợ từ, viết lại câu với しか, thể khả năng.",
-        type: "HOMEWORK",
-        sourceTestId: "lesson-27-part2-hw",
-      },
-      {
-        slug: "lesson-28-quiz",
-        title: "Bài kiểm tra trắc nghiệm Bài 28",
-        description: "Kiểm tra ngữ pháp cấu trúc ながら, ています, và し.",
-        type: "TEST",
-        sourceTestId: "lesson-28",
-      },
-      {
-        slug: "lesson-28-workbook-hw",
-        title: "Bài tập về nhà Bài 28 (Trọn bộ Mondai & Renshuu)",
-        description: "Trọn bộ bài tập về nhà theo sát sách bài tập Minna no Nihongo Bài 28: Cấu trúc ながら, ています, し, và trạng từ liên kết.",
-        type: "HOMEWORK",
-        sourceTestId: "lesson-28-hw",
-      }
-    ];
-
-    for (const item of itemsToSeed) {
-      const sourceTest = testsData.find(t => t.id === item.sourceTestId);
-      if (!sourceTest) continue;
-
+    if (existing) {
+      await prisma.homework.update({
+        where: { id: existing.id },
+        data: {
+          quizData: JSON.stringify(sourceTest.questions),
+          description: item.description
+        }
+      });
+    } else {
       await prisma.homework.create({
         data: {
           title: item.title,

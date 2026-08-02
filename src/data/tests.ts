@@ -1349,136 +1349,183 @@ export const testsData: Test[] = [
       {
         id: "l28_hw_1_1", type: "text_input", skill: "Ngữ pháp (ながら)",
         text: "Chia động từ điền vào chỗ trống: 本を (　) ながらバスを待っていました。 (Vừa đọc sách vừa đợi xe buýt - dùng động từ 読みます)",
-        correctAnswers: ["読み", "よみ"], explanation: "読みます bỏ ます + ながら."
+        correctAnswers: ["読み", "よみ"],
+        explanation: "読みます bỏ ます + ながら."
       },
       {
         id: "l28_hw_1_2", type: "text_input", skill: "Ngữ pháp (ながら)",
-        text: "Chia động từ điền vào chỗ trống: ガムを (　) ながら運転すると、あまり眠くなりません。 (Vừa nhai kẹo cao su vừa lái xe - dùng động từ かみます)",
-        correctAnswers: ["かみ"], explanation: "かみます bỏ ます + ながら."
+        text: "Chia động từ điền vào chỗ trống: ガムガムを (　) ながら運転すると、あまり眠くなりません。 (Vừa nhai kẹo cao su vừa lái xe - dùng động từ かみます)",
+        correctAnswers: ["かみ"],
+        explanation: "かみます bỏ ます + ながら."
       },
       {
         id: "l28_hw_1_3", type: "text_input", skill: "Ngữ pháp (ながら)",
-        text: "Chia động từ điền vào chỗ trống: 彼女 là ngân hàng. (Cô ấy vừa làm việc ở ngân hàng vừa viết tiểu thuyết - dùng động từ 働きます)",
-        correctAnswers: ["働き", "はたらき"], explanation: "働きます bỏ ます + ながら."
+        text: "Chia động từ điền vào chỗ trống: 彼女は銀行で (　) ながら小説を書いています。 (Cô ấy vừa làm việc ở ngân hàng vừa viết tiểu thuyết - dùng động từ 働きます)",
+        correctAnswers: ["働き", "はたらき"],
+        explanation: "働きます bỏ ます + ながら."
       },
       {
         id: "l28_hw_1_4", type: "text_input", skill: "Ngữ pháp (ながら)",
         text: "Chia động từ điền vào chỗ trống: 彼はアルバイトを (　) ながら大学に通っています。 (Anh ấy vừa làm thêm vừa đi học đại học - dùng động từ します)",
-        correctAnswers: ["し"], explanation: "します bỏ ます + ながら."
+        correctAnswers: ["し"],
+        explanation: "します bỏ ます + ながら."
       },
       {
         id: "l28_hw_1_5", type: "text_input", skill: "Ngữ pháp (ながら)",
-        text: "Chia động từ điền vào chỗ trống: いつm bạn bè ăn trưa. (Tôi luôn vừa ăn trưa với bạn bè vừa nói chuyện - dùng động từ 食べます)",
-        correctAnswers: ["食べ", "たべ"], explanation: "食べます bỏ ます + ながら."
+        text: "Chia động từ điền vào chỗ trống: 私はいつも友達と昼ご飯を (　) ながら話しています。 (Tôi luôn vừa ăn trưa với bạn bè vừa nói chuyện - dùng động từ 食べます)",
+        correctAnswers: ["食べ", "たべ"],
+        explanation: "食べます bỏ ます + ながら."
       },
       {
         id: "l28_hw_2_1", type: "text_input", skill: "Ngữ pháp (ています)",
         text: "Chia động từ điền vào chỗ trống diễn tả thói quen: 毎朝8時15分の電車に（　）が、けさは8時の電車に乗りました。 (Mỗi sáng tôi đều đi tàu 8h15 - dùng động từ 乗ります)",
-        correctAnswers: ["乗っています", "のっています"], explanation: "V-te imasu diễn tả thói quen lặp đi lặp lại thường xuyên."
+        correctAnswers: ["乗っています", "のっています"],
+        explanation: "V-te imasu diễn tả thói quen lặp đi lặp lại thường xuyên."
       },
       {
         id: "l28_hw_2_2", type: "text_input", skill: "Ngữ pháp (ています)",
-        text: "Chia động từ điền vào chỗ trống diễn tả thói quen: パンはいつも駅の前のパン屋で（　）が、きのうは siêu thị. (Bánh mì tôi luôn mua ở trước ga - dùng động từ 買います)",
-        correctAnswers: ["買っています", "かっています"], explanation: "V-te imasu diễn tả thói quen."
+        text: "Chia động từ điền vào chỗ trống diễn tả thói quen: パンはいつも駅の前のパン屋で（　）が、きのうはスーパーで買いました。 (Bánh mì tôi luôn mua ở trước ga - dùng động từ 買います)",
+        correctAnswers: ["買っています", "かっています"],
+        explanation: "V-te imasu diễn tả thói quen."
       },
       {
         id: "l28_hw_2_3", type: "text_input", skill: "Ngữ pháp (ています)",
         text: "Chia động từ diễn tả thói quen trong quá khứ: 国ではよくドラマを（　）が、日本へ来てから、ニュースしか見ません。 (Ở nước tôi thì thường xem phim truyền hình - dùng động từ 見ます)",
-        correctAnswers: ["見ていました", "みていました"], explanation: "V-te imashita diễn tả thói quen trong quá khứ đã chấm dứt."
+        correctAnswers: ["見ていました", "みていました"],
+        explanation: "V-te imashita diễn tả thói quen trong quá khứ đã chấm dứt."
       },
       {
         id: "l28_hw_2_4", type: "text_input", skill: "Ngữ pháp (ています)",
         text: "Chia động từ diễn tả thói quen trong quá khứ: 学生のとき、よく小説を（　）が、会社に入ってから、あまり読みません。 (Hồi sinh viên tôi thường đọc tiểu thuyết - dùng động từ 読みます)",
-        correctAnswers: ["読んでいました", "よんでいました"], explanation: "V-te imashita diễn tả thói quen trong quá khứ."
+        correctAnswers: ["読んでいました", "よんでいました"],
+        explanation: "V-te imashita diễn tả thói quen trong quá khứ."
       },
       {
         id: "l28_hw_2_5", type: "text_input", skill: "Ngữ pháp (ています)",
         text: "Chia động từ diễn tả thói quen: 休みの日はたいていプールで泳いだり、テニスを（　）が、きのうは何もしませんでした。 (Ngày nghỉ tôi thường chơi tennis - dùng động từ します)",
-        correctAnswers: ["しています"], explanation: "V-te imasu diễn tả thói quen trong hiện tại."
+        correctAnswers: ["しています"],
+        explanation: "V-te imasu diễn tả thói quen trong hiện tại."
       },
       {
         id: "l28_hw_3_1a", type: "text_input", skill: "Ngữ pháp (し)",
         text: "Điền dạng đúng của từ nối vế: わたしは経験も (　) し, 日本語もあまり話せないし、この仕事は無理です。 (dùng động từ ありません)",
-        correctAnswers: ["ない"], explanation: "Thể thông thường của ありません là ない."
+        correctAnswers: ["ない"],
+        explanation: "Thể thông thường của ありません là ない."
       },
       {
         id: "l28_hw_3_1b", type: "text_input", skill: "Ngữ pháp (し)",
-        text: "Điền dạng đúng của từ nối vế: わたしは経験もないし、日本語もあまり (　) し、この仕事は無理です。 (dùng động từ 話せません)",
-        correctAnswers: ["話せない", "はなせない"], explanation: "Thể thông thường của 話せません là 話せない."
+        text: "Điền dạng đúng của từ nối vế: わたしは経験もないし、日本語もあまり (　) し, この仕事は無理です。 (dùng động từ 話せません)",
+        correctAnswers: ["話せない", "はなせない"],
+        explanation: "Thể thông thường của 話せません là 話せない."
       },
       {
         id: "l28_hw_3_2a", type: "text_input", skill: "Ngữ pháp (し)",
         text: "Điền dạng đúng của từ nối vế: 彼女は (　) し, 熱心だし、早く日本語が上手になると思います。 (dùng tính từ まじめ (nghiêm túc))",
-        correctAnswers: ["まじめだ"], explanation: "Tính từ đuôi -na chia thể thông thường để nối vế bằng し là [tính từ] + だ."
+        correctAnswers: ["まじめだ"],
+        explanation: "Tính từ đuôi -na chia thể thông thường để nối vế bằng し là [tính từ] + だ."
       },
       {
         id: "l28_hw_3_2b", type: "text_input", skill: "Ngữ pháp (し)",
         text: "Điền dạng đúng của từ nối vế: 彼女はまじめだし、(　) し, 早く日本語が上手になると思います。 (dùng tính từ 熱心 (nhiệt tình))",
-        correctAnswers: ["熱心だ", "ねっしんだ"], explanation: "Tính từ đuôi -na chia [tính từ] + だ + し."
+        correctAnswers: ["熱心だ", "ねっしんだ"],
+        explanation: "Tính từ đuôi -na chia [tính từ] + だ + し."
       },
       {
         id: "l28_hw_3_3a", type: "text_input", skill: "Ngữ pháp (し)",
-        text: "Điền dạng đúng của từ nối vế: 駅から (　) し, 新しくて、きれいだし、ペット cũng nuôi được. (dùng tính từ 近い (gần))",
-        correctAnswers: ["近い", "ちかい"], explanation: "Tính từ đuôi -i chia thể thông thường + し."
+        text: "Điền dạng đúng của từ nối vế: 駅から (　) し, 新しくて、きれいだし、ペットも飼えるんです. (dùng tính từ 近い (gần))",
+        correctAnswers: ["近い", "ちかい"],
+        explanation: "Tính từ đuôi -i chia thể thông thường + し."
       },
       {
         id: "l28_hw_3_3b", type: "text_input", skill: "Ngữ pháp (し)",
         text: "Điền dạng đúng của từ nối vế: 駅から近いし, 新しくて、(　) し, ペットも飼えるんです。 (dùng tính từ きれい (sạch sẽ))",
-        correctAnswers: ["きれいだ"], explanation: "Tính từ đuôi -na chia [tính từ] + だ + し."
+        correctAnswers: ["きれいだ"],
+        explanation: "Tính từ đuôi -na chia [tính từ] + だ + し."
       },
       {
         id: "l28_hw_4_1", type: "multiple_choice", skill: "Ngữ pháp (それに/それで)",
-        text: "Chọn từ thích hợp điền vào chỗ trống:\nA：よくこの料理を作るんですか。(おいしい/簡単)\nB：ええ。おいしいし、簡単だし、（　）子どもも好きなんです。",
-        options: [{ id: "a", text: "それに" }, { id: "b", text: "それで" }],
-        correctOptionId: "a", explanation: "それに dùng để bổ sung thêm lý do, thông tin đồng chiều."
+        text: "Chọn từ thích hợp điền vào chỗ trống:\\nA：よくこの料理を作るんですか。(おいしい/簡単)\\nB：ええ。おいしいし、簡単だし、（　）子どもも好きなんです。",
+        options: [{"id": "a", "text": "それに"}, {"id": "b", "text": "それで"}],
+        correctOptionId: "a",
+        explanation: "それに dùng để bổ sung thêm lý do, thông tin đồng chiều."
       },
       {
         id: "l28_hw_4_2", type: "multiple_choice", skill: "Ngữ pháp (それに/それで)",
-        text: "Chọn từ thích hợp:\nA：このコート、いかがですか。(形がいい/色がきれいです)\nB：そうですね。形もいいし、色 cũng đẹp, ( ) size cũng vừa vặn.",
-        options: [{ id: "a", text: "それに" }, { id: "b", text: "それで" }],
-        correctOptionId: "a", explanation: "それに bổ sung thêm tính chất tích cực."
+        text: "Chọn từ thích hợp điền vào chỗ trống:\\nA：このコート、いかがですか。\\nB：ええ。形もいいし, 色もきれいだし、（　）サイズもちょうどいいんです。 (Mẫu mã tốt, màu đẹp, hơn nữa size cũng vừa vặn)",
+        options: [{"id": "a", "text": "それに"}, {"id": "b", "text": "それで"}],
+        correctOptionId: "a",
+        explanation: "それに bổ sung thêm tính chất tích cực."
       },
       {
         id: "l28_hw_4_3", type: "multiple_choice", skill: "Ngữ pháp (それに/それで)",
-        text: "Chọn từ thích hợp:\nA：どうしてこの店はよく売れるんですか。(値段が安い/店の人がとても親切)\nB：値段も安いし、店の人も rất thân thiện.\nA：（　）いつも人が多いんですね。",
-        options: [{ id: "a", text: "それで" }, { id: "b", text: "それに" }],
-        correctOptionId: "a", explanation: "それで (vì thế) dùng chỉ kết quả dẫn ra từ các lý do trước."
+        text: "Chọn từ thích hợp điền vào chỗ trống:\\nA：どうしてこの店はよく売れるんですか。\\nB：値段も安いし、店の人も親切ですし。\\nA：（　）いつも人が多いんですね。 (Vì thế lúc nào cũng đông khách)",
+        options: [{"id": "a", "text": "それで"}, {"id": "b", "text": "それに"}],
+        correctOptionId: "a",
+        explanation: "Với các lý do trước, ta dùng それ để đưa ra kết quả."
       },
       {
         id: "l28_hw_4_4", type: "multiple_choice", skill: "Ngữ pháp (それに/それで)",
-        text: "Chọn từ thích hợp:\nA：ワットさんはいい先生ですね。(教え方上手/ユーモアがある)\nB：ええ。教え方も上手だし、ユーモアもあるし、それにとても熱心なんです。\nC：（　）学生に人気があるんですね。",
-        options: [{ id: "a", text: "それで" }, { id: "b", text: "それに" }],
-        correctOptionId: "a", explanation: "Với các lý do trước, ta dùng それ để đưa ra kết quả."
+        text: "Chọn từ thích hợp:\\nA：ワットさんはいい先生ですね。(教え方上手/ユーモアがある)\\nB：ええ。教え方も上手だし、ユーモアもあるし、それにとても熱心なんです。\\nC：（　）学生に人気があるんですね。",
+        options: [{"id": "a", "text": "それで"}, {"id": "b", "text": "それに"}],
+        correctOptionId: "a",
+        explanation: "Với các lý do trước, ta dùng それ để đưa ra kết quả."
       },
       {
         id: "l28_hw_5_1", type: "text_input", skill: "Ngữ pháp (Trợ từ も)",
-        text: "Điền trợ từ thích hợp: 頭 (　) 痛いし、熱 (　) あるし、たぶんかぜだと思います。 (Điền 2 trợ từ, cách nhau bởi dấu phẩy, VD: も, も)",
-        correctAnswers: ["も, も", "も,xo", "も、も"], explanation: "Khi liệt kê bằng し, ta dùng trợ từ も để nhấn mạnh các yếu tố song hành."
+        text: "Điền trợ từ thích hợp: 頭 (　) 痛いし, 熱 (　) あるし, たぶんかぜだと思います。 (Điền 2 trợ từ, cách nhau bởi dấu phẩy, VD: も, も)",
+        correctAnswers: ["も, も", "も、も"],
+        explanation: "Khi liệt kê bằng し, ta dùng trợ từ も để nhấn mạnh các yếu tố song hành."
       },
       {
         id: "l28_hw_5_2", type: "text_input", skill: "Ngữ pháp (Trợ từ も)",
-        text: "Điền trợ từ thích hợp: おなか (　) すいたし、のど (　) かわいたし、あのレストランに入りませんか。 (Điền 2 trợ từ cách nhau bởi dấu phẩy, VD: も, も)",
-        correctAnswers: ["も, も", "も,xo", "も、も"], explanation: "Nhấn mạnh song hành: bụng cũng đói, họng cũng khát."
+        text: "Điền trợ từ thích hợp: おなか (　) すいたし, のど (　) かわいたし, あのレストランに入りませんか. (Điền 2 trợ từ cách nhau bởi dấu phẩy, VD: も, も)",
+        correctAnswers: ["も, も", "も、も"],
+        explanation: "Nhấn mạnh song hành: bụng cũng đói, họng cũng khát."
       },
       {
         id: "l28_hw_5_3", type: "text_input", skill: "Ngữ pháp (Trợ từ も)",
-        text: "Điền trợ từ thích hợp: ここは駅から (　) 遠いし、店 (　) ないし、とても不便です. (Điền 2 trợ từ cách nhau bởi dấu phẩy, VD: も, も)",
-        correctAnswers: ["も, も", "も,xo", "も、も"], explanation: "Nhấn mạnh lý do tiêu cực: từ ga cũng xa, cửa hàng cũng không có."
+        text: "Điền trợ từ thích hợp: ここは駅から (　) 遠いし, 店 (　) ないし, とても不便です。 (Điền 2 trợ từ cách nhau bởi dấu phẩy, VD: も, も)",
+        correctAnswers: ["も, も", "も、も"],
+        explanation: "Nhấn mạnh lý do tiêu cực: từ ga cũng xa, cửa hàng cũng không có."
       },
       {
         id: "l28_hw_6_1", type: "text_input", skill: "Ngữ pháp (Chia động từ tổng hợp)",
-        text: "Điền dạng đúng của động từ: (a. 食べます) -> みんな花を見ながら(　)たり、飲んだりしていました。",
-        correctAnswers: ["食べ", "たべ"], explanation: "食べます chia sang thể た + り -> 食べたり."
+        text: "Điền dạng đúng của động từ: (a. 食べます) -> みんな花を見ながら食べたり、飲んだりしていました。",
+        correctAnswers: ["食べ", "たべ"],
+        explanation: "食べます chia sang thể た + り -> 食べたり."
       },
       {
         id: "l28_hw_6_2", type: "text_input", skill: "Ngữ pháp (Chia động từ tổng hợp)",
         text: "Điền dạng đúng của động từ: (b. します) -> 食べたり、飲んだり(　)ていました。",
-        correctAnswers: ["し"], explanation: "しています -> していました."
+        correctAnswers: ["し"],
+        explanation: "しています -> していました."
       },
       {
         id: "l28_hw_6_3", type: "text_input", skill: "Ngữ pháp (Chia động từ tổng hợp)",
         text: "Điền dạng đúng của động từ: (c. 歌います) -> 歌い(　)ながら踊っている人もいました。",
-        correctAnswers: ["ながら", "いながら"], explanation: "V-masu + ながら: vừa hát vừa nhảy."
+        correctAnswers: ["ながら", "いながら"],
+        explanation: "V-masu + ながら: vừa hát vừa nhảy."
+      },
+      {
+        id: "l28_hw_7_1", type: "text_input", skill: "Đọc hiểu",
+        passage: "《私|わたし》は《留学生|りゅうがくせい》です。《毎日|まいにち》とても《忙|いそが》しいです。\\n《毎朝|まいあさ》6《時|じ》に《起|お》きて、ご《飯|はん》を《食|た》べながら《日本語|にほんご》のニュースを《見|み》ています。\\n7《時|じ》から12《時|じ》まで《大学|だいがく》で《勉強|べんきょう》して、《午後|ごご》から《喫茶店|きっさてん》でアルバイトをしています。\\nこの《喫茶店|きっさてん》はコーヒーもおいしいし、ケーキも《安|やす》いし、いつもお《客|きゃく》さんが《多|おお》いです。\\nお《客|きゃく》さんは《優|やさ》しいし、よく《私|わたし》と《話|はな》しますから、アルバイトをしながら《日本語|にほんご》の《練習|れんしゅう》ができます。《店長|てんちょう》もまじめだし、とても《親切|しんせつ》な《人|ひと》です。\\n《毎晩|まいばん》、《家|いえ》へ《帰|かえ》ってから、《音楽|おんがく》を《聞|き》きながら《宿題|しゅくだい》をします。\\n《働|はたら》きながら《勉強|べんきょう》するのは《大変|たいへん》ですが、《新|あたら》しい《友達|ともだち》がたくさんできますから、《毎日|まいにち》とても《楽|たの》しいです。\\n《将来|しょうらい》、《日本語|にほんご》の《先生|せんせい》になりたいですから、《今|いま》《一生懸命|いっしょうけんめい》がんばっています。",
+        text: "Trả lời câu hỏi dựa trên bài đọc:\\n毎朝 何を しながら 何を しますか。 (Mỗi sáng vừa làm gì vừa làm gì?)",
+        correctAnswers: ["ご飯を食べながら日本語のニュースを見ます", "ご飯を食べながら日本語のニュースを見ています", "ごはんをたべながらにほんごのニュースをみます"],
+        explanation: "Trong bài đọc có câu: 毎朝6時に起きて、ご飯を食べながら日本語のニュースを見ています。"
+      },
+      {
+        id: "l28_hw_7_2", type: "text_input", skill: "Đọc hiểu",
+        passage: "《私|わたし》は《留学生|りゅうがくせい》です。《毎日|まいにち》とても《忙|いそが》しいです。\\n《毎朝|まいあさ》6《時|じ》に《起|お》きて、ご《飯|はん》を《食|た》べながら《日本語|にほんご》のニュースを《見|み》ています。\\n7《時|じ》から12《時|じ》まで《大学|だいがく》で《勉強|べんきょう》して、《午後|ごご》から《喫茶店|きっさてん》でアルバイトをしています。\\nこの《喫茶店|きっさてん》はコーヒーもおいしいし、ケーキも《安|やす》いし、いつもお《客|きゃく》さんが《多|おお》いです。\\nお《客|きゃく》さんは《優|やさ》しいし、よく《私|わたし》と《話|はな》しますから、アルバイトをしながら《日本語|にほんご》の《練習|れんしゅう》ができます。《店長|てんちょう》もまじめだし、とても《親切|しんせつ》な《人|ひと》です。\\n《毎晩|まいばん》、《家|いえ》へ《帰|かえ》ってから、《音楽|おんがく》を《聞|き》きながら《宿題|しゅくだい》をします。\\n《働|はたら》きながら《勉強|べんきょう》するのは《大変|たいへん》ですが、《新|あたら》しい《友達|ともだち》がたくさんできますから、《毎日|まいにち》とても《楽|たの》しいです。\\n《将来|しょうらい》、《日本語|にほんご》の《先生|せんせい》になりたいですから、《今|いま》《一生懸命|いっしょうけんめい》がんばっています。",
+        text: "Trả lời câu hỏi dựa trên bài đọc:\\nどうして 喫茶店は お客さんが 多いですか。 (Tại sao quán cà phê lại đông khách?)",
+        correctAnswers: ["コーヒーもおいしいし、ケーキも安いからです", "コーヒーもおいしいし、ケーキも安いし、いつもお客さんが多いです", "コーヒーもおいしいし、ケーキも安いし"],
+        explanation: "Trong bài có câu: この喫茶店はコーヒーもおいしいし、ケーキも安いし、いつもお客さんが多いです。"
+      },
+      {
+        id: "l28_hw_7_3", type: "text_input", skill: "Đọc hiểu",
+        passage: "《私|わたし》は《留学生|りゅうがくせい》です。《毎日|まいにち》とても《忙|いそが》しいです。\\n《毎朝|まいあさ》6《時|じ》に《起|お》きて、ご《飯|はん》を《食|た》べながら《日本語|にほんご》のニュースを《見|み》ています。\\n7《時|じ》から12《時|じ》まで《大学|だいがく》で《勉強|べんきょう》して、《午後|ごご》から《喫茶店|きっさてん》でアルバイトをしています。\\nこの《喫茶店|きっさてん》はコーヒーもおいしいし、ケーキも《安|やす》いし、いつもお《客|きゃく》さんが《多|おお》いです。\\nお《客|きゃく》さんは《優|やさ》しいし、よく《私|わたし》と《話|はな》しますから、アルバイトをしながら《日本語|にほんご》の《練習|れんしゅう》ができます。《店長|てんちょう》もまじめだし、とても《親切|しんせつ》な《人|ひと》です。\\n《毎晩|まいばん》、《家|いえ》へ《帰|かえ》ってから、《音楽|おんがく》を《聞|き》きながら《宿題|しゅくだい》をします。\\n《働|はたら》きながら《勉強|べんきょう》するのは《大変|たいへん》ですが、《新|あたら》しい《友達|ともだち》がたくさんできますから、《毎日|まいにち》とても《楽|たの》しいです。\\n《将来|しょうらい》、《日本語|にほんご》の《先生|せんせい》になりたいですから、《今|いま》《一生懸命|いっしょうけんめい》がんばっています。",
+        text: "Trả lời câu hỏi dựa trên bài đọc:\\nどうして 毎日 楽しいですか。 (Tại sao mỗi ngày đều vui?)",
+        correctAnswers: ["新しい友達がたくさんできますから", "新しい友達がたくさんできるからです", "新しいともだちがたくさんできるからです"],
+        explanation: "Trong bài có câu: 働きながら勉強するのは大変ですが、新しい友達がたくさんできますから、毎日とても楽しいです。"
       }
     ]
   }
