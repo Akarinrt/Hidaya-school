@@ -53,38 +53,7 @@ export const VOCAB_DATA: Record<string, LessonVocab> = {
       },
     ]
   },
-  'bai-27': {
-    title: 'Bài 27 – Thể khả năng & しか～ません',
-    lesson: 27,
-    groups: [
-      {
-        name: 'Động từ',
-        items: [
-          { ja: '飼います', kana: 'かいます', vi: 'nuôi (động vật)' },
-          { ja: '建てます', kana: 'たてます', vi: 'xây dựng' },
-          { ja: '走ります', kana: 'はしります', vi: 'chạy' },
-          { ja: '見えます', kana: 'みえます', vi: 'nhìn thấy (tự nhiên thấy được)' },
-          { ja: '聞こえます', kana: 'きこえます', vi: 'nghe thấy (tự nhiên nghe được)' },
-          { ja: 'できます', kana: 'できます', vi: 'có thể làm, hoàn thành' },
-          { ja: '開きます', kana: 'ひらきます', vi: 'mở, tổ chức (hội nghị, lớp học)' },
-        ]
-      },
-      {
-        name: 'Danh từ',
-        items: [
-          { ja: 'ペット', kana: 'ペット', vi: 'thú cưng' },
-          { ja: '鳥', kana: 'とり', vi: 'chim' },
-          { ja: '声', kana: 'こえ', vi: 'tiếng, giọng nói' },
-          { ja: '波', kana: 'なみ', vi: 'sóng (biển)' },
-          { ja: '花火', kana: 'はなび', vi: 'pháo hoa' },
-          { ja: '道具', kana: 'どうぐ', vi: 'dụng cụ, công cụ' },
-          { ja: 'クリーニング', kana: 'クリーニング', vi: 'giặt là, tiệm giặt' },
-          { ja: 'マンション', kana: 'マンション', vi: 'căn hộ chung cư cao cấp' },
-          { ja: 'キッチン', kana: 'キッチン', vi: 'nhà bếp' },
-        ]
-      },
-    ]
-  },
+
   'bai-28': {
     title: 'Bài 28 – Vừa...vừa (ながら) & Liệt kê lý do (し)',
     lesson: 28,
