@@ -10,8 +10,20 @@ export default function WhiteboardOverlay() {
   
   const [isActive, setIsActive] = useState(false);
   const [mode, setMode] = useState<'select' | 'pen' | 'text'>('select');
+  const modeRef = useRef(mode);
+  
+  // Keep modeRef synced
+  useEffect(() => {
+    modeRef.current = mode;
+  }, [mode]);
+
   const [color, setColor] = useState('#d32f2f');
   const [brushSize, setBrushSize] = useState(5);
+  const colorRef = useRef(color);
+  const brushSizeRef = useRef(brushSize);
+  
+  useEffect(() => { colorRef.current = color; }, [color]);
+  useEffect(() => { brushSizeRef.current = brushSize; }, [brushSize]);
   
   const undoStackRef = useRef<any[]>([]);
   const isUndoingRef = useRef(false);
@@ -38,14 +50,14 @@ export default function WhiteboardOverlay() {
     });
 
     canvas.on('mouse:down', (options: any) => {
-      if (mode === 'text' && !options.target) {
+      if (modeRef.current === 'text' && !options.target) {
         const pointer = canvas.getPointer(options.e);
         const text = new (window as any).fabric.IText('Nhập chữ...', {
           left: pointer.x,
           top: pointer.y,
           fontFamily: 'Plus Jakarta Sans',
-          fill: color,
-          fontSize: 40 * (brushSize / 5),
+          fill: colorRef.current,
+          fontSize: 40 * (brushSizeRef.current / 5),
           lineHeight: 1.2,
           objectCaching: false
         });
