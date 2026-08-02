@@ -3,9 +3,10 @@ import styles from './grading.module.css';
 
 const prisma = new PrismaClient();
 
-export default async function GradingPage({ searchParams }: { searchParams: { homeworkId?: string } }) {
-  const where = searchParams.homeworkId
-    ? { homeworkId: searchParams.homeworkId }
+export default async function GradingPage({ searchParams }: { searchParams: Promise<{ homeworkId?: string }> }) {
+  const params = await searchParams;
+  const where = params.homeworkId
+    ? { homeworkId: params.homeworkId }
     : {};
 
   const submissions = await prisma.submission.findMany({
