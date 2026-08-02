@@ -331,8 +331,8 @@ function initWhiteboard() {
                     fontFamily: 'Plus Jakarta Sans',
                     fill: currentColor,
                     fontSize: 40 * (currentSize / 5), // Scale initial font size based on slider
-                    lineHeight: 1.3,
-                    padding: 5
+                    lineHeight: 1.2,
+                    objectCaching: false
                 });
                 fabricCanvas.add(text);
                 fabricCanvas.setActiveObject(text);
