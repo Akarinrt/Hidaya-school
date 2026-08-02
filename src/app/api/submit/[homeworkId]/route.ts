@@ -91,8 +91,13 @@ export async function POST(req: Request, { params }: { params: Promise<{ homewor
       });
     }
 
-    // Redirect back to homework page
-    return NextResponse.redirect(new URL('/student/homework', req.url));
+    // Return appropriate response based on content type
+    if (contentType.includes('application/json')) {
+      return NextResponse.json({ success: true, message: 'Nộp bài thành công' }, { status: 200 });
+    } else {
+      // Use 303 See Other to ensure the browser makes a GET request to the redirect URL
+      return NextResponse.redirect(new URL('/student/homework', req.url), 303);
+    }
   } catch (error: any) {
     return NextResponse.json({ message: 'Lỗi', error: error.message }, { status: 500 });
   }

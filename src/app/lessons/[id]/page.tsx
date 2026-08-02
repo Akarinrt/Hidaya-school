@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { use, useState, useEffect } from 'react';
+import WhiteboardOverlay from '@/components/WhiteboardOverlay';
 
 export default function LessonDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
@@ -54,6 +55,9 @@ export default function LessonDetailPage({ params }: { params: Promise<{ id: str
             />
         </div>
       </main>
+
+      {/* Global Whiteboard Overlay */}
+      <WhiteboardOverlay />
     </div>
   );
 }
