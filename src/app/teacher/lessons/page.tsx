@@ -37,9 +37,9 @@ export default async function LessonsPage() {
     'N5': '#66bb6a', 'N4': '#42a5f5', 'N3': '#ab47bc', 'N2': '#ef5350',
   };
 
-  // Special lessons 26, 27, 28 and regular lessons 29 to 50
-  const specialLessons = [26, 27, 28];
-  const interactiveLessons = Array.from({ length: 50 - 29 + 1 }, (_, i) => 29 + i);
+  // Special lessons 26, 27, 28, 29 and regular lessons 30 to 50
+  const specialLessons = [26, 27, 28, 29];
+  const interactiveLessons = Array.from({ length: 50 - 30 + 1 }, (_, i) => 30 + i);
 
   return (
     <div className={styles.container}>
