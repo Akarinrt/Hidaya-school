@@ -30,7 +30,7 @@ const wbCss = `
     .wb-color { width: 28px; height: 28px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; }
     .wb-color.active { border: 2px solid #333; transform: scale(1.1); }
     
-    .wb-slide-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 9998; pointer-events: none; }
+    .wb-slide-layer { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9998; pointer-events: none; display: none; }
     .canvas-container { pointer-events: auto !important; }
 `;
 
@@ -253,6 +253,7 @@ function initWhiteboard() {
     // --- Slide-local Layer Management ---
     function disablePointerEventsOnAllLayers() {
         document.querySelectorAll('.wb-slide-layer').forEach(layer => {
+            layer.style.display = 'none';
             layer.style.pointerEvents = 'none';
             // Disable pointer events on fabric wrapper
             const wrapper = layer.querySelector('.canvas-container');
@@ -267,11 +268,17 @@ function initWhiteboard() {
         const slide = document.querySelector('.reveal .slides section.present');
         if (!slide) return;
 
-        let layer = slide.querySelector('.wb-slide-layer');
+        // Generate a unique ID for this slide if it doesn't have one
+        if (!slide.dataset.wbId) {
+            slide.dataset.wbId = 'slide_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        let layer = document.getElementById('layer_' + slide.dataset.wbId);
         if (!layer) {
             layer = createLayerForSlide(slide);
         }
 
+        layer.style.display = 'block';
         layer.style.pointerEvents = 'auto';
         const wrapper = layer.querySelector('.canvas-container');
         if (wrapper) wrapper.style.pointerEvents = 'auto';
@@ -283,24 +290,24 @@ function initWhiteboard() {
     }
 
     function createLayerForSlide(slide) {
-        const layer = document.createElement('div');
-        layer.className = 'wb-slide-layer';
-        
-        // Generate a unique ID for this slide if it doesn't have one
         if (!slide.dataset.wbId) {
             slide.dataset.wbId = 'slide_' + Math.random().toString(36).substr(2, 9);
         }
+
+        const layer = document.createElement('div');
+        layer.id = 'layer_' + slide.dataset.wbId;
+        layer.className = 'wb-slide-layer';
         
         undoStacks[slide.dataset.wbId] = [];
         
         const canvasEl = document.createElement('canvas');
         canvasEl.id = 'canvas_' + slide.dataset.wbId;
         layer.appendChild(canvasEl);
-        slide.appendChild(layer);
+        document.body.appendChild(layer);
         
         // Initialize Fabric Canvas
-        const width = slide.offsetWidth || window.innerWidth;
-        const height = slide.offsetHeight || window.innerHeight;
+        const width = window.innerWidth;
+        const height = window.innerHeight;
         
         const fabricCanvas = new fabric.Canvas(canvasEl.id, {
             width: width,
@@ -346,8 +353,8 @@ function initWhiteboard() {
         
         // Fix coordinates on window resize (simple approach)
         window.addEventListener('resize', () => {
-            const newWidth = slide.offsetWidth || window.innerWidth;
-            const newHeight = slide.offsetHeight || window.innerHeight;
+            const newWidth = window.innerWidth;
+            const newHeight = window.innerHeight;
             fabricCanvas.setWidth(newWidth);
             fabricCanvas.setHeight(newHeight);
         });

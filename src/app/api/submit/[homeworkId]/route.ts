@@ -48,7 +48,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ homewor
           }
         });
 
-        finalScore = Math.round((correctCount / questions.length) * hw.maxScore);
+        finalScore = questions.length > 0 ? Math.round((correctCount / questions.length) * hw.maxScore) : 0;
         finalStatus = 'GRADED';
         finalContent = JSON.stringify(body.answers); // save selected options
       } else {
