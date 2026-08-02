@@ -18,12 +18,12 @@ export default function WhiteboardOverlay() {
 
   // Initialize fabric when script loads
   const initFabric = () => {
-    if (!window.fabric || !canvasRef.current) return;
+    if (!(window as any).fabric || !canvasRef.current) return;
     
     // Check if already initialized
     if (fabricCanvas) return;
     
-    const canvas = new window.fabric.Canvas(canvasRef.current, {
+    const canvas = new (window as any).fabric.Canvas(canvasRef.current, {
       width: window.innerWidth,
       height: window.innerHeight,
       isDrawingMode: false,
@@ -40,7 +40,7 @@ export default function WhiteboardOverlay() {
     canvas.on('mouse:down', (options: any) => {
       if (mode === 'text' && !options.target) {
         const pointer = canvas.getPointer(options.e);
-        const text = new window.fabric.IText('Nhập chữ...', {
+        const text = new (window as any).fabric.IText('Nhập chữ...', {
           left: pointer.x,
           top: pointer.y,
           fontFamily: 'Plus Jakarta Sans',
