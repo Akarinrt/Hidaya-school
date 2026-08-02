@@ -1,3 +1,14 @@
+// Load Fabric.js dynamically so we don't need to change template.html
+function loadFabric(callback) {
+    if (window.fabric) {
+        callback();
+        return;
+    }
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js';
+    script.onload = callback;
+    document.head.appendChild(script);
+}
 
 const wbCss = `
     .reveal .controls { z-index: 10001 !important; pointer-events: auto !important; }
@@ -5,25 +16,19 @@ const wbCss = `
     .wb-btn { background: #f0f4f8; border: none; width: 40px; height: 40px; border-radius: 10px; font-size: 1.3rem; cursor: pointer; transition: all 0.2s; display: flex; justify-content: center; align-items: center; color: #0b1f38; padding: 0; }
     .wb-btn:hover { background: #e0eaf5; transform: scale(1.1); }
     .wb-btn.active { background: #0052cc; color: white; box-shadow: 0 4px 10px rgba(0,82,204,0.3); }
-    .wb-colors { display: none; flex-direction: column; gap: 5px; margin-top: 10px; border-top: 1px solid #ddd; padding-top: 10px; align-items: center; }
+    
+    .wb-tools-container { display: none; flex-direction: column; gap: 8px; margin-top: 8px; }
+    
+    .wb-size-slider-container { display: flex; flex-direction: column; align-items: center; border-top: 1px solid #ddd; padding-top: 8px; margin-top: 5px; }
+    .wb-size-slider-container label { font-size: 0.7rem; color: #555; margin-bottom: 3px; font-weight: bold; }
+    .wb-size-slider { width: 100%; cursor: pointer; }
+    
+    .wb-colors { display: flex; flex-direction: column; gap: 5px; margin-top: 5px; border-top: 1px solid #ddd; padding-top: 8px; align-items: center; }
     .wb-color { width: 28px; height: 28px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; }
     .wb-color.active { border: 2px solid #333; transform: scale(1.1); }
     
     .wb-slide-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 9998; pointer-events: none; }
-    .wb-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: auto; }
-    .wb-text-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; }
-    
-    .wb-text-input { position: absolute; background: rgba(255,255,255,0.9); border: 2px dashed #0052cc; outline: none; font-size: 2rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: bold; pointer-events: auto; padding: 5px 10px; border-radius: 5px; min-width: 150px; z-index: 10000; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    .wb-text-box { position: absolute; font-size: 2rem; font-weight: bold; font-family: 'Plus Jakarta Sans', sans-serif; pointer-events: auto; cursor: move; padding: 5px 10px; border: 1px solid transparent; border-radius: 5px; background: transparent; user-select: none; }
-    .wb-text-box:hover { border: 1px dashed #aaa; background: rgba(255,255,255,0.5); }
-    .wb-text-box::after { content: " (Nháy đúp: Sửa | Cuộn: Chỉnh size | Chuột phải: Xóa)"; font-size: 0.8rem; color: #999; opacity: 0; transition: opacity 0.2s; position:absolute; top:-25px; left:0; white-space:nowrap; pointer-events:none; }
-    .wb-text-box:hover::after { opacity: 1; }
-    .wb-text-box.dragging { opacity: 0.8; border: 1px dashed #0052cc; cursor: grabbing; }
-    
-    @media print {
-        .wb-text-box::after { display: none !important; }
-        .wb-text-box { border: none !important; background: transparent !important; }
-    }
+    .canvas-container { pointer-events: auto !important; }
 `;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -34,13 +39,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const wbHtml = `
         <div class="wb-toolbar">
             <button class="wb-btn" id="wb-toggle" title="Bật/Tắt Bảng Trắng">🖍️</button>
-            <div id="wb-tools" style="display:none; flex-direction:column; gap:8px; margin-top:8px;">
+            <div id="wb-tools" class="wb-tools-container">
+                <button class="wb-btn" id="wb-select" title="Chọn & Di chuyển (Pointer)">🖱️</button>
                 <button class="wb-btn" id="wb-pen" title="Bút vẽ">✏️</button>
-                <button class="wb-btn" id="wb-eraser" title="Tẩy nét">🧽</button>
-                <button class="wb-btn" id="wb-text" title="Gõ chữ">T</button>
-                <button class="wb-btn" id="wb-undo" title="Undo (Hoàn tác)">↩️</button>
+                <button class="wb-btn" id="wb-text" title="Gõ chữ (Text)">T</button>
                 <button class="wb-btn" id="wb-clear" title="Xóa toàn bộ trang">🗑️</button>
-                <div class="wb-colors" id="wb-color-picker" style="display:flex;">
+                
+                <div class="wb-size-slider-container">
+                    <label>Size</label>
+                    <input type="range" id="wb-size" class="wb-size-slider" min="1" max="20" value="5">
+                </div>
+                
+                <div class="wb-colors" id="wb-color-picker">
                     <div class="wb-color active" style="background:#d32f2f;" data-color="#d32f2f"></div>
                     <div class="wb-color" style="background:#0052cc;" data-color="#0052cc"></div>
                     <div class="wb-color" style="background:#388e3c;" data-color="#388e3c"></div>
@@ -58,20 +68,39 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    setTimeout(initWhiteboard, 1000); // Wait for Reveal.js to initialize
+    loadFabric(() => {
+        setTimeout(initWhiteboard, 1000); // Wait for Reveal.js to initialize
+    });
 });
+
+let fabricCanvases = {}; // mapping slide section to fabric canvas
 
 function initWhiteboard() {
     let isWhiteboardActive = false;
-    let mode = 'none';
+    let mode = 'none'; // 'select', 'pen', 'text'
     let currentColor = '#d32f2f';
-    let isDrawing = false;
+    let currentSize = 5;
     
-    // Auto turn off when navigating
+    // Keybinds: Delete key to remove selected objects
     document.addEventListener('keydown', (e) => {
-        const navKeys = ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'Space', 'PageDown', 'PageUp'];
-        if (isWhiteboardActive && navKeys.includes(e.code) && e.target.tagName !== 'INPUT') {
+        const navKeys = ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'PageDown', 'PageUp'];
+        if (isWhiteboardActive && navKeys.includes(e.code) && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
             deactivateWhiteboard();
+        }
+        
+        if (isWhiteboardActive && (e.code === 'Delete' || e.code === 'Backspace')) {
+            // Check if we're not inside an active text editing session
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+            
+            let canvas = getActiveCanvas();
+            if (canvas) {
+                const activeObjects = canvas.getActiveObjects();
+                if (activeObjects.length) {
+                    activeObjects.forEach(obj => canvas.remove(obj));
+                    canvas.discardActiveObject();
+                    canvas.requestRenderAll();
+                }
+            }
         }
     });
 
@@ -103,32 +132,91 @@ function initWhiteboard() {
         });
         document.getElementById(btnId).classList.add('active');
         
-        if (mode === 'pen' || mode === 'eraser') {
-            document.getElementById('wb-color-picker').style.display = (mode === 'pen') ? 'flex' : 'none';
-        } else if (mode === 'text') {
-            document.getElementById('wb-color-picker').style.display = 'flex';
+        let canvas = getActiveCanvas();
+        if (canvas) {
+            applyModeToCanvas(canvas);
         }
-        updateActiveSlideLayer();
     }
 
+    document.getElementById('wb-select').addEventListener('click', () => setMode('select', 'wb-select'));
     document.getElementById('wb-pen').addEventListener('click', () => setMode('pen', 'wb-pen'));
-    document.getElementById('wb-eraser').addEventListener('click', () => setMode('eraser', 'wb-eraser'));
     document.getElementById('wb-text').addEventListener('click', () => setMode('text', 'wb-text'));
+    
+    document.getElementById('wb-clear').addEventListener('click', () => {
+        let canvas = getActiveCanvas();
+        if (canvas) {
+            if (confirm('Bạn có chắc muốn xóa sạch toàn bộ nội dung vẽ trên trang này?')) {
+                canvas.clear();
+            }
+        }
+    });
 
     document.querySelectorAll('.wb-color').forEach(c => {
         c.addEventListener('click', (e) => {
             document.querySelectorAll('.wb-color').forEach(btn => btn.classList.remove('active'));
             e.currentTarget.classList.add('active');
             currentColor = e.currentTarget.dataset.color;
+            updateBrushSettings();
+            
+            // If objects are selected, change their color
+            let canvas = getActiveCanvas();
+            if (canvas) {
+                const activeObjects = canvas.getActiveObjects();
+                activeObjects.forEach(obj => {
+                    if (obj.type === 'i-text') {
+                        obj.set('fill', currentColor);
+                    } else if (obj.type === 'path') {
+                        obj.set('stroke', currentColor);
+                    }
+                });
+                canvas.requestRenderAll();
+            }
         });
     });
+    
+    document.getElementById('wb-size').addEventListener('input', (e) => {
+        currentSize = parseInt(e.target.value, 10);
+        updateBrushSettings();
+    });
+
+    function getActiveCanvas() {
+        const slide = document.querySelector('.reveal .slides section.present');
+        if (!slide) return null;
+        const slideId = slide.dataset.wbId;
+        if (!slideId) return null;
+        return fabricCanvases[slideId];
+    }
+    
+    function updateBrushSettings() {
+        let canvas = getActiveCanvas();
+        if (canvas && canvas.freeDrawingBrush) {
+            canvas.freeDrawingBrush.color = currentColor;
+            canvas.freeDrawingBrush.width = currentSize;
+        }
+    }
+
+    function applyModeToCanvas(canvas) {
+        if (mode === 'pen') {
+            canvas.isDrawingMode = true;
+            updateBrushSettings();
+        } else {
+            canvas.isDrawingMode = false;
+        }
+        
+        if (mode === 'text') {
+            canvas.defaultCursor = 'text';
+        } else if (mode === 'select') {
+            canvas.defaultCursor = 'default';
+        }
+    }
 
     // --- Slide-local Layer Management ---
     function disablePointerEventsOnAllLayers() {
         document.querySelectorAll('.wb-slide-layer').forEach(layer => {
             layer.style.pointerEvents = 'none';
-            layer.querySelector('.wb-canvas').style.pointerEvents = 'none';
-            layer.querySelector('.wb-text-layer').style.pointerEvents = 'none';
+            // Disable pointer events on fabric wrapper
+            const wrapper = layer.querySelector('.canvas-container');
+            if (wrapper) wrapper.style.pointerEvents = 'none';
         });
     }
 
@@ -145,13 +233,73 @@ function initWhiteboard() {
         }
 
         layer.style.pointerEvents = 'auto';
-        if (mode === 'pen' || mode === 'eraser') {
-            layer.querySelector('.wb-canvas').style.pointerEvents = 'auto';
-            layer.querySelector('.wb-text-layer').style.pointerEvents = 'none';
-        } else if (mode === 'text') {
-            layer.querySelector('.wb-canvas').style.pointerEvents = 'none';
-            layer.querySelector('.wb-text-layer').style.pointerEvents = 'auto';
+        const wrapper = layer.querySelector('.canvas-container');
+        if (wrapper) wrapper.style.pointerEvents = 'auto';
+        
+        let canvas = getActiveCanvas();
+        if (canvas) {
+            applyModeToCanvas(canvas);
         }
+    }
+
+    function createLayerForSlide(slide) {
+        const layer = document.createElement('div');
+        layer.className = 'wb-slide-layer';
+        
+        // Generate a unique ID for this slide if it doesn't have one
+        if (!slide.dataset.wbId) {
+            slide.dataset.wbId = 'slide_' + Math.random().toString(36).substr(2, 9);
+        }
+        
+        const canvasEl = document.createElement('canvas');
+        canvasEl.id = 'canvas_' + slide.dataset.wbId;
+        layer.appendChild(canvasEl);
+        slide.appendChild(layer);
+        
+        // Initialize Fabric Canvas
+        const width = slide.offsetWidth || window.innerWidth;
+        const height = slide.offsetHeight || window.innerHeight;
+        
+        const fabricCanvas = new fabric.Canvas(canvasEl.id, {
+            width: width,
+            height: height,
+            isDrawingMode: false,
+            selection: true // enable group selection
+        });
+        
+        fabricCanvases[slide.dataset.wbId] = fabricCanvas;
+        
+        // Handle text insertion
+        fabricCanvas.on('mouse:down', function(options) {
+            if (mode === 'text' && !options.target) {
+                // Add text at click position
+                const pointer = fabricCanvas.getPointer(options.e);
+                const text = new fabric.IText('Nhập chữ...', {
+                    left: pointer.x,
+                    top: pointer.y,
+                    fontFamily: 'Plus Jakarta Sans',
+                    fill: currentColor,
+                    fontSize: 40 * (currentSize / 5) // Scale initial font size based on slider
+                });
+                fabricCanvas.add(text);
+                fabricCanvas.setActiveObject(text);
+                text.enterEditing();
+                text.selectAll();
+                
+                // Switch back to select mode automatically after placing text
+                setMode('select', 'wb-select');
+            }
+        });
+        
+        // Fix coordinates on window resize (simple approach)
+        window.addEventListener('resize', () => {
+            const newWidth = slide.offsetWidth || window.innerWidth;
+            const newHeight = slide.offsetHeight || window.innerHeight;
+            fabricCanvas.setWidth(newWidth);
+            fabricCanvas.setHeight(newHeight);
+        });
+
+        return layer;
     }
 
     Reveal.on('slidechanged', () => {
@@ -159,248 +307,4 @@ function initWhiteboard() {
             updateActiveSlideLayer();
         }
     });
-
-    function createLayerForSlide(slide) {
-        // Find actual dimensions of slide. Default to 960x700 or whatever reveal config is.
-        const config = Reveal.getConfig();
-        const width = config.width || 1400;
-        const height = config.height || 900;
-
-        const layer = document.createElement('div');
-        layer.className = 'wb-slide-layer';
-        
-        const canvas = document.createElement('canvas');
-        canvas.className = 'wb-canvas';
-        canvas.width = width;
-        canvas.height = height;
-        
-        const textLayer = document.createElement('div');
-        textLayer.className = 'wb-text-layer';
-
-        layer.appendChild(canvas);
-        layer.appendChild(textLayer);
-        slide.appendChild(layer);
-
-        // Attach drawing events to canvas
-        const ctx = canvas.getContext('2d');
-        let undoStack = [];
-        
-        // Attach undo and clear specifically to current layer via closure?
-        // Since buttons are global, we override their onclick
-        document.getElementById('wb-undo').onclick = () => {
-            if (undoStack.length > 0) {
-                undoStack.pop();
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                if (undoStack.length > 0) {
-                    const img = new Image();
-                    img.onload = () => ctx.drawImage(img, 0, 0);
-                    img.src = undoStack[undoStack.length - 1];
-                }
-            }
-        };
-
-        document.getElementById('wb-clear').onclick = () => {
-            undoStack.push(canvas.toDataURL());
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            textLayer.innerHTML = '';
-        };
-
-        function getMousePos(e) {
-            const rect = canvas.getBoundingClientRect();
-            const scale = Reveal.getScale();
-            let clientX = e.clientX;
-            let clientY = e.clientY;
-            if (e.touches && e.touches.length > 0) {
-                clientX = e.touches[0].clientX;
-                clientY = e.touches[0].clientY;
-            }
-            return {
-                x: (clientX - rect.left) / scale,
-                y: (clientY - rect.top) / scale
-            };
-        }
-
-        function startPos(e) {
-            if (mode === 'pen' || mode === 'eraser') {
-                isDrawing = true;
-                if (undoStack.length === 0) {
-                    undoStack.push(canvas.toDataURL());
-                }
-                draw(e);
-            }
-        }
-
-        function endPos() {
-            if (isDrawing) {
-                isDrawing = false;
-                ctx.beginPath();
-                undoStack.push(canvas.toDataURL());
-            }
-        }
-
-        function draw(e) {
-            if (!isDrawing) return;
-            const pos = getMousePos(e);
-            
-            ctx.lineWidth = mode === 'eraser' ? 30 : 5;
-            ctx.lineCap = 'round';
-            ctx.lineJoin = 'round';
-            
-            if (mode === 'eraser') {
-                ctx.globalCompositeOperation = 'destination-out';
-                ctx.strokeStyle = 'rgba(0,0,0,1)';
-            } else {
-                ctx.globalCompositeOperation = 'source-over';
-                ctx.strokeStyle = currentColor;
-            }
-            
-            ctx.lineTo(pos.x, pos.y);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(pos.x, pos.y);
-        }
-
-        canvas.addEventListener('mousedown', startPos);
-        canvas.addEventListener('mouseup', endPos);
-        canvas.addEventListener('mousemove', draw);
-        canvas.addEventListener('touchstart', (e) => { e.preventDefault(); startPos(e); }, {passive: false});
-        canvas.addEventListener('touchend', (e) => { e.preventDefault(); endPos(); }, {passive: false});
-        canvas.addEventListener('touchmove', (e) => { e.preventDefault(); draw(e); }, {passive: false});
-
-        // Attach text events
-        textLayer.addEventListener('mousedown', (e) => {
-            if (mode === 'text' && e.target === textLayer) {
-                const pos = getMousePos(e);
-                createTextInput(pos.x, pos.y, null, textLayer);
-            }
-        });
-        
-        // Return the created layer
-        return layer;
-    }
-
-    function createTextInput(x, y, existingDiv, textLayer) {
-        if (textLayer.querySelector('.wb-text-input')) {
-            textLayer.querySelector('.wb-text-input').focus();
-            return;
-        }
-
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.className = 'wb-text-input';
-        
-        if (existingDiv) {
-            input.style.left = existingDiv.style.left;
-            input.style.top = existingDiv.style.top;
-            input.style.color = existingDiv.style.color;
-            input.style.fontSize = existingDiv.style.fontSize || '2rem';
-            input.value = existingDiv.innerText;
-            existingDiv.style.display = 'none';
-        } else {
-            input.style.left = x + 'px';
-            input.style.top = y + 'px';
-            input.style.color = currentColor;
-            input.style.fontSize = '2rem';
-        }
-        
-        input.placeholder = "Gõ chữ...";
-        textLayer.appendChild(input);
-        setTimeout(() => input.focus(), 50);
-
-        input.addEventListener('blur', () => {
-            if (input.value.trim() !== '') {
-                let div = existingDiv;
-                if (!div) {
-                    div = document.createElement('div');
-                    div.className = 'wb-text-box';
-                    textLayer.appendChild(div);
-                    attachTextBoxEvents(div, textLayer);
-                }
-                div.style.display = 'block';
-                div.style.left = input.style.left;
-                div.style.top = input.style.top;
-                div.style.color = input.style.color;
-                div.style.fontSize = input.style.fontSize;
-                div.innerText = input.value;
-            } else if (existingDiv) {
-                existingDiv.remove();
-            }
-            input.remove();
-        });
-        
-        input.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') input.blur();
-        });
-    }
-
-    function attachTextBoxEvents(div, textLayer) {
-        div.addEventListener('contextmenu', (e) => {
-            e.preventDefault();
-            div.remove();
-        });
-        
-        div.addEventListener('dblclick', (e) => {
-            e.stopPropagation();
-            createTextInput(0, 0, div, textLayer);
-        });
-
-        div.addEventListener('wheel', (e) => {
-            if (mode !== 'text') return;
-            e.preventDefault();
-            let size = parseFloat(div.style.fontSize) || 2;
-            if (e.deltaY < 0) size += 0.2;
-            else size = Math.max(0.5, size - 0.2);
-            div.style.fontSize = size + 'rem';
-        });
-
-        let isDragging = false;
-        let startX, startY, initialLeft, initialTop;
-
-        const getMousePos = (e) => {
-            const rect = textLayer.getBoundingClientRect();
-            const scale = Reveal.getScale();
-            let clientX = e.clientX || e.touches[0].clientX;
-            let clientY = e.clientY || e.touches[0].clientY;
-            return {
-                x: (clientX - rect.left) / scale,
-                y: (clientY - rect.top) / scale
-            };
-        };
-
-        const onMouseDown = (e) => {
-            if (mode !== 'text') return;
-            isDragging = true;
-            const pos = getMousePos(e);
-            startX = pos.x;
-            startY = pos.y;
-            initialLeft = parseFloat(div.style.left) || 0;
-            initialTop = parseFloat(div.style.top) || 0;
-            div.classList.add('dragging');
-            e.stopPropagation();
-        };
-
-        const onMouseMove = (e) => {
-            if (!isDragging) return;
-            const pos = getMousePos(e);
-            let dx = pos.x - startX;
-            let dy = pos.y - startY;
-            div.style.left = (initialLeft + dx) + 'px';
-            div.style.top = (initialTop + dy) + 'px';
-        };
-
-        const onMouseUp = () => {
-            if (isDragging) {
-                isDragging = false;
-                div.classList.remove('dragging');
-            }
-        };
-
-        div.addEventListener('mousedown', onMouseDown);
-        window.addEventListener('mousemove', onMouseMove);
-        window.addEventListener('mouseup', onMouseUp);
-
-        div.addEventListener('touchstart', onMouseDown, {passive: false});
-        window.addEventListener('touchmove', onMouseMove, {passive: false});
-        window.addEventListener('touchend', onMouseUp);
-    }
 }
