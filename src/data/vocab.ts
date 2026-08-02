@@ -151,7 +151,7 @@ export const VOCAB_DATA: Record<string, LessonVocab> = {
         ]
       },
     ]
-  }
+  },
   'bai-27': {
     title: 'Bài 27 – Thể khả năng',
     lesson: 27,
