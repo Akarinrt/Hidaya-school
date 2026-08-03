@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { testsData } from "@/data/tests";
+import { requireAuth, requireRole } from '@/lib/auth';
 
 const prisma = new PrismaClient();
 
@@ -146,6 +147,8 @@ const cardsL28 = [
 ];
 
 export async function GET(req: NextRequest) {
+    const { error } = await requireRole(['TEACHER']);
+    if (error) return error;
   try {
     const classes = await prisma.class.findMany();
     if (classes.length === 0) {
@@ -310,6 +313,6 @@ export async function GET(req: NextRequest) {
     });
   } catch (error: any) {
     console.error("Lỗi khi seed bài tập & từ vựng:", error);
-    return NextResponse.json({ error: error.message || "Lỗi server" }, { status: 500 });
+    return NextResponse.json({ error: 'Lỗi server' }, { status: 500 });
   }
 }

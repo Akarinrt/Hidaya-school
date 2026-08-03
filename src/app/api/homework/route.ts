@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
+import { getJwtSecret } from '@/lib/auth';
 
 const prisma = new PrismaClient();
 
@@ -11,7 +12,7 @@ export async function POST(req: Request) {
     const token = cookieStore.get('token')?.value;
     if (!token) return NextResponse.json({ message: 'Chưa đăng nhập' }, { status: 401 });
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { id: string; role: string };
+    const decoded = jwt.verify(token, getJwtSecret()) as { id: string; role: string };
     if (decoded.role !== 'TEACHER') return NextResponse.json({ message: 'Không có quyền' }, { status: 403 });
 
     const { title, description, type, deadline, maxScore, classId, quizData, isExam, timeLimit, audioUrl } = await req.json();
@@ -36,7 +37,7 @@ export async function POST(req: Request) {
     return NextResponse.json(homework, { status: 201 });
   } catch (error: any) {
     console.error('Homework create error:', error);
-    return NextResponse.json({ message: 'Lỗi máy chủ', error: error.message }, { status: 500 });
+    return NextResponse.json({ message: 'Lỗi máy chủ' }, { status: 500 });
   }
 }
 
@@ -46,7 +47,7 @@ export async function GET(req: Request) {
     const token = cookieStore.get('token')?.value;
     if (!token) return NextResponse.json({ message: 'Chưa đăng nhập' }, { status: 401 });
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { id: string; role: string };
+    const decoded = jwt.verify(token, getJwtSecret()) as { id: string; role: string };
 
     let whereClause = {};
     if (decoded.role === 'TEACHER') {
@@ -71,6 +72,6 @@ export async function GET(req: Request) {
     });
     return NextResponse.json(homeworks);
   } catch (error: any) {
-    return NextResponse.json({ message: 'Lỗi máy chủ', error: error.message }, { status: 500 });
+    return NextResponse.json({ message: 'Lỗi máy chủ' }, { status: 500 });
   }
 }

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
+import { getJwtSecret } from '@/lib/auth';
 
 export async function POST(req: Request) {
   try {
@@ -8,7 +9,7 @@ export async function POST(req: Request) {
     const token = cookieStore.get('token')?.value;
     if (!token) return NextResponse.json({ message: 'Chưa đăng nhập' }, { status: 401 });
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { role: string };
+    const decoded = jwt.verify(token, getJwtSecret()) as { role: string };
     if (decoded.role !== 'TEACHER') return NextResponse.json({ message: 'Không có quyền' }, { status: 403 });
 
     const { text } = await req.json();
@@ -66,6 +67,6 @@ export async function POST(req: Request) {
     return NextResponse.json(parsed);
   } catch (error: any) {
     console.error('AI Flashcard Error:', error);
-    return NextResponse.json({ message: 'Lỗi xử lý', error: error.message }, { status: 500 });
+    return NextResponse.json({ message: 'Lỗi xử lý' }, { status: 500 });
   }
 }

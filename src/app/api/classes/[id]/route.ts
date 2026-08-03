@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import { requireAuth, requireRole } from '@/lib/auth';
 
 const prisma = new PrismaClient();
 
@@ -7,6 +8,8 @@ export async function GET(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+    const { error } = await requireRole(['TEACHER']);
+    if (error) return error;
   try {
     const { id } = await params;
     const classDetails = await prisma.class.findUnique({
@@ -35,6 +38,8 @@ export async function POST(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+    const { error } = await requireRole(['TEACHER']);
+    if (error) return error;
   try {
     const { id: classId } = await params;
     const body = await request.json();

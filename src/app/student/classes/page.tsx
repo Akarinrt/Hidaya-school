@@ -3,6 +3,7 @@ import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { getJwtSecret } from '@/lib/auth';
 
 const prisma = new PrismaClient();
 
@@ -13,7 +14,7 @@ export default async function StudentClassesPage() {
   
   let studentId = '';
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { id: string };
+    const decoded = jwt.verify(token, getJwtSecret()) as { id: string };
     studentId = decoded.id;
   } catch {
     redirect('/login');

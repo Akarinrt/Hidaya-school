@@ -1,9 +1,12 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import { requireAuth, requireRole } from '@/lib/auth';
 
 const prisma = new PrismaClient();
 
 export async function GET(request: Request) {
+    const { error } = await requireRole(['TEACHER']);
+    if (error) return error;
   try {
     const schedules = await prisma.schedule.findMany({
       include: { teacher: true, class: true },
@@ -15,6 +18,8 @@ export async function GET(request: Request) {
 }
 
 export async function PUT(request: Request) {
+    const { error } = await requireRole(['TEACHER']);
+    if (error) return error;
   try {
     const body = await request.json();
     const { id, dayOfWeek, startTime, endTime } = body;

@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
 import ClassForum from './ClassForum';
+import { getJwtSecret } from '@/lib/auth';
 
 const prisma = new PrismaClient();
 
@@ -13,7 +14,7 @@ export default async function ClassFeedPage({ params }: { params: any }) {
   
   if (token) {
     try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as any;
+      const decoded = jwt.verify(token, getJwtSecret()) as any;
       currentUser = await prisma.user.findUnique({ select: { id: true, fullName: true, role: true }, where: { id: decoded.id } });
     } catch (e) {}
   }

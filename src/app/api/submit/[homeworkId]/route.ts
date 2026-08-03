@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
+import { getJwtSecret } from '@/lib/auth';
 
 const prisma = new PrismaClient();
 
@@ -11,7 +12,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ homewor
     const cookieStore = await cookies();
     const token = cookieStore.get('token')?.value;
     if (!token) return NextResponse.json({ message: 'Chưa đăng nhập' }, { status: 401 });
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { id: string; role: string };
+    const decoded = jwt.verify(token, getJwtSecret()) as { id: string; role: string };
     if (decoded.role !== 'STUDENT') return NextResponse.json({ message: 'Không có quyền' }, { status: 403 });
 
     const hw = await prisma.homework.findUnique({ where: { id: homeworkId }, include: { teacher: true } });
@@ -99,6 +100,6 @@ export async function POST(req: Request, { params }: { params: Promise<{ homewor
       return NextResponse.redirect(new URL('/student/homework', req.url), 303);
     }
   } catch (error: any) {
-    return NextResponse.json({ message: 'Lỗi', error: error.message }, { status: 500 });
+    return NextResponse.json({ message: 'Lỗi máy chủ' }, { status: 500 });
   }
 }

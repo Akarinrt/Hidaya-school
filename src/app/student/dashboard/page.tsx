@@ -2,6 +2,7 @@ import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
 import StudentDashboardClient from './StudentDashboardClient';
 import { redirect } from 'next/navigation';
+import { getJwtSecret } from '@/lib/auth';
 
 export default async function StudentDashboardPage() {
   const cookieStore = await cookies();
@@ -11,7 +12,7 @@ export default async function StudentDashboardPage() {
   
   let studentId = '';
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { id: string; role: string };
+    const decoded = jwt.verify(token, getJwtSecret()) as { id: string; role: string };
     if (decoded.role !== 'STUDENT') redirect('/login');
     studentId = decoded.id;
   } catch {

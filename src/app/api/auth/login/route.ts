@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { getJwtSecret } from '@/lib/auth';
 
 const prisma = new PrismaClient();
 
@@ -25,7 +26,7 @@ export async function POST(req: Request) {
 
     const token = jwt.sign(
       { id: user.id, username: user.username, role: user.role },
-      process.env.JWT_SECRET || 'secret',
+      getJwtSecret(),
       { expiresIn: '1d' }
     );
 
@@ -44,8 +45,8 @@ export async function POST(req: Request) {
 
     return response;
 
-  } catch (error: any) {
+  } catch (error) {
     console.error('Login error:', error);
-    return NextResponse.json({ message: 'Lỗi máy chủ', error: error.message, stack: error.stack }, { status: 500 });
+    return NextResponse.json({ message: 'Lỗi máy chủ' }, { status: 500 });
   }
 }

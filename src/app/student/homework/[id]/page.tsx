@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
 import QuizTaker from './QuizTaker';
+import { getJwtSecret } from '@/lib/auth';
 
 const prisma = new PrismaClient();
 
@@ -9,7 +10,7 @@ async function getStudentId() {
   const cookieStore = await cookies();
   const token = cookieStore.get('token')?.value;
   if (!token) return null;
-  try { return (jwt.verify(token, process.env.JWT_SECRET || 'secret') as { id: string }).id; }
+  try { return (jwt.verify(token, getJwtSecret()) as { id: string }).id; }
   catch { return null; }
 }
 

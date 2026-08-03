@@ -1,11 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import { requireAuth, requireRole } from '@/lib/auth';
 
 const prisma = new PrismaClient();
 
 // POST: Học sinh nộp bài
 export async function POST(req: NextRequest) {
   try {
+    const { error } = await requireRole(['STUDENT', 'TEACHER']);
+    if (error) return error;
     const body = await req.json();
     const { testId, testTitle, studentName, score, totalQuestions, answers } = body;
 
@@ -37,6 +40,8 @@ export async function POST(req: NextRequest) {
 // GET: Giáo viên xem kết quả
 export async function GET(req: NextRequest) {
   try {
+    const { error } = await requireRole(['TEACHER']);
+    if (error) return error;
     const { searchParams } = new URL(req.url);
     const testId = searchParams.get('testId');
 

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
+import { getJwtSecret } from '@/lib/auth';
 
 const prisma = new PrismaClient();
 
@@ -12,7 +13,7 @@ export async function POST(req: NextRequest) {
     const token = cookieStore.get("token")?.value;
     if (!token) return NextResponse.json({ error: "Chưa đăng nhập" }, { status: 401 });
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || "secret") as { id: string };
+    const decoded = jwt.verify(token, getJwtSecret()) as { id: string };
     const studentId = decoded.id;
 
     const { category, score, total } = await req.json();
@@ -34,7 +35,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true, data: vocabScore });
   } catch (error: any) {
     console.error("Lỗi lưu điểm từ vựng:", error);
-    return NextResponse.json({ error: error.message || "Lỗi server" }, { status: 500 });
+    return NextResponse.json({ error: 'Lỗi server' }, { status: 500 });
   }
 }
 
@@ -45,7 +46,7 @@ export async function GET(req: NextRequest) {
     const token = cookieStore.get("token")?.value;
     if (!token) return NextResponse.json({ error: "Chưa đăng nhập" }, { status: 401 });
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || "secret") as { id: string };
+    const decoded = jwt.verify(token, getJwtSecret()) as { id: string };
     const studentId = decoded.id;
 
     const url = new URL(req.url);
@@ -69,6 +70,6 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ success: true, scores });
   } catch (error: any) {
     console.error("Lỗi lấy điểm từ vựng:", error);
-    return NextResponse.json({ error: error.message || "Lỗi server" }, { status: 500 });
+    return NextResponse.json({ error: 'Lỗi server' }, { status: 500 });
   }
 }

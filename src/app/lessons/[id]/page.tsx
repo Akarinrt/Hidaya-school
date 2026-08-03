@@ -9,6 +9,9 @@ import { use, useState, useEffect } from 'react';
 export default function LessonDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
   const lesson = LESSONS_DATA[resolvedParams.id as keyof typeof LESSONS_DATA];
+  // Bài 26-28 dùng nguphap.html đầy đủ; từ bài 29 dùng index.html (bản slide hoàn chỉnh)
+  const lessonNum = parseInt(resolvedParams.id.replace('bai-', ''), 10);
+  const slideFile = lessonNum >= 29 ? 'index.html' : 'nguphap.html';
   
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
@@ -48,7 +51,7 @@ export default function LessonDetailPage({ params }: { params: Promise<{ id: str
         <div className="w-full h-full max-w-6xl max-h-[85vh] rounded-2xl shadow-2xl overflow-hidden border border-gray-700 bg-white relative">
             <iframe
               title={lesson.title}
-              src={`/slides/${lesson.id}/nguphap.html`}
+              src={`/slides/bai${lesson.id.replace('bai-', '')}/${slideFile}`}
               className="w-full h-full border-none"
               sandbox="allow-scripts allow-same-origin allow-modals"
             />

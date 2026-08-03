@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
+import { getJwtSecret } from '@/lib/auth';
 
 const prisma = new PrismaClient();
 
@@ -27,7 +28,7 @@ export async function GET(req: Request) {
 
     return NextResponse.json(posts);
   } catch (error: any) {
-    return NextResponse.json({ message: 'Lỗi máy chủ', error: error.message }, { status: 500 });
+    return NextResponse.json({ message: 'Lỗi máy chủ' }, { status: 500 });
   }
 }
 
@@ -37,7 +38,7 @@ export async function POST(req: Request) {
     const token = cookieStore.get('token')?.value;
     if (!token) return NextResponse.json({ message: 'Chưa đăng nhập' }, { status: 401 });
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { id: string };
+    const decoded = jwt.verify(token, getJwtSecret()) as { id: string };
     const { classId, content } = await req.json();
 
     if (!classId || !content) return NextResponse.json({ message: 'Thiếu dữ liệu' }, { status: 400 });
@@ -56,6 +57,6 @@ export async function POST(req: Request) {
 
     return NextResponse.json(post, { status: 201 });
   } catch (error: any) {
-    return NextResponse.json({ message: 'Lỗi máy chủ', error: error.message }, { status: 500 });
+    return NextResponse.json({ message: 'Lỗi máy chủ' }, { status: 500 });
   }
 }

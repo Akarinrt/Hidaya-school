@@ -1,12 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
+import { requireAuth, requireRole } from '@/lib/auth';
 
 const prisma = new PrismaClient();
 
 // GET: Lấy danh sách tất cả Users (Giáo viên và Học sinh)
 export async function GET(req: NextRequest) {
   try {
+    const { error } = await requireRole(['TEACHER']);
+    if (error) return error;
     const users = await prisma.user.findMany({
       select: {
         id: true,
@@ -29,11 +32,19 @@ export async function GET(req: NextRequest) {
 // POST: Tạo User mới (Giáo viên hoặc Học sinh)
 export async function POST(req: NextRequest) {
   try {
+    const { error } = await requireRole(['TEACHER']);
+    if (error) return error;
     const body = await req.json();
     const { username, password, fullName, role, email, phone } = body;
 
     if (!username || !password || !fullName || !role) {
       return NextResponse.json({ error: "Vui lòng nhập đủ các trường bắt buộc" }, { status: 400 });
+    }
+
+    // Kiểm tra role hợp lệ (tránh tự gán ADMIN hoặc role ảo)
+    const allowedRoles = ['STUDENT', 'TEACHER'];
+    if (!allowedRoles.includes(role)) {
+      return NextResponse.json({ error: 'Role không hợp lệ' }, { status: 400 });
     }
 
     // Kiểm tra trùng lặp
