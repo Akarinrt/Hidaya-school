@@ -399,7 +399,7 @@ async function main() {
         }
       });
       for (const card of d.cards) {
-        await prisma.flashcardCard.create({
+        await prisma.flashcard.create({
           data: {
             front: card.front,
             back: card.back,
