@@ -293,6 +293,76 @@
     <div class="reveal">
         <div class="slides">
 
+            <style>
+                /* Style overrides to make text much larger and readable */
+                .reveal .slides section {
+                    font-size: 1.8rem !important;
+                }
+                .reveal p, .reveal li {
+                    font-size: 1.8rem !important;
+                    line-height: 1.6 !important;
+                    color: #0b1f38 !important;
+                }
+                .reveal h1 {
+                    font-size: 3.2rem !important;
+                }
+                .reveal h2 {
+                    font-size: 2.4rem !important;
+                }
+                .reveal h3 {
+                    font-size: 2.0rem !important;
+                }
+                .box-highlight {
+                    font-size: 2.1rem !important;
+                    padding: 25px !important;
+                    line-height: 1.5 !important;
+                    border-radius: 12px !important;
+                    box-shadow: 0 15px 35px rgba(0, 82, 204, 0.08) !important;
+                }
+                .grammar-example {
+                    font-size: 2.0rem !important;
+                    padding: 20px !important;
+                    border-radius: 12px !important;
+                    margin-top: 20px !important;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.02) !important;
+                }
+                .trans {
+                    font-size: 1.5rem !important;
+                    margin-top: 8px !important;
+                    color: #5c728a !important;
+                }
+                .quiz-box {
+                    padding: 20px !important;
+                    border-radius: 12px !important;
+                    font-size: 1.7rem !important;
+                }
+                .quiz-title {
+                    font-size: 1.8rem !important;
+                    margin-bottom: 15px !important;
+                }
+                .answer-btn {
+                    padding: 8px 16px !important;
+                    font-size: 1.2rem !important;
+                    border-radius: 6px !important;
+                    background: #1976d2 !important;
+                    color: white !important;
+                }
+                .answer-content {
+                    font-size: 1.6rem !important;
+                    margin-top: 10px !important;
+                }
+                ruby {
+                    font-family: 'Noto Sans JP', sans-serif !important;
+                }
+                rt {
+                    font-size: 0.55em !important;
+                }
+                .vocab-box {
+                    max-width: 280px !important;
+                    font-size: 1.05rem !important;
+                }
+            </style>
+
             <section class="title-slide">
                 <h1 style="font-size: 2.8rem !important; margin-bottom: 20px;">Bài 30 - Chuẩn bị & Trạng thái kết quả</h1>
                 <h3 style="font-size: 1.8rem !important; color: #555;">Giáo án ngữ pháp tiếng Nhật N4</h3>
@@ -327,11 +397,11 @@
                         <span class="trans">Lịch trình tháng này được viết sẵn trên lịch.</span>
                     </div>
                     <div class="grammar-example fragment" style="margin-top: 15px;">
-                        <p><ruby>壁<rt>かべ</rt></ruby>に <ruby>鏡<rt>かがみ</rt></ruby>gá <strong><ruby>掛<rt>か</rt></ruby>けてあります</strong>。</p>
+                        <p><ruby>壁<rt>かべ</rt></ruby>に <ruby>鏡<rt>かがみ</rt></ruby>が <strong><ruby>掛<rt>か</rt></ruby>けてあります</strong>。</p>
                         <span class="trans">Chiếc gương được treo sẵn trên tường.</span>
                     </div>
                     <div class="grammar-example fragment" style="margin-top: 15px;">
-                        <p><ruby>交番<rt>こうばん</rt></ruby>の <ruby>壁<rt>かべ</rt></ruby>に <ruby>町<rt>まち</rt></ruby>の <ruby>地図<rt>ちず</rt></ruby>gá <strong><ruby>貼<rt>は</rt></ruby>ってあります</strong>。</p>
+                        <p><ruby>交番<rt>こうばん</rt></ruby>の <ruby>壁<rt>かべ</rt></ruby>に <ruby>町<rt>まち</rt></ruby>の <ruby>地図<rt>ちず</rt></ruby>が <strong><ruby>貼<rt>は</rt></ruby>ってあります</strong>。</p>
                         <span class="trans">Bản đồ thị trấn được dán sẵn trên tường ở đồn cảnh sát.</span>
                     </div>
                 </div>
@@ -444,7 +514,7 @@
                         <span class="trans">Trước chuyến đi, tôi sẽ mua sẵn vé tàu. (Sắc thái chuẩn bị trước hành động)</span>
                     </div>
                     <div class="grammar-example fragment" style="margin-top: 15px;">
-                        <p><ruby>授業<rt>じゅぎょう</rt></ruby>의 <ruby>前<rt>まえ</rt></ruby>に <ruby>予習<rt>よしゅう</rt></ruby>して <strong>おきます</strong>。</p>
+                        <p><ruby>授業<rt>じゅぎょう</rt></ruby>の <ruby>前<rt>まえ</rt></ruby>に <ruby>予習<rt>よしゅう</rt></ruby>して <strong>おきます</strong>。</p>
                         <span class="trans">Trước giờ học, tôi sẽ chuẩn bị bài trước.</span>
                     </div>
                     <div class="grammar-example fragment" style="margin-top: 15px;">
@@ -477,7 +547,7 @@
                     <div class="quiz-title">✍️ Điền động từ chia ở thể thích hợp vào chỗ trống:</div>
                     <div class="fragment" style="margin-bottom: 15px;">
                         <p>1. Vì ngày mai lần đầu leo ngọn núi này nên tôi sẽ xem kỹ bản đồ trước. <br>
-                        → あした登る山は初めてですから、地図をよく (_______) おきます。 (Xem)</p>
+                        → あした登る山は初めてですから、地図をよく (_______) おきます. (Xem)</p>
                         <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
                         <div class="answer-content">→ <strong>見て / 調べて</strong> (見ておきます / 調べておきます)</div>
                     </div>
@@ -538,7 +608,7 @@
                 </div>
             </section>
 
-             <!-- PHẦN IV: Phản hồi hội thoại (それは 〜) -->
+            <!-- PHẦN IV: Phản hồi hội thoại (それは 〜) -->
             <section>
                 <h2>IV. Phản hồi hội thoại: それは 〜</h2>
                 <div class="fragment" style="text-align: left; margin-top: 20px;">
@@ -557,7 +627,7 @@
                         <span class="trans">A: Từ tháng sau tôi sẽ chuyển công tác lên trụ sở chính ở Osaka.<br>B: Thế thì xin chúc mừng anh nhé! (Chia vui)</span>
                     </div>
                     <div class="grammar-example fragment" style="margin-top: 15px;">
-                        <p>③ A: <ruby>時々<rt>ときどき</rt></ruby> <ruby>頭<rt>あたま</rt></ruby>や <ruby>胃<rt>い</rt></ruby>が <ruby>痛<rt>いた</rt></ruby>くなるんです。<br>
+                        <p>③ A: <ruby>時々<rt>ときどき</rt></ruby> <ruby>頭<rt>あたま</rt></ruby>や <ruby>胃<rt>い</rt></ruby>gá <ruby>痛<rt>いた</rt></ruby>くなるんです。<br>
                            B: <strong>それは いけませんね</strong>。</p>
                         <span class="trans">A: Thỉnh thoảng tôi cứ bị đau đầu với đau dạ dày.<br>B: Thế thì không được rồi. (Lo lắng, khuyên nhủ - không tốt cho sức khỏe)</span>
                     </div>
@@ -567,24 +637,24 @@
             <!-- KỸ NĂNG: HỘI THOẠI -->
             <section data-background-color="#fff3e0">
                 <h2 style="color: #e65100;">🗣️ 会話: チケットを予約しておきます</h2>
-                <div class="fragment" style="text-align: left; margin-top: 10px; font-size: 1.1rem !important; line-height: 1.6 !important;">
-                    <p><strong>ミラー：</strong><ruby>中村<rt>なかむら</rt></ruby>さん、ニューヨークの<ruby>旅行<rt>りょこう</rt></ruby>の<ruby>予定表<rt>よていひょう</rt></ruby>と<ruby>資料<rt>しりょう</rt></ruby>ができましたよ。</p>
+                <div class="fragment" style="text-align: left; margin-top: 10px; font-size: 1.6rem !important; line-height: 1.8 !important;">
+                    <p><strong>ミラー：</strong><ruby>中村<rt>なかむら</rt></ruby>さん、ニューヨークの<ruby>旅行<rt>りょこう</rt></ruby>の<ruby>予定表<rt>よていひょう</rt></ruby>と<ruby>資料<rt>しりょう</rt></ruby>gá できましたよ。</p>
                     <p><strong><ruby>中村<rt>なかむら</rt></ruby>：</strong>ありがとうございます。<ruby>資料<rt>しりょう</rt></ruby>はあとで<ruby>見<rt>み</rt></ruby>ますから、そこに<strong><ruby>置<rt>お</rt></ruby>いておいてください</strong>。</p>
                     <p><strong>ミラー：</strong>はい。</p>
                     <p><strong><ruby>中村<rt>なかむら</rt></ruby>：</strong>これが<ruby>予定表<rt>よていひょう</rt></ruby>ですか。ホワイトさんにはもう<strong><ruby>連絡<rt>れんらく</rt></ruby>してありますか</strong>。</p>
                     <p><strong>ミラー：</strong>ええ。<ruby>この日<rt>このひ</rt></ruby>の<ruby>午後<rt>ごご</rt></ruby>は<ruby>自由時間<rt>じゆうじかん</rt></ruby>になっています。</p>
                     <p><strong><ruby>中村<rt>なかむら</rt></ruby>：</strong>あ、そうですか。</p>
-                    <p><strong>ミラー：</strong>何かご<ruby>希望<rt>きぼう</rt></ruby>がありますか。</p>
+                    <p><strong>ミラー：</strong>何かご<ruby>希望<rt>きぼう</rt></ruby>gá ありますか。</p>
                     <p><strong><ruby>中村<rt>なかむら</rt></ruby>：</strong>そうですね。ブロードウェイでミュージカルを<ruby>見<rt>み</rt></ruby>たいと<ruby>思<rt>おも</rt></ruby>うんですが……。</p>
                     <p><strong>ミラー：</strong>それはいいですね。チケットを<strong><ruby>予約<rt>よやく</rt></ruby>しておきましょうか</strong>。</p>
-                    <p><strong><ruby>中村<rt>なかむら</rt></ruby>：</strong>ええ、お<ruby>願<rt>ねが</rt></ruby>iします。</p>
+                    <p><strong><ruby>中村<rt>なかむら</rt></ruby>：</strong>ええ、お<ruby>願<rt>ねが</rt></ruby>いします。</p>
                 </div>
             </section>
 
             <!-- ROLE-PLAY HỘI THOẠI -->
             <section data-background-color="#fff3e0">
                 <h2 style="color: #e65100;">🎭 Role-play (Phân vai)</h2>
-                <div class="fragment" style="text-align: left; margin-top: 10px; font-size: 1.1rem !important; line-height: 1.6 !important;">
+                <div class="fragment" style="text-align: left; margin-top: 10px; font-size: 1.6rem !important; line-height: 1.8 !important;">
                     <p><strong>ミラー：</strong>中村さん、ニューヨークの旅行の[_______]と[_______]ができましたよ。</p>
                     <p><strong>中村：</strong>ありがとうございます。[_______]はあとで見ますから、そこに[____________________]。</p>
                     <p><strong>ミラー：</strong>はい。</p>
@@ -600,45 +670,46 @@
 
             <!-- KỸ NĂNG: ĐỌC HIỂU (DOKKAI) -->
             <section data-background-color="#e8f5e9">
-                <h2 style="color: #1b5e20;">📖 Đọc hiểu: お知らせ (Thông báo)</h2>
+                <h2 style="color: #1b5e20;">📖 Đọc hiểu: 中村さんの旅行の準備 (Chuẩn bị du lịch)</h2>
                 <div style="display: flex; gap: 20px; text-align: left; margin-top: 15px;">
                     <!-- Cột trái: Bài đọc -->
-                    <div style="flex: 1.2; background: white; padding: 20px; border-radius: 12px; border: 1px solid #c8e6c9; box-shadow: 0 8px 24px rgba(0,0,0,0.05); font-size: 1.15rem !important;">
-                        <p style="line-height: 1.8 !important; margin: 0; font-size: 1.25rem !important;">
-                            <ruby>来週<rt>らいしゅう</rt></ruby>の<ruby>土曜日<rt>どようび</rt></ruby>に<ruby>体育館<rt>たいいくかん</rt></ruby>でスポーツ<ruby>大会<rt>たいかい</rt></ruby>があります。<br>
-                            <ruby>日にち<rt>ひにち</rt></ruby>は12<ruby>月<rt>がつ</rt></ruby>5<ruby>日<rt>にち</rt></ruby>（<ruby>土<rt>ど</rt></ruby>）です。<br>
-                            <ruby>参加<rt>さんか</rt></ruby>は<strong><ruby>無料<rt>むりょう</rt></ruby></strong>ですから、<ruby>皆さん<rt>みなさん</rt></ruby>ぜひ<ruby>来<rt>き</rt></ruby>てください。<br>
-                            <ruby>体育館<rt>たいいくかん</rt></ruby>の<ruby>壁<rt>かべ</rt></ruby>にポスターが<strong><ruby>貼<rt>は</rt></ruby>ってあります</strong>から、<ruby>場所<rt>ばしょ</rt></ruby>を<strong><ruby>確認<rt>かくにん</rt></ruby>しておいてください</strong>。<br>
-                            スポーツの<ruby>道具<rt>どうぐ</rt></ruby>はもう<strong><ruby>準備<rt>じゅんび</rt></ruby>してあります</strong>。<br>
-                            <ruby>使<rt>つか</rt></ruby>い<ruby>終<rt>お</rt></ruby>わった<ruby>道具<rt>どうぐ</rt></ruby>は、<strong><ruby>元<rt>もと</rt></ruby>の<ruby>場所<rt>ばしょ</rt></ruby>に<ruby>戻<rt>もど</rt></ruby>しておいてください</strong>。
+                    <div style="flex: 1.2; background: white; padding: 25px; border-radius: 12px; border: 1px solid #c8e6c9; box-shadow: 0 8px 24px rgba(0,0,0,0.05); font-size: 1.7rem !important;">
+                        <p style="line-height: 1.9 !important; margin: 0; font-size: 1.8rem !important;">
+                            <ruby>中村<rt>なかむら</rt></ruby>さんは<ruby>来週<rt>らいしゅう</rt></ruby>ニューヨークへ<ruby>旅行<rt>りょこう</rt></ruby>に<ruby>行<rt>い</rt></ruby>きます。<br>
+                            <ruby>旅行<rt>りょこう</rt></ruby>の<ruby>前<rt>まえ</rt></ruby>に、インターネットで<ruby>予定<rt>よてい</rt></ruby>を<strong><ruby>調べ<rt>しらべ</rt></ruby>ておきました</strong>。<br>
+                            ホテルの<ruby>予約<rt>よやく</rt></ruby>ももう<strong>してあります</strong>。<br>
+                            カレンダーに<ruby>旅行<rt>りょこう</rt></ruby>の<ruby>日付<rt>ひづけ</rt></ruby>が<strong><ruby>書<rt>か</rt></ruby>いてあります</strong>。<br>
+                            カレンダーの<ruby>横<rt>よこ</rt></ruby>にニューヨークの<ruby>地図<rt>ちず</rt></ruby>が<strong><ruby>貼<rt>は</rt></ruby>ってあります</strong>。<br>
+                            <ruby>鞄<rt>かばん</rt></ruby>の<ruby>中<rt>なか</rt></ruby>には<ruby>案内書<rt>あんないしょ</rt></ruby>とチケットが<strong><ruby>入<rt>い</rt></ruby>れてあります</strong>。<br>
+                            <ruby>準備<rt>じゅんび</rt></ruby>はもう<ruby>終わ<rt>おわ</rt></ruby>りましたから、<ruby>来週<rt>らいしゅう</rt></ruby>の<ruby>旅行<rt>りょこう</rt></ruby>がとても<ruby>楽しみ<rt>たのしみ</rt></ruby>です。
                         </p>
-                        <hr style="margin: 12px 0; border: 0; border-top: 1px solid #e2e8f0;">
-                        <p style="color: #5c728a; font-style: italic; font-size: 0.95rem !important; margin: 0; line-height: 1.5 !important;">
-                            Thứ Bảy tuần sau sẽ có đại hội thể thao tại nhà thi đấu. Ngày tổ chức là mùng 5 tháng 12 (Thứ Bảy). Vì tham gia miễn phí nên mọi người nhất định hãy đến nhé. Poster được dán sẵn trên tường nhà thi đấu nên hãy xác nhận trước địa điểm. Dụng cụ thể thao đã được chuẩn bị sẵn rồi. Dụng cụ sau khi dùng xong hãy cất sẵn về lại vị trí cũ.
+                        <hr style="margin: 15px 0; border: 0; border-top: 1px solid #e2e8f0;">
+                        <p style="color: #5c728a; font-style: italic; font-size: 1.4rem !important; margin: 0; line-height: 1.6 !important;">
+                            Chị Nakamura tuần sau sẽ đi du lịch New York. Trước chuyến đi, chị ấy đã tra cứu trước lịch trình trên internet. Việc đặt phòng khách sạn cũng đã được làm sẵn rồi. Trên lịch có viết sẵn ngày đi du lịch. Bên cạnh tờ lịch có dán sẵn bản đồ New York. Trong túi xách đã để sẵn sách hướng dẫn và vé tàu. Vì sự chuẩn bị đã xong xuôi nên chị ấy rất mong chờ chuyến du lịch tuần sau.
                         </p>
                     </div>
                     
                     <!-- Cột phải: Câu hỏi đọc hiểu -->
                     <div style="flex: 0.8; display: flex; flex-direction: column; gap: 10px;">
-                        <div class="quiz-box" style="margin: 0; padding: 15px; background: rgba(255,253,231,0.8) !important;">
-                            <div class="quiz-title" style="font-size: 1.1rem !important; margin-bottom: 5px;">❓ Câu hỏi kiểm tra:</div>
+                        <div class="quiz-box" style="margin: 0; padding: 20px; background: rgba(255,253,231,0.8) !important; font-size: 1.6rem !important;">
+                            <div class="quiz-title" style="font-size: 1.8rem !important; margin-bottom: 10px;">❓ Câu hỏi kiểm tra:</div>
                             
-                            <div style="margin-bottom: 10px; font-size: 0.95rem !important;">
-                                <p style="margin: 2px 0;">1. スポーツ大会はいつ、どこでありますか。</p>
-                                <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 2px 8px; font-size: 0.8rem;">Xem đáp án</button>
-                                <div class="answer-content" style="font-size: 0.95rem !important;">→ <strong>12月5日（土）</strong>に<strong>体育館</strong>であります。</div>
+                            <div style="margin-bottom: 15px;">
+                                <p style="margin: 2px 0; font-size: 1.6rem !important;">1. 中村さんは旅行の前に、何をしておきましたか。</p>
+                                <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 4px 10px; font-size: 1.1rem;">Xem đáp án</button>
+                                <div class="answer-content" style="font-size: 1.5rem !important;">→ インターネットで <strong>予定を 調べておきました</strong>。</div>
                             </div>
                             
-                            <div style="margin-bottom: 10px; font-size: 0.95rem !important;">
-                                <p style="margin: 2px 0;">2. 参加するのにお金が必要ですか。</p>
-                                <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 2px 8px; font-size: 0.8rem;">Xem đáp án</button>
-                                <div class="answer-content" style="font-size: 0.95rem !important;">→ いいえ、<strong>無料（ただ）</strong>です。</div>
+                            <div style="margin-bottom: 15px;">
+                                <p style="margin: 2px 0; font-size: 1.6rem !important;">2. ホテルの予約は どうしてありますか。</p>
+                                <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 4px 10px; font-size: 1.1rem;">Xem đáp án</button>
+                                <div class="answer-content" style="font-size: 1.5rem !important;">→ <strong>もう してあります</strong>。</div>
                             </div>
                             
-                            <div style="font-size: 0.95rem !important;">
-                                <p style="margin: 2px 0;">3. 使い終わった道具はどうしますか。</p>
-                                <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 2px 8px; font-size: 0.8rem;">Xem đáp án</button>
-                                <div class="answer-content" style="font-size: 0.95rem !important;">→ <strong>元の場所に 戻しておかなければ</strong>なりません。 (戻しておいてください)</div>
+                            <div>
+                                <p style="margin: 2px 0; font-size: 1.6rem !important;">3. 鞄の中には 何が 入れてありますか。</p>
+                                <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 4px 10px; font-size: 1.1rem;">Xem đáp án</button>
+                                <div class="answer-content" style="font-size: 1.5rem !important;">→ <strong>案内書と チケットが</strong> 入れてあります。</div>
                             </div>
                         </div>
                     </div>
