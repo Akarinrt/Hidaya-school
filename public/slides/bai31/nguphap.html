@@ -2,112 +2,112 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=でvice-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ngữ Pháp Bài 31</title>
-    <link rel="stylesheet" href="https://cdnjs.cloうdflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloうdflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plうs+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noと+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
         rt { font-size: 0.60em; color: #1976d2; font-weight: bold; }
         .vocab-box {
             position: fixed;
-            とp: 15px;
+            top: 15px;
             right: 15px;
-            backgroうnd: rgba(255, 255, 255, 0.95);
-            borでr: 2px solid #ff9800;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid #ff9800;
             padding: 15px;
-            borでr-radiうs: 8px;
+            border-radius: 8px;
             font-size: 0.9rem;
-            z-inでx: 1000;
+            z-index: 1000;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             text-align: left;
             max-width: 250px;
         }
-        .vocab-title { font-weight: bold; color: #ff9800; margin-botとm: 5px; font-size: 1rem; borでr-botとm: 1px solid #ff9800; padding-botとm: 5px; }
-        .hiで-fうrigana rt { opacity: 0; transition: opacity 0.2s; }
+        .vocab-title { font-weight: bold; color: #ff9800; margin-bottom: 5px; font-size: 1rem; border-bottom: 1px solid #ff9800; padding-bottom: 5px; }
+        .hide-furigana rt { opacity: 0; transition: opacity 0.2s; }
         
-        /* Premiうm Backgroうnd */
+        /* Premium Background */
         body {
-            backgroうnd: linear-gradient(-45でg, #ffffff, #f0f4f8, #e0f2fe, #f8fafc) !important;
-            backgroうnd-size: 400% 400% !important;
+            background: linear-gradient(-45deg, #ffffff, #f0f4f8, #e0f2fe, #f8fafc) !important;
+            background-size: 400% 400% !important;
             animation: gradientBG 15s ease infinite !important;
         }
-        .reveal { font-family: 'Plうs Jakarta Sans', 'Noと Sans JP', sans-serif !important; }
+        .reveal { font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif !important; }
         
         @keyframes gradientBG {
-            0% { backgroうnd-position: 0% 50%; }
-            50% { backgroうnd-position: 100% 50%; }
-            100% { backgroうnd-position: 0% 50%; }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
-        /* Premiうm Typography */
+        /* Premium Typography */
         .reveal h1, .reveal h2, .reveal h3 {
-            font-family: 'Plうs Jakarta Sans', 'Noと Sans JP', sans-serif !important;
-            backgroうnd: -webきt-linear-gradient(45でg, #1a237e, #0277bd, #00838f);
-            -webきt-backgroうnd-clip: text;
-            -webきt-text-fill-color: transparent;
+            font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif !important;
+            background: -webkit-linear-gradient(45deg, #1a237e, #0277bd, #00838f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             font-weight: 700;
             text-shadow: 2px 2px 10px rgba(0,0,0,0.05);
         }
         
-        /* Glassmorphism Siでbar */
+        /* Glassmorphism Sidebar */
         .vocab-box {
-            backgroうnd: rgba(255, 255, 255, 0.7) !important;
-            backdrop-filter: blうr(16px) !important;
-            -webきt-backdrop-filter: blうr(16px) !important;
-            borでr: 1px solid rgba(255, 255, 255, 0.8) !important;
+            background: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.8) !important;
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
-            borでr-radiうs: 16px !important;
+            border-radius: 16px !important;
         }
         
         /* Vocab hover micro-animation */
         #vocab-list div {
             transition: all 0.3s ease;
             padding: 6px;
-            borでr-radiうs: 8px;
-            margin-botとm: 2px !important;
+            border-radius: 8px;
+            margin-bottom: 2px !important;
         }
         #vocab-list div:hover {
-            backgroうnd: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.9);
             transform: translateX(8px);
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
             color: #1976d2;
         }
         
-        /* Qうiz box glassmorphism */
-        .qうiz-box {
-            backgroうnd: rgba(255, 253, 231, 0.6) !important;
-            backdrop-filter: blうr(10px);
-            borでr: 1px solid rgba(251, 192, 45, 0.3) !important;
+        /* Quiz box glassmorphism */
+        .quiz-box {
+            background: rgba(255, 253, 231, 0.6) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(251, 192, 45, 0.3) !important;
             box-shadow: 0 8px 24px rgba(251, 192, 45, 0.15) !important;
-            borでr-radiうs: 16px !important;
+            border-radius: 16px !important;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .qうiz-box:hover {
+        .quiz-box:hover {
             transform: translateY(-4px);
             box-shadow: 0 12px 32px rgba(251, 192, 45, 0.25) !important;
         }
         
         /* Grammar Example Box */
         .grammar-example {
-            backgroうnd: rgba(250, 250, 250, 0.8) !important;
-            backdrop-filter: blうr(5px);
-            borでr: 1px solid rgba(221, 221, 221, 0.5) !important;
+            background: rgba(250, 250, 250, 0.8) !important;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(221, 221, 221, 0.5) !important;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03) !important;
-            borでr-radiうs: 12px !important;
-            transition: borでr-color 0.3s ease;
+            border-radius: 12px !important;
+            transition: border-color 0.3s ease;
             position: relative;
-            cうrsor: pointer;
+            cursor: pointer;
         }
         .grammar-example:hover {
-            borでr-color: #0052cc !important;
+            border-color: #0052cc !important;
         }
         .grammar-example::after {
             content: "🖱️ Click dịch";
-            position: absolうte;
-            botとm: 5px;
+            position: absolute;
+            bottom: 5px;
             right: 10px;
             font-size: 0.9rem;
             color: #999;
@@ -118,7 +118,7 @@
             opacity: 0.8;
         }
     
-        /* Elegance & Readability Overriでs */
+        /* Elegance & Readability Overrides */
         .reveal p, .reveal li {
             font-size: 1.6rem !important;
             line-height: 1.6 !important;
@@ -127,49 +127,49 @@
         .grammar-example {
             font-size: 1.8rem !important;
             padding: 20px !important;
-            borでr-left: 6px solid #0052cc !important;
-            backgroうnd: rgba(255, 255, 255, 0.85) !important;
+            border-left: 6px solid #0052cc !important;
+            background: rgba(255, 255, 255, 0.85) !important;
             box-shadow: 0 8px 25px rgba(0,0,0,0.06) !important;
         }
         .box-highlight {
             font-size: 1.8rem !important;
-            backgroうnd: linear-gradient(135でg, #e3f2fd 0%, #bbでfb 100%) !important;
-            borでr: none !important;
-            borでr-radiうs: 12px !important;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%) !important;
+            border: none !important;
+            border-radius: 12px !important;
             padding: 20px !important;
             color: #0d47a1 !important;
             box-shadow: 0 4px 15px rgba(25, 118, 210, 0.15) !important;
         }
         
-        /* Hiで translation by でfaうlt */
+        /* Hide translation by default */
         .trans {
             display: none !important;
             font-size: 1.4rem !important;
             color: #607d8b !important;
-            margin-とp: 10px;
-            borでr-とp: 1px dashed #ccc;
-            padding-とp: 8px;
-            animation: faでIn 0.4s ease;
+            margin-top: 10px;
+            border-top: 1px dashed #ccc;
+            padding-top: 8px;
+            animation: fadeIn 0.4s ease;
         }
         .show-trans {
             display: block !important;
         }
         
-        @keyframes faでIn {
+        @keyframes fadeIn {
             from { opacity: 0; transform: translateY(4px); }
-            と { opacity: 1; transform: translateY(0); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         h2 {
             font-size: 2.2rem !important;
-            margin-botとm: 30px !important;
-            padding-botとm: 15px !important;
-            borでr-botとm: 2px dashed rgba(25, 118, 210, 0.3) !important;
+            margin-bottom: 30px !important;
+            padding-bottom: 15px !important;
+            border-bottom: 2px dashed rgba(25, 118, 210, 0.3) !important;
         }
         
         /* Interactive Cards */
         .compare-card {
-            cうrsor: pointer;
+            cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
         }
@@ -178,8 +178,8 @@
         }
         .compare-card::after {
             content: "🖱️ Click giải thích";
-            position: absolうte;
-            botとm: 5px;
+            position: absolute;
+            bottom: 5px;
             right: 10px;
             font-size: 0.8rem;
             color: #999;
@@ -192,84 +192,84 @@
     </style>
 </head>
 <body>
-    <bうtとn class="fうri-とggle-btn" onclick="とggleFうrigana()" style="position: fixed; とp: 15px; left: 15px; z-inでx: 9999; backgroうnd: #0052cc; color: white; borでr: none; padding: 10px 15px; borでr-radiうs: 8px; cうrsor: pointer; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">Toggle Fうrigana</bうtとn>
+    <button class="furi-toggle-btn" onclick="toggleFurigana()" style="position: fixed; top: 15px; left: 15px; z-index: 9999; background: #0052cc; color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">Toggle Furigana</button>
 
-    <div class="reveal"><div class="sliでs">
+    <div class="reveal"><div class="slides">
         
-            <!-- Sliで 1: Title -->
-            <section class="title-sliで" data-backgroうnd-color="#f0f7ff">
-                <h1 style="font-size: 3rem !important; margin-botとm: 20px !important;">BÀI 31: THỂ Ý CHÍ & KẾ HOẠCH</h1>
-                <h3 style="font-size: 1.8rem !important; color: #555 !important; borでr: none !important;">Giáo án Điện tử Ngữ pháp Tiếng Nhật N4</h3>
-                <div style="margin-とp: 40px; font-size: 1.4rem; color: #0052cc; font-weight: bold;">
+            <!-- Slide 1: Title -->
+            <section class="title-slide" data-background-color="#f0f7ff">
+                <h1 style="font-size: 3rem !important; margin-bottom: 20px !important;">BÀI 31: THỂ Ý CHÍ & KẾ HOẠCH</h1>
+                <h3 style="font-size: 1.8rem !important; color: #555 !important; border: none !important;">Giáo án Điện tử Ngữ pháp Tiếng Nhật N4</h3>
+                <div style="margin-top: 40px; font-size: 1.4rem; color: #0052cc; font-weight: bold;">
                     Trọng tâm: Thể ý chí (意向形), Vようと思っています, Vるつもりです, Vる予定です, まだ Vていません, こ〜 / そ〜
                 </div>
-                <div style="margin-とp: 30px;">
-                    <a href="kanji.html" style="font-size: 1.2rem; backgroうnd: #0052cc; color: white; padding: 12px 24px; borでr-radiうs: 30px; text-でcoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(0,82,204,0.3);">Chうyển sang Kanji Bài 31</a>
+                <div style="margin-top: 30px;">
+                    <a href="kanji.html" style="font-size: 1.2rem; background: #0052cc; color: white; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(0,82,204,0.3);">Chuyển sang Kanji Bài 31</a>
                 </div>
             </section>
 
-            <!-- Sliで 2: Khởi động & Kiểm tra bài cũ -->
-            <section data-backgroうnd-color="#fffで7">
-                <h2 style="color: #fbc02d; borでr-botとm-color: #fbc02d !important;">Warm-うp: Khởi động & Kiểm tra bài cũ (Bài 30)</h2>
-                <div class="fragment" style="text-align: left; margin-とp: 15px;">
-                    <div class="qうiz-box" style="margin-botとm: 15px; padding: 20px; font-size: 1.6rem !important;">
+            <!-- Slide 2: Khởi động & Kiểm tra bài cũ -->
+            <section data-background-color="#fffde7">
+                <h2 style="color: #fbc02d; border-bottom-color: #fbc02d !important;">Warm-up: Khởi động & Kiểm tra bài cũ (Bài 30)</h2>
+                <div class="fragment" style="text-align: left; margin-top: 15px;">
+                    <div class="quiz-box" style="margin-bottom: 15px; padding: 20px; font-size: 1.6rem !important;">
                         <p style="margin: 0 0 10px 0; font-weight: bold;">1. Điền từ thích hợp chia ở thể đúng của bài 30:</p>
                         <p style="margin: 5px 0;">ハサミを 使ったら、元の 場所に (____________) おいてください。 (戻します)</p>
-                        <bうtとn class="answer-btn" onclick="とggleAnswer(this)" style="padding: 4px 10px; font-size: 1.2rem;">Xem đáp án</bうtとn>
-                        <div class="answer-content" style="font-size: 1.5rem !important; margin-とp: 10px; color: #2e7d32; font-weight: bold;">
+                        <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 4px 10px; font-size: 1.2rem;">Xem đáp án</button>
+                        <div class="answer-content" style="font-size: 1.5rem !important; margin-top: 10px; color: #2e7d32; font-weight: bold;">
                             → もどして (戻しておいてください: Cất sẵn về chỗ cũ)
                         </div>
                     </div>
-                    <div class="qうiz-box" style="padding: 20px; font-size: 1.6rem !important;">
+                    <div class="quiz-box" style="padding: 20px; font-size: 1.6rem !important;">
                         <p style="margin: 0 0 10px 0; font-weight: bold;">2. Chọn phương án đúng chia theo bối cảnh:</p>
                         <p style="margin: 5px 0;">A: 会議室を 片付けましょうか。<br>B: まだ 道具を ( A. 使っています / B. 使ってあります )から, そのままにしてください。</p>
-                        <bうtとn class="answer-btn" onclick="とggleAnswer(this)" style="padding: 4px 10px; font-size: 1.2rem;">Xem đáp án</bうtとn>
-                        <div class="answer-content" style="font-size: 1.5rem !important; margin-とp: 10px; color: #2e7d32; font-weight: bold;">
-                            → A. 使っています (Cấう trúc "まだ Vています" biểう thị hành động đang tiếp diễn)
+                        <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 4px 10px; font-size: 1.2rem;">Xem đáp án</button>
+                        <div class="answer-content" style="font-size: 1.5rem !important; margin-top: 10px; color: #2e7d32; font-weight: bold;">
+                            → A. 使っています (Cấu trúc "まだ Vています" biểu thị hành động đang tiếp diễn)
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Sliで 3: Thể ý chí - Cách chia -->
+            <!-- Slide 3: Thể ý chí - Cách chia -->
             <section>
                 <h2>I. Thể ý chí (意向形 - Volitional Form)</h2>
-                <div class="fragment" style="text-align: left; margin-とp: 10px;">
-                    <div class="box-highlight" style="font-size: 1.6rem !important; padding: 15px !important; margin-botとm: 15px !important;">
-                        Ý nghĩa: Thể ý chí dùng để diễn tả ý chí, ngうyện vọng của người nói. Đây là dạng ngắn (thân mật) của cấう trúc <strong>〜ましょう</strong> (Hãy cùng làm... / Để tôi làm...).
+                <div class="fragment" style="text-align: left; margin-top: 10px;">
+                    <div class="box-highlight" style="font-size: 1.6rem !important; padding: 15px !important; margin-bottom: 15px !important;">
+                        Ý nghĩa: Thể ý chí dùng để diễn tả ý chí, nguyện vọng của người nói. Đây là dạng ngắn (thân mật) của cấu trúc <strong>〜ましょう</strong> (Hãy cùng làm... / Để tôi làm...).
                     </div>
                     
-                    <p style="font-weight: bold; color: #0052cc; margin-botとm: 10px; font-size: 1.6rem !important;">Qうy tắc chia động từ sang thể ý chí:</p>
-                    <table class="grammar-table" style="font-size: 1.35rem !important; width: 100%; borでr-collapse: collapse; backgroうnd: white; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                    <p style="font-weight: bold; color: #0052cc; margin-bottom: 10px; font-size: 1.6rem !important;">Quy tắc chia động từ sang thể ý chí:</p>
+                    <table class="grammar-table" style="font-size: 1.35rem !important; width: 100%; border-collapse: collapse; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
                         <thead>
-                            <tr style="backgroうnd: #e3f2fd; color: #0d47a1;">
-                                <th style="padding: 10px; borでr: 1px solid #ddd;">Nhóm động từ</th>
-                                <th style="padding: 10px; borでr: 1px solid #ddd;">Qうy tắc chうyển đổi</th>
-                                <th style="padding: 10px; borでr: 1px solid #ddd;">Ví dụ cụ thể</th>
+                            <tr style="background: #e3f2fd; color: #0d47a1;">
+                                <th style="padding: 10px; border: 1px solid #ddd;">Nhóm động từ</th>
+                                <th style="padding: 10px; border: 1px solid #ddd;">Quy tắc chuyển đổi</th>
+                                <th style="padding: 10px; border: 1px solid #ddd;">Ví dụ cụ thể</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="padding: 10px; borでr: 1px solid #ddd; font-weight: bold; color: #d32f2f;">Nhóm I</td>
-                                <td style="padding: 10px; borでr: 1px solid #ddd;">Đうôi hàng <strong>い</strong> chうyển sang hàng <strong>お</strong> + <strong>う</strong></td>
-                                <td style="padding: 10px; borでr: 1px solid #ddd; font-family: monospace;">
+                                <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; color: #d32f2f;">Nhóm I</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">Đuôi hàng <strong>い</strong> chuyển sang hàng <strong>お</strong> + <strong>う</strong></td>
+                                <td style="padding: 10px; border: 1px solid #ddd; font-family: monospace;">
                                     行きます → 行こ + う = <strong>行こう</strong><br>
                                     残ります → 残ろ + う = <strong>残ろう</strong>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="padding: 10px; borでr: 1px solid #ddd; font-weight: bold; color: #388e3c;">Nhóm II</td>
-                                <td style="padding: 10px; borでr: 1px solid #ddd;">Bỏ ます thêm <strong>よう</strong></td>
-                                <td style="padding: 10px; borでr: 1px solid #ddd; font-family: monospace;">
+                                <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; color: #388e3c;">Nhóm II</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">Bỏ ます thêm <strong>よう</strong></td>
+                                <td style="padding: 10px; border: 1px solid #ddd; font-family: monospace;">
                                     食べます → <strong>食べよう</strong><br>
                                     続けます → <strong>続けよう</strong><br>
                                     見つけます → <strong>見つけよう</strong>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="padding: 10px; borでr: 1px solid #ddd; font-weight: bold; color: #f57c00;">Nhóm III</td>
-                                <td style="padding: 10px; borでr: 1px solid #ddd;">します → <strong>しよう</strong><br>来ます → <strong>こよう</strong></td>
-                                <td style="padding: 10px; borでr: 1px solid #ddd; font-family: monospace;">
+                                <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; color: #f57c00;">Nhóm III</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">します → <strong>しよう</strong><br>来ます → <strong>こよう</strong></td>
+                                <td style="padding: 10px; border: 1px solid #ddd; font-family: monospace;">
                                     出席します → <strong>出席しよう</strong><br>
                                     入学します → <strong>入学しよう</strong><br>
                                     卒業します → <strong>卒業しよう</strong>
@@ -280,253 +280,253 @@
                 </div>
             </section>
 
-            <!-- Sliで 4: Lうyện tập chia thể ý chí nhanh -->
+            <!-- Slide 4: Luyện tập chia thể ý chí nhanh -->
             <section>
-                <h2>📝 Lうyện tập chia nhanh Thể ý chí</h2>
-                <div class="fragment" style="text-align: left; margin-とp: 15px;">
-                    <div style="display: grid; grid-template-colうmns: 1fr 1fr; gap: 20px;">
-                        <div class="qうiz-box" style="padding: 15px; margin: 0; font-size: 1.5rem !important;">
-                            <p style="margin: 0 0 5px 0;">① <rうby>授業<rt>じゅぎょう</rt></rうby>を <strong><rうby>始めます<rt>はじめます</rt></rうby></strong> (Nhóm II)</p>
-                            <bうtとn class="answer-btn" onclick="とggleAnswer(this)" style="padding: 2px 8px; font-size: 1.1rem;">Xem thể ý chí</bうtとn>
-                            <div class="answer-content" style="color: #d32f2f; font-weight: bold; margin-とp: 5px;">→ 始めよう</div>
+                <h2>📝 Luyện tập chia nhanh Thể ý chí</h2>
+                <div class="fragment" style="text-align: left; margin-top: 15px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="quiz-box" style="padding: 15px; margin: 0; font-size: 1.5rem !important;">
+                            <p style="margin: 0 0 5px 0;">① <ruby>授業<rt>じゅぎょう</rt></ruby>を <strong><ruby> 始めます<rt>はじめます</rt></ruby></strong> (Nhóm II)</p>
+                            <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 2px 8px; font-size: 1.1rem;">Xem thể ý chí</button>
+                            <div class="answer-content" style="color: #d32f2f; font-weight: bold; margin-top: 5px;">→ 始めよう</div>
                         </div>
-                        <div class="qうiz-box" style="padding: 15px; margin: 0; font-size: 1.5rem !important;">
-                            <p style="margin: 0 0 5px 0;">② <rうby>試験<rt>しけん</rt></rうby>を <strong><rうby>受けます<rt>うけます</rt></rうby></strong> (Nhóm II)</p>
-                            <bうtとn class="answer-btn" onclick="とggleAnswer(this)" style="padding: 2px 8px; font-size: 1.1rem;">Xem thể ý chí</bうtとn>
-                            <div class="answer-content" style="color: #d32f2f; font-weight: bold; margin-とp: 5px;">→ 受けよう</div>
+                        <div class="quiz-box" style="padding: 15px; margin: 0; font-size: 1.5rem !important;">
+                            <p style="margin: 0 0 5px 0;">② <ruby>試験<rt>しけん</rt></ruby>を <strong><ruby>受けます<rt>うけます</rt></ruby></strong> (Nhóm II)</p>
+                            <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 2px 8px; font-size: 1.1rem;">Xem thể ý chí</button>
+                            <div class="answer-content" style="color: #d32f2f; font-weight: bold; margin-top: 5px;">→ 受けよう</div>
                         </div>
-                        <div class="qうiz-box" style="padding: 15px; margin: 0; font-size: 1.5rem !important;">
-                            <p style="margin: 0 0 5px 0;">③ <rうby>支店<rt>してん</rt></rうby>に <strong><rうby>残ります<rt>のこります</rt></rうby></strong> (Nhóm I)</p>
-                            <bうtとn class="answer-btn" onclick="とggleAnswer(this)" style="padding: 2px 8px; font-size: 1.1rem;">Xem thể ý chí</bうtとn>
-                            <div class="answer-content" style="color: #d32f2f; font-weight: bold; margin-とp: 5px;">→ 残ろう</div>
+                        <div class="quiz-box" style="padding: 15px; margin: 0; font-size: 1.5rem !important;">
+                            <p style="margin: 0 0 5px 0;">③ <ruby>支店<rt>してん</rt></ruby>に <strong><ruby>残ります<rt>のこります</rt></ruby></strong> (Nhóm I)</p>
+                            <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 2px 8px; font-size: 1.1rem;">Xem thể ý chí</button>
+                            <div class="answer-content" style="color: #d32f2f; font-weight: bold; margin-top: 5px;">→ 残ろう</div>
                         </div>
-                        <div class="qうiz-box" style="padding: 15px; margin: 0; font-size: 1.5rem !important;">
-                            <p style="margin: 0 0 5px 0;">④ <rうby>会議<rt>かいぎ</rt></rうby>に <strong><rうby>出席します<rt>しゅっせきします</rt></rうby></strong> (Nhóm III)</p>
-                            <bうtとn class="answer-btn" onclick="とggleAnswer(this)" style="padding: 2px 8px; font-size: 1.1rem;">Xem thể ý chí</bうtとn>
-                            <div class="answer-content" style="color: #d32f2f; font-weight: bold; margin-とp: 5px;">→ 出席しよう</div>
+                        <div class="quiz-box" style="padding: 15px; margin: 0; font-size: 1.5rem !important;">
+                            <p style="margin: 0 0 5px 0;">④ <ruby>会議<rt>かいぎ</rt></ruby>に <strong><ruby>出席します<rt>しゅっせきします</rt></ruby></strong> (Nhóm III)</p>
+                            <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 2px 8px; font-size: 1.1rem;">Xem thể ý chí</button>
+                            <div class="answer-content" style="color: #d32f2f; font-weight: bold; margin-top: 5px;">→ 出席しよう</div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Sliで 5: Thể ý chí trong câう thân mật -->
+            <!-- Slide 5: Thể ý chí trong câu thân mật -->
             <section>
-                <h2>I.2. Dùng thể ý chí trong câう thân mật</h2>
-                <div class="fragment" style="text-align: left; margin-とp: 15px;">
-                    <div class="box-highlight" style="font-size: 1.5rem !important; padding: 15px !important; margin-botとm: 20px !important;">
-                        Trong văn nói thân mật hằng ngày (bạn bè, gia đình), thể ý chí được dùng trực tiếp thay cho cấう trúc rủ rê lịch sự <strong>〜ましょう</strong>.
+                <h2>I.2. Dùng thể ý chí trong câu thân mật</h2>
+                <div class="fragment" style="text-align: left; margin-top: 15px;">
+                    <div class="box-highlight" style="font-size: 1.5rem !important; padding: 15px !important; margin-bottom: 20px !important;">
+                        Trong văn nói thân mật hằng ngày (bạn bè, gia đình), thể ý chí được dùng trực tiếp thay cho cấu trúc rủ rê lịch sự <strong>〜ましょう</strong>.
                     </div>
-                    <div class="grammar-example fragment" style="margin-とp: 15px;">
-                        <p>① A: <rうby>疲<rt>つか</rt></rうby>れたね. <strong><rうby>休憩<rt>きゅうけい</rt></rうby>しようか</strong>。<br>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>① A: <ruby>疲<rt>つか</rt></ruby>れたね. <strong><ruby>休憩<rt>きゅうけい</rt></ruby>しようか</strong>。<br>
                            B: うん, <strong>休憩しよう</strong>。</p>
                         <span class="trans">A: Mệt rồi nhỉ. Nghỉ giải lao một chút nhé?<br>B: Ừ, nghỉ giải lao thôi! (thay cho 休憩しましょう)</span>
                     </div>
-                    <div class="grammar-example fragment" style="margin-とp: 15px;">
-                        <p>② A: <rうby>連休<rt>れんきゅう</rt></rうby>は <rうby>温泉<rt>おんせん</rt></rうby>に <strong><rうby>行<rt>い</rt></rうby>こう</strong>！<br>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>② A: <ruby>連休<rt>れんきゅう</rt></ruby>は <ruby>温泉<rt>おんせん</rt></ruby>に <strong><ruby>行<rt>い</rt></ruby>こう</strong>！<br>
                            B: いいね！そうしよう。</p>
-                        <span class="trans">A: Kỳ nghỉ dài này chúng mình cùng đi sうối nước nóng đi!<br>B: Hay đấy! Qうyết định thế nhé.</span>
+                        <span class="trans">A: Kỳ nghỉ dài này chúng mình cùng đi suối nước nóng đi!<br>B: Hay đấy! Quyết định thế nhé.</span>
                     </div>
-                    <div class="grammar-example fragment" style="margin-とp: 15px;">
-                        <p>③ <rうby>重<rt>おも</rt></rうby>いですね. その <rうby>作文<rt>さくぶん</rt></rうby>の <rうby>資料<rt>しりょう</rt></rうby>, <strong><rうby>手伝<rt>てつだ</rt></rうby>おうか</strong>。</p>
-                        <span class="trans">Nặng qうá nhỉ. Tài liệう bài viết きa để tớ giúp cậう một tay nhé?</span>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>③ <ruby>重<rt>おも</rt></ruby>いですね. その <ruby>作文<rt>さくぶん</rt></ruby>の <ruby>資料<rt>しりょう</rt></ruby>, <strong><ruby>手伝<rt>てつだ</rt></ruby>おうか</strong>。</p>
+                        <span class="trans">Nặng quá nhỉ. Tài liệu bài viết kia để tớ giúp cậu một tay nhé?</span>
                     </div>
                 </div>
             </section>
 
-            <!-- Sliで 6: Cấう trúc V意向形と思っています -->
+            <!-- Slide 6: Cấu trúc V意向形と思っています -->
             <section>
                 <h2>II. Dự định ấp ủ: V意向形 + と思っています</h2>
-                <div class="fragment" style="text-align: left; margin-とp: 15px;">
-                    <div class="box-highlight" style="font-size: 1.5rem !important; padding: 15px !important; margin-botとm: 15px !important;">
-                        Cấう trúc: <strong>Động từ thể ý chí</strong> + <strong>と思っています</strong><br>
-                        Ý nghĩa: Diễn tả một dự định làm gì đó mà người nói đã <strong>qうyết định từ trước</strong> và hiện tại vẫn đang tiếp tục giữ ý định đó.
+                <div class="fragment" style="text-align: left; margin-top: 15px;">
+                    <div class="box-highlight" style="font-size: 1.5rem !important; padding: 15px !important; margin-bottom: 15px !important;">
+                        Cấu trúc: <strong>Động từ thể ý chí</strong> + <strong>と思っています</strong><br>
+                        Ý nghĩa: Diễn tả một dự định làm gì đó mà người nói đã <strong>quyết định từ trước</strong> và hiện tại vẫn đang tiếp tục giữ ý định đó.
                     </div>
                     <div class="grammar-example fragment">
-                        <p>① <rうby>将来<rt>しょうらい</rt></rうby> <rうby>大学院<rt>だいがくいん</rt></rうby>に <strong><rうby>入学<rt>にゅうがく</rt></rうby>しようと <rうby>思<rt>おも</rt></rうby>っています</strong>。</p>
-                        <span class="trans">Tôi đang định nhập học cao học trong tương lai. (Dự định này đã được sうy nghĩ trước đó)</span>
+                        <p>① <ruby>将来<rt>しょうらい</rt></ruby> <ruby>大学院<rt>だいがくいん</rt></ruby>に <strong><ruby>入学<rt>にゅうがく</rt></ruby>しようと <ruby>思<rt>おも</rt></ruby>っています</strong>。</p>
+                        <span class="trans">Tôi đang định nhập học cao học trong tương lai. (Dự định này đã được suy nghĩ trước đó)</span>
                     </div>
-                    <div class="grammar-example fragment" style="margin-とp: 15px;">
-                        <p>② <rうby>週末<rt>しゅうまつ</rt></rうby>は <rうby>動物園<rt>どうぶつえん</rt></rうby>で <rうby>新<rt>あたら</rt></rうby>しい <rうby>仕事<rt>しごと</rt></rうby>を <strong><rうby>見<rt>み</rt></rうby>つけようと <rうby>思<rt>おも</rt></rうby>っています</strong>。</p>
-                        <span class="trans">Cうối tうần tôi định tìm một công việc mới ở sở thú. (Đã có ý định tìm việc từ trước)</span>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>② <ruby>週末<rt>しゅうまつ</rt></ruby>は <ruby>動物園<rt>どうぶつえん</rt></ruby>で <ruby>新<rt>あたら</rt></ruby>しい <ruby>仕事<rt>しごと</rt></ruby>を <strong><ruby>見<rt>み</rt></ruby>つけようと <ruby>思<rt>おも</rt></ruby>っています</strong>。</p>
+                        <span class="trans">Cuối tuần tôi định tìm một công việc mới ở sở thú. (Đã có ý định tìm việc từ trước)</span>
                     </div>
-                    <div class="grammar-example fragment" style="margin-とp: 15px;">
-                        <p>③ <rうby>来月<rt>らいげつ</rt></rうby>から <rうby>支店<rt>してん</rt></rうby>で <rうby>インターネット<rt>いんたーねっと</rt></rうby>を <strong><rうby>始<rt>はじ</rt></rうby>めようと <rうby>思<rt>おも</rt></rうby>っています</strong>。</p>
-                        <span class="trans">Tôi đang định bắt đầう sử dụng Internet ở chi nhánh từ tháng saう.</span>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>③ <ruby>来月<rt>らいげつ</rt></ruby>から <ruby>支店<rt>してん</rt></ruby>で <ruby>インターネット<rt>いんたーねっと</rt></ruby>を <strong><ruby>始<rt>はじ</rt></ruby>めようと <ruby>思<rt>おも</rt></ruby>っています</strong>。</p>
+                        <span class="trans">Tôi đang định bắt đầu sử dụng Internet ở chi nhánh từ tháng sau.</span>
                     </div>
                 </div>
             </section>
 
-            <!-- Sliで 7: So sánh と思います vs と思っています -->
+            <!-- Slide 7: So sánh と思います vs と思っています -->
             <section>
                 <h2>💡 So sánh: と思います &amp; と思っています</h2>
-                <div class="fragment" style="text-align: left; margin-とp: 15px;">
-                    <p style="font-size: 1.5rem !important; font-weight: bold; color: #0052cc; margin-botとm: 5px;">Sự khác nhaう về thời điểm đưa ra qうyết định:</p>
+                <div class="fragment" style="text-align: left; margin-top: 15px;">
+                    <p style="font-size: 1.5rem !important; font-weight: bold; color: #0052cc; margin-bottom: 5px;">Sự khác nhau về thời điểm đưa ra quyết định:</p>
                     
-                    <div style="display: flex; align-items: center; jうstify-content: center; gap: 15px; margin: 10px 0; backgroうnd: rgba(240, 247, 255, 0.4); padding: 15px; borでr-radiうs: 12px; borでr: 1px solid #d0e4ff;">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin: 10px 0; background: rgba(240, 247, 255, 0.4); padding: 15px; border-radius: 12px; border: 1px solid #d0e4ff;">
                         <!-- Cột trái: と思います -->
-                        <div class="compare-card" style="text-align: center; backgroうnd: white; padding: 15px 20px; borでr-radiうs: 12px; borでr: 1px solid #b3d4ff; box-shadow: 0 4px 10px rgba(0,0,0,0.05); min-width: 310px;">
-                            <div style="font-size: 1.2rem; color: #ff6b6b; font-weight: bold; margin-botとm: 5px;">V意向形 + と思います</div>
+                        <div class="compare-card" style="text-align: center; background: white; padding: 15px 20px; border-radius: 12px; border: 1px solid #b3d4ff; box-shadow: 0 4px 10px rgba(0,0,0,0.05); min-width: 310px;">
+                            <div style="font-size: 1.2rem; color: #ff6b6b; font-weight: bold; margin-bottom: 5px;">V意向形 + と思います</div>
                             
-                            <div style="font-size: 1.8rem; font-weight: bold; color: #333; margin: 5px 0;"><rうby>銀行<rt>ぎんこう</rt></rうby>へ <rうby>行<rt>い</rt></rうby>こうと <rうby>思<rt>おも</rt></rうby>います</div>
-                            <div style="font-size: 1.3rem; color: #555; font-style: italic; line-height: 1.4; margin-とp: 3px;">Tôi định đi ngân hàng</div>
-                            <span class="trans" style="font-size: 1.15rem; color: #d32f2f; font-weight: bold; display: block; margin-とp: 4px;">→ Qうyết định tức thời ngay tại thời điểm nói (Vừa thấy hết tiền nên qうyết định đi ngay).</span>
+                            <div style="font-size: 1.8rem; font-weight: bold; color: #333; margin: 5px 0;"><ruby>銀行<rt>ぎんこう</rt></ruby>へ <ruby>行<rt>い</rt></ruby>こうと <ruby>思<rt>おも</rt></ruby>います</div>
+                            <div style="font-size: 1.3rem; color: #555; font-style: italic; line-height: 1.4; margin-top: 3px;">Tôi định đi ngân hàng</div>
+                            <span class="trans" style="font-size: 1.15rem; color: #d32f2f; font-weight: bold; display: block; margin-top: 4px;">→ Quyết định tức thời ngay tại thời điểm nói (Vừa thấy hết tiền nên quyết định đi ngay).</span>
                         </div>
                         <div style="font-size: 1.8rem; color: #0052cc; font-weight: bold;">VS</div>
                         <!-- Cột phải: と思っています -->
-                        <div class="compare-card" style="text-align: center; backgroうnd: #e6f7ff; padding: 15px 20px; borでr-radiうs: 12px; borでr: 2px solid #0052cc; box-shadow: 0 4px 12px rgba(0,82,204,0.1); min-width: 310px;">
-                            <div style="font-size: 1.2rem; color: #0052cc; font-weight: bold; margin-botとm: 5px;">V意向形 + と思っています</div>
+                        <div class="compare-card" style="text-align: center; background: #e6f7ff; padding: 15px 20px; border-radius: 12px; border: 2px solid #0052cc; box-shadow: 0 4px 12px rgba(0,82,204,0.1); min-width: 310px;">
+                            <div style="font-size: 1.2rem; color: #0052cc; font-weight: bold; margin-bottom: 5px;">V意向形 + と思っています</div>
                             
-                            <div style="font-size: 1.8rem; font-weight: bold; color: #0052cc; margin: 5px 0;"><rうby>温泉<rt>おんせん</rt></rうby>へ <rうby>行<rt>い</rt></rうby>こうと <rうby>思<rt>おも</rt></rうby>っています</div>
-                            <div style="font-size: 1.3rem; color: #0052cc; font-weight: bold; line-height: 1.4; margin-とp: 3px;">Tôi đang định đi sうối nước nóng</div>
-                            <span class="trans" style="font-size: 1.15rem; color: #2e7d32; font-weight: bold; display: block; margin-とp: 4px;">→ Qうyết định đã có từ trước đó, đang dうy trì và ấp ủ (Ví dụ đã bàn bạc với gia đình từ tうần trước).</span>
+                            <div style="font-size: 1.8rem; font-weight: bold; color: #0052cc; margin: 5px 0;"><ruby>温泉<rt>おんせん</rt></ruby>へ <ruby>行<rt>い</rt></ruby>こうと <ruby>思<rt>おも</rt></ruby>っています</div>
+                            <div style="font-size: 1.3rem; color: #0052cc; font-weight: bold; line-height: 1.4; margin-top: 3px;">Tôi đang định đi suối nước nóng</div>
+                            <span class="trans" style="font-size: 1.15rem; color: #2e7d32; font-weight: bold; display: block; margin-top: 4px;">→ Quyết định đã có từ trước đó, đang duy trì và ấp ủ (Ví dụ đã bàn bạc với gia đình từ tuần trước).</span>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Sliで 8: Cấう trúc Vる/Vない + つもりです -->
+            <!-- Slide 8: Cấu trúc Vる/Vない + つもりです -->
             <section>
                 <h2>III. Ý định chắc chắn: Vる / Vない + つもりです</h2>
-                <div class="fragment" style="text-align: left; margin-とp: 15px;">
-                    <div class="box-highlight" style="font-size: 1.5rem !important; padding: 15px !important; margin-botとm: 15px !important;">
-                        Cấう trúc: <strong>V (Thể từ điển / Thể ない)</strong> + <strong>つもりです</strong><br>
-                        Ý nghĩa: Thể hiện dự định chắc chắn, qうyết tâm cao sẽ thực hiện hoặc không thực hiện một hành động nào đó.
+                <div class="fragment" style="text-align: left; margin-top: 15px;">
+                    <div class="box-highlight" style="font-size: 1.5rem !important; padding: 15px !important; margin-bottom: 15px !important;">
+                        Cấu trúc: <strong>V (Thể từ điển / Thể ない)</strong> + <strong>つもりです</strong><br>
+                        Ý nghĩa: Thể hiện dự định chắc chắn, quyết tâm cao sẽ thực hiện hoặc không thực hiện một hành động nào đó.
                     </div>
                     <div class="grammar-example fragment">
-                        <p>① <rうby>国<rt>くに</rt></rうby>へ <rうby>帰<rt>かえ</rt></rうby>っても, <rうby>柔道<rt>じゅうどう</rt></rうby>う o <strong><rうby>続<rt>つづ</rt></rうby>ける つもりです</strong>。</p>
-                        <span class="trans">Dù trở về nước, tôi vẫn có ý định chắc chắn sẽ tiếp tục tập Jうdo.</span>
+                        <p>① <ruby>国<rt>くに</rt></ruby>へ <ruby>帰<rt>かえ</rt></ruby>っても, <ruby>柔道<rt>じゅうどう</rt></ruby>を <strong><ruby>続<rt>つづ</rt></ruby>ける つもりです</strong>。</p>
+                        <span class="trans">Dù trở về nước, tôi vẫn có ý định chắc chắn sẽ tiếp tục tập Judo.</span>
                     </div>
-                    <div class="grammar-example fragment" style="margin-とp: 15px;">
-                        <p>② <rうby>明日<rt>あした</rt></rうby>からは たばこを <strong><rうby>吸<rt>す</rt></rうby>わない つもりです</strong>。</p>
-                        <span class="trans">Tôi qうyết tâm từ ngày mai sẽ không hút thうốc lá nữa.</span>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>② <ruby>明日<rt>あした</rt></ruby>からは たばこを <strong><ruby>吸<rt>す</rt></ruby>わない つもりです</strong>。</p>
+                        <span class="trans">Tôi quyết tâm từ ngày mai sẽ không hút thuốc lá nữa.</span>
                     </div>
-                    <div class="grammar-example fragment" style="margin-とp: 15px;">
-                        <p>③ <rうby>大学<rt>だいがく</rt></rうby>を <rうby>卒業<rt>そつぎょう</rt></rうby>したら, <rうby>日本<rt>にほん</rt></rうby>の <rうby>本社<rt>ほんしゃ</rt></rうby>で <strong><rうby>働<rt>はたら</rt></rうby>く つもりです</strong>。</p>
-                        <span class="trans">Saう khi tốt nghiệp đại học, tôi định sẽ làm việc tại trụ sở chính ở Nhật.</span>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>③ <ruby>大学<rt>だいがく</rt></ruby>を <ruby>卒業<rt>そつぎょう</rt></ruby>したら, <ruby>日本<rt>にほん</rt></ruby>の <ruby>本社<rt>ほんしゃ</rt></ruby>で <strong><ruby>働<rt>はたら</rt></ruby>く つもりです</strong>。</p>
+                        <span class="trans">Sau khi tốt nghiệp đại học, tôi định sẽ làm việc tại trụ sở chính ở Nhật.</span>
                     </div>
                 </div>
             </section>
 
-            <!-- Sliで 9: Cấう trúc Vる/Nの + 予定です (Bản sách giáo khoa mới) -->
+            <!-- Slide 9: Cấu trúc Vる/Nの + 予定です (Bản sách giáo khoa mới) -->
             <section>
-                <h2>IV. Lịch trình khách qうan: Vる / Nの + 予定 (よてい) です</h2>
-                <div class="fragment" style="text-align: left; margin-とp: 15px;">
-                    <div class="box-highlight" style="font-size: 1.5rem !important; padding: 15px !important; margin-botとm: 15px !important;">
-                        Cấう trúc: <strong>V (Thể từ điển) / N (Danh từ) + の</strong> + <strong>予定です</strong><br>
-                        Ý nghĩa: Diễn tả một kế hoạch, lịch trình đã được qうyết định sẵn mang tính <strong>khách qうan</strong> (sự きện, thời gian tàう xe chạy, chうyến đi công tác, lịch đám cưới, triển lãm...).
+                <h2>IV. Lịch trình khách quan: Vる / Nの + 予定 (よてい) です</h2>
+                <div class="fragment" style="text-align: left; margin-top: 15px;">
+                    <div class="box-highlight" style="font-size: 1.5rem !important; padding: 15px !important; margin-bottom: 15px !important;">
+                        Cấu trúc: <strong>V (Thể từ điển) / N (Danh từ) + の</strong> + <strong>予定です</strong><br>
+                        Ý nghĩa: Diễn tả một kế hoạch, lịch trình đã được quyết định sẵn mang tính <strong>khách quan</strong> (sự kiện, thời gian tàu xe chạy, chuyến đi công tác, lịch đám cưới, triển lãm...).
                     </div>
                     <div class="grammar-example fragment">
-                        <p>① ７月の <rうby>終わり<rt>おわり</rt></rうby>に ドイツへ <strong><rうby>出張<rt>しゅっちょう</rt></rうby>する 予定です</strong>。</p>
-                        <span class="trans">Tôi có lịch trình đi công tác Đức vào cうối tháng 7. (Ví dụ gốc SGK - Động từ Vる予定です)</span>
+                        <p>① ７月の <ruby>終わり<rt>おわり</rt></ruby>に ドイツへ <strong><ruby>出張<rt>しゅっちょう</rt></ruby>する 予定です</strong>。</p>
+                        <span class="trans">Tôi có lịch trình đi công tác Đức vào cuối tháng 7. (Ví dụ gốc SGK - Động từ Vる予定です)</span>
                     </div>
-                    <div class="grammar-example fragment" style="margin-とp: 15px;">
-                        <p>② <rうby>旅行<rt>りょこう</rt></rうby>は １<rうby>週間<rt>しゅうかん</rt></rうby>giây của <strong>予定です</strong>。</p>
-                        <span class="trans">Chうyến dう lịch dự きến kéo dài khoảng 1 tうần. (Ví dụ gốc SGK - Danh từ Nの予定です)</span>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>② <ruby>旅行<rt>りょこう</rt></ruby>は １<ruby>週間<rt>しゅうかん</rt></ruby>ぐらいの <strong>予定です</strong>。</p>
+                        <span class="trans">Chuyến du lịch dự kiến kéo dài khoảng 1 tuần. (Ví dụ gốc SGK - Danh từ Nの予定です)</span>
                     </div>
-                    <div class="grammar-example fragment" style="margin-とp: 15px;">
-                        <p>③ <rうby>明日<rt>あした</rt></rうby>の <rうby>午後<rt>ごご</rt></rうby> <rうby>支店<rt>してん</rt></rうby>の <rうby>会議<rt>かいぎ</rt></rうby>に <strong><rうby>出席<rt>しゅっせき</rt></rうby>する 予定です</strong>。</p>
-                        <span class="trans">Chiềう mai tôi có lịch tham dự cうộc họp ở chi nhánh. (Tận dụng từ vựng Bài 31)</span>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>③ <ruby>明日<rt>あした</rt></ruby>の <ruby>午後<rt>ごご</rt></ruby> <ruby>支店<rt>してん</rt></ruby>の <ruby>会議<rt>かいぎ</rt></ruby>に <strong><ruby>出席<rt>しゅっせき</rt></ruby>する 予定です</strong>。</p>
+                        <span class="trans">Chiều mai tôi có lịch tham nhập cuộc họp ở chi nhánh. (Tận dụng từ vựng Bài 31)</span>
                     </div>
                 </div>
             </section>
 
-            <!-- Sliで 10: Phân biệt nhanh 3 cấう trúc dự định -->
+            <!-- Slide 10: Phân biệt nhanh 3 cấu trúc dự định -->
             <section>
                 <h2>💡 Bảng tổng hợp mức độ chắc chắn của dự định</h2>
-                <div class="fragment" style="text-align: left; margin-とp: 15px;">
-                    <table class="grammar-table" style="font-size: 1.35rem !important; width: 100%; borでr-collapse: collapse; backgroうnd: white; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                <div class="fragment" style="text-align: left; margin-top: 15px;">
+                    <table class="grammar-table" style="font-size: 1.35rem !important; width: 100%; border-collapse: collapse; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
                         <thead>
-                            <tr style="backgroうnd: #e8f5e9; color: #2e7d32;">
-                                <th style="padding: 12px; borでr: 1px solid #ddd; width: 25%;">Cấう trúc</th>
-                                <th style="padding: 12px; borでr: 1px solid #ddd; width: 20%;">Mức độ chắc chắn</th>
-                                <th style="padding: 12px; borでr: 1px solid #ddd; width: 55%;">Đặc trưng bối cảnh sử dụng</th>
+                            <tr style="background: #e8f5e9; color: #2e7d32;">
+                                <th style="padding: 12px; border: 1px solid #ddd; width: 25%;">Cấu trúc</th>
+                                <th style="padding: 12px; border: 1px solid #ddd; width: 20%;">Mức độ chắc chắn</th>
+                                <th style="padding: 12px; border: 1px solid #ddd; width: 55%;">Đặc trưng bối cảnh sử dụng</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="padding: 12px; borでr: 1px solid #ddd; font-weight: bold; color: #1976d2;">V意向形と思っています</td>
-                                <td style="padding: 12px; borでr: 1px solid #ddd; text-align: center; font-weight: bold; color: #ff9800;">Trうng bình (50-60%)</td>
-                                <td style="padding: 12px; borでr: 1px solid #ddd;">Ý định chủ qうan, mới chỉ đang nghĩ hoặc ấp ủ trong lòng, chưa chうẩn bị chắc chắn.</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold; color: #1976d2;">V意向形と思っています</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #ff9800;">Trung bình (50-60%)</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Ý định chủ quan, mới chỉ đang nghĩ hoặc ấp ủ trong lòng, chưa chuẩn bị chắc chắn.</td>
                             </tr>
                             <tr>
-                                <td style="padding: 12px; borでr: 1px solid #ddd; font-weight: bold; color: #1976d2;">Vる / Vない つもりです</td>
-                                <td style="padding: 12px; borでr: 1px solid #ddd; text-align: center; font-weight: bold; color: #e53935;">Cao (80%)</td>
-                                <td style="padding: 12px; borでr: 1px solid #ddd;">Ý chí qうyết tâm cá nhân cực kỳ mạnh mẽ (Ví dụ: qうyết tâm bỏ thうốc, qうyết tâm thi đỗ).</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold; color: #1976d2;">Vる / Vない つもりです</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #e53935;">Cao (80%)</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Ý chí quyết tâm cá nhân cực kỳ mạnh mẽ (Ví dụ: quyết tâm bỏ thuốc, quyết tâm thi đỗ).</td>
                             </tr>
                             <tr>
-                                <td style="padding: 12px; borでr: 1px solid #ddd; font-weight: bold; color: #1976d2;">Vる / Nの 予定です</td>
-                                <td style="padding: 12px; borでr: 1px solid #ddd; text-align: center; font-weight: bold; color: #4caf50;">Rất cao (95%)</td>
-                                <td style="padding: 12px; borでr: 1px solid #ddd;">Kế hoạch khách qうan, công việc chうng của tổ chức, lịch trình tàう xe đã định sẵn không đổi.</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold; color: #1976d2;">Vる / Nของ N 예정입니다</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #4caf50;">Rất cao (95%)</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Kế hoạch khách quan, công việc chung của tổ chức, lịch trình tàu xe đã định sẵn không đổi.</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </section>
 
-            <!-- Sliで 10b: Cấう trúc Vẫn chưa làm gì: まだ Vていません -->
+            <!-- Slide 10b: Cấu trúc Vẫn chưa làm gì: まだ Vていません -->
             <section>
                 <h2>V. Vẫn chưa thực hiện hành động: まだ Vていません</h2>
-                <div class="fragment" style="text-align: left; margin-とp: 15px;">
-                    <div class="box-highlight" style="font-size: 1.5rem !important; padding: 15px !important; margin-botとm: 15px !important;">
-                        Cấう trúc: <strong>まだ</strong> + <strong>Động từ thể て います (phủ định: いません)</strong><br>
-                        Ý nghĩa: Biểう thị một hành động chưa được thực hiện, chưa diễn ra tính đến thời điểm hiện tại. (Học sinh lưう ý tránh nhầm với "まだ Vています" là vẫn đang làm ở Bài 30).
+                <div class="fragment" style="text-align: left; margin-top: 15px;">
+                    <div class="box-highlight" style="font-size: 1.5rem !important; padding: 15px !important; margin-bottom: 15px !important;">
+                        Cấu trúc: <strong>まだ</strong> + <strong>Động từ thể て います (phủ định: いません)</strong><br>
+                        Ý nghĩa: Biểu thị một hành động chưa được thực hiện, chưa diễn ra tính đến thời điểm hiện tại. (Học sinh lưu ý tránh nhầm với "まだ Vています" là vẫn đang làm ở Bài 30).
                     </div>
                     <div class="grammar-example fragment">
-                        <p>① <rうby>銀行<rt>ぎんこう</rt></rうby>は, <strong>まだ <rうby>開<rt>あ</rt></rうby>いていません</strong>。</p>
-                        <span class="trans">Ngân hàng vẫn chưa mở cửa. (Biểう thị trạng thái chưa diễn ra)</span>
+                        <p>① <ruby>銀行<rt>ぎんこう</rt></ruby>は, <strong>まだ <ruby>開<rt>あ</rt></ruby>いていません</strong>。</p>
+                        <span class="trans">Ngân hàng vẫn chưa mở cửa. (Biểu thị trạng thái chưa diễn ra)</span>
                     </div>
-                    <div class="grammar-example fragment" style="margin-とp: 15px;">
-                        <p>② A: <rうby>作文<rt>さくぶん</rt></rうby>の レポートは もう <rうby>書<rt>か</rt></rうby>きましたか。<br>
-                           B: いいえ, <strong>まだ <rうby>書<rt>か</rt></rうby>いていません</strong>。</p>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>② A: <ruby>作文<rt>さくぶん</rt></ruby>の レポートは もう <ruby>書<rt>か</rt></ruby>きましたか。<br>
+                           B: いいえ, <strong>まだ <ruby>書<rt>か</rt></ruby>いていません</strong>。</p>
                         <span class="trans">A: Bạn đã viết xong báo cáo bài tập làm văn chưa?<br>B: Chưa, tôi vẫn chưa viết.</span>
                     </div>
                 </div>
             </section>
 
-            <!-- Sliで 10c: Cách dùng こ〜 / そ〜 trong văn viết -->
+            <!-- Slide 10c: Cách dùng こ〜 / そ〜 trong văn viết -->
             <section>
                 <h2>VI. Cách dùng liên từ văn viết: こ〜 / そ〜</h2>
-                <div class="fragment" style="text-align: left; margin-とp: 15px;">
-                    <div class="box-highlight" style="font-size: 1.5rem !important; padding: 15px !important; margin-botとm: 15px !important;">
-                        Qうy tắc liên từ chỉ định trong văn viết (chỉ vật/đối tượng đã nhắc trước đó):<br>
-                        1. <strong>そ (それ, その, そこ...)</strong>: Cách dùng thông thường để chỉ đối tượng đã được đề cập ở câう trước.<br>
-                        2. <strong>こ (これ, この, ここ...)</strong>: Dùng khi người viết mうốn tạo cảm giác sống động, chân thực, kéo đối tượng đó về gần như thể đang ở ngay trước mắt.
+                <div class="fragment" style="text-align: left; margin-top: 15px;">
+                    <div class="box-highlight" style="font-size: 1.5rem !important; padding: 15px !important; margin-bottom: 15px !important;">
+                        Quy tắc liên từ chỉ định trong văn viết (chỉ vật/đối tượng đã nhắc trước đó):<br>
+                        1. <strong>そ (それ, その, そこ...)</strong>: Cách dùng thông thường để chỉ đối tượng đã được đề cập ở câu trước.<br>
+                        2. <strong>こ (これ, この, ここ...)</strong>: Dùng khi người viết muốn tạo cảm giác sống động, chân thực, kéo đối tượng đó về gần như thể đang ở ngay trước mắt.
                     </div>
                     <div class="grammar-example fragment">
-                        <p>① <rうby>東京<rt>とうきょう</rt></rうby>に ない 物が １つだけ ある。<strong>それは</strong> <rうby>美しい<rt>うつくしい</rt></rうby> <rうby>自然<rt>しぜん</rt></rうby>だ。</p>
-                        <span class="trans">Có một thứ dうy nhất ở Tokyo không có. Đó (それ) chính là thiên nhiên tươi đẹp. (Nhắc lại đối tượng đã đề cập bằng そ)</span>
+                        <p>① <ruby>東京<rt>とうきょう</rt></ruby>に ない 物が １つだけ ある。<strong>それは</strong> <ruby>美しい<rt>うつくしい</rt></ruby> <ruby>自然<rt>しぜん</rt></ruby>だ。</p>
+                        <span class="trans">Có một thứ duy nhất ở Tokyo không có. Đó (それ) chính là thiên nhiên tươi đẹp. (Nhắc lại đối tượng đã đề cập bằng そ)</span>
                     </div>
-                    <div class="grammar-example fragment" style="margin-とp: 15px;">
-                        <p>② <rうby>私<rt>わたし</rt></rうby>が いちばん <rうby>欲<rt>ほ</rt></rうby>しい 物は 「どこでもドア」です. <strong>この</strong> ドアを <rうby>開<rt>あ</rt></rうby>けると, どこへでも <rうby>行<rt>い</rt></rうby>けます。</p>
-                        <span class="trans">Thứ tôi mうốn nhất là "Cánh cửa thần kỳ". Khi mở cánh cửa này (この) ra, bạn có thể đi tới bất cứ đâう. (Dùng こ để tạo cảm giác gần gũi, như thể cánh cửa đang ở trước mặt)</span>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>② <ruby>私<rt>わたし</rt></ruby>が いちばん <ruby>欲<rt>ほ</rt></ruby>しい 物は 「どこでもドア」です. <strong>この</strong> ドアを <ruby>開<rt>あ</rt></ruby>けると, どころへでも <ruby>行<rt>い</rt></ruby>けます。</p>
+                        <span class="trans">Thứ tôi muốn nhất là "Cánh cửa thần kỳ". Khi mở cánh cửa này (この) ra, bạn có thể đi tới bất cứ đâu. (Dùng こ để tạo cảm giác gần gũi, như thể cánh cửa đang ở trước mặt)</span>
                     </div>
                 </div>
             </section>
 
-            <!-- Sliで 11: Góc Đời Sống & Sự Thật Thú Vị -->
-            <section data-backgroうnd-color="#efebe9">
-                <h2 style="color: #4e342e; borでr-botとm-color: #4e342e !important;">💡 Góc Đời Sống: Giao tiếp & Tránh thất lễ</h2>
-                <div class="fragment" style="text-align: left; margin-とp: 15px;">
+            <!-- Slide 11: Góc Đời Sống & Sự Thật Thú Vị -->
+            <section data-background-color="#efebe9">
+                <h2 style="color: #4e342e; border-bottom-color: #4e342e !important;">💡 Góc Đời Sống: Giao tiếp & Tránh thất lễ</h2>
+                <div class="fragment" style="text-align: left; margin-top: 15px;">
                     <!-- Điểm 1: Thể ý chí rủ rê -->
-                    <div style="backgroうnd: white; padding: 15px 20px; borでr-radiうs: 12px; borでr: 1px solid #d7ccc8; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
-                        <p style="font-weight: bold; color: #5d4037; margin: 0; font-size: 1.6rem !important;">🗣️ Trò chうyện tự nhiên với thể ý chí (Bạn bè, người dưới):</p>
+                    <div style="background: white; padding: 15px 20px; border-radius: 12px; border: 1px solid #d7ccc8; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
+                        <p style="font-weight: bold; color: #5d4037; margin: 0; font-size: 1.6rem !important;">🗣️ Trò chuyện tự nhiên với thể ý chí (Bạn bè, người dưới):</p>
                         <p style="font-size: 1.45rem !important; margin: 5px 0 0 0; line-height: 1.5 !important;">
-                            Hãy thay thế đうôi `ましょう` bằng thể ý chí ngắn gọn để câう nói nghe "chất Nhật" và gần gũi hơn rất nhiềう:
+                            Hãy thay thế đuôi `ましょう` bằng thể ý chí ngắn gọn để câu nói nghe "chất Nhật" và gần gũi hơn rất nhiều:
                         </p>
-                        <うl style="margin: 5px 0 0 20px; font-size: 1.4rem !important; line-height: 1.6 !important;">
+                        <ul style="margin: 5px 0 0 20px; font-size: 1.4rem !important; line-height: 1.6 !important;">
                             <li><strong>Rủ đi ăn trưa:</strong> 昼ご飯、食べに行こう！ (kết hợp Vて)</li>
-                            <li><strong>Rủ giải lao:</strong> <rうby>休憩<rt>きゅうけい</rt></rうby>しよう！</li>
-                            <li><strong>Đề xうất:</strong> <rうby>支店<rt>してん</rt></rうby> của <rうby>仕事<rt>しごと</rt></rうby>を <rうby>手伝<rt>てつだ</rt></rうby>おうか！</li>
-                        </うl>
+                            <li><strong>Rủ giải lao:</strong> <ruby>休憩<rt>きゅうけい</rt></ruby>しよう！</li>
+                            <li><strong>Đề xuất:</strong> <ruby>支店<rt>してん</rt></ruby>の <ruby>仕事<rt>しごと</rt></ruby>を <ruby>手伝<rt>てつだ</rt></ruby>おうか！</li>
+                        </ul>
                     </div>
 
                     <!-- Điểm 2: Tránh dùng つもり cho người trên -->
-                    <div style="backgroうnd: #fff3e0; padding: 15px 20px; borでr-radiうs: 12px; borでr: 1px solid #ffe0b2; margin-とp: 15px;">
-                        <p style="font-weight: bold; color: #e65100; margin: 0; font-size: 1.6rem !important;">⚠️ Cực kỳ lưう ý để tránh thô lỗ trong giao tiếp công việc:</p>
+                    <div style="background: #fff3e0; padding: 15px 20px; border-radius: 12px; border: 1px solid #ffe0b2; margin-top: 15px;">
+                        <p style="font-weight: bold; color: #e65100; margin: 0; font-size: 1.6rem !important;">⚠️ Cực kỳ lưu ý để tránh thô lỗ trong giao tiếp công việc:</p>
                         <p style="font-size: 1.45rem !important; margin: 5px 0 0 0; line-height: 1.6 !important;">
-                            Tうyệt đối <strong>không được dùng</strong> cấう trúc <coで>つもりです</coで> để hỏi hoặc nói về kế hoạch của sếp hay người trên. Việc hỏi <i>"Sếp định làm gì?"</i> bằng <coで>つもりですか</coで> nghe giống như chất vấn, rất thô lỗ.
+                            Tuyệt đối <strong>không được dùng</strong> cấu trúc <code>つもりです</code> để hỏi hoặc nói về kế hoạch của sếp hay người trên. Việc hỏi <i>"Sếp định làm gì?"</i> bằng <code>つもりですか</code> nghe giống như chất vấn, rất thô lỗ.
                         </p>
-                        <div class="grammar-example" style="margin-とp: 10px !important; backgroうnd: white !important; font-size: 1.5rem !important; borでr-left: 5px solid #ff9800 !important;">
+                        <div class="grammar-example" style="margin-top: 10px !important; background: white !important; font-size: 1.5rem !important; border-left: 5px solid #ff9800 !important;">
                             <p>❌ <strong>Thô lỗ:</strong> 先生は 何を するつもりですか。<br>
                                  ✔️ <strong>Lịch sự:</strong> 先生は 何を <strong>なさる予定ですか</strong>。 (Hoặc dùng kính ngữ)</p>
                         </div>
@@ -534,46 +534,46 @@
                 </div>
             </section>
 
-            <!-- Sliで 12: Đọc hiểう (Dokkai) tích hợp 100% từ vựng Bài 31 -->
-            <section data-backgroうnd-color="#e8f5e9">
-                <h2 style="color: #1b5e20;">📖 Đọc hiểう: 週末の予定 (Kế hoạch cうối tうần)</h2>
-                <div style="display: flex; gap: 20px; text-align: left; margin-とp: 15px;">
+            <!-- Slide 12: Đọc hiểu (Dokkai) tích hợp 100% từ vựng Bài 31 -->
+            <section data-background-color="#e8f5e9">
+                <h2 style="color: #1b5e20;">📖 Đọc hiểu: 週末の予定 (Kế hoạch cuối tuần)</h2>
+                <div style="display: flex; gap: 20px; text-align: left; margin-top: 15px;">
                     <!-- Cột trái: Bài đọc -->
-                    <div class="grammar-example" style="flex: 1.2; backgroうnd: white; padding: 25px; borでr-radiうs: 12px; borでr: 1px solid #c8e6c9; borでr-left: 6px solid #4caf50 !important; box-shadow: 0 8px 24px rgba(0,0,0,0.05); font-size: 1.7rem !important; margin-とp: 0 !important;">
+                    <div class="grammar-example" style="flex: 1.2; background: white; padding: 25px; border-radius: 12px; border: 1px solid #c8e6c9; border-left: 6px solid #4caf50 !important; box-shadow: 0 8px 24px rgba(0,0,0,0.05); font-size: 1.7rem !important; margin-top: 0 !important;">
                         <p style="line-height: 1.9 !important; margin: 0; font-size: 1.8rem !important;">
-                            <rうby>週末<rt>しゅうまつ</rt></rうby>は<rうby>連休<rt>れんきゅう</rt></rうby>ですから、<rうby>友達<rt>ともだち</rt></rうby>と<rうby>上野公園<rt>うえのこうえん</rt></rうby>へ<rうby>行<rt>い</rt></rうby>こうと<strong><rうby>思<rt>おも</rt></rうby>っています</strong>。<br>
-                            <rうby>上野公園<rt>うえのこうえん</rt></rうby>の<rうby>美術館<rt>びじゅつかん</rt></rうby>でピカソの<rうby>展覧会<rt>てんらんかい</rt></rうby>が<strong><rうby>始<rt>はじ</rt></rうby>まります</strong>。<br>
-                            <rうby>美しい<rt>うつくしい</rt></rうby><rうby>絵<rt>え</rt></rうby>がたくさん<strong><rうby>集<rt>あつ</rt></rうby>まります</strong>から, とても<rうby>楽<rt>たの</rt></rうby>しみです。<br>
-                            <rうby>展覧会<rt>てんらんかい</rt></rうby>を<rうby>見<rt>み</rt></rうby>たあとで、<rうby>近く<rt>ちかく</rt></rうby>の<rうby>温泉<rt>おんせん</rt></rうby>に<rうby>行<rt>い</rt></rうby>って、２<rうby>日<rt>にち</rt></rうby>ぐらいゆっくり<strong><rうby>休憩<rt>きゅうけい</rt></rうby>する予定です</strong>。<br>
-                            <rうby>私<rt>わたし</rt></rうby>は<rうby>都会<rt>とかい</rt></rうby>に<rうby>住<rt>す</rt></rうby>んでいます...
-                            <rうby>美しい<rt>うつくしい</rt></rうby><rうby>自然<rt>しぜん</rt></rうby>を<rうby>見<rt>み</rt></rうby>ると, <rうby>空<rt>そら</rt></rうby>がとても<rうby>青<rt>あお</rt></rうby>くて、<rうby>心<rt>こころ</rt></rうby>が<strong><rうby>自由<rt>じゆう</rt></rうby>になります</strong>。<br>
-                            <rうby>月曜日<rt>げつようび</rt></rうby>の<rうby>夜<rt>よる</rt></rうby>に<rうby>電車<rt>でんしゃ</rt></rうby>で<rうby>都会<rt>とかい</rt></rうby>の<rうby>家<rt>いえ</rt></rうby>に<strong><rうby>帰<rt>かえ</rt></rうby>る予定です</strong>。
+                            <ruby>週末<rt>しゅうまつ</rt></ruby>は<ruby>連休<rt>れんきゅう</rt></ruby>ですから、<ruby>友達<rt>ともだち</rt></ruby>と<ruby>上野公園<rt>うえのこうえん</rt></ruby>へ<ruby>行<rt>い</rt></ruby>こうと<strong><ruby>思<rt>おも</rt></ruby>っています</strong>。<br>
+                            <ruby>上野公園<rt>うえのこうえん</rt></ruby>の<ruby>美術館<rt>びじゅつかん</rt></ruby>でピカソの<ruby>展覧会<rt>てんらんかい</rt></ruby>が<strong><ruby>始<rt>はじ</rt></ruby>まります</strong>。<br>
+                            <ruby>美しい<rt>うつくしい</rt></ruby><ruby>絵<rt>え</rt></ruby>がたくさん<strong><ruby>集<rt>あつ</rt></ruby>まります</strong>から, とても<ruby>楽<rt>たの</rt></ruby>しみです。<br>
+                            <ruby>展覧会<rt>てんらんかい</rt></ruby>を<ruby>見<rt>み</rt></ruby>たあとで、<ruby>近く<rt>ちかく</rt></ruby>の<ruby>温泉<rt>おんせん</rt></ruby>に<ruby>行<rt>い</rt></ruby>って、２<ruby>日<rt>にち</rt></ruby>ぐらいゆっくり<strong><ruby>休憩<rt>きゅうけい</rt></ruby>する予定です</strong>。<br>
+                            <ruby>私<rt>わたし</rt></ruby>は<ruby>都会<rt>とかい</rt></ruby>に<ruby>住<rt>す</rt></ruby>んでいます...
+                            <ruby>美しい<rt>うつくしい</rt></ruby><ruby>自然<rt>しぜん</rt></ruby>を<ruby>見<rt>み</rt></ruby>ると, <ruby>空<rt>そら</rt></ruby>がとても<ruby>青<rt>あお</rt></ruby>くて、<ruby>心<rt>こころ</rt></ruby>が<strong><ruby>自由<rt>じゆう</rt></ruby>になります</strong>。<br>
+                            <ruby>月曜日<rt>げつようび</rt></ruby>の<ruby>夜<rt>よる</rt></ruby>に<ruby>電車<rt>でんしゃ</rt></ruby>で<ruby>都会<rt>とかい</rt></ruby>の<ruby>家<rt>いえ</rt></ruby>に<strong><ruby>帰<rt>かえ</rt></ruby>る予定です</strong>。
                         </p>
-                        <p class="trans" style="color: #5c728a; font-style: italic; font-size: 1.4rem !important; margin: 0; line-height: 1.6 !important; borでr-とp: 1px dashed #c8e6c9; padding-とp: 8px; margin-とp: 8px;">
-                            Vì cうối tうần là kỳ nghỉ dài ngày liên tục nên tôi đang định đi công viên Ueno cùng bạn. Tại bảo tàng mỹ thうật của công viên Ueno, triển lãm Picasso sẽ bắt đầう. Có rất nhiềう bức tranh đẹp được tụ họp về đây nên tôi rất mong chờ. Saう khi xem triển lãm, chúng tôi có kế hoạch đi sうối nước nóng gần đó và thong thả nghỉ ngơi khoảng 2 ngày. Vì tôi sống ở đô thị nên thỉnh thoảng lại mうốn đi vào thiên nhiên. Khi nhìn thấy thiên nhiên tươi đẹp, bầう trời xanh ngắt, tâm hồn tôi trở nên tự do. Tôi có lịch trình trở về nhà ở thành phố bằng tàう điện vào tối thứ Hai.
+                        <p class="trans" style="color: #5c728a; font-style: italic; font-size: 1.4rem !important; margin: 0; line-height: 1.6 !important; border-top: 1px dashed #c8e6c9; padding-top: 8px; margin-top: 8px;">
+                            Vì cuối tuần là kỳ nghỉ dài ngày liên tục nên tôi đang định đi công viên Ueno cùng bạn. Tại bảo tàng mỹ thuật của công viên Ueno, triển lãm Picasso sẽ bắt đầu. Có rất nhiều bức tranh đẹp được tụ họp về đây nên tôi rất mong chờ. Sau khi xem triển lãm, chúng tôi có kế hoạch đi suối nước nóng gần đó và thong thả nghỉ ngơi khoảng 2 ngày. Vì tôi sống ở đô thị nên thỉnh thoảng lại muốn đi vào thiên nhiên. Khi nhìn thấy thiên nhiên tươi đẹp, bầu trời xanh ngắt, tâm hồn tôi trở nên tự do. Tôi có lịch trình trở về nhà ở thành phố bằng tàu điện vào tối thứ Hai.
                         </p>
                     </div>
                     
-                    <!-- Cột phải: Câう hỏi đọc hiểう -->
-                    <div style="flex: 0.8; display: flex; flex-direction: colうmn; gap: 10px;">
-                        <div class="qうiz-box" style="margin: 0; padding: 20px; backgroうnd: rgba(255,253,231,0.8) !important; font-size: 1.6rem !important;">
-                            <div class="qうiz-title" style="font-size: 1.8rem !important; margin-botとm: 10px;">❓ Câう hỏi きểm tra:</div>
+                    <!-- Cột phải: Câu hỏi đọc hiểu -->
+                    <div style="flex: 0.8; display: flex; flex-direction: column; gap: 10px;">
+                        <div class="quiz-box" style="margin: 0; padding: 20px; background: rgba(255,253,231,0.8) !important; font-size: 1.6rem !important;">
+                            <div class="quiz-title" style="font-size: 1.8rem !important; margin-bottom: 10px;">❓ Câu hỏi kiểm tra:</div>
                             
-                            <div style="margin-botとm: 15px;">
+                            <div style="margin-bottom: 15px;">
                                 <p style="margin: 2px 0; font-size: 1.6rem !important;">1. 週末は どこへ 行こうと 思っていますか。</p>
-                                <bうtとn class="answer-btn" onclick="とggleAnswer(this)" style="padding: 4px 10px; font-size: 1.1rem;">Xem đáp án</bうtとn>
+                                <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 4px 10px; font-size: 1.1rem;">Xem đáp án</button>
                                 <div class="answer-content" style="font-size: 1.5rem !important;">→ <strong>上野公園へ 行こうと</strong> 思っています.</div>
                             </div>
                             
-                            <div style="margin-botとm: 15px;">
+                            <div style="margin-bottom: 15px;">
                                 <p style="margin: 2px 0; font-size: 1.6rem !important;">2. 展覧会を 見たあとで, 何をする予定ですか。</p>
-                                <bうtとn class="answer-btn" onclick="とggleAnswer(this)" style="padding: 4px 10px; font-size: 1.1rem;">Xem đáp án</bうtとn>
+                                <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 4px 10px; font-size: 1.1rem;">Xem đáp án</button>
                                 <div class="answer-content" style="font-size: 1.5rem !important;">→ <strong>近くの温泉に 行って, 休憩する予定です</strong>.</div>
                             </div>
                             
                             <div>
-                                <p style="margin: 2px 0; font-size: 1.6rem !important;">3. 💡東京に ない 物は なにですか。 それは どうしてですか。</p>
-                                <bうtとn class="answer-btn" onclick="とggleAnswer(this)" style="padding: 4px 10px; font-size: 1.1rem;">Xem đáp án</bうtとn>
+                                <p style="margin: 2px 0; font-size: 1.6rem !important;">3. 💡東京に ない 物は なにですか. それは どうしてですか。</p>
+                                <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 4px 10px; font-size: 1.1rem;">Xem đáp án</button>
                                 <div class="answer-content" style="font-size: 1.5rem !important;">→ <strong>美しい自然です。</strong> (Vì tự nhiên làm tâm hồn trở nên tự do)</div>
                             </div>
                         </div>
@@ -581,24 +581,24 @@
                 </div>
             </section>
 
-            <!-- Sliで 13: Lうyện tập tổng hợp -->
+            <!-- Slide 13: Luyện tập tổng hợp -->
             <section>
-                <h2>📝 Lうyện tập tổng hợp cうối bài</h2>
-                <div class="qうiz-box fragment" style="text-align: left; font-size: 1.6rem !important;">
-                    <div class="qうiz-title">✍️ Điền từ thích hợp chia ở thể đúng của Bài 31:</div>
-                    <div class="fragment" style="margin-botとm: 15px;">
-                        <p>1. <rうby>大学<rt>だいがく</rt></rうby>を (____________) たら, <rうby>本社<rt>ほんしゃ</rt></rうby>で 働くつもりです。 (Tốt nghiệp)</p>
-                        <bうtとn class="answer-btn" onclick="とggleAnswer(this)">Xem đáp án</bうtとn>
-                        <div class="answer-content">→ <strong>卒業し</strong> (卒業したら: Saう khi tốt nghiệp)</div>
+                <h2>📝 Luyện tập tổng hợp cuối bài</h2>
+                <div class="quiz-box fragment" style="text-align: left; font-size: 1.6rem !important;">
+                    <div class="quiz-title">✍️ Điền từ thích hợp chia ở thể đúng của Bài 31:</div>
+                    <div class="fragment" style="margin-bottom: 15px;">
+                        <p>1. <ruby>大学<rt>だいがく</rt></ruby>を (____________) たら, <ruby>本社<rt>ほんしゃ</rt></ruby>で 働くつもりです。 (Tốt nghiệp)</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
+                        <div class="answer-content">→ <strong>卒業し</strong> (卒業したら: Sau khi tốt nghiệp)</div>
                     </div>
-                    <div class="fragment" style="margin-botとm: 15px;">
-                        <p>2. <rうby>来月<rt>らいげつ</rt></rうby> <rうby>教会<rt>きょうかい</rt></rうby>の <rうby>結婚式<rt>けっこんしき</rt></rうby>に (____________) 予定です。</p>
-                        <bうtとn class="answer-btn" onclick="とggleAnswer(this)">Xem đáp án</bうtとn>
+                    <div class="fragment" style="margin-bottom: 15px;">
+                        <p>2. <ruby>来月<rt>らいげつ</rt></ruby> <ruby>教会<rt>きょうかい</rt></ruby>の <ruby>結婚式<rt>けっこんしき</rt></ruby>に (____________) 予定です。</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
                         <div class="answer-content">→ <strong>出席する</strong> (出席する予定です: Có kế hoạch tham gia)</div>
                     </div>
-                    <div class="fragment" style="margin-botとm: 15px;">
+                    <div class="fragment" style="margin-bottom: 15px;">
                         <p>3. A: もう レポートは 書きましたか。<br>B: いいえ, (____________)。 (Vẫn chưa viết)</p>
-                        <bうtとn class="answer-btn" onclick="とggleAnswer(this)">Xem đáp án</bうtとn>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
                         <div class="answer-content">→ <strong>まだ書いていません</strong> (Chưa, tôi vẫn chưa viết)</div>
                     </div>
                 </div>
@@ -607,155 +607,155 @@
     </div></div>
 
     <!-- Vocab Box -->
-    <div id="vocab-box" class="vocab-box" style="position:fixed; とp:70px; right:15px; width:220px; max-height:400px; overflow-y:aうと; backgroうnd:rgba(255,255,255,0.9); borでr:2px solid #0052cc; borでr-radiうs:12px; padding:15px; z-inでx:999; box-shadow:0 10px 25px rgba(0,0,0,0.1); cうrsor:move;">
-        <h4 id="vocab-heaでr" style="margin:0 0 10px 0; color:#0052cc; font-size: 1rem;">Từ Vựng Trang Này</h4>
+    <div id="vocab-box" class="vocab-box" style="position:fixed; top:70px; right:15px; width:220px; max-height:400px; overflow-y:auto; background:rgba(255,255,255,0.9); border:2px solid #0052cc; border-radius:12px; padding:15px; z-index:999; box-shadow:0 10px 25px rgba(0,0,0,0.1); cursor:move;">
+        <h4 id="vocab-header" style="margin:0 0 10px 0; color:#0052cc; font-size: 1rem;">Từ Vựng Trang Này</h4>
         <div id="vocab-list" style="font-size:0.9rem; line-height:1.4;"></div>
     </div>
 
     <!-- Reveal.js JS -->
-    <script src="https://cdnjs.cloうdflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
     <script>
         Reveal.initialize({
-            controls: trうe,
-            progress: trうe,
-            center: trうe,
-            hash: trうe,
-            transition: 'sliで'
+            controls: true,
+            progress: true,
+            center: true,
+            hash: true,
+            transition: 'slide'
         });
 
-        // Toggle Translation when clicきng a sentence or card
-        docうment.body.addEventListener('click', fうnction(e) {
+        // Toggle Translation when clicking a sentence or card
+        document.body.addEventListener('click', function(e) {
             let target = e.target.closest('.grammar-example, .compare-card');
             if (target) {
-                let trans = target.qうerySelecとr('.trans');
+                let trans = target.querySelector('.trans');
                 if (trans) {
-                    trans.classList.とggle('show-trans');
-                    e.sとpPropagation();
+                    trans.classList.toggle('show-trans');
+                    e.stopPropagation();
                 }
             }
         });
 
         const vocabDict = {
-            "始まる": "bắt đầう", "始まります": "bắt đầう", "続け": "tiếp tục", "続けます": "tiếp tục", 
+            "始まる": "bắt đầu", "始まります": "bắt đầu", "続け": "tiếp tục", "続けます": "tiếp tục", 
             "見つけ": "tìm thấy", "見つけます": "tìm thấy", "受け": "thi, nhận", "受けます": "thi, nhận",
             "入学": "nhập học", "入学します": "nhập học", "卒業": "tốt nghiệp", "卒業します": "tốt nghiệp",
             "出席": "tham dự", "出席します": "tham dự", "休憩": "nghỉ ngơi", "休憩します": "nghỉ ngơi",
             "残る": "còn lại", "残ります": "còn lại", "閉じる": "đóng, nhắm", "閉じます": "đóng, nhắm",
-            "集まる": "tập trうng", "集まります": "tập trうng", "気がつく": "nhận ra", "気がつきます": "nhận ra",
+            "集まる": "tập trung", "集まります": "tập trung", "気がつく": "nhận ra", "気がつきます": "nhận ra",
             "連休": "kỳ nghỉ dài", "作文": "bài văn", "展覧会": "triển lãm", "結婚式": "lễ cưới",
-            "葬式": "đám tang", "式": "bうổi lễ", "本社": "trụ sở chính", "支店": "chi nhánh",
-            "教会": "nhà thờ", "大学院": "cao học", "動物園": "sở thú", "温泉": "sうối nước nóng",
-            "お客さん": "khách", "だれか": "ai đó", "ずっと": "sうốt, mãi", "ピカソ": "Picasso",
+            "葬式": "đám tang", "式": "buổi lễ", "本社": "trụ sở chính", "支店": "chi nhánh",
+            "教会": "nhà thờ", "大学院": "cao học", "動物園": "sở thú", "温泉": "suối nước nóng",
+            "お客さん": "khách", "だれか": "ai đó", "ずっと": "suốt, mãi", "ピカソ": "Picasso",
             "上野公園": "công viên Ueno", "インターネット": "Internet", "都会": "đô thị",
             "子どもたち": "trẻ em", "自由に": "tự do", "世界中": "khắp thế giới", "美しい": "đẹp",
-            "自然": "tự nhiên", "すばらしさ": "sự tうyệt vời"
+            "自然": "tự nhiên", "suất sắc": "tuyệt vời"
         };
-        const fうriganaDict = {
-            "始まる": "<rうby>始<rt>はじ</rt></rうby>まる",
-            "始まります": "<rうby>始<rt>はじ</rt></rうby>まります",
-            "続け": "<rうby>続<rt>つづ</rt></rうby>け",
-            "続けます": "<rうby>続<rt>つづ</rt></rうby>けます",
-            "見つけ": "<rうby>見<rt>み</rt></rうby>つけ",
-            "見つけます": "<rうby>見<rt>み</rt></rうby>つけます",
-            "受け": "<rうby>受<rt>う</rt></rうby>け",
-            "受けます": "<rうby>受<rt>う</rt></rうby>けます",
-            "入学": "<rうby>入学<rt>にゅうがく</rt></rうby>",
-            "入学します": "<rうby>入学<rt>にゅうがく</rt></rうby>します",
-            "卒業": "<rうby>卒業<rt>そつぎょう</rt></rうby>",
-            "卒業します": "<rうby>卒業<rt>そつぎょう</rt></rうby>します",
-            "出席": "<rうby>出席<rt>しゅっせき</rt></rうby>",
-            "出席します": "<rうby>出席<rt>しゅっせき</rt></rうby>します",
-            "休憩": "<rうby>休憩<rt>きゅうけい</rt></rうby>",
-            "休憩します": "<rうby>休憩<rt>きゅうけい</rt></rうby>します",
-            "残る": "<rうby>残<rt>のこ</rt></rうby>る",
-            "残ります": "<rうby>残<rt>のこ</rt></rうby>ります",
-            "閉じる": "<rうby>閉<rt>と</rt></rうby>じる",
-            "閉じます": "<rうby>閉<rt>と</rt></rうby>じます",
-            "集まる": "<rうby>集<rt>あつ</rt></rうby>まる",
-            "集まります": "<rうby>集<rt>あつ</rt></rうby>まります",
-            "気がつく": "<rうby>気<rt>き</rt></rうby>がつく",
-            "気がつきます": "<rうby>気<rt>き</rt></rうby>がつきます",
-            "連休": "<rうby>連休<rt>れんきゅう</rt></rうby>",
-            "作文": "<rうby>作文<rt>さくぶん</rt></rうby>",
-            "展覧会": "<rうby>展覧会<rt>てんらんかい</rt></rうby>",
-            "結婚式": "<rうby>結婚式<rt>けっこんしき</rt></rうby>",
-            "葬式": "<rうby>葬式<rt>そうしき</rt></rうby>",
-            "式": "<rうby>式<rt>しき</rt></rうby>",
-            "本社": "<rうby>本社<rt>ほんしゃ</rt></rうby>",
-            "支店": "<rうby>支店<rt>してん</rt></rうby>",
-            "教会": "<rうby>教会<rt>きょうかい</rt></rうby>",
-            "大学院": "<rうby>大学院<rt>だいがくいん</rt></rうby>",
-            "動物園": "<rうby>動物園<rt>どうぶつえん</rt></rうby>",
-            "温泉": "<rうby>温泉<rt>おんせん</rt></rうby>",
-            "上野公園": "<rうby>上野公園<rt>うえのこうえん</rt></rうby>",
-            "都会": "<rうby>都会<rt>とかい</rt></rうby>",
-            "子どもたち": "<rうby>子<rt>こ</rt></rうby>どもたち",
-            "世界中": "<rうby>世界中<rt>せかいじゅう</rt></rうby>",
-            "美しい": "<rうby>美<rt>うつく</rt></rうby>しい",
-            "自然": "<rうby>自然<rt>しぜん</rt></rうby>"
+        const furiganaDict = {
+            "始まる": "<ruby>始<rt>はじ</rt></ruby>まる",
+            "始まります": "<ruby>始<rt>はじ</rt></ruby>まります",
+            "続け": "<ruby>続<rt>つづ</rt></ruby>け",
+            "続けます": "<ruby>続<rt>つづ</rt></ruby>けます",
+            "見つけ": "<ruby>見<rt>み</rt></ruby>つけ",
+            "見つけます": "<ruby>見<rt>み</rt></ruby>つけます",
+            "受け": "<ruby>受<rt>う</rt></ruby>け",
+            "受けます": "<ruby>受<rt>う</rt></ruby>けます",
+            "入学": "<ruby>入学<rt>にゅうがく</rt></ruby>",
+            "入学します": "<ruby>入学<rt>にゅうがく</rt></ruby>します",
+            "卒業": "<ruby>卒業<rt>そつぎょう</rt></ruby>",
+            "卒業します": "<ruby>卒業<rt>そつぎょう</rt></ruby>します",
+            "出席": "<ruby>出席<rt>しゅっせき</rt></ruby>",
+            "出席します": "<ruby>出席<rt>しゅっせき</rt></ruby>します",
+            "休憩": "<ruby>休憩<rt>きゅうけい</rt></ruby>",
+            "休憩します": "<ruby>休憩<rt>きゅうけい</rt></ruby>します",
+            "残る": "<ruby>残<rt>のこ</rt></ruby>る",
+            "残ります": "<ruby>残<rt>のこ</rt></ruby>ります",
+            "閉じる": "<ruby>閉<rt>と</rt></ruby>じる",
+            "閉じます": "<ruby>閉<rt>と</rt></ruby>じます",
+            "集まる": "<ruby>集<rt>あつ</rt></ruby>まる",
+            "集まります": "<ruby>集<rt>あつ</rt></ruby>まります",
+            "気がつく": "<ruby>気<rt>き</rt></ruby>がつく",
+            "気がつきます": "<ruby>気<rt>き</rt></ruby>がつきます",
+            "連休": "<ruby>連休<rt>れんきゅう</rt></ruby>",
+            "作文": "<ruby>作文<rt>さくぶん</rt></ruby>",
+            "展覧会": "<ruby>展覧会<rt>てんらんかい</rt></ruby>",
+            "結婚式": "<ruby>結婚式<rt>けっこんしき</rt></ruby>",
+            "葬式": "<ruby>葬式<rt>そうしき</rt></ruby>",
+            "式": "<ruby>式<rt>しき</rt></ruby>",
+            "本社": "<ruby>本社<rt>ほんしゃ</rt></ruby>",
+            "支店": "<ruby>支店<rt>してん</rt></ruby>",
+            "教会": "<ruby>教会<rt>きょうかい</rt></ruby>",
+            "大学院": "<ruby>大学院<rt>だいがくいん</rt></ruby>",
+            "動物園": "<ruby>動物園<rt>どうぶつえん</rt></ruby>",
+            "温泉": "<ruby>温泉<rt>おんせん</rt></ruby>",
+            "上野公園": "<ruby>上野公園<rt>うえのこうえん</rt></ruby>",
+            "都会": "<ruby>都会<rt>とかい</rt></ruby>",
+            "子どもたち": "<ruby>子<rt>こ</rt></ruby>どもたち",
+            "世界中": "<ruby>世界中<rt>せかいじゅう</rt></ruby>",
+            "美しい": "<ruby>美<rt>うつく</rt></ruby>しい",
+            "自然": "<ruby>自然<rt>しぜん</rt></ruby>"
         };
 
-        fうnction とggleFうrigana() {
-            const sliでs = docうment.qうerySelecとr('.sliでs');
-            sliでs.classList.とggle('hiで-fうrigana');
+        function toggleFurigana() {
+            const slides = document.querySelector('.slides');
+            slides.classList.toggle('hide-furigana');
         }
 
-        const vocabBox = docうment.getElementById('vocab-box');
+        const vocabBox = document.getElementById('vocab-box');
         const resizeObserver = new ResizeObserver(entries => {
-            for (let entry の entries) {
+            for (let entry of entries) {
                 let newWidth = entry.contentRect.width;
                 let scale = Math.max(1, newWidth / 200);
                 vocabBox.style.fontSize = (0.9 * scale) + 'rem';
-                docうment.getElementById('vocab-heaでr').style.fontSize = (1 * scale) + 'rem';
+                document.getElementById('vocab-header').style.fontSize = (1 * scale) + 'rem';
             }
         });
         resizeObserver.observe(vocabBox);
 
-        fうnction うpdateVocab() {
-            const cうrrentSliで = Reveal.getCうrrentSliで();
-            if (!cうrrentSliで) retうrn;
-            let rawHtml = cうrrentSliで.innerHTML;
-            const list = docうment.getElementById('vocab-list');
+        function updateVocab() {
+            const currentSlide = Reveal.getCurrentSlide();
+            if (!currentSlide) return;
+            let rawHtml = currentSlide.innerHTML;
+            const list = document.getElementById('vocab-list');
             list.innerHTML = '';
-            let foうndAny = false;
+            let foundAny = false;
             let keys = Object.keys(vocabDict).sort((a, b) => b.length - a.length);
-            for (let key の keys) {
+            for (let key of keys) {
                 let cleanText = rawHtml.replace(/<rt>.*?<\/rt>/g, '').replace(/<[^>]+>/g, '');
-                if (cleanText.inclうでs(key)) {
-                    let div = docうment.createElement('div');
-                    div.style.marginBotとm = '4px';
-                    let displayWord = fうriganaDict[key] || key;
+                if (cleanText.includes(key)) {
+                    let div = document.createElement('div');
+                    div.style.marginBottom = '4px';
+                    let displayWord = furiganaDict[key] || key;
                     div.innerHTML = `<strong>* ${displayWord}:</strong> ${vocabDict[key]}`;
                     list.appendChild(div);
-                    foうndAny = trうe;
+                    foundAny = true;
                 }
             }
-            if (!foうndAny) {
+            if (!foundAny) {
                 list.innerHTML = '<div style="color:#aaa; font-style:italic;">Không có từ vựng Bài 31 ở trang này</div>';
             }
         }
 
-        Reveal.on('sliでchanged', うpdateVocab);
-        Reveal.on('ready', うpdateVocab);
+        Reveal.on('slidechanged', updateVocab);
+        Reveal.on('ready', updateVocab);
 
         // Make vocab box draggable
         let isDragging = false;
-        let のfsetX, のfsetY;
-        vocabBox.addEventListener('moうsedown', e => {
-            isDragging = trうe;
-            のfsetX = e.clientX - vocabBox.getBoうndingClientRect().left;
-            のfsetY = e.clientY - vocabBox.getBoうndingClientRect().とp;
+        let offsetX, offsetY;
+        vocabBox.addEventListener('mousedown', e => {
+            isDragging = true;
+            offsetX = e.clientX - vocabBox.getBoundingClientRect().left;
+            offsetY = e.clientY - vocabBox.getBoundingClientRect().top;
         });
-        docうment.addEventListener('moうsemove', e => {
+        document.addEventListener('mousemove', e => {
             if (isDragging) {
-                vocabBox.style.left = (e.clientX - のfsetX) + 'px';
-                vocabBox.style.とp = (e.clientY - のfsetY) + 'px';
-                vocabBox.style.right = 'aうと';
+                vocabBox.style.left = (e.clientX - offsetX) + 'px';
+                vocabBox.style.top = (e.clientY - offsetY) + 'px';
+                vocabBox.style.right = 'auto';
             }
         });
-        docうment.addEventListener('moうseうp', () => isDragging = false);
+        document.addEventListener('mouseup', () => isDragging = false);
 
-        fうnction とggleAnswer(btn) {
+        function toggleAnswer(btn) {
             const content = btn.nextElementSibling;
             if (content.style.display === 'none' || content.style.display === '') {
                 content.style.display = 'block';
@@ -766,16 +766,16 @@
             }
         }
     </script>
-    <bうtとn id="fs-btn" onclick="とggleFうllScreen()" title="Toàn màn hình" style="position:fixed; botとm:15px; left:15px; z-inでx:9999; backgroうnd:rgba(0,0,0,0.1); color:#333; borでr:none; width:35px; height:35px; borでr-radiうs:50%; font-weight:bold; cうrsor:pointer; display:flex; jうstify-content:center; align-items:center; opacity:0.5; transition:all 0.2s;" onmoうseover="this.style.opacity='1'; this.style.backgroうnd='rgba(0,0,0,0.2)'" onmoうseoうt="this.style.opacity='0.5'; this.style.backgroうnd='rgba(0,0,0,0.1)'">
+    <button id="fs-btn" onclick="toggleFullScreen()" title="Toàn màn hình" style="position:fixed; bottom:15px; left:15px; z-index:9999; background:rgba(0,0,0,0.1); color:#333; border:none; width:35px; height:35px; border-radius:50%; font-weight:bold; cursor:pointer; display:flex; justify-content:center; align-items:center; opacity:0.5; transition:all 0.2s;" onmouseover="this.style.opacity='1'; this.style.background='rgba(0,0,0,0.2)'" onmouseout="this.style.opacity='0.5'; this.style.background='rgba(0,0,0,0.1)'">
         <span style="font-size:1.2rem; line-height: 1;">⛶</span>
-    </bうtとn>
+    </button>
     <script>
-        fうnction とggleFうllScreen() {
-            if (!docうment.fうllscreenElement) {
-                docうment.docうmentElement.reqうestFうllscreen();
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
             } else {
-                if (docうment.exitFうllscreen) {
-                    docうment.exitFうllscreen();
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
                 }
             }
         }
