@@ -78,7 +78,7 @@
         
         /* Quiz box glassmorphism */
         .quiz-box {
-            background: rgba(255, 253, 231, 0.6) !important;
+            background: rgba(255, 255, 255, 0.6) !important;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(251, 192, 45, 0.3) !important;
             box-shadow: 0 8px 24px rgba(251, 192, 45, 0.15) !important;
@@ -153,6 +153,15 @@
         }
         .show-trans {
             display: block !important;
+        }
+        
+        /* Hide quiz answer content by default */
+        .answer-content {
+            display: none;
+            color: #2e7d32;
+            font-weight: bold;
+            margin-top: 10px;
+            font-size: 1.5rem !important;
         }
         
         @keyframes fadeIn {
@@ -286,7 +295,7 @@
                 <div class="fragment" style="text-align: left; margin-top: 15px;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                         <div class="quiz-box" style="padding: 15px; margin: 0; font-size: 1.5rem !important;">
-                            <p style="margin: 0 0 5px 0;">① <ruby>授業<rt>じゅぎょう</rt></ruby>を <strong><ruby> 始めます<rt>はじめます</rt></ruby></strong> (Nhóm II)</p>
+                            <p style="margin: 0 0 5px 0;">① <ruby>授業<rt>じゅぎょう</rt></ruby>を <strong><ruby>始めます<rt>はじめます</rt></ruby></strong> (Nhóm II)</p>
                             <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 2px 8px; font-size: 1.1rem;">Xem thể ý chí</button>
                             <div class="answer-content" style="color: #d32f2f; font-weight: bold; margin-top: 5px;">→ 始めよう</div>
                         </div>
@@ -425,7 +434,7 @@
                     </div>
                     <div class="grammar-example fragment" style="margin-top: 15px;">
                         <p>③ <ruby>明日<rt>あした</rt></ruby>の <ruby>午後<rt>ごご</rt></ruby> <ruby>支店<rt>してん</rt></ruby>の <ruby>会議<rt>かいぎ</rt></ruby>に <strong><ruby>出席<rt>しゅっせき</rt></ruby>する 予定です</strong>。</p>
-                        <span class="trans">Chiều mai tôi có lịch tham nhập cuộc họp ở chi nhánh. (Tận dụng từ vựng Bài 31)</span>
+                        <span class="trans">Chiều mai tôi có lịch tham gia cuộc họp ở chi nhánh. (Tận dụng từ vựng Bài 31)</span>
                     </div>
                 </div>
             </section>
@@ -454,7 +463,7 @@
                                 <td style="padding: 12px; border: 1px solid #ddd;">Ý chí quyết tâm cá nhân cực kỳ mạnh mẽ (Ví dụ: quyết tâm bỏ thuốc, quyết tâm thi đỗ).</td>
                             </tr>
                             <tr>
-                                <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold; color: #1976d2;">Vる / Nของ N 예정입니다</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold; color: #1976d2;">Vる / Nの 予定です</td>
                                 <td style="padding: 12px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #4caf50;">Rất cao (95%)</td>
                                 <td style="padding: 12px; border: 1px solid #ddd;">Kế hoạch khách quan, công việc chung của tổ chức, lịch trình tàu xe đã định sẵn không đổi.</td>
                             </tr>
@@ -497,9 +506,54 @@
                         <span class="trans">Có một thứ duy nhất ở Tokyo không có. Đó (それ) chính là thiên nhiên tươi đẹp. (Nhắc lại đối tượng đã đề cập bằng そ)</span>
                     </div>
                     <div class="grammar-example fragment" style="margin-top: 15px;">
-                        <p>② <ruby>私<rt>わたし</rt></ruby>が いちばん <ruby>欲<rt>ほ</rt></ruby>しい 物は 「どこでもドア」です. <strong>この</strong> ドアを <ruby>開<rt>あ</rt></ruby>けると, どころへでも <ruby>行<rt>い</rt></ruby>けます。</p>
+                        <p>② <ruby>私<rt>わたし</rt></ruby>が いちばん <ruby>欲<rt>ほ</rt></ruby>しい 物は 「どこでもドア」です. <strong>この</strong> ドアを <ruby>開<rt>あ</rt></ruby>けると, どこへでも <ruby>行<rt>い</rt></ruby>けます。</p>
                         <span class="trans">Thứ tôi muốn nhất là "Cánh cửa thần kỳ". Khi mở cánh cửa này (この) ra, bạn có thể đi tới bất cứ đâu. (Dùng こ để tạo cảm giác gần gũi, như thể cánh cửa đang ở trước mặt)</span>
                     </div>
+                </div>
+            </section>
+
+            <!-- Slide 10d: KỸ NĂNG: HỘI THOẠI -->
+            <section data-background-color="#fff3e0">
+                <h2 style="color: #e65100;">🗣️ 会話 (Hội thoại): 週末の予定は何ですか</h2>
+                <div class="grammar-example" style="text-align: left; margin-top: 10px; font-size: 1.6rem !important; line-height: 1.8 !important; border-left-color: #e65100 !important;">
+                    <p><strong>ミラー：</strong><ruby>山田<rt>やまだ</rt></ruby>さん、週末の連休は何をする予定ですか。</p>
+                    <p><strong><ruby>山田<rt>やまだ</rt></ruby>：</strong>私は友達と<ruby>上野公園<rt>うえのこうえん</rt></ruby>へピカソの<ruby>展覧会<rt>てんらんかい</rt></ruby>を見に行こうと思っています。</p>
+                    <p><strong>ミラー：</strong>それはいいですね。美しい絵がたくさん集まりますからね。</p>
+                    <p><strong><ruby>山田<rt>やまだ</rt></ruby>：</strong>ええ、とても楽しみです。ミラーさんはどうですか。</p>
+                    <p><strong>ミラー：</strong>私は日曜日に<ruby>教会<rt>きょうかい</rt></ruby>の<ruby>結婚式<rt>けっこんしき</rt></ruby>に出席する予定です。</p>
+                    <p><strong><ruby>山田<rt>やまだ</rt></ruby>：</strong>そうですか。結婚式ですか。</p>
+                    <p><strong>ミラー：</strong>ええ。将来日本の教会で結婚式を挙げようと思っているんです。</p>
+                    <p><strong><ruby>山田<rt>やまだ</rt></ruby>：</strong>いいですね。<ruby>大学院<rt>だいがくいん</rt></ruby>を卒業したら、結婚するつもりですか。</p>
+                    <p><strong>ミラー：</strong>はい、そのつもりです。</p>
+                    
+                    <span class="trans" style="color: #5d4037;">
+                        <strong>Dịch nghĩa:</strong><br>
+                        <strong>Miller:</strong> Anh Yamada này, kỳ nghỉ dài ngày cuối tuần này anh có lịch trình định làm gì?<br>
+                        <strong>Yamada:</strong> Tôi đang định cùng bạn đi công viên Ueno xem triển lãm tranh Picasso.<br>
+                        <strong>Miller:</strong> Hay quá nhỉ. Vì có rất nhiều tác phẩm đẹp được tụ họp về đó.<br>
+                        <strong>Yamada:</strong> Vâng, tôi rất mong chờ. Còn anh Miller thì sao?<br>
+                        <strong>Miller:</strong> Tôi có lịch trình tham dự lễ cưới ở nhà thờ vào Chủ Nhật.<br>
+                        <strong>Yamada:</strong> Vậy à, lễ cưới sao?<br>
+                        <strong>Miller:</strong> Vâng. Tương lai tôi đang định tổ chức lễ cưới tại một nhà thờ ở Nhật Bản.<br>
+                        <strong>Yamada:</strong> Tuyệt thật đấy. Sau khi tốt nghiệp cao học anh định kết hôn luôn à?<br>
+                        <strong>Miller:</strong> Vâng, tôi quyết định định như vậy.
+                    </span>
+                </div>
+            </section>
+
+            <!-- Slide 10e: ROLE-PLAY HỘI THOẠI -->
+            <section data-background-color="#fff3e0">
+                <h2 style="color: #e65100;">🎭 Role-play (Phân vai tương tác)</h2>
+                <div class="box-highlight" style="text-align: left; margin-top: 10px; font-size: 1.6rem !important; line-height: 1.8 !important; background: rgba(255,255,255,0.9) !important; border: 1px solid #ffe0b2 !important; color: #5d4037 !important;">
+                    <p><strong>ミラー：</strong>山田さん、週末の連休は何をする[___________]ですか。</p>
+                    <p><strong>山田：</strong>私は友達と上野公園へピカソの展覧会を見に[____________________]。</p>
+                    <p><strong>ミラー：</strong>それはいいですね。美しい絵がたくさん[___________]からね。</p>
+                    <p><strong>山田：</strong>ええ、とても楽しみです。ミラーさんはどうですか。</p>
+                    <p><strong>ミラー：</strong>私は日曜日に教会の結婚式に[___________]予定です。</p>
+                    <p><strong>山田：</strong>そうですか。結婚式ですか。</p>
+                    <p><strong>ミラー：</strong>ええ。将来日本の教会で結婚式を[____________________]んです。</p>
+                    <p><strong>山田：</strong>いいですね。大学院を[___________]たら、結婚するつもりですか。</p>
+                    <p><strong>ミラー：</strong>はい、[_______________]です。</p>
                 </div>
             </section>
 
@@ -546,7 +600,7 @@
                             <ruby>美しい<rt>うつくしい</rt></ruby><ruby>絵<rt>え</rt></ruby>がたくさん<strong><ruby>集<rt>あつ</rt></ruby>まります</strong>から, とても<ruby>楽<rt>たの</rt></ruby>しみです。<br>
                             <ruby>展覧会<rt>てんらんかい</rt></ruby>を<ruby>見<rt>み</rt></ruby>たあとで、<ruby>近く<rt>ちかく</rt></ruby>の<ruby>温泉<rt>おんせん</rt></ruby>に<ruby>行<rt>い</rt></ruby>って、２<ruby>日<rt>にち</rt></ruby>ぐらいゆっくり<strong><ruby>休憩<rt>きゅうけい</rt></ruby>する予定です</strong>。<br>
                             <ruby>私<rt>わたし</rt></ruby>は<ruby>都会<rt>とかい</rt></ruby>に<ruby>住<rt>す</rt></ruby>んでいます...
-                            <ruby>美しい<rt>うつくしい</rt></ruby><ruby>自然<rt>しぜん</rt></ruby>を<ruby>見<rt>み</rt></ruby>ると, <ruby>空<rt>そら</rt></ruby>がとても<ruby>青<rt>あお</rt></ruby>くて、<ruby>心<rt>こころ</rt></ruby>が<strong><ruby>自由<rt>じゆう</rt></ruby>になります</strong>。<br>
+                            <ruby>美しい<rt>うつくしい</rt></ruby><ruby>自然<rt>しぜん</rt></ruby>を<ruby>見<rt>mi</rt></ruby>ると, <ruby>空<rt>そら</rt></ruby>がとても<ruby>青<rt>あお</rt></ruby>くて、<ruby>心<rt>こころ</rt></ruby>が<strong><ruby>自由<rt>じゆう</rt></ruby>になります</strong>。<br>
                             <ruby>月曜日<rt>げつようび</rt></ruby>の<ruby>夜<rt>よる</rt></ruby>に<ruby>電車<rt>でんしゃ</rt></ruby>で<ruby>都会<rt>とかい</rt></ruby>の<ruby>家<rt>いえ</rt></ruby>に<strong><ruby>帰<rt>かえ</rt></ruby>る予定です</strong>。
                         </p>
                         <p class="trans" style="color: #5c728a; font-style: italic; font-size: 1.4rem !important; margin: 0; line-height: 1.6 !important; border-top: 1px dashed #c8e6c9; padding-top: 8px; margin-top: 8px;">
@@ -572,7 +626,7 @@
                             </div>
                             
                             <div>
-                                <p style="margin: 2px 0; font-size: 1.6rem !important;">3. 💡東京に ない 物は なにですか. それは どうしてですか。</p>
+                                <p style="margin: 2px 0; font-size: 1.6rem !important;">3. 💡東京に ない 物は なにですか。 それは どうしてですか。</p>
                                 <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 4px 10px; font-size: 1.1rem;">Xem đáp án</button>
                                 <div class="answer-content" style="font-size: 1.5rem !important;">→ <strong>美しい自然です。</strong> (Vì tự nhiên làm tâm hồn trở nên tự do)</div>
                             </div>
@@ -587,7 +641,7 @@
                 <div class="quiz-box fragment" style="text-align: left; font-size: 1.6rem !important;">
                     <div class="quiz-title">✍️ Điền từ thích hợp chia ở thể đúng của Bài 31:</div>
                     <div class="fragment" style="margin-bottom: 15px;">
-                        <p>1. <ruby>大学<rt>だいがく</rt></ruby>を (____________) たら, <ruby>本社<rt>ほんしゃ</rt></ruby>で 働くつもりです。 (Tốt nghiệp)</p>
+                        <p>1. <ruby>大学<rt>だいがく</rt></ruby>を (____________) たら、<ruby>本社<rt>ほんしゃ</rt></ruby>で 働くつもりです。 (Tốt nghiệp)</p>
                         <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
                         <div class="answer-content">→ <strong>卒業し</strong> (卒業したら: Sau khi tốt nghiệp)</div>
                     </div>
@@ -655,7 +709,7 @@
             "始まります": "<ruby>始<rt>はじ</rt></ruby>まります",
             "続け": "<ruby>続<rt>つづ</rt></ruby>け",
             "続けます": "<ruby>続<rt>つづ</rt></ruby>けます",
-            "見つけ": "<ruby>見<rt>み</rt></ruby>つけ",
+            "見つけ": "<ruby>見<rt>み</rt></ruby>e",
             "見つけます": "<ruby>見<rt>み</rt></ruby>つけます",
             "受け": "<ruby>受<rt>う</rt></ruby>け",
             "受けます": "<ruby>受<rt>う</rt></ruby>けます",
