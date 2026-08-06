@@ -6,103 +6,201 @@
     <title>Ngữ Pháp Bài 31</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%) !important;
+        rt { font-size: 0.60em; color: #1976d2; font-weight: bold; }
+        .vocab-box {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid #ff9800;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            text-align: left;
+            max-width: 250px;
         }
+        .vocab-title { font-weight: bold; color: #ff9800; margin-bottom: 5px; font-size: 1rem; border-bottom: 1px solid #ff9800; padding-bottom: 5px; }
+        .hide-furigana rt { opacity: 0; transition: opacity 0.2s; }
+        
+        /* Premium Background */
+        body {
+            background: linear-gradient(-45deg, #ffffff, #f0f4f8, #e0f2fe, #f8fafc) !important;
+            background-size: 400% 400% !important;
+            animation: gradientBG 15s ease infinite !important;
+        }
+        .reveal { font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif !important; }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Premium Typography */
+        .reveal h1, .reveal h2, .reveal h3 {
+            font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif !important;
+            background: -webkit-linear-gradient(45deg, #1a237e, #0277bd, #00838f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        /* Glassmorphism Sidebar */
+        .vocab-box {
+            background: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.8) !important;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
+            border-radius: 16px !important;
+        }
+        
+        /* Vocab hover micro-animation */
+        #vocab-list div {
+            transition: all 0.3s ease;
+            padding: 6px;
+            border-radius: 8px;
+            margin-bottom: 2px !important;
+        }
+        #vocab-list div:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateX(8px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            color: #1976d2;
+        }
+        
+        /* Quiz box glassmorphism */
+        .quiz-box {
+            background: rgba(255, 253, 231, 0.6) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(251, 192, 45, 0.3) !important;
+            box-shadow: 0 8px 24px rgba(251, 192, 45, 0.15) !important;
+            border-radius: 16px !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .quiz-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(251, 192, 45, 0.25) !important;
+        }
+        
+        /* Grammar Example Box */
+        .grammar-example {
+            background: rgba(250, 250, 250, 0.8) !important;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(221, 221, 221, 0.5) !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03) !important;
+            border-radius: 12px !important;
+            transition: border-color 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        .grammar-example:hover {
+            border-color: #0052cc !important;
+        }
+        .grammar-example::after {
+            content: "🖱️ Click dịch";
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+            font-size: 0.9rem;
+            color: #999;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .grammar-example:hover::after {
+            opacity: 0.8;
+        }
+    
+        /* Elegance & Readability Overrides */
         .reveal p, .reveal li {
             font-size: 1.6rem !important;
             line-height: 1.6 !important;
             color: #0b1f38 !important;
         }
-        .reveal h1, .reveal h2, .reveal h3 {
-            background: none !important;
-            -webkit-text-fill-color: #0052cc !important;
-            text-shadow: none !important;
-            font-weight: 800 !important;
+        .grammar-example {
+            font-size: 1.8rem !important;
+            padding: 20px !important;
+            border-left: 6px solid #0052cc !important;
+            background: rgba(255, 255, 255, 0.85) !important;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06) !important;
         }
         .box-highlight {
             font-size: 1.8rem !important;
-            background: #ffffff !important;
-            border-left: 8px solid #0052cc !important;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%) !important;
+            border: none !important;
             border-radius: 12px !important;
-            padding: 25px !important;
-            color: #0052cc !important;
-            box-shadow: 0 15px 35px rgba(0, 82, 204, 0.1) !important;
-            font-weight: bold;
+            padding: 20px !important;
+            color: #0d47a1 !important;
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.15) !important;
         }
-        .grammar-example {
-            font-size: 1.8rem !important;
-            padding: 25px !important;
-            background: #ffffff !important;
-            border: 2px solid #e1efff !important;
-            border-radius: 16px !important;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
-        }
+        
+        /* Hide translation by default */
         .trans {
-            font-size: 1.4rem !important;
-            color: #5c728a !important;
-            display: block;
-            margin-top: 10px;
-        }
-        /* Furigana Toggler */
-        .hide-furigana rt {
             display: none !important;
+            font-size: 1.4rem !important;
+            color: #607d8b !important;
+            margin-top: 10px;
+            border-top: 1px dashed #ccc;
+            padding-top: 8px;
+            animation: fadeIn 0.4s ease;
         }
-        .furi-toggle-btn {
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            z-index: 9999;
-            background: #0052cc;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 8px;
+        .show-trans {
+            display: block !important;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h2 {
+            font-size: 2.2rem !important;
+            margin-bottom: 30px !important;
+            padding-bottom: 15px !important;
+            border-bottom: 2px dashed rgba(25, 118, 210, 0.3) !important;
+        }
+        
+        /* Interactive Cards */
+        .compare-card {
             cursor: pointer;
-            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .compare-card:hover {
+            transform: scale(1.02);
+        }
+        .compare-card::after {
+            content: "🖱️ Click giải thích";
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+            font-size: 0.8rem;
+            color: #999;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .compare-card:hover::after {
+            opacity: 0.8;
         }
     </style>
 </head>
 <body>
-    <button class="furi-toggle-btn" onclick="toggleFurigana()">Toggle Furigana</button>
+    <button class="furi-toggle-btn" onclick="toggleFurigana()" style="position: fixed; top: 15px; left: 15px; z-index: 9999; background: #0052cc; color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">Toggle Furigana</button>
 
     <div class="reveal"><div class="slides">
-        <section class="title-slide">
-            <h1>Bài 31 - Thể ý định</h1>
-            <h3>Giáo án ngữ pháp tiếng Nhật N4</h3>
-            <div style="margin-top: 30px;">
-                <a href="kanji.html" style="font-size: 1.2rem; background: #1976d2; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Chuyển sang Kanji Bài 31</a>
-            </div>
-        </section>
-
-        
-        <section>
-            <h2>I. 1. Thể ý định (Volitional Form)</h2>
-            <div class="box-highlight">
-                Cách chia: Nhóm I: u -> o + う. Nhóm II: bỏ masu + よう. Nhóm III: する -> しよう, 来る -> こよう.
-            </div>
-            <div class="grammar-example fragment">
-                <p>行く -> 行こう, 食べる -> 食べよう, する -> しよう, 来る -> こよう</p>
-            </div>
-        </section>
-        <section>
-            <h2>II. 2. V意向形と思っています (Đang định làm gì)</h2>
-            <div class="grammar-example fragment">
-                <p>週末は海へ行こうと思っています。</p>
-                <span class="trans">Cuối tuần tôi định đi biển.</span>
-            </div>
-        </section>
-        
-
+        {slides_body}
     </div></div>
 
     <!-- Vocab Box -->
     <div id="vocab-box" class="vocab-box" style="position:fixed; top:70px; right:15px; width:220px; max-height:400px; overflow-y:auto; background:rgba(255,255,255,0.9); border:2px solid #0052cc; border-radius:12px; padding:15px; z-index:999; box-shadow:0 10px 25px rgba(0,0,0,0.1); cursor:move;">
-        <h4 id="vocab-header" style="margin:0 0 10px 0; color:#0052cc;">Từ Vựng Trang Này</h4>
+        <h4 id="vocab-header" style="margin:0 0 10px 0; color:#0052cc; font-size: 1rem;">Từ Vựng Trang Này</h4>
         <div id="vocab-list" style="font-size:0.9rem; line-height:1.4;"></div>
     </div>
 
@@ -117,25 +215,103 @@
             transition: 'slide'
         });
 
-        const vocabDict = {"\u306f\u3058\u307e\u308a\u307e\u3059": "b\u1eaft \u0111\u1ea7u", "\u3064\u3065\u3051\u307e\u3059": "ti\u1ebfp t\u1ee5c", "\u307f\u3064\u3051\u307e\u3059": "t\u00ecm th\u1ea5y", "\u3046\u3051\u307e\u3059": "thi, nh\u1eadn"};
-        const furiganaDict = {"\u306f\u3058\u307e\u308a\u307e\u3059": "\u59cb\u307e\u308a\u307e\u3059", "\u3064\u3065\u3051\u307e\u3059": "\u7d9a\u3051\u307e\u3059", "\u307f\u3064\u3051\u307e\u3059": "\u898b\u3064\u3051\u307e\u3059", "\u3046\u3051\u307e\u3059": "\u53d7\u3051\u307e\u3059"};
+        // Toggle Translation when clicking a sentence or card
+        document.body.addEventListener('click', function(e) {
+            let target = e.target.closest('.grammar-example, .compare-card');
+            if (target) {
+                let trans = target.querySelector('.trans');
+                if (trans) {
+                    trans.classList.toggle('show-trans');
+                    e.stopPropagation();
+                }
+            }
+        });
+
+        const vocabDict = {
+            "始まる": "bắt đầu", "始まります": "bắt đầu", "続け": "tiếp tục", "続けます": "tiếp tục", 
+            "見つけ": "tìm thấy", "見つけます": "tìm thấy", "受け": "thi, nhận", "受けます": "thi, nhận",
+            "入学": "nhập học", "入学します": "nhập học", "卒業": "tốt nghiệp", "卒業します": "tốt nghiệp",
+            "出席": "tham dự", "出席します": "tham dự", "休憩": "nghỉ ngơi", "休憩します": "nghỉ ngơi",
+            "残る": "còn lại", "残ります": "còn lại", "閉じる": "đóng, nhắm", "閉じます": "đóng, nhắm",
+            "集まる": "tập trung", "集まります": "tập trung", "気がつく": "nhận ra", "気がつきます": "nhận ra",
+            "連休": "kỳ nghỉ dài", "作文": "bài văn", "展覧会": "triển lãm", "結婚式": "lễ cưới",
+            "葬式": "đám tang", "式": "buổi lễ", "本社": "trụ sở chính", "支店": "chi nhánh",
+            "教会": "nhà thờ", "大学院": "cao học", "動物園": "sở thú", "温泉": "suối nước nóng",
+            "お客さん": "khách", "だれか": "ai đó", "ずっと": "suốt, mãi", "ピカソ": "Picasso",
+            "上野公園": "công viên Ueno", "インターネット": "Internet", "都会": "đô thị",
+            "子どもたち": "trẻ em", "自由に": "tự do", "世界中": "khắp thế giới", "美しい": "đẹp",
+            "自然": "tự nhiên", "すばらしさ": "sự tuyệt vời"
+        };
+        const furiganaDict = {
+            "始まる": "<ruby>始<rt>はじ</rt></ruby>まる",
+            "始まります": "<ruby>始<rt>はじ</rt></ruby>まります",
+            "続け": "<ruby>続<rt>つづ</rt></ruby>け",
+            "続けます": "<ruby>続<rt>つづ</rt></ruby>けます",
+            "見つけ": "<ruby>見<rt>み</rt></ruby>つけ",
+            "見つけます": "<ruby>見<rt>み</rt></ruby>つけます",
+            "受け": "<ruby>受<rt>う</rt></ruby>け",
+            "受けます": "<ruby>受<rt>う</rt></ruby>けます",
+            "入学": "<ruby>入学<rt>にゅうがく</rt></ruby>",
+            "入学します": "<ruby>入学<rt>にゅうがく</rt></ruby>します",
+            "卒業": "<ruby>卒業<rt>そつぎょう</rt></ruby>",
+            "卒業します": "<ruby>卒業<rt>そつぎょう</rt></ruby>します",
+            "出席": "<ruby>出席<rt>しゅっせき</rt></ruby>",
+            "出席します": "<ruby>出席<rt>しゅっせき</rt></ruby>します",
+            "休憩": "<ruby>休憩<rt>きゅうけい</rt></ruby>",
+            "休憩します": "<ruby>休憩<rt>きゅうけい</rt></ruby>します",
+            "残る": "<ruby>残<rt>のこ</rt></ruby>る",
+            "残ります": "<ruby>残<rt>のこ</rt></ruby>ります",
+            "閉じる": "<ruby>閉<rt>と</rt></ruby>じる",
+            "閉じます": "<ruby>閉<rt>と</rt></ruby>じます",
+            "集まる": "<ruby>集<rt>あつ</rt></ruby>まる",
+            "集まります": "<ruby>集<rt>あつ</rt></ruby>まります",
+            "気がつく": "<ruby>気<rt>き</rt></ruby>がつく",
+            "気がつきます": "<ruby>気<rt>き</rt></ruby>がつきます",
+            "連休": "<ruby>連休<rt>れんきゅう</rt></ruby>",
+            "作文": "<ruby>作文<rt>さくぶん</rt></ruby>",
+            "展覧会": "<ruby>展覧会<rt>てんらんかい</rt></ruby>",
+            "結婚式": "<ruby>結婚式<rt>けっこんしき</rt></ruby>",
+            "葬式": "<ruby>葬式<rt>そうしき</rt></ruby>",
+            "式": "<ruby>式<rt>しき</rt></ruby>",
+            "本社": "<ruby>本社<rt>ほんしゃ</rt></ruby>",
+            "支店": "<ruby>支店<rt>してん</rt></ruby>",
+            "教会": "<ruby>教会<rt>きょうかい</rt></ruby>",
+            "大学院": "<ruby>大学院<rt>だいがくいん</rt></ruby>",
+            "動物園": "<ruby>動物園<rt>どうぶつえん</rt></ruby>",
+            "温泉": "<ruby>温泉<rt>おんせん</rt></ruby>",
+            "上野公園": "<ruby>上野公園<rt>うえのこうえん</rt></ruby>",
+            "都会": "<ruby>都会<rt>とかい</rt></ruby>",
+            "子どもたち": "<ruby>子<rt>こ</rt></ruby>どもたち",
+            "世界中": "<ruby>世界中<rt>せかいじゅう</rt></ruby>",
+            "美しい": "<ruby>美<rt>utsuku</rt></ruby>しい",
+            "自然": "<ruby>自然<rt>しぜん</rt></ruby>"
+        };
 
         function toggleFurigana() {
             const slides = document.querySelector('.slides');
             slides.classList.toggle('hide-furigana');
         }
 
+        const vocabBox = document.getElementById('vocab-box');
+        const resizeObserver = new ResizeObserver(entries => {
+            for (let entry の entries) {
+                let newWidth = entry.contentRect.width;
+                let scale = Math.max(1, newWidth / 200);
+                vocabBox.style.fontSize = (0.9 * scale) + 'rem';
+                document.getElementById('vocab-header').style.fontSize = (1 * scale) + 'rem';
+            }
+        });
+        resizeObserver.observe(vocabBox);
+
         function updateVocab() {
             const currentSlide = Reveal.getCurrentSlide();
             if (!currentSlide) return;
-            
             let rawHtml = currentSlide.innerHTML;
             const list = document.getElementById('vocab-list');
             list.innerHTML = '';
             let foundAny = false;
-            
             let keys = Object.keys(vocabDict).sort((a, b) => b.length - a.length);
-            for (let key of keys) {
+            for (let key の keys) {
                 let cleanText = rawHtml.replace(/<rt>.*?<\/rt>/g, '').replace(/<[^>]+>/g, '');
                 if (cleanText.includes(key)) {
                     let div = document.createElement('div');
@@ -147,7 +323,7 @@
                 }
             }
             if (!foundAny) {
-                list.innerHTML = '<div style="color:#aaa; font-style:italic;">Không có từ vựng ở trang này</div>';
+                list.innerHTML = '<div style="color:#aaa; font-style:italic;">Không có từ vựng Bài 31 ở trang này</div>';
             }
         }
 
@@ -155,19 +331,18 @@
         Reveal.on('ready', updateVocab);
 
         // Make vocab box draggable
-        const box = document.getElementById('vocab-box');
         let isDragging = false;
-        let offsetX, offsetY;
-        box.addEventListener('mousedown', e => {
+        let のfsetX, のfsetY;
+        vocabBox.addEventListener('mousedown', e => {
             isDragging = true;
-            offsetX = e.clientX - box.getBoundingClientRect().left;
-            offsetY = e.clientY - box.getBoundingClientRect().top;
+            のfsetX = e.clientX - vocabBox.getBoundingClientRect().left;
+            のfsetY = e.clientY - vocabBox.getBoundingClientRect().top;
         });
         document.addEventListener('mousemove', e => {
             if (isDragging) {
-                box.style.left = (e.clientX - offsetX) + 'px';
-                box.style.top = (e.clientY - offsetY) + 'px';
-                box.style.right = 'auto';
+                vocabBox.style.left = (e.clientX - のfsetX) + 'px';
+                vocabBox.style.top = (e.clientY - のfsetY) + 'px';
+                vocabBox.style.right = 'auto';
             }
         });
         document.addEventListener('mouseup', () => isDragging = false);
@@ -180,6 +355,20 @@
             } else {
                 content.style.display = 'none';
                 btn.innerText = 'Xem đáp án';
+            }
+        }
+    </script>
+    <button id="fs-btn" onclick="toggleFullScreen()" title="Toàn màn hình" style="position:fixed; bottom:15px; left:15px; z-index:9999; background:rgba(0,0,0,0.1); color:#333; border:none; width:35px; height:35px; border-radius:50%; font-weight:bold; cursor:pointer; display:flex; justify-content:center; align-items:center; opacity:0.5; transition:all 0.2s;" onmouseover="this.style.opacity='1'; this.style.background='rgba(0,0,0,0.2)'" onmouseout="this.style.opacity='0.5'; this.style.background='rgba(0,0,0,0.1)'">
+        <span style="font-size:1.2rem; line-height: 1;">⛶</span>
+    </button>
+    <script>
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
             }
         }
     </script>
