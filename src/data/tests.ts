@@ -2166,6 +2166,78 @@ export const testsData: Test[] = [
         explanation: "ある予定です."
       },
       {
+        id: "l31_hw_3_3",
+        type: "text_input",
+        skill: "Ngữ pháp (と思っています)",
+        text: "Điền dạng đúng của động từ: 庭があるうちに引っ越ししましたから、犬を（　）と思っています。 (Vì chuyển nhà đến nơi có sân vườn nên tôi đang định nuôi chó - dùng động từ 飼います)",
+        correctAnswers: ["飼おう", "かおう"],
+        explanation: "飼います -> 飼おう. V意向形 + と思っています."
+      },
+      {
+        id: "l31_hw_3_4",
+        type: "text_input",
+        skill: "Ngữ pháp (と思っています)",
+        text: "Điền dạng đúng của động từ: ミラーさんにおいしいケーキの作り方を教えてもらいましたから、自分で（　）と思っています。 (Vì được anh Miller dạy cách làm bánh kem ngon nên tôi đang định tự mình làm - dùng động từ 作ります)",
+        correctAnswers: ["作ろう", "つくろう"],
+        explanation: "作ります -> 作ろう. V意向形 + と思っています."
+      },
+      {
+        id: "l31_hw_4_3",
+        type: "text_input",
+        skill: "Ngữ pháp (つもりです)",
+        text: "Điền dạng đúng của động từ: 来年大学院の試験を受けますか。--- いいえ、（　）つもりです。 (Năm sau bạn có thi cao học không? --- Không, tôi định không thi - dùng động từ 受けます)",
+        correctAnswers: ["受けない", "うけない"],
+        explanation: "受けます -> 受けない. Vないつもりです."
+      },
+      {
+        id: "l31_hw_4_4",
+        type: "text_input",
+        skill: "Ngữ pháp (つもりです)",
+        text: "Điền dạng đúng của động từ: 夏休みにアルバイトをしますか。--- いいえ、アルバイトは（　）つもりです。 (Nghỉ hè bạn có làm thêm không? --- Không, tôi định không làm thêm - dùng động từ します)",
+        correctAnswers: ["しない"],
+        explanation: "します -> しない. Vないつもりです."
+      },
+      {
+        id: "l31_hw_5_3",
+        type: "text_input",
+        skill: "Ngữ pháp (予定です)",
+        text: "Điền dạng đúng của động từ: 会議は何時に終わりますか。--- （　）予定です。 (Cuộc họp mấy giờ kết thúc? --- Dự kiến kết thúc lúc 4 giờ - điền cụm từ: 4時に終わる)",
+        correctAnswers: ["4時に終わる", "よじにおわる"],
+        explanation: "4時に終わる予定です."
+      },
+      {
+        id: "l31_hw_5_4",
+        type: "text_input",
+        skill: "Ngữ pháp (予定です)",
+        text: "Điền dạng đúng của động từ: 夏休みは何をしますか。--- （　）予定です。 (Nghỉ hè bạn sẽ làm gì? --- Dự kiến đi du lịch Hokkaido 1 tuần - điền cụm từ: 1週間北海道を旅行する)",
+        correctAnswers: ["1週間北海道を旅行する", "いっしゅうかんほっかいどうをりょこうする"],
+        explanation: "1週間北海道を旅行する予定です."
+      },
+      {
+        id: "l31_hw_6_abc_1",
+        type: "text_input",
+        skill: "Ngữ pháp (まだ Vていません)",
+        text: "Điền dạng đúng của động từ: IMCの松本さんはもう来ましたか。--- いいえ、まだ（　）ません。3時ごろ来る予定です。 (Anh Matsumoto của IMC đã đến chưa? --- Chưa, vẫn chưa đến. Dự kiến khoảng 3 giờ anh ấy sẽ đến - dùng động từ 来ます)",
+        correctAnswers: ["来てい", "きてい"],
+        explanation: "まだ Vていません -> まだ来ていません."
+      },
+      {
+        id: "l31_hw_6_abc_2",
+        type: "text_input",
+        skill: "Ngữ pháp (まだ Vていません)",
+        text: "Điền dạng đúng của động từ: 結婚についてもう両親に話しましたか。--- いいえ、まだ（　）ません。今度国へ帰ったとき、話すつもりです。 (Bạn đã nói chuyện kết hôn với bố mẹ chưa? --- Chưa, vẫn chưa nói. Khi nào về nước tôi định sẽ nói - dùng động từ 話します)",
+        correctAnswers: ["話してい", "はなしてい"],
+        explanation: "まだ Vていません -> まだ話していません."
+      },
+      {
+        id: "l31_hw_6_abc_3",
+        type: "text_input",
+        skill: "Ngữ pháp (と思っています)",
+        text: "Điền dạng đúng của động từ: 林さんにあげるプレゼントはもう決めましたか。--- いいえ、まだ決めていません。直接林さんに欲しい物を聞いてから、（　）と思っています。 (Bạn đã quyết định quà tặng anh Hayashi chưa? --- Chưa, vẫn chưa quyết định. Tôi định sau khi hỏi trực tiếp anh ấy thích gì mới quyết định - dùng động từ 決めます)",
+        correctAnswers: ["決めよう", "きめよう"],
+        explanation: "V意向形 + と思っています -> 決めようと思っています."
+      },
+      {
         id: "l31_hw_6_1",
         type: "text_input",
         skill: "Đọc hiểu",
