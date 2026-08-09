@@ -6,105 +6,524 @@
     <title>Ngữ Pháp Bài 32</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%) !important;
+        rt { font-size: 0.60em; color: #1976d2; font-weight: bold; }
+        .vocab-box {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid #ff9800;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            text-align: left;
+            max-width: 250px;
         }
+        .vocab-title { font-weight: bold; color: #ff9800; margin-bottom: 5px; font-size: 1rem; border-bottom: 1px solid #ff9800; padding-bottom: 5px; }
+        .hide-furigana rt { opacity: 0; transition: opacity 0.2s; }
+        
+        /* Premium Background */
+        body {
+            background: linear-gradient(-45deg, #ffffff, #f0f4f8, #e0f2fe, #f8fafc) !important;
+            background-size: 400% 400% !important;
+            animation: gradientBG 15s ease infinite !important;
+        }
+        .reveal { font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif !important; }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Premium Typography */
+        .reveal h1, .reveal h2, .reveal h3 {
+            font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif !important;
+            background: -webkit-linear-gradient(45deg, #1a237e, #0277bd, #00838f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        /* Glassmorphism Sidebar */
+        .vocab-box {
+            background: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.8) !important;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
+            border-radius: 16px !important;
+        }
+        
+        /* Vocab hover micro-animation */
+        #vocab-list div {
+            transition: all 0.3s ease;
+            padding: 6px;
+            border-radius: 8px;
+            margin-bottom: 2px !important;
+        }
+        #vocab-list div:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateX(8px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            color: #1976d2;
+        }
+        
+        /* Quiz box glassmorphism */
+        .quiz-box {
+            background: rgba(255, 255, 255, 0.6) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(251, 192, 45, 0.3) !important;
+            box-shadow: 0 8px 24px rgba(251, 192, 45, 0.15) !important;
+            border-radius: 16px !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .quiz-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(251, 192, 45, 0.25) !important;
+        }
+        
+        /* Grammar Example Box */
+        .grammar-example {
+            background: rgba(250, 250, 250, 0.8) !important;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(221, 221, 221, 0.5) !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03) !important;
+            border-radius: 12px !important;
+            transition: border-color 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        .grammar-example:hover {
+            border-color: #0052cc !important;
+        }
+        .grammar-example::after {
+            content: "🖱️ Click dịch";
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+            font-size: 0.9rem;
+            color: #999;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .grammar-example:hover::after {
+            opacity: 0.8;
+        }
+    
+        /* Elegance & Readability Overrides */
         .reveal p, .reveal li {
             font-size: 1.6rem !important;
             line-height: 1.6 !important;
             color: #0b1f38 !important;
         }
-        .reveal h1, .reveal h2, .reveal h3 {
-            background: none !important;
-            -webkit-text-fill-color: #0052cc !important;
-            text-shadow: none !important;
-            font-weight: 800 !important;
+        .grammar-example {
+            font-size: 1.8rem !important;
+            padding: 20px !important;
+            border-left: 6px solid #0052cc !important;
+            background: rgba(255, 255, 255, 0.85) !important;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06) !important;
         }
         .box-highlight {
             font-size: 1.8rem !important;
-            background: #ffffff !important;
-            border-left: 8px solid #0052cc !important;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%) !important;
+            border: none !important;
             border-radius: 12px !important;
-            padding: 25px !important;
-            color: #0052cc !important;
-            box-shadow: 0 15px 35px rgba(0, 82, 204, 0.1) !important;
-            font-weight: bold;
+            padding: 20px !important;
+            color: #0d47a1 !important;
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.15) !important;
         }
-        .grammar-example {
-            font-size: 1.8rem !important;
-            padding: 25px !important;
-            background: #ffffff !important;
-            border: 2px solid #e1efff !important;
-            border-radius: 16px !important;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
-        }
+        
+        /* Hide translation by default */
         .trans {
-            font-size: 1.4rem !important;
-            color: #5c728a !important;
-            display: block;
-            margin-top: 10px;
-        }
-        /* Furigana Toggler */
-        .hide-furigana rt {
             display: none !important;
+            font-size: 1.4rem !important;
+            color: #607d8b !important;
+            margin-top: 10px;
+            border-top: 1px dashed #ccc;
+            padding-top: 8px;
+            animation: fadeIn 0.4s ease;
         }
-        .furi-toggle-btn {
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            z-index: 9999;
-            background: #0052cc;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 8px;
-            cursor: pointer;
+        .show-trans {
+            display: block !important;
+        }
+        
+        /* Hide quiz answer content by default */
+        .answer-content {
+            display: none;
+            color: #2e7d32;
             font-weight: bold;
+            margin-top: 10px;
+            font-size: 1.5rem !important;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h2 {
+            font-size: 2.2rem !important;
+            margin-bottom: 30px !important;
+            padding-bottom: 15px !important;
+            border-bottom: 2px dashed rgba(25, 118, 210, 0.3) !important;
+        }
+        
+        /* Interactive Cards */
+        .compare-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .compare-card:hover {
+            transform: scale(1.02);
+        }
+        .compare-card::after {
+            content: "🖱️ Click giải thích";
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+            font-size: 0.8rem;
+            color: #999;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .compare-card:hover::after {
+            opacity: 0.8;
         }
     </style>
 </head>
 <body>
-    <button class="furi-toggle-btn" onclick="toggleFurigana()">Toggle Furigana</button>
+    <button class="furi-toggle-btn" onclick="toggleFurigana()" style="position: fixed; top: 15px; left: 15px; z-index: 9999; background: #0052cc; color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">Toggle Furigana</button>
 
     <div class="reveal"><div class="slides">
-        <section class="title-slide">
-            <h1>Bài 32 - Lời khuyên & Dự đoán</h1>
-            <h3>Giáo án ngữ pháp tiếng Nhật N4</h3>
-            <div style="margin-top: 30px;">
-                <a href="kanji.html" style="font-size: 1.2rem; background: #1976d2; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Chuyển sang Kanji Bài 32</a>
-            </div>
-        </section>
+        
+            <!-- Slide 1: Title -->
+            <section class="title-slide" data-background-color="#f5f5f5">
+                <h1 style="font-size: 3rem !important; margin-bottom: 20px !important;">BÀI 32: LỜI KHUYÊN & DỰ ĐOÁN</h1>
+                <h3 style="font-size: 1.8rem !important; color: #555 !important; border: none !important;">Giáo án Điện tử Ngữ pháp Tiếng Nhật N4</h3>
+                <div style="margin-top: 40px; font-size: 1.4rem; color: #0052cc; font-weight: bold;">
+                    Trọng tâm: Vた/Vない ほうがいいです, ~でしょう, ~かもしれません
+                </div>
+                <div style="margin-top: 30px;">
+                    <a href="kanji.html" style="font-size: 1.2rem; background: #0052cc; color: white; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(0,82,204,0.3);">Chuyển sang Kanji Bài 32</a>
+                </div>
+            </section>
 
-        
-        <section>
-            <h2>I. 1. Vた / Vない ほうがいいです (Nên / Không nên)</h2>
-            <div class="grammar-example fragment">
-                <p>毎日運動したほうがいいです。</p>
-                <span class="trans">Mỗi ngày nên vận động cơ thể.</span>
-            </div>
-        </section>
-        <section>
-            <h2>II. 2. でしょう & かもしれません (Có lẽ & Có thể)</h2>
-            <div class="grammar-example fragment">
-                <p>明日は雨が降るでしょう。</p>
-                <span class="trans">Ngày mai có lẽ trời sẽ mưa (độ tin cậy cao).</span>
-            </div>
-            <div class="grammar-example fragment" style="margin-top:15px;">
-                <p>遅れるかもしれません。</p>
-                <span class="trans">Có thể tôi sẽ bị trễ (độ tin cậy thấp).</span>
-            </div>
-        </section>
-        
+            <!-- Slide 2: Khởi động & Kiểm tra bài cũ -->
+            <section data-background-color="#fffde7">
+                <h2 style="color: #fbc02d; border-bottom-color: #fbc02d !important;">Warm-up: Khởi động & Kiểm tra bài cũ (Bài 31)</h2>
+                <div class="fragment" style="text-align: left; margin-top: 15px;">
+                    <div class="quiz-box" style="margin-bottom: 15px; padding: 20px; font-size: 1.6rem !important;">
+                        <p style="margin: 0 0 10px 0; font-weight: bold;">1. Chia động từ sau sang Thể ý chí (意向形):</p>
+                        <p style="margin: 5px 0;">① <ruby>出張します<rt>しゅっちょうします</rt></ruby> (Nhóm III) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ② <ruby>戻ります<rt>もどります</rt></ruby> (Nhóm I)</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 4px 10px; font-size: 1.2rem;">Xem đáp án</button>
+                        <div class="answer-content" style="font-size: 1.5rem !important; margin-top: 10px; color: #2e7d32; font-weight: bold;">
+                            → ① 出張しよう &nbsp;&nbsp;&nbsp;&nbsp; ② 戻ろう
+                        </div>
+                    </div>
+                    <div class="quiz-box" style="padding: 20px; font-size: 1.6rem !important;">
+                        <p style="margin: 0 0 10px 0; font-weight: bold;">2. Chọn từ thích hợp điền vào chỗ trống:</p>
+                        <p style="margin: 5px 0;">来年、日本の会社で ( A. 働く / B. 働こう ) つもりです。</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 4px 10px; font-size: 1.2rem;">Xem đáp án</button>
+                        <div class="answer-content" style="font-size: 1.5rem !important; margin-top: 10px; color: #2e7d32; font-weight: bold;">
+                            → A. 働く (Cấu trúc "Vるつもりです" đi với động từ thể từ điển Vる)
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 3: Cấu trúc Vた / Vない ほうがいいです -->
+            <section>
+                <h2>I. Đưa ra lời khuyên: Vた / Vない ほうがいいです</h2>
+                <div class="fragment" style="text-align: left; margin-top: 10px;">
+                    <div class="box-highlight" style="font-size: 1.6rem !important; padding: 15px !important; margin-bottom: 15px !important;">
+                        Ý nghĩa: "Nên làm gì... / Không nên làm gì... thì tốt hơn"<br>
+                        Công thức:<br>
+                        - Khuyên <strong>NÊN</strong> làm: <strong>Động từ thể た</strong> + <strong>ほうがいいです</strong><br>
+                        - Khuyên <strong>KHÔNG NÊN</strong> làm: <strong>Động từ thể ない</strong> + <strong>ほうがいいです</strong>
+                    </div>
+                    <div class="grammar-example fragment">
+                        <p>① <ruby>毎日<rt>まいにち</rt></ruby> <ruby>運動した<rt>うんどうした</rt></ruby> <strong>ほうがいいです</strong>。</p>
+                        <span class="trans">Bạn nên vận động cơ thể hàng ngày thì tốt hơn.</span>
+                    </div>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>② <ruby>熱<rt>ねつ</rt></ruby>が あるんです。--- じゃ, お<ruby>風呂<rt>ふろ</rt></ruby>に <strong><ruby>入らない<rt>はいらない</rt></ruby> ほうがいいですよ</strong>。</p>
+                        <span class="trans">Tôi bị sốt. --- Vậy thì không nên tắm bồn đâu nhé. (Ví dụ gốc SGK)</span>
+                    </div>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>③ <ruby>風邪<rt>かぜ</rt></ruby>を ひいたときは, <ruby>無理<rt>むり</rt></ruby>を しないで, <ruby>ゆっくり<rt>ゆっくり</rt></ruby> <strong><ruby>休んだ<rt>やすんだ</rt></ruby> ほうがいいです</strong>。</p>
+                        <span class="trans">Khi bị cảm cúm thì tốt hơn là không nên làm quá sức, nên nghỉ ngơi thư thả.</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 4: So sánh ほうがいいです vs たらいいです -->
+            <section>
+                <h2>💡 So sánh: ほうがいいです vs たらいいです</h2>
+                <div class="fragment" style="text-align: left; margin-top: 15px;">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin: 10px 0; background: rgba(240, 247, 255, 0.4); padding: 15px; border-radius: 12px; border: 1px solid #d0e4ff;">
+                        <!-- Cột trái: ほうがいいです -->
+                        <div class="compare-card" style="text-align: center; background: white; padding: 15px 20px; border-radius: 12px; border: 1px solid #b3d4ff; box-shadow: 0 4px 10px rgba(0,0,0,0.05); min-width: 320px;">
+                            <div style="font-size: 1.2rem; color: #ff6b6b; font-weight: bold; margin-bottom: 5px;">〜た / ない ほうがいいです</div>
+                            <div style="font-size: 1.6rem; font-weight: bold; color: #333; margin: 5px 0;">Lời khuyên mang tính so sánh</div>
+                            <span class="trans" style="font-size: 1.15rem; color: #d32f2f; font-weight: bold; display: block; margin-top: 4px;">
+                                Mang tính răn đe, khuyên nhủ mạnh mẽ, có hàm ý nếu không làm theo thì sẽ có kết quả không tốt (thường so sánh 2 lựa chọn có hoặc không).
+                            </span>
+                        </div>
+                        <div style="font-size: 1.8rem; color: #0052cc; font-weight: bold;">VS</div>
+                        <!-- Cột phải: たらいいです -->
+                        <div class="compare-card" style="text-align: center; background: #e6f7ff; padding: 15px 20px; border-radius: 12px; border: 2px solid #0052cc; box-shadow: 0 4px 12px rgba(0,82,204,0.1); min-width: 320px;">
+                            <div style="font-size: 1.2rem; color: #0052cc; font-weight: bold; margin-bottom: 5px;">〜たら いいですよ</div>
+                            <div style="font-size: 1.6rem; font-weight: bold; color: #0052cc; margin: 5px 0;">Gợi ý nhẹ nhàng</div>
+                            <span class="trans" style="font-size: 1.15rem; color: #2e7d32; font-weight: bold; display: block; margin-top: 4px;">
+                                Đơn thuần gợi ý phương án tốt cho đối phương tham khảo ("Cậu làm thế này xem sao..."). Không mang sắc thái ép buộc.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 5: Dự đoánでしょう -->
+            <section>
+                <h2>II. Dự đoán (Độ chắc chắn khoảng 70-80%): ~でしょう</h2>
+                <div class="fragment" style="text-align: left; margin-top: 15px;">
+                    <div class="box-highlight" style="font-size: 1.5rem !important; padding: 15px !important; margin-bottom: 15px !important;">
+                        Cấu trúc: <strong>V / A-i / A-na / N (Thể thông thường - Plain Form)</strong> + <strong>でしょう</strong><br>
+                        * Lưu ý: Đối với Danh từ (N) và Tính từ đuôi な (A-na) thì <strong>KHÔNG CÓ "だ"</strong> trước でしょう.<br>
+                        Ý nghĩa: "Có lẽ là... chứ nhỉ / Chắc là..." (Diễn tả sự suy đoán của người nói dựa trên một căn cứ, thông tin cụ thể nào đó).
+                    </div>
+                    <div class="grammar-example fragment">
+                        <p>① <ruby>明日<rt>あした</rt></ruby>は <ruby>雨<rt>あめ</rt></ruby>が <strong><ruby>降る<rt>ふる</rt></ruby>でしょう</strong>。</p>
+                        <span class="trans">Ngày mai có lẽ trời sẽ mưa. (Nhìn bản tin thời tiết có độ ẩm cao)</span>
+                    </div>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>② タワポンさんは <ruby>試験<rt>しけん</rt></ruby>に <strong><ruby>合格<rt>ごうかく</rt></ruby>するでしょう</strong>。</p>
+                        <span class="trans">Anh Tawapon có lẽ sẽ thi đỗ. (Vì anh ấy học hành cực kỳ chăm chỉ)</span>
+                    </div>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>③ <ruby>今夜<rt>こんや</rt></ruby>は <ruby>星<rt>ほし</rt></ruby>が <strong><ruby>見える<rt>みえる</rt></ruby>でしょう</strong>。</p>
+                        <span class="trans">Đêm nay có lẽ sẽ nhìn thấy những ngôi sao. (Trời rất trong xanh)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 6: Cấu trúc かもしれません -->
+            <section>
+                <h2>III. Khả năng thấp (Khoảng 30-50%): ~かもしれません</h2>
+                <div class="fragment" style="text-align: left; margin-top: 15px;">
+                    <div class="box-highlight" style="font-size: 1.5rem !important; padding: 15px !important; margin-bottom: 15px !important;">
+                        Cấu trúc: <strong>V / A-i / A-na / N (Thể thông thường - Plain Form)</strong> + <strong>かもしれません</strong><br>
+                        * Lưu ý: Đối với Danh từ (N) và Tính từ đuôi な (A-na) thì <strong>KHÔNG CÓ "だ"</strong> tương tự như でしょう.<br>
+                        Ý nghĩa: "Có thể... / Biết đâu chừng..." (Diễn tả khả năng xảy ra nhỏ hoặc nghi ngại của người nói).
+                    </div>
+                    <div class="grammar-example fragment">
+                        <p>① <ruby>約束<rt>やくそく</rt></ruby>の <ruby>時間<rt>じかん</rt></ruby>に <strong><ruby>間に合わない<rt>まにあわない</rt></ruby>かもしれません</strong>。</p>
+                        <span class="trans">Có thể tôi sẽ không kịp giờ hẹn mất. (Đang lo lắng vì đường bị kẹt xe nhẹ)</span>
+                    </div>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>② <ruby>胃<rt>い</rt></ruby>が <ruby>痛<rt>いた</rt></ruby>いです. もしかしたら, <strong>インフルエンザかもしれません</strong>。</p>
+                        <span class="trans">Tôi bị đau dạ dày. Biết đâu chừng lại bị cúm mùa rồi. (Danh từ + かもしれません)</span>
+                    </div>
+                    <div class="grammar-example fragment" style="margin-top: 15px;">
+                        <p>③ <ruby>水道<rt>すいどう</rt></ruby>の エンジンが <strong><ruby>故障<rt>こしょう</rt></ruby>したかもしれません</strong>。</p>
+                        <span class="trans">Hệ thống cấp nước có thể đã bị hỏng hóc rồi.</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 7: So sánh mức độ chắc chắn -->
+            <section>
+                <h2>💡 Bảng so sánh mức độ tin cậy trong suy đoán</h2>
+                <div class="fragment" style="text-align: left; margin-top: 15px;">
+                    <table class="grammar-table" style="font-size: 1.35rem !important; width: 100%; border-collapse: collapse; background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <thead>
+                            <tr style="background: #fff8e1; color: #f57f17;">
+                                <th style="padding: 12px; border: 1px solid #ddd; width: 30%;">Đuôi câu suy đoán</th>
+                                <th style="padding: 12px; border: 1px solid #ddd; width: 25%;">Độ tin cậy ước tính</th>
+                                <th style="padding: 12px; border: 1px solid #ddd; width: 45%;">Bối cảnh và Ý đồ sử dụng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold; color: #d32f2f;">〜でしょう</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #d32f2f;">Khá cao (70 - 80%)</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Người nói suy đoán dựa trên căn cứ khoa học, khách quan rõ ràng (Dự báo thời tiết, báo chí).</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold; color: #1565c0;">〜と思います</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #1565c0;">Trung bình (50 - 60%)</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Chủ quan cá nhân, bộc lộ suy nghĩ riêng của người nói tại thời điểm đó.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold; color: #2e7d32;">〜かもしれません</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center; font-weight: bold; color: #2e7d32;">Thấp (30 - 50%)</td>
+                                <td style="padding: 12px; border: 1px solid #ddd;">Khả năng xảy ra thấp hoặc phỏng đoán dè dặt, biểu đạt sự lo lắng, nghi ngờ không rõ ràng.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Slide 8: KỸ NĂNG: HỘI THOẠI -->
+            <section data-background-color="#fff3e0">
+                <h2 style="color: #e65100;">🗣️ 会話 (Hội thoại): 働きすぎかもしれません</h2>
+                <div class="grammar-example" style="text-align: left; margin-top: 10px; font-size: 1.6rem !important; line-height: 1.8 !important; border-left-color: #e65100 !important;">
+                    <p><strong>渡辺：</strong>シュミットさん、どうしたんですか。<ruby>元気<rt>げんき</rt></ruby>が ありませんね。</p>
+                    <p><strong>シュミット：</strong>最近、<ruby>胃<rt>い</rt></ruby>が <ruby>痛い<rt>いたい</rt></ruby>んです。時々 <ruby>頭<rt>あたま</rt></ruby>も <ruby>痛<rt>いた</rt></ruby>くなります。</p>
+                    <p><strong>渡辺：</strong>それはいけませんね。<strong>働きすぎかもしれませんよ</strong>。一度 <ruby>医者<rt>いしゃ</rt></ruby>に <strong>診てもらった ほうがいいです</strong>。</p>
+                    <p><strong>シュミット：</strong>ええ、そうします。</p>
+                    <hr style="border: none; border-top: 1px dashed #e65100; margin: 15px 0;">
+                    <p><strong>医者：</strong>どうしましたか。</p>
+                    <p><strong>シュミット：</strong>最近、胃が 痛いんです。</p>
+                    <p><strong>医者：</strong>そうですか。仕事は <ruby>忙しい<rt>いそがしい</rt></ruby>ですか。</p>
+                    <p><strong>シュミット：</strong>ええ、最近 <ruby>残業<rt>ざんぎょう</rt></ruby>が <ruby>多い<rt>おおい</rt></ruby>んです。</p>
+                    <p><strong>医者：</strong>働きすぎですね。<strong>ストレスかもしれません</strong>。無理をしないで、２、３日 <strong>ゆっくり 休んだ ほうがいいですよ</strong>。</p>
+                    
+                    <span class="trans" style="color: #5d4037;">
+                        <strong>Dịch nghĩa:</strong><br>
+                        <strong>Watanabe:</strong> Anh Schmidt, có chuyện gì thế? Trông anh không được khỏe nhỉ.<br>
+                        <strong>Schmidt:</strong> Gần đây dạ dày tôi bị đau. Thỉnh thoảng đầu cũng đau nữa.<br>
+                        <strong>Watanabe:</strong> Thế thì không ổn rồi. Có lẽ là do làm việc quá sức đấy. Anh nên đi bác sĩ khám một lần đi.<br>
+                        <strong>Schmidt:</strong> Vâng, tôi sẽ làm thế.<br>
+                        *(Tại phòng khám)*<br>
+                        <strong>Bác sĩ:</strong> Anh bị làm sao?<br>
+                        <strong>Schmidt:</strong> Gần đây dạ dày tôi bị đau ạ.<br>
+                        <strong>Bác sĩ:</strong> Vậy à. Công việc có bận rộn không?<br>
+                        <strong>Schmidt:</strong> Vâng, dạo này làm thêm giờ hơi nhiều ạ.<br>
+                        <strong>Bác sĩ:</strong> Làm việc quá sức rồi đấy. Có lẽ là do stress. Đừng làm việc quá sức nữa, nên nghỉ ngơi thư thả khoảng 2, 3 ngày đi nhé.
+                    </span>
+                </div>
+            </section>
+
+            <!-- Slide 9: ROLE-PLAY HỘI THOẠI -->
+            <section data-background-color="#fff3e0">
+                <h2 style="color: #e65100;">🎭 Role-play (Phân vai tương tác)</h2>
+                <div class="box-highlight" style="text-align: left; margin-top: 10px; font-size: 1.6rem !important; line-height: 1.8 !important; background: rgba(255,255,255,0.9) !important; border: 1px solid #ffe0b2 !important; color: #5d4037 !important;">
+                    <p><strong>渡辺：</strong>シュミットさん、どうしたんですか。元気がありませね。</p>
+                    <p><strong>シュミット：</strong>最近、胃が 痛いんです。時々 [_______]も 痛くなります。</p>
+                    <p><strong>渡辺：</strong>それはいけませんね。[____________________]かもしれませんよ。一度 医者に [___________________________] ほうがいいです。</p>
+                    <p><strong>シュミット：</strong>ええ、そうします。</p>
+                    <p><strong>医者：</strong>どうしましたか。</p>
+                    <p><strong>シュミット：</strong>最近、[_______]が 痛いんです。</p>
+                    <p><strong>医者：</strong>そうですか。仕事は 忙しいですか。</p>
+                    <p><strong>シュミット：</strong>ええ、最近 [_______]が 多いんです。</p>
+                    <p><strong>医者：</strong>働きすぎですね。ストレス[___________]。無理をしないで、２、３日 [____________________] ほうがいいですよ。</p>
+                </div>
+            </section>
+
+            <!-- Slide 10: Đọc hiểu (Dokkai) tích hợp 100% từ vựng Bài 32 -->
+            <section data-background-color="#e8f5e9">
+                <h2 style="color: #1b5e20;">📖 Đọc hiểu: 牡牛座の星占い (Tử vi chòm sao Kim Ngưu)</h2>
+                <div style="display: flex; gap: 20px; text-align: left; margin-top: 15px;">
+                    <!-- Cột trái: Bài đọc -->
+                    <div class="grammar-example" style="flex: 1.2; background: white; padding: 25px; border-radius: 12px; border: 1px solid #c8e6c9; border-left: 6px solid #4caf50 !important; box-shadow: 0 8px 24px rgba(0,0,0,0.05); font-size: 1.7rem !important; margin-top: 0 !important;">
+                        <p style="line-height: 1.9 !important; margin: 0; font-size: 1.7rem !important;">
+                            <ruby>牡牛座<rt>おうしざ</rt></ruby>の <ruby>人<rt>ひと</rt></ruby>の 今週の <ruby>星占い<rt>ほしうらない</rt></ruby>です。<br>
+                            もしかしたら 今週 <strong><ruby>宝くじ<rt>たからくじ</rt></ruby>が <ruby>当たる<rt>あたる</rt></ruby>かもしれません</strong>。<br>
+                            <ruby>お金持ち<rt>かねもち</rt></ruby>に なるかもしれませんから, ぜひ 宝くじを <strong><ruby>買った<rt>かった</rt></ruby> ほうがいいです</strong>。<br><br>
+                            【<ruby>恋愛<rt>れんあい</rt></ruby>】<ruby>恋人<rt>こいびと</rt></ruby>と 会う時間が 少ないかもしれません。心配しないで、メールを <strong><ruby>送った<rt>おくった</rt></ruby> ほうがいいです</strong>。<br><br>
+                            【<ruby>健康<rt>けんこう</rt></ruby>】働きすぎで <ruby>胃<rt>い</rt></ruby>が 痛くなるかもしれません。<ruby>無理<rt>むり</rt></ruby>を しないで、<ruby>夕方<rt>ゆうがた</rt></ruby>は 早く 帰って, <strong>ゆっくりした ほうがいいです</strong>。
+                        </p>
+                        <p class="trans" style="color: #5c728a; font-style: italic; font-size: 1.4rem !important; margin: 0; line-height: 1.6 !important; border-top: 1px dashed #c8e6c9; padding-top: 8px; margin-top: 8px;">
+                            Đây là dự đoán tử vi tuần này của những người thuộc chòm sao Kim Ngưu.<br>
+                            Biết đâu chừng tuần này bạn có thể trúng vé số đấy. Vì có thể bạn sẽ trở thành người giàu có, nên nhất định nên mua vé số nhé.<br>
+                            【Tình duyên】 Thời gian gặp người yêu có lẽ sẽ ít. Đừng lo lắng, nên gửi tin nhắn liên lạc nhé.<br>
+                            【Sức khỏe】 Có lẽ bạn sẽ bị đau dạ dày vì làm việc quá sức. Đừng quá sức, chiều tối nên về sớm và nghỉ ngơi thong thả nhé.
+                        </p>
+                    </div>
+                    
+                    <!-- Cột phải: Câu hỏi đọc hiểu -->
+                    <div style="flex: 0.8; display: flex; flex-direction: column; gap: 10px;">
+                        <div class="quiz-box" style="margin: 0; padding: 20px; background: rgba(255,253,231,0.8) !important; font-size: 1.6rem !important;">
+                            <div class="quiz-title" style="font-size: 1.8rem !important; margin-bottom: 10px;">❓ Câu hỏi kiểm tra:</div>
+                            
+                            <div style="margin-bottom: 15px;">
+                                <p style="margin: 2px 0; font-size: 1.6rem !important;">1. 牡牛座の人は 今週 どうして 宝くじを 買ったほうがいいですか。</p>
+                                <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 4px 10px; font-size: 1.1rem;">Xem đáp án</button>
+                                <div class="answer-content" style="font-size: 1.5rem !important;">→ <strong>宝くじが 当たるかもしれない</strong>からです。</div>
+                            </div>
+                            
+                            <div style="margin-bottom: 15px;">
+                                <p style="margin: 2px 0; font-size: 1.6rem !important;">2. 恋人と 会う時間が 少ないとき, どうしたほうがいいですか。</p>
+                                <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 4px 10px; font-size: 1.1rem;">Xem đáp án</button>
+                                <div class="answer-content" style="font-size: 1.5rem !important;">→ <strong>心配しないで, メールを 送ったほうがいい</strong>です。</div>
+                            </div>
+                            
+                            <div>
+                                <p style="margin: 2px 0; font-size: 1.6rem !important;">3. 健康のために どうしたほうがいいですか。</p>
+                                <button class="answer-btn" onclick="toggleAnswer(this)" style="padding: 4px 10px; font-size: 1.1rem;">Xem đáp án</button>
+                                <div class="answer-content" style="font-size: 1.5rem !important;">→ <strong>無理をしないで、夕方は 早く帰って, ゆっくりしたほうがいい</strong>です。</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 11: Góc Đời Sống & Sự Thật Thú Vị -->
+            <section data-background-color="#efebe9">
+                <h2 style="color: #4e342e; border-bottom-color: #4e342e !important;">💡 Góc Đời Sống: Biểu đạt giả định & Phép lịch sự</h2>
+                <div class="fragment" style="text-align: left; margin-top: 15px;">
+                    <!-- Điểm 1: もしかしたら -->
+                    <div style="background: white; padding: 15px 20px; border-radius: 12px; border: 1px solid #d7ccc8; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
+                        <p style="font-weight: bold; color: #5d4037; margin: 0; font-size: 1.6rem !important;">🗣️ Cách dùng "もしかしたら" (Biết đâu chừng):</p>
+                        <p style="font-size: 1.45rem !important; margin: 5px 0 0 0; line-height: 1.5 !important;">
+                            Phó từ <code>もしかしたら</code> thường đi kèm với cấu trúc <code>〜かもしれません</code> để nhấn mạnh tính phỏng đoán, giả định:
+                        </p>
+                        <div class="grammar-example" style="margin-top: 10px !important; background: #fbe9e7 !important; font-size: 1.5rem !important; border-left: 5px solid #ff5722 !important;">
+                            <p><strong>もしかしたら</strong>、来週 太陽が 見えないかもしれません。 (Biết đâu chừng tuần sau không nhìn thấy mặt trời nữa.)</p>
+                        </div>
+                    </div>
+
+                    <!-- Điểm 2: Lời khuyên ほうがいい -->
+                    <div style="background: #fff3e0; padding: 15px 20px; border-radius: 12px; border: 1px solid #ffe0b2; margin-top: 15px;">
+                        <p style="font-weight: bold; color: #e65100; margin: 0; font-size: 1.6rem !important;">⚠️ Phép lịch sự khi khuyên nhủ cấp trên:</p>
+                        <p style="font-size: 1.45rem !important; margin: 5px 0 0 0; line-height: 1.6 !important;">
+                            Tránh sử dụng trực tiếp cấu trúc <code>〜ほうがいいです</code> đối với cấp trên, giáo viên hoặc người lớn tuổi, vì cấu trúc này mang tính áp đặt hoặc dạy đời. Hãy đổi sang cấu trúc đề xuất nhẹ nhàng hơn:
+                        </p>
+                        <div class="grammar-example" style="margin-top: 10px !important; background: white !important; font-size: 1.5rem !important; border-left: 5px solid #ff9800 !important;">
+                            <p>❌ <strong>Thô lỗ với sếp:</strong> 早く 帰った ほうがいいですよ。<br>
+                                 ✔️ <strong>Lịch sự:</strong> 早く <ruby>お帰りになったら<rt>おかえりになったら</rt></ruby> いかがですか。 (Sếp về sớm thì sao ạ?)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 12: Luyện tập tổng hợp -->
+            <section>
+                <h2>📝 Luyện tập tổng hợp cuối bài</h2>
+                <div class="quiz-box fragment" style="text-align: left; font-size: 1.6rem !important;">
+                    <div class="quiz-title">✍️ Chia động từ trong ngoặc theo đúng ngữ pháp Bài 32:</div>
+                    <div class="fragment" style="margin-bottom: 15px;">
+                        <p>1. <ruby>健康<rt>けんこう</rt></ruby>のために, 毎日 (____________) ほうがいいです。 (運動します)</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
+                        <div class="answer-content">→ <strong>運動した</strong> (運動したほうがいいです: Nên vận động cơ thể)</div>
+                    </div>
+                    <div class="fragment" style="margin-bottom: 15px;">
+                        <p>2. <ruby>約束<rt>やくそく</rt></ruby>の <ruby>時間<rt>じかん</rt></ruby>に 遅れる (____________)。 (Có thể - phỏng đoán 40%)</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
+                        <div class="answer-content">→ <strong>かもしれません</strong> (遅れるかもしれません: Có thể bị trễ giờ hẹn)</div>
+                    </div>
+                    <div class="fragment" style="margin-bottom: 15px;">
+                        <p>3. 明日は <ruby>台風<rt>たいふう</rt></ruby>が 来ますから, <ruby>風<rt>かぜ</rt></ruby>が (____________) でしょう。 (吹きます)</p>
+                        <button class="answer-btn" onclick="toggleAnswer(this)">Xem đáp án</button>
+                        <div class="answer-content">→ <strong>吹く</strong> (吹くでしょう: Có lẽ gió sẽ thổi mạnh)</div>
+                    </div>
+                </div>
+            </section>
 
     </div></div>
 
     <!-- Vocab Box -->
     <div id="vocab-box" class="vocab-box" style="position:fixed; top:70px; right:15px; width:220px; max-height:400px; overflow-y:auto; background:rgba(255,255,255,0.9); border:2px solid #0052cc; border-radius:12px; padding:15px; z-index:999; box-shadow:0 10px 25px rgba(0,0,0,0.1); cursor:move;">
-        <h4 id="vocab-header" style="margin:0 0 10px 0; color:#0052cc;">Từ Vựng Trang Này</h4>
+        <h4 id="vocab-header" style="margin:0 0 10px 0; color:#0052cc; font-size: 1rem;">Từ Vựng Trang Này</h4>
         <div id="vocab-list" style="font-size:0.9rem; line-height:1.4;"></div>
     </div>
 
@@ -119,23 +538,102 @@
             transition: 'slide'
         });
 
-        const vocabDict = {"\u3075\u304f\u305d\u3046": "trang ph\u1ee5c", "\u3066\u3093\u304d\u3088\u307b\u3046": "d\u1ef1 b\u00e1o th\u1eddi ti\u1ebft", "\u3061\u3085\u3046\u3044\u3057\u307e\u3059": "ch\u00fa \u00fd"};
-        const furiganaDict = {"\u3075\u304f\u305d\u3046": "\u670d\u88c5", "\u3066\u3093\u304d\u3088\u307b\u3046": "\u5929\u6c17\u4e88\u5831", "\u3061\u3085\u3046\u3044\u3057\u307e\u3059": "\u6ce8\u610f\u3057\u307e\u3059"};
+        // Toggle Translation when clicking a sentence or card
+        document.body.addEventListener('click', function(e) {
+            let target = e.target.closest('.grammar-example, .compare-card');
+            if (target) {
+                let trans = target.querySelector('.trans');
+                if (trans) {
+                    trans.classList.toggle('show-trans');
+                    e.stopPropagation();
+                }
+            }
+        });
+
+        const vocabDict = {
+            "運動します": "vận động, tập thể dục", "成功します": "thành công", "失敗します": "thất bại",
+            "合格します": "thi đỗ, vượt qua", "戻ります": "quay lại, trở lại", "晴れます": "nắng, trời quang",
+            "曇ります": "nhiều mây, u ám", "吹きます": "thổi (gió thổi)", "治ります": "chữa khỏi, lành bệnh",
+            "直ります": "được sửa chữa (hỏng hóc)", "続きます": "tiếp tục, tiếp diễn", "冷やします": "làm lạnh, giải nhiệt",
+            "心配": "lo lắng", "十分": "đủ, đầy đủ", "おかしい": "kỳ lạ, hài hước", "うるさい": "ồn ào, phiền phức",
+            "やけど": "bỏng (nhiệt)", "けが": "vết thương, chấn thương", "せき": "ho", "インフルエンザ": "cúm mùa",
+            "空": "bầu trời", "太陽": "mặt trời", "星": "ngôi sao", "月": "mặt trăng", "風": "gió",
+            "北": "phương Bắc", "南": "phương Nam", "西": "phương Tây", "東": "phương Đông",
+            "水道": "nước máy, vòi nước", "エンジン": "động cơ", "チーム": "đội, nhóm", "今夜": "đêm nay",
+            "夕方": "chiều tối, chạng vạng", "遅く": "muộn, trễ (thời gian)", "もしかしたら": "có lẽ, biết đâu chừng",
+            "それはいけませんね": "thật không may, tiếc nhỉ", "オリンピック": "Thế vận hội Olympic",
+            "元気": "khỏe mạnh, sinh lực", "胃": "dạ dày, bao tử", "働きすぎ": "làm việc quá sức",
+            "ストレス": "căng thẳng, stress", "無理をします": "làm quá sức, cố quá", "ゆっくりします": "thong thả, thư giãn",
+            "星占い": "bói toán chiêm tinh", "牡牛座": "chòm sao Kim Ngưu", "困ります": "gặp khó khăn, bối rối",
+            "宝くじ": "vé số", "当たります": "trúng thưởng (vé số)", "健康": "sức khỏe",
+            "恋愛": "tình duyên, tình yêu", "恋人": "người yêu", "お金持ち": "người giàu có"
+        };
+        const furiganaDict = {
+            "運動します": "<ruby>運動<rt>うんどう</rt></ruby>します",
+            "成功します": "<ruby>成功<rt>せいこう</rt></ruby>します",
+            "失敗します": "<ruby>失敗<rt>しっぱい</rt></ruby>します",
+            "合格します": "<ruby>合格<rt>ごうかく</rt></ruby>します",
+            "戻ります": "<ruby>戻<rt>もど</rt></ruby>ります",
+            "晴れます": "<ruby>晴<rt>は</rt></ruby>れます",
+            "曇ります": "<ruby>曇<rt>くも</rt></ruby>ります",
+            "吹きます": "<ruby>吹<rt>ふ</rt></ruby>きます",
+            "治ります": "<ruby>治<rt>なお</rt></ruby>ります",
+            "直ります": "<ruby>直<rt>なお</rt></ruby>ります",
+            "続きます": "<ruby>続<rt>つづ</rt></ruby>s",
+            "冷やします": "<ruby>冷<rt>ひ</rt></ruby>やします",
+            "心配": "<ruby>心配<rt>しんぱい</rt></ruby>",
+            "十分": "<ruby>十分<rt>じゅうぶん</rt></ruby>",
+            "空": "<ruby>空<rt>そら</rt></ruby>",
+            "太陽": "<ruby>太陽<rt>たいよう</rt></ruby>",
+            "星": "<ruby>星<rt>ほし</rt></ruby>",
+            "月": "<ruby>月<rt>つき</rt></ruby>",
+            "風": "<ruby>風<rt>かぜ</rt></ruby>",
+            "北": "<ruby>北<rt>きた</rt></ruby>",
+            "南": "<ruby>南<rt>みなみ</rt></ruby>",
+            "西": "<ruby>西<rt>にし</rt></ruby>",
+            "東": "<ruby>東<rt>ひがし</rt></ruby>",
+            "水道": "<ruby>水道<rt>すいどう</rt></ruby>",
+            "今夜": "<ruby>今夜<rt>こんや</rt></ruby>",
+            "夕方": "<ruby>夕方<rt>ゆうがた</rt></ruby>",
+            "遅く": "<ruby>遅<rt>おそ</rt></ruby>く",
+            "元気": "<ruby>元気<rt>げんき</rt></ruby>",
+            "胃": "<ruby>胃<rt>い</rt></ruby>",
+            "働きすぎ": "<ruby>働<rt>はたら</rt></ruby>きすぎ",
+            "無理をします": "<ruby>無理<rt>むり</rt></ruby>をします",
+            "星占い": "<ruby>星占<rt>ほしうら</rt></ruby>い",
+            "牡牛座": "<ruby>牡牛座<rt>おうしざ</rt></ruby>",
+            "困ります": "<ruby>困<rt>こま</rt></ruby>ります",
+            "宝くじ": "<ruby>宝<rt>たから</rt></ruby>くじ",
+            "当たります": "<ruby>当<rt>あ</rt></ruby>たります",
+            "健康": "<ruby>健康<rt>けんこう</rt></ruby>",
+            "恋愛": "<ruby>恋愛<rt>れんあい</rt></ruby>",
+            "恋人": "<ruby>恋人<rt>こいびと</rt></ruby>",
+            "お金持ち": "<ruby>金持ち<rt>かねもち</rt></ruby>"
+        };
 
         function toggleFurigana() {
             const slides = document.querySelector('.slides');
             slides.classList.toggle('hide-furigana');
         }
 
+        const vocabBox = document.getElementById('vocab-box');
+        const resizeObserver = new ResizeObserver(entries => {
+            for (let entry of entries) {
+                let newWidth = entry.contentRect.width;
+                let scale = Math.max(1, newWidth / 200);
+                vocabBox.style.fontSize = (0.9 * scale) + 'rem';
+                document.getElementById('vocab-header').style.fontSize = (1 * scale) + 'rem';
+            }
+        });
+        resizeObserver.observe(vocabBox);
+
         function updateVocab() {
             const currentSlide = Reveal.getCurrentSlide();
             if (!currentSlide) return;
-            
             let rawHtml = currentSlide.innerHTML;
             const list = document.getElementById('vocab-list');
             list.innerHTML = '';
             let foundAny = false;
-            
             let keys = Object.keys(vocabDict).sort((a, b) => b.length - a.length);
             for (let key of keys) {
                 let cleanText = rawHtml.replace(/<rt>.*?<\/rt>/g, '').replace(/<[^>]+>/g, '');
@@ -149,7 +647,7 @@
                 }
             }
             if (!foundAny) {
-                list.innerHTML = '<div style="color:#aaa; font-style:italic;">Không có từ vựng ở trang này</div>';
+                list.innerHTML = '<div style="color:#aaa; font-style:italic;">Không có từ vựng Bài 32 ở trang này</div>';
             }
         }
 
@@ -157,19 +655,18 @@
         Reveal.on('ready', updateVocab);
 
         // Make vocab box draggable
-        const box = document.getElementById('vocab-box');
         let isDragging = false;
         let offsetX, offsetY;
-        box.addEventListener('mousedown', e => {
+        vocabBox.addEventListener('mousedown', e => {
             isDragging = true;
-            offsetX = e.clientX - box.getBoundingClientRect().left;
-            offsetY = e.clientY - box.getBoundingClientRect().top;
+            offsetX = e.clientX - vocabBox.getBoundingClientRect().left;
+            offsetY = e.clientY - vocabBox.getBoundingClientRect().top;
         });
         document.addEventListener('mousemove', e => {
             if (isDragging) {
-                box.style.left = (e.clientX - offsetX) + 'px';
-                box.style.top = (e.clientY - offsetY) + 'px';
-                box.style.right = 'auto';
+                vocabBox.style.left = (e.clientX - offsetX) + 'px';
+                vocabBox.style.top = (e.clientY - offsetY) + 'px';
+                vocabBox.style.right = 'auto';
             }
         });
         document.addEventListener('mouseup', () => isDragging = false);
@@ -182,6 +679,20 @@
             } else {
                 content.style.display = 'none';
                 btn.innerText = 'Xem đáp án';
+            }
+        }
+    </script>
+    <button id="fs-btn" onclick="toggleFullScreen()" title="Toàn màn hình" style="position:fixed; bottom:15px; left:15px; z-index:9999; background:rgba(0,0,0,0.1); color:#333; border:none; width:35px; height:35px; border-radius:50%; font-weight:bold; cursor:pointer; display:flex; justify-content:center; align-items:center; opacity:0.5; transition:all 0.2s;" onmouseover="this.style.opacity='1'; this.style.background='rgba(0,0,0,0.2)'" onmouseout="this.style.opacity='0.5'; this.style.background='rgba(0,0,0,0.1)'">
+        <span style="font-size:1.2rem; line-height: 1;">⛶</span>
+    </button>
+    <script>
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
             }
         }
     </script>

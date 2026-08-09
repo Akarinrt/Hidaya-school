@@ -2369,68 +2369,228 @@ export const testsData: Test[] = [
     durationMinutes: 20,
     questions: [
       {
-        id: "l32_hw_1_1",
+        id: "l32_hw_ex1_1",
+        type: "text_input",
+        skill: "Trợ từ",
+        text: "Điền trợ từ thích hợp: 弟はさくら大学（　）合格しました。",
+        correctAnswers: ["に"],
+        explanation: "合格します (thi đỗ/đỗ) đi với trợ từ に."
+      },
+      {
+        id: "l32_hw_ex1_2",
+        type: "text_input",
+        skill: "Trợ từ",
+        text: "Điền trợ từ thích hợp: ここは車の音（　）うるさいです。",
+        correctAnswers: ["で"],
+        explanation: "Chỉ nguyên nhân, lý do (ồn ào vì tiếng còi xe): dùng trợ từ で."
+      },
+      {
+        id: "l32_hw_ex1_3",
+        type: "text_input",
+        skill: "Trợ từ",
+        text: "Điền trợ từ thích hợp: スキーに行って、足にけが（　）してしまいました。",
+        correctAnswers: ["を"],
+        explanation: "Cụm từ けがをします (bị thương)."
+      },
+      {
+        id: "l32_hw_ex1_4",
+        type: "text_input",
+        skill: "Trợ từ",
+        text: "Điền trợ từ thích hợp: 外国旅行のとき, お金は現金（　）持って đi ないほうがいいですよ。",
+        correctAnswers: ["で"],
+        explanation: "Chỉ phương thức, công cụ (bằng tiền mặt): dùng trợ từ で."
+      },
+      {
+        id: "l32_hw_ex1_5",
+        type: "text_input",
+        skill: "Trợ từ",
+        text: "Điền trợ từ thích hợp: やけどをしたら、すぐ水道の水（　）冷やしてください。",
+        correctAnswers: ["で"],
+        explanation: "Chỉ phương thức, công cụ (làm mát bằng nước vòi/nước máy): dùng trợ từ で."
+      },
+      {
+        id: "l32_hw_ex1_6",
+        type: "text_input",
+        skill: "Trợ từ",
+        text: "Điền trợ từ thích hợp: かぜをひいたんですか。…ええ、せき（　）出て、熱もあるんです。",
+        correctAnswers: ["が"],
+        explanation: "Cụm từ せきが出ます (bị ho)."
+      },
+      {
+        id: "l32_hw_ex2_1",
         type: "text_input",
         skill: "Ngữ pháp (ほうがいいです)",
-        text: "Điền dạng đúng: 体の調子が悪い時は、無理を（　）ほうがいいです。 (Khi người không khỏe thì không nên quá sức - dùng động từ しません)",
+        text: "Điền dạng đúng của động từ: やまと美術館には駐車場がありませんから、電車で（　）ほうがいいですね。 (dùng động từ 行きます)",
+        correctAnswers: ["行った", "いった"],
+        explanation: "Khuyên nên làm gì: Vたほうがいいです -> 行ったほうがいいです."
+      },
+      {
+        id: "l32_hw_ex2_2",
+        type: "text_input",
+        skill: "Ngữ pháp (ほうがいいです)",
+        text: "Điền dạng đúng của động từ: その牛乳はちょっと古いですから、（　）ほうがいいですよ。 (dùng động từ 飲みます)",
+        correctAnswers: ["飲まない", "のまない"],
+        explanation: "Khuyên không nên làm gì: Vないほうがいいです -> 飲まないほうがいいです."
+      },
+      {
+        id: "l32_hw_ex2_3",
+        type: "text_input",
+        skill: "Ngữ pháp (ほうがいいです)",
+        text: "Điền dạng đúng của động từ: 夕方は雨だと思いますから、傘を（　）ほうがいいですよ。 (dùng động từ 持って行きます)",
+        correctAnswers: ["持って行った", "もっていった"],
+        explanation: "持って行きます -> 持って行った. Vたほうがいいです."
+      },
+      {
+        id: "l32_hw_ex2_4",
+        type: "text_input",
+        skill: "Ngữ pháp (ほうがいいです)",
+        text: "Điền dạng đúng của động từ: 熱があるときは、運動は（　）ほうがいいですよ。 (dùng động từ します)",
         correctAnswers: ["しない"],
-        explanation: "無理をしないほうがいいです."
+        explanation: "します -> しない. Vないほうがいいです."
       },
       {
-        id: "l32_hw_1_2",
+        id: "l32_hw_ex2_5",
         type: "text_input",
         skill: "Ngữ pháp (ほうがいいです)",
-        text: "Điền dạng đúng: パソコンを買う前に、よく（　）ほうがいいです。 (Trước khi mua máy tính nên tìm hiểu kỹ - dùng động từ 調べます)",
-        correctAnswers: ["調べた", "しらべた"],
-        explanation: "調べたほうがいいです."
+        text: "Điền dạng đúng của động từ: 地図を見ても、よくわかりませんね。…そうですね。あそこ交番で（　）ほうがいいですね。 (dùng động từ 聞きます)",
+        correctAnswers: ["聞いた", "きいた"],
+        explanation: "聞きます -> 聞いた. Vたほうがいいです."
       },
       {
-        id: "l32_hw_2_1",
+        id: "l32_hw_ex3_1",
         type: "text_input",
         skill: "Ngữ pháp (でしょう)",
-        text: "Điền dạng đúng: 明日は北の風が（　）でしょう。 (Ngày mai gió phương bắc có lẽ sẽ mạnh - dùng tính từ 強い)",
-        correctAnswers: ["強い", "つよい"],
-        explanation: "強いでしょう."
+        text: "Điền dạng đúng của từ: イーさんは独身ですか。…ええ、たぶん（　）でしょう。 (dùng danh từ 独身)",
+        correctAnswers: ["独身", "どくしん"],
+        explanation: "Dự đoán thể thông thường + でしょう. Danh từ giữ nguyên -> 独身でしょう."
       },
       {
-        id: "l32_hw_2_2",
+        id: "l32_hw_ex3_2",
         type: "text_input",
         skill: "Ngữ pháp (でしょう)",
-        text: "Điền dạng đúng: 今夜の月は（　）でしょう。 (Trăng đêm nay chắc sẽ tròn - dùng tính từ 丸い)",
-        correctAnswers: ["丸い", "まるい"],
-        explanation: "丸いでしょう."
+        text: "Điền dạng đúng của động từ: 今度のパーティー、お皿は何枚くらいあったら足りますか。…そうですね。30枚くらいあったら、（　）でしょう。 (dùng động từ 足ります)",
+        correctAnswers: ["足りる", "たりる"],
+        explanation: "足ります -> 足る/足りる. Thể thông thường + でしょう -> 足りるでしょう."
       },
       {
-        id: "l32_hw_3_1",
+        id: "l32_hw_ex3_3",
+        type: "text_input",
+        skill: "Ngữ pháp (でしょう)",
+        text: "Điền dạng đúng của động từ: 今週の土曜日は休めますか。…忙しいですから、たぶん（　）でしょう。 (dùng động từ 休めます - chia thể khả năng phủ định)",
+        correctAnswers: ["休めない", "やすめない"],
+        explanation: "休めます -> 休めない. Thể thông thường + でしょう -> 休めないでしょう."
+      },
+      {
+        id: "l32_hw_ex3_4",
+        type: "text_input",
+        skill: "Ngữ pháp (でしょう)",
+        text: "Điền dạng đúng của động từ: 山田さんはまだ来ていないんですか。…もう9時ですから、もうすぐ（　）でしょう。 (dùng động từ 来ます)",
+        correctAnswers: ["来る", "くる"],
+        explanation: "来ます -> 来る. Thể thông thường + でしょう -> 来るでしょう."
+      },
+      {
+        id: "l32_hw_ex3_5",
+        type: "text_input",
+        skill: "Ngữ pháp (でしょう)",
+        text: "Điền dạng đúng của tính từ: 6月に北海道へ行くんですが、寒いでしょうか。…そうですね。6月はそんなに（　）でしょう。 (dùng tính từ 寒いです - phủ định)",
+        correctAnswers: ["寒くない", "さむくない"],
+        explanation: "寒いです -> 寒くない. Thể thông thường + でしょう -> 寒くないでしょう."
+      },
+      {
+        id: "l32_hw_ex3_6",
+        type: "text_input",
+        skill: "Ngữ pháp (でしょう)",
+        text: "Điền dạng đúng của tính từ: 国際結婚は大変だと思いますか。…ええ、ことばの問題もあるし、きっと（　）でしょう。 (dùng tính từ 大変[な])",
+        correctAnswers: ["大変", "たいへん"],
+        explanation: "Tính từ đuôi な giữ nguyên -> 大変でしょう."
+      },
+      {
+        id: "l32_hw_ex4_1",
         type: "text_input",
         skill: "Ngữ pháp (かもしれません)",
-        text: "Điền dạng đúng: 約束の時間に（　）かもしれません。 (Có lẽ tôi sẽ không kịp giờ hẹn - dùng động từ 間に合いません)",
-        correctAnswers: ["間に合わない", "まにあわない"],
-        explanation: "間に合わないかもしれません."
+        text: "Điền dạng đúng của động từ: 約束の時間に間に合うでしょうか。…こんなに道が込んでいますから、（　）かもしれません。 (dùng động từ 間に合います - phủ định)",
+        correctAnswers: ["間に合わない", "まにあわない", "まにあわない"],
+        explanation: "間に合います -> 間に合わない. Thể thông thường + かもしれません."
       },
       {
-        id: "l32_hw_3_2",
+        id: "l32_hw_ex4_2",
         type: "text_input",
         skill: "Ngữ pháp (かもしれません)",
-        text: "Điền dạng đúng: 故障かもしれないから、電気屋に（　）ほうがいいです。 (Vì có thể bị hỏng nên hãy liên hệ thợ điện - dùng động từ 見せます)",
-        correctAnswers: ["見せた", "みせた"],
-        explanation: "見せたほうがいいです."
+        text: "Điền dạng đúng của động từ: 寒いですね。…ええ。今夜は雪が（　）かもしれませんね。 (dùng động từ 降ります)",
+        correctAnswers: ["降る", "ふる"],
+        explanation: "降ります -> 降る. Thể thông thường + かもしれません."
       },
       {
-        id: "l32_hw_4_1",
+        id: "l32_hw_ex4_3",
         type: "text_input",
-        skill: "Ngữ pháp (Tổng hợp)",
-        text: "Điền dạng đúng: 寒いですから、コートを（　）ほうがいいですよ。 (Lạnh nên mặc áo khoác vào đi - dùng động từ 着ます)",
-        correctAnswers: ["着た", "きた"],
-        explanation: "着たほうがいい."
+        skill: "Ngữ pháp (かもしれません)",
+        text: "Điền dạng đúng của từ: この傘、だれかの忘れ物ですか。…そうですね。きのう来たミラーさんの（　）かもしれません。 (dùng danh từ 忘れ物)",
+        correctAnswers: ["忘れ物", "わすれもの"],
+        explanation: "Danh từ + かもしれません -> 忘れ物かもしれません."
       },
       {
-        id: "l32_hw_4_2",
+        id: "l32_hw_ex4_4",
+        type: "text_input",
+        skill: "Ngữ pháp (かもしれません)",
+        text: "Điền dạng đúng của tính từ: 4万円ぐらいでマンションを借りたいんですが、無理でしょうか。…うーん、ちょっと（　）かもしれませんよ。 (dùng tính từ 無理[な])",
+        correctAnswers: ["無理", "むり"],
+        explanation: "Tính từ đuôi な giữ nguyên -> 無理かもしれません."
+      },
+      {
+        id: "l32_hw_ex4_5",
+        type: "text_input",
+        skill: "Ngữ pháp (かもしれません)",
+        text: "Điền dạng đúng của động từ: 来年会社を（　）かもしれません。…やめて、何をするんですか。 (dùng động từ やめます)",
+        correctAnswers: ["やめる"],
+        explanation: "やめます -> やめる. Thể thông thường + かもしれません."
+      },
+      {
+        id: "l32_hw_ex4_6",
+        type: "text_input",
+        skill: "Ngữ pháp (かもしれません)",
+        text: "Điền dạng đúng của tính từ: 友達の結婚式のとき、この服を着ようと思っているんですが、おかしいでしょうか。…そうですね。日本ではちょっと（　）かもしれませんよ。 (dùng tính từ おかしい)",
+        correctAnswers: ["おかしい"],
+        explanation: "Tính từ đuôi i giữ nguyên -> おかしいかもしれません."
+      },
+      {
+        id: "l32_hw_ex4_7",
+        type: "text_input",
+        skill: "Ngữ pháp (かもしれません)",
+        text: "Điền dạng đúng của động từ: ずっと暑い日が続いていますね。…そうですね。しばらく暑い日が（　）かもしれませんよ。 (dùng động từ 続きます)",
+        correctAnswers: ["続く", "つづく"],
+        explanation: "続きます -> 続く. Thể thông thường + かもしれません."
+      },
+      {
+        id: "l32_hw_ex5_1",
         type: "text_input",
         skill: "Ngữ pháp (Tổng hợp)",
-        text: "Điền dạng đúng: 忘れるかもしれないから、メモを（　）おいてください。 (Có thể sẽ quên nên hãy ghi chép lại sẵn - dùng động từ 書きます)",
-        correctAnswers: ["書いて", "かいて"],
-        explanation: "書いておいてください."
+        text: "Điền dạng đúng của động từ (điền 2 từ cách nhau bởi dấu phẩy, ví dụ: từ1, từ2): 5時までに本社に（　）かもしれませんから、電話で（　）ほうがいいですね。 (dùng động từ 戻ります và 連絡します)",
+        correctAnswers: ["戻らない, 連絡した", "もどらない, れんらくした", "戻らない,連絡した", "もどらない,れんらくした"],
+        explanation: "戻りません -> 戻らないかもしれません. 連絡します -> 連絡したほうがいい."
+      },
+      {
+        id: "l32_hw_ex5_2",
+        type: "text_input",
+        skill: "Ngữ pháp (Tổng hợp)",
+        text: "Điền dạng đúng của từ (điền 2 từ cách nhau bởi dấu phẩy): 来週は（　）かもしれませんから、車は今週（　）ほうがいいですね。 (dùng tính từ 忙しい và động từ やってしまいます)",
+        correctAnswers: ["忙しい, やってしまった", "いそがしい, やってしまった", "忙しい,やってしまった", "いそがしい,やってしまった"],
+        explanation: "忙しい -> 忙しいかもしれません. やってしまいます -> やってしまったほうがいい."
+      },
+      {
+        id: "l32_hw_ex5_3",
+        type: "text_input",
+        skill: "Ngữ pháp (Tổng hợp)",
+        text: "Điền dạng đúng của từ (điền 2 từ cách nhau bởi dấu phẩy): このパソコンはもっと（　）かもしれませんから、まだ（　）ほうがいいでしょう。 (dùng động từ 安くなります và 買いません)",
+        correctAnswers: ["安くなる, 買わない", "やすくなる, かわない", "安くなる,買わない", "やすくなる,かわない"],
+        explanation: "安くなります -> 安くなるかもしれません. 買いません -> 買わないほうがいい."
+      },
+      {
+        id: "l32_hw_ex5_4",
+        type: "text_input",
+        skill: "Ngữ pháp (Tổng hợp)",
+        text: "Điền dạng đúng của từ (điền 2 từ cách nhau bởi dấu phẩy): 最近体の調子がよくないんです。…（　）かもしれませんよ。あまり（　）ほうがいいですよ。 (dùng danh từ 病気 và động từ 無理をします)",
+        correctAnswers: ["病気, 無理をしない", "びょうき, むりをしない", "病気,無理をしない", "びょうき,むりをしない"],
+        explanation: "病気 -> 病気かもしれません. 無理をします -> 無理をしないほうがいい."
       },
       {
         id: "l32_hw_5_1",
@@ -2446,7 +2606,7 @@ export const testsData: Test[] = [
         type: "text_input",
         skill: "Đọc hiểu",
         text: "Trả lời câu hỏi dựa trên bài đọc: どうして午後から外出する時に注意したほうがいいですか。 (Tại sao chiều mai ra ngoài nên chú ý?)",
-        passage: "天気予報によると、明日は朝から雨が降るでしょう。午後からは風も強くなるかもしれませんから、外出する時は注意したほうがいいです。夜には雨がやむでしょうg...",
+        passage: "天気予報によると、明日は朝から雨が降るでしょう。午後からは風も強くなるかもしれませんから、外出する時は注意したほうがいいです。夜には雨がやむでしょうg、気温が下がって寒くなりますから、暖かい服を着て出かけたほうがいいです。",
         correctAnswers: ["風が強くなるかもしれないからです", "かぜがつよくなるかもしれないからです"],
         explanation: "Trong bài đọc có câu: 午後からは風も強くなるかもしれませんから..."
       },
@@ -2455,7 +2615,7 @@ export const testsData: Test[] = [
         type: "text_input",
         skill: "Đọc hiểu",
         text: "Trả lời câu hỏi dựa trên bài đọc: 夜に出かける時はどんな服を着たほうがいいですか。 (Tối mai đi nên mặc đồ thế nào?)",
-        passage: "天気予報によると、明日は朝から雨が降るでしょう。午後からは風も強くなるかもしれませんから、外出する時は注意したほうがいいです。夜には雨がやむでしょうが、気温が下がって寒くなりますから、暖かい服を着て出かけたほうがいいです。",
+        passage: "天気予報によると、明日は朝から雨が降るでしょう。午後からは風も強くなるかもしれませんから、外出する時は注意したほうがいいです。夜には雨がやむでしょうg、気温が下がって寒くなりますから、暖かい服を着て出かけたほうがいいです。",
         correctAnswers: ["暖かい服を着たほうがいいです", "あたたかいふくをきたほうがいいです"],
         explanation: "Trong bài đọc có câu: 暖かい服を着て出かけたほうがいいです。"
       }
