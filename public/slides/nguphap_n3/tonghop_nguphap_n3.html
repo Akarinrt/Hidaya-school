@@ -39,12 +39,43 @@
         header {
             background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             color: white;
-            padding: 40px 20px 30px;
+            padding: 24px 20px 20px;
             text-align: center;
             box-shadow: var(--shadow-md);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        header.collapsed {
+            padding: 12px 20px;
+        }
+
+        header.collapsed .header-intro {
+            display: none;
+        }
+
+        .toggle-header-btn {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .toggle-header-btn:hover {
+            background: #ffffff;
+            color: #1e3a8a;
         }
 
         .header-container {
@@ -427,14 +458,19 @@
 <body>
 
 <header id="top">
+    <button class="toggle-header-btn" onclick="toggleHeaderCollapse()" id="toggleHeaderBtn" title="Thu gọn hoặc mở rộng thanh tiêu đề">
+        <span id="toggleIcon">▲</span> <span id="toggleText">Thu gọn thanh trên</span>
+    </button>
     <div class="header-container">
-        <span class="header-tag">✨ Sổ Tay Học Nhanh & Tra Cứu Toàn Diện</span>
-        <h1>NGỮ PHÁP SHINKANZEN MASTER N3</h1>
-        <p>Tổng hợp đầy đủ cấu trúc ngữ pháp theo thứ tự bảng chữ cái (50 âm あ〜わ). Tra cứu tức thì công thức kết nối, ý nghĩa trọng tâm, ví dụ mẫu chuẩn âm thanh và bí kíp làm bài thi JLPT.</p>
+        <div class="header-intro">
+            <span class="header-tag">✨ Sổ Tay Học Nhanh & Tra Cứu Toàn Diện</span>
+            <h1 style="font-size: 1.8rem; margin-bottom: 6px;">NGỮ PHÁP SHINKANZEN MASTER N3</h1>
+            <p style="font-size: 0.95rem; margin-bottom: 14px;">Tra cứu tức thì công thức, ý nghĩa trọng tâm, ví dụ mẫu chuẩn âm thanh và bí kíp làm bài thi JLPT.</p>
+        </div>
         
-        <div class="search-box-wrapper">
+        <div class="search-box-wrapper" style="margin-bottom: 10px;">
             <span class="search-icon">🔍</span>
-            <input type="text" id="searchInput" class="search-input" placeholder="Nhập tên ngữ pháp, kana, romaji hoặc ý nghĩa tiếng Việt..." oninput="filterGrammar()">
+            <input type="text" id="searchInput" class="search-input" style="padding: 12px 20px 12px 48px; font-size: 1.05rem;" placeholder="Nhập tên ngữ pháp, kana, romaji hoặc ý nghĩa tiếng Việt..." oninput="filterGrammar()">
         </div>
 
         <nav class="alphabet-nav" id="alphabetNav">
@@ -1452,6 +1488,22 @@ function speakText(text) {
 }
 
 // TOGGLE TRANSLATION
+
+function toggleHeaderCollapse() {
+    const header = document.getElementById('top');
+    const toggleIcon = document.getElementById('toggleIcon');
+    const toggleText = document.getElementById('toggleText');
+    header.classList.toggle('collapsed');
+    
+    if (header.classList.contains('collapsed')) {
+        toggleIcon.textContent = '▼';
+        toggleText.textContent = 'Mở rộng';
+    } else {
+        toggleIcon.textContent = '▲';
+        toggleText.textContent = 'Thu gọn';
+    }
+}
+
 function toggleTrans(btn) {
     const viBox = btn.closest('.example-item').querySelector('.example-vi');
     if (viBox.style.display === 'none' || viBox.style.display === '') {
