@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sổ Tay Tổng Hợp & Tra Cứu Nhanh Ngữ Pháp JLPT N3 - Shinkanzen Master</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0d9488;
+            --accent: #e11d48;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 40px 20px 30px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+
+        /* CONTROLS & SEARCH BAR */
+        .search-box-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 16px 24px 16px 54px;
+            font-size: 1.15rem;
+            border-radius: 9999px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--text-main);
+            box-shadow: var(--shadow-lg);
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+            background: #ffffff;
+            border-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.3rem;
+            color: #64748b;
+        }
+
+        /* ALPHABET FILTER NAV */
+        .alphabet-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 18px;
+        }
+
+        .alpha-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .alpha-btn:hover, .alpha-btn.active {
+            background: #ffffff;
+            color: #1e3a8a;
+            font-weight: 700;
+        }
+
+        /* STATS BAR */
+        .stats-bar {
+            max-width: 1200px;
+            margin: 20px auto 10px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* MAIN LIST CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* SECTION ACCORDION / GROUPS */
+        .letter-group {
+            margin-top: 35px;
+        }
+
+        .letter-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #cbd5e1;
+        }
+
+        .letter-badge {
+            background: #1e40af;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 800;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .letter-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #1e293b;
+        }
+
+        .letter-count {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            background: #e2e8f0;
+            padding: 2px 10px;
+            border-radius: 999px;
+        }
+
+        /* GRAMMAR CARD */
+        .grammar-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+            position: relative;
+        }
+
+        .grammar-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: #93c5fd;
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .grammar-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #1e3a8a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .grammar-meaning {
+            background: #eff6ff;
+            color: #1d4ed8;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            display: inline-block;
+            border: 1px solid #bfdbfe;
+        }
+
+        .badge-cat {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        /* FORMULA BOX */
+        .formula-box {
+            background: #f8fafc;
+            border-left: 4px solid var(--primary);
+            padding: 10px 16px;
+            border-radius: 0 8px 8px 0;
+            font-size: 1.05rem;
+            color: #1e293b;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .formula-tag {
+            background: #2563eb;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 4px;
+            letter-spacing: 0.05em;
+        }
+
+        .formula-text {
+            font-weight: 600;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        /* EXAMPLES */
+        .examples-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .example-item {
+            background: #ffffff;
+            border: 1px solid #f1f5f9;
+            border-radius: 10px;
+            padding: 12px 16px;
+            background: #fafafa;
+        }
+
+        .example-jp {
+            font-size: 1.15rem;
+            color: #0f172a;
+            font-family: 'Noto Sans JP', sans-serif;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            line-height: 1.7;
+        }
+
+        ruby rt {
+            font-size: 0.65em;
+            color: #2563eb;
+            font-weight: 500;
+        }
+
+        .example-actions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .btn-audio, .btn-trans {
+            background: white;
+            border: 1px solid #cbd5e1;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s;
+            color: #334155;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-audio:hover {
+            background: #eff6ff;
+            border-color: #93c5fd;
+            color: #1d4ed8;
+        }
+
+        .btn-trans:hover {
+            background: #f1f5f9;
+            border-color: #94a3b8;
+            color: #0f172a;
+        }
+
+        .example-vi {
+            margin-top: 6px;
+            font-size: 1rem;
+            color: #475569;
+            padding-left: 2px;
+            border-top: 1px dashed #e2e8f0;
+            padding-top: 6px;
+        }
+
+        /* NOTE / TIP */
+        .tip-box {
+            margin-top: 14px;
+            background: #fffbeb;
+            border: 1px solid #fef3c7;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #92400e;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        /* BACK TO TOP BUTTON */
+        .back-to-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 48px;
+            height: 48px;
+            background: #1e3a8a;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: var(--shadow-lg);
+            text-decoration: none;
+            opacity: 0.85;
+            transition: all 0.2s;
+            z-index: 99;
+        }
+
+        .back-to-top:hover {
+            opacity: 1;
+            transform: scale(1.08);
+            background: #2563eb;
+        }
+
+        .no-result {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+            font-size: 1.2rem;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.6rem; }
+            .grammar-title { font-size: 1.2rem; }
+            .example-jp { flex-direction: column; align-items: flex-start; }
+            .example-actions { align-self: flex-end; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="top">
+    <div class="header-container">
+        <span class="header-tag">✨ Sổ Tay Học Nhanh & Tra Cứu Toàn Diện</span>
+        <h1>NGỮ PHÁP SHINKANZEN MASTER N3</h1>
+        <p>Tổng hợp đầy đủ cấu trúc ngữ pháp theo thứ tự bảng chữ cái (50 âm あ〜わ). Tra cứu tức thì công thức kết nối, ý nghĩa trọng tâm, ví dụ mẫu chuẩn âm thanh và bí kíp làm bài thi JLPT.</p>
+        
+        <div class="search-box-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" class="search-input" placeholder="Nhập tên ngữ pháp, kana, romaji hoặc ý nghĩa tiếng Việt..." oninput="filterGrammar()">
+        </div>
+
+        <nav class="alphabet-nav" id="alphabetNav">
+            <!-- Render alphabet buttons via JS -->
+        </nav>
+    </div>
+</header>
+
+<div class="stats-bar">
+    <div>Hiển thị: <span id="displayCount" style="color: #2563eb; font-weight: 800;">0</span> cấu trúc ngữ pháp</div>
+    <div>Sách tham khảo: <strong>Shinkanzen Master N3 文法</strong></div>
+</div>
+
+<main class="container" id="grammarContainer">
+    <!-- Grammar list rendered by JS -->
+</main>
+
+<div class="no-result" id="noResult">
+    😕 Không tìm thấy cấu trúc ngữ pháp nào phù hợp với từ khóa tìm kiếm.
+</div>
+
+<a href="#top" class="back-to-top" title="Về đầu trang">↑</a>
+
+<script>
+// DỮ LIỆU TOÀN BỘ NGỮ PHÁP N3 SHINKANZEN MASTER CHUẨN XÁC
+const grammarData = [
+    // ========== HÀNG あ (A) ==========
+    {
+        id: "a-01",
+        letter: "あ",
+        pattern: "〜あいだ / 〜あいだに (〜間 / 〜間に)",
+        category: "Thời gian • Giai đoạn",
+        meaning: "Suốt trong khoảng thời gian... / Trong khi chớp nhoáng...",
+        formula: "V-ている / V-ない / Nの / A-い / A-な ＋ 間(に)",
+        tip: "💡 Phân biệt cốt lõi: 〜間 (không に) vế sau là hành động kéo dài liên tục suốt khoảng thời gian. 〜間に (có に) vế sau là hành động ngắn, chớp nhoáng hoặc biến đổi xảy ra một lần.",
+        examples: [
+            {
+                jp: "<ruby>夏休み<rt>なつやすみ</rt></ruby>の<ruby>間<rt>あいだ</rt></ruby>、ずっと<ruby>国<rt>くに</rt></ruby>に<ruby>帰<rt>かえ</rt></ruby>っていました。",
+                vi: "Trong suốt kỳ nghỉ hè, tôi đã liên tục về nước ở nhà."
+            },
+            {
+                jp: "お<ruby>母<rt>かあ</rt></ruby>さんが<ruby>昼寝<rt>ひるね</rt></ruby>をしている<ruby>間<rt>あいだ</rt></ruby>に、<ruby>子<rt>こ</rt></ruby>どもたちは<ruby>部屋<rt>へや</rt></ruby>を<ruby>片付<rt>かたづ</rt></ruby>けた。",
+                vi: "Trong khi mẹ đang chợp mắt ngủ trưa, lũ trẻ đã dọn dẹp sạch sẽ căn phòng."
+            }
+        ]
+    },
+    {
+        id: "a-02",
+        letter: "あ",
+        pattern: "〜あまり / 〜あまりに",
+        category: "Mức độ • Nguyên nhân",
+        meaning: "Vì quá... nên dẫn tới kết quả không mong muốn",
+        formula: "V-る / V-た / Nの / A-い / A-な ＋ あまり(に)",
+        tip: "💡 Vế sau thường là một kết quả tiêu cực, bất thường vượt ngoài tầm kiểm soát của lý trí.",
+        examples: [
+            {
+                jp: "<ruby>緊張<rt>きんちょう</rt></ruby>のあまり、<ruby>声<rt>こえ</rt></ruby>が<ruby>出<rt>で</rt></ruby>なくなってしまった。",
+                vi: "Vì quá đỗi hồi hộp căng thẳng nên giọng tôi nghẹn lại không thốt lên lời."
+            },
+            {
+                jp: "<ruby>悲<rt>かな</rt></ruby>しみのあまり、<ruby>食欲<rt>しょくよく</rt></ruby>がなくなってしまった。",
+                vi: "Vì quá đau buồn nên tôi mất hết cả cảm giác ngon miệng, chẳng muốn ăn uống gì."
+            }
+        ]
+    },
+    {
+        id: "a-03",
+        letter: "あ",
+        pattern: "〜(よ)うとする / 〜(よ)うとしない",
+        category: "Ý chí • Hành vi",
+        meaning: "Đang định làm gì / Nhất quyết không chịu làm gì",
+        formula: "V thể ý chí (〜よう) ＋ とする / としない",
+        tip: "💡 V-ようとしている: Đúng ngay trước khoảnh khắc hành động xảy ra. V-ようとしない: Hoàn toàn không có ý định, từ chối thực hiện.",
+        examples: [
+            {
+                jp: "<ruby>出<rt>で</rt></ruby>かけようとしたとき、<ruby>突然<rt>とつぜん</rt></ruby><ruby>雨<rt>あめ</rt></ruby>が<ruby>降<rt>ふ</rt></ruby>り<ruby>始<rt>はじ</rt></ruby>めた。",
+                vi: "Đúng lúc tôi vừa toan bước chân ra ngoài thì trời bỗng đổ mưa rào."
+            },
+            {
+                jp: "<ruby>彼<rt>かれ</rt></ruby>は<ruby>自分<rt>じぶん</rt></ruby>のミスを<ruby>認<rt>みと</rt></ruby>めようとしない。",
+                vi: "Anh ta nhất quyết không chịu thừa nhận lỗi lầm của bản thân."
+            }
+        ]
+    },
+
+    // ========== HÀNG い (I) ==========
+    {
+        id: "i-01",
+        letter: "い",
+        pattern: "〜いくら〜ても / 〜どんなに〜ても",
+        category: "Phó từ hô ứng • Nhượng bộ",
+        meaning: "Dù có... bao nhiêu đi chăng nữa thì vẫn...",
+        formula: "いくら ＋ V-ても / A-くても / Na・N-でも",
+        tip: "💡 Phó từ いくら hoặc どんなに bắt buộc hô ứng với thể 〜ても ở cuối vế câu.",
+        examples: [
+            {
+                jp: "いくら<ruby>高<rt>たか</rt></ruby>くても、<ruby>仕事<rt>しごと</rt></ruby>に<ruby>必要<rt>ひつよう</rt></ruby>なら<ruby>買<rt>か</rt></ruby>わなければならない。",
+                vi: "Dù có đắt đỏ đến mấy đi nữa, nếu cần thiết cho công việc thì vẫn buộc phải mua."
+            },
+            {
+                jp: "どんなに<ruby>頼<rt>たの</rt></ruby>まれても、この<ruby>秘密<rt>ひみつ</rt></ruby>だけは<ruby>話<rt>はな</rt></ruby>せない。",
+                vi: "Dù có được khẩn khoản nhờ vả thế nào thì riêng bí mật này tôi không thể hé lộ."
+            }
+        ]
+    },
+    {
+        id: "i-02",
+        letter: "い",
+        pattern: "〜いっぽう(で) (〜一方 / 〜一方で)",
+        category: "So sánh • Tương phản • Đồng thời",
+        meaning: "Một mặt thì... nhưng đồng thời mặt khác...",
+        formula: "Thể thông thường (普通形) / Naである / Nである ＋ 一方(で)",
+        tip: "💡 Dùng để nêu bật 2 mặt đối lập cùng tồn tại song song của một sự vật, hiện tượng.",
+        examples: [
+            {
+                jp: "この<ruby>仕事<rt>しごと</rt></ruby>は<ruby>給料<rt>きゅうりょう</rt></ruby>が<ruby>高<rt>たか</rt></ruby>い<ruby>一方<rt>いっぽう</rt></ruby>で、<ruby>残業<rt>ざんぎょう</rt></ruby>がとても<ruby>多<rt>おお</rt></ruby>い。",
+                vi: "Công việc này một mặt thì mức lương rất cao, nhưng mặt khác giờ làm thêm lại cực kỳ nhiều."
+            },
+            {
+                jp: "インタネットは<ruby>便利<rt>べんり</rt></ruby>な<ruby>一方<rt>いっぽう</rt></ruby>で、セキュリティの<ruby>問題<rt>もんだい</rt></ruby>もある。",
+                vi: "Internet một mặt đem lại nhiều tiện ích, nhưng mặt khác cũng tiềm ẩn nguy cơ an ninh mạng."
+            }
+        ]
+    },
+    {
+        id: "i-03",
+        letter: "い",
+        pattern: "〜いっぽうだ (〜一方だ)",
+        category: "Biến đổi xu hướng",
+        meaning: "Ngày càng... (theo một chiều hướng không ngừng)",
+        formula: "V-る (động từ chỉ biến đổi) ＋ 一方だ",
+        tip: "💡 Thường đi với động từ chỉ sự thay đổi (増える, 減る, 悪くなる...) và hay diễn tả xu hướng tiêu cực, xấu dần đi.",
+        examples: [
+            {
+                jp: "<ruby>景気<rt>けいき</rt></ruby>は<ruby>悪<rt>わる</rt></ruby>くなる<ruby>一方<rt>いっぽう</rt></ruby>だ。",
+                vi: "Tình hình kinh tế đang ngày một trở nên tồi tệ, sa sút hơn."
+            },
+            {
+                jp: "<ruby>物価<rt>ぶっか</rt></ruby>は<ruby>上<rt>あ</rt></ruby>がる<ruby>一方<rt>いっぽう</rt></ruby>で、<ruby>生活<rt>せいかつ</rt></ruby>が<ruby>苦<rt>くる</rt></ruby>しくなる。",
+                vi: "Vật giá cứ leo thang không ngừng khiến cuộc sống sinh hoạt thêm chật vật."
+            }
+        ]
+    },
+
+    // ========== HÀNG う (U) ==========
+    {
+        id: "u-01",
+        letter: "う",
+        pattern: "〜うちに / 〜ないうちに",
+        category: "Thời gian • Tranh thủ",
+        meaning: "Tranh thủ trong khi... / Trong lúc đang... thì bất ngờ xảy ra biến đổi",
+        formula: "V-る / V-ている / V-ない / A-い / A-な / Nの ＋ うちに",
+        tip: "💡 Khi đi với V-ない: Tranh thủ làm trước khi trạng thái thay đổi (chưa nguội, trời chưa mưa). Khi đi với V-ている: Trong lúc đang làm việc A thì việc B tự nhiên phát sinh ngoài dự kiến.",
+        examples: [
+            {
+                jp: "スープが<ruby>温<rt>あたた</rt></ruby>かいうちに、どうぞ<ruby>召<rt>め</rt></ruby>し<ruby>上<rt>あ</rt></ruby>がってください。",
+                vi: "Xin mời bạn dùng súp ngay trong khi món ăn còn đang nóng hổi."
+            },
+            {
+                jp: "<ruby>本<rt>ほん</rt></ruby>を<ruby>読<rt>よ</rt></ruby>んでいるうちに、いつの間にか<ruby>眠<rt>ねむ</rt></ruby>ってしまった。",
+                vi: "Trong lúc đang đọc cuốn sách, chẳng biết từ lúc nào tôi đã ngủ thiếp đi mất."
+            }
+        ]
+    },
+
+    // ========== HÀNG お (O) ==========
+    {
+        id: "o-01",
+        letter: "お",
+        pattern: "〜おかげだ / 〜おかげで",
+        category: "Nguyên nhân • Kết quả tốt",
+        meaning: "Nhờ có... mà đạt được kết quả tốt đẹp",
+        formula: "Thể thông thường (普通形) / Naな / Nの ＋ おかげだ / おかげで",
+        tip: "💡 Dùng để cảm ơn, ghi nhận công lao. Cẩn thận: Có trường hợp mỉa mai châm biếm (Nhờ anh mà mọi chuyện hỏng bét!).",
+        examples: [
+            {
+                jp: "<ruby>先生<rt>せんせい</rt></ruby>の<ruby>熱心<rt>ねっしん</rt></ruby>なご<ruby>指導<rt>しどう</rt></ruby>のおかげで、N3に<ruby>合格<rt>ごうかく</rt></ruby>できました。",
+                vi: "Nhờ có sự chỉ bảo tận tình của thầy giáo mà em đã thi đỗ chứng chỉ JLPT N3."
+            },
+            {
+                jp: "<ruby>薬<rt>くすり</rt></ruby>を<ruby>飲<rt>の</rt></ruby>んだおかげで、すっかり<ruby>熱<rt>ねつ</rt></ruby>が<ruby>下<rt>さ</rt></ruby>がった。",
+                vi: "Nhờ uống thuốc kịp thời mà cơn sốt của tôi đã hạ hẳn."
+            }
+        ]
+    },
+    {
+        id: "o-02",
+        letter: "お",
+        pattern: "〜おそれがある (〜恐れがある)",
+        category: "Dự đoán • Cảnh báo nguy hiểm",
+        meaning: "Có nguy cơ / E rằng có khả năng xấu xảy ra",
+        formula: "V-る / Nの ＋ 恐れがある",
+        tip: "💡 Văn phong trang trọng, thời sự báo đài cảnh báo thiên tai, dịch bệnh, rủi ro lớn.",
+        examples: [
+            {
+                jp: "<ruby>台風<rt>たいふう</rt></ruby>の<ruby>影響<rt>えいきょう</rt></ruby>で、<ruby>大雨<rt>おおあめ</rt></ruby>や<ruby>洪水<rt>こうずい</rt></ruby>の<ruby>恐<rt>おそ</rt></ruby>れがあります。",
+                vi: "Do ảnh hưởng của cơn bão, e rằng có nguy cơ xảy ra mưa lớn kèm lũ quét."
+            },
+            {
+                jp: "このまま<ruby>地球温暖化<rt>ちきゅうおんだんか</rt></ruby>が<ruby>進<rt>すす</rt></ruby>むと、<ruby>島<rt>しま</rt></ruby>が<ruby>沈<rt>しず</rt></ruby>む<ruby>恐<rt>おそ</rt></ruby>れがある。",
+                vi: "Nếu tình trạng nóng lên toàn cầu tiếp diễn như hiện nay, có nguy cơ nhiều hòn đảo sẽ bị nhấn chìm."
+            }
+        ]
+    },
+
+    // ========== HÀNG か (KA) ==========
+    {
+        id: "k-01",
+        letter: "か",
+        pattern: "〜かける / 〜かけだ / 〜かけのN",
+        category: "Giai đoạn hành động",
+        meaning: "Đang làm dở dang chưa xong / Suýt nữa thì...",
+        formula: "V-ます (bỏ ます) ＋ かける / かけだ / かけのN",
+        tip: "💡 Nhấn mạnh trạng thái hành động mới bắt đầu một phần nhưng bị ngắt quãng giữa chừng.",
+        examples: [
+            {
+                jp: "テーブルの<ruby>上<rt>うえ</rt></ruby>に<ruby>飲<rt>の</rt></ruby>みかけのコーヒーが<ruby>置<rt>お</rt></ruby>いてある。",
+                vi: "Trên mặt bàn có đặt một ly cà phê đang uống dở dang."
+            },
+            {
+                jp: "<ruby>何<rt>なに</rt></ruby>か<ruby>言<rt>い</rt></ruby>いかけて、やめた。",
+                vi: "Anh ấy định thốt lên điều gì đó nhưng rồi lại thôi, nín lặng."
+            }
+        ]
+    },
+    {
+        id: "k-02",
+        letter: "か",
+        pattern: "〜がちだ / 〜がちのN",
+        category: "Đặc trưng • Tần suất",
+        meaning: "Thường hay / Dễ có xu hướng (tiêu cực)",
+        formula: "V-ます (bỏ ます) / N ＋ がちだ",
+        tip: "💡 Dùng cho các thói quen, tật xấu hoặc trạng thái tự nhiên dễ xảy ra mà bản thân không mong muốn (hay ốm, hay quên, hay vắng mặt).",
+        examples: [
+            {
+                jp: "<ruby>一人暮<rt>ひとりぐ</rt></ruby>らしは<ruby>栄養<rt>えいよう</rt></ruby>のバランスが<ruby>偏<rt>かたよ</rt></ruby>りがちになる。",
+                vi: "Cuộc sống tự lập một mình thường rất dễ bị mất cân bằng dinh dưỡng."
+            },
+            {
+                jp: "<ruby>冬<rt>ふゆ</rt></ruby>はかぜをひきがちだから、<ruby>体調<rt>たいちょう</rt></ruby>に<ruby>気<rt>き</rt></ruby>をつけてください。",
+                vi: "Vào mùa đông mọi người rất hay bị cảm lạnh, vì vậy hãy chú ý giữ gìn sức khỏe."
+            }
+        ]
+    },
+    {
+        id: "k-03",
+        letter: "か",
+        pattern: "〜(かの)ようだ / 〜(かの)ように",
+        category: "Ví von • So sánh hình tượng",
+        meaning: "Như thể là / Cứ ngỡ như là...",
+        formula: "Thể thông thường (普通形) ＋ (かの)ようだ / ように",
+        tip: "💡 Thực tế bản chất không phải như vậy, nhưng cảm giác trực quan đem lại sự tương đồng sống động.",
+        examples: [
+            {
+                jp: "まだ5<ruby>月<rt>がつ</rt></ruby>なのに、まるで<ruby>真夏<rt>まなつ</rt></ruby>であるかのような<ruby>暑<rt>あつ</rt></ruby>さだ。",
+                vi: "Mới chỉ là tháng năm thôi mà cái nóng gay gắt cứ như thể đang giữa mùa hè rực lửa."
+            },
+            {
+                jp: "<ruby>宝<rt>たから</rt></ruby>くじに<ruby>当<rt>あ</rt></ruby>たったかのように、<ruby>彼<rt>かれ</rt></ruby>は大喜びした。",
+                vi: "Anh ấy mừng rỡ reo hò cứ như thể vừa trúng số độc đắc vậy."
+            }
+        ]
+    },
+    {
+        id: "k-04",
+        letter: "か",
+        pattern: "〜から…にかけて",
+        category: "Phạm vi không gian • Thời gian",
+        meaning: "Từ... cho đến khoảng... (ranh giới áng chừng)",
+        formula: "N1 から N2 にかけて",
+        tip: "💡 Khác với 〜から〜まで (ranh giới điểm đầu điểm cuối rõ ràng dứt khoát), 〜にかけて thể hiện phạm vi trải dài mờ ảo, áng chừng.",
+        examples: [
+            {
+                jp: "<ruby>昨夜<rt>さくや</rt></ruby>から<ruby>今朝<rt>けさ</rt></ruby>にかけて、<ruby>強<rt>つよ</rt></ruby>い<ruby>雨<rt>あめ</rt></ruby>が<ruby>降<rt>ふ</rt></ruby>り<ruby>続<rt>つづ</rt></ruby>いた。",
+                vi: "Từ đêm qua trải dài cho đến sáng nay, trời đã liên tục trút những cơn mưa lớn."
+            },
+            {
+                jp: "<ruby>関東<rt>かんとう</rt></ruby>から<ruby>東北<rt>とうほく</rt></ruby>にかけて、<ruby>桜<rt>さくら</rt></ruby>が<ruby>見頃<rt>みごろ</rt></ruby>を迎えている。",
+                vi: "Trải dọc từ vùng Kanto đến vùng Tohoku, hoa anh đào đang bước vào thời kỳ nở rộ đẹp nhất."
+            }
+        ]
+    },
+    {
+        id: "k-05",
+        letter: "か",
+        pattern: "〜かわりに (〜代わりに)",
+        category: "Bù trừ • Thay thế",
+        meaning: "Thay vì / Bù lại, đổi lại thì...",
+        formula: "V-る / Nの ＋ かわりに",
+        tip: "💡 Hai nét nghĩa: 1) Đại diện thay thế cho ai làm gì. 2) Sự đánh đổi, bù trừ tương xứng (Lương cao bù lại việc cực).",
+        examples: [
+            {
+                jp: "<ruby>私<rt>わたし</rt></ruby>が<ruby>英語<rt>えいご</rt></ruby>を<ruby>教<rt>おし</rt></ruby>えるかわりに、<ruby>日本語<rt>にほんご</rt></ruby>を<ruby>教<rt>おし</rt></ruby>えてもらっている。",
+                vi: "Đổi lại việc tôi dạy tiếng Anh cho bạn ấy thì bạn ấy dạy kèm tiếng Nhật cho tôi."
+            },
+            {
+                jp: "<ruby>風邪<rt>かぜ</rt></ruby>をひいた<ruby>部長<rt>ぶちょう</rt></ruby>のかわりに、<ruby>私<rt>わたし</rt></ruby>が<ruby>会議<rt>かいぎ</rt></ruby>に<ruby>出席<rt>しゅっせき</rt></ruby>した。",
+                vi: "Thay cho trưởng phòng bị cảm sốt, tôi đã thay mặt tham dự cuộc họp."
+            }
+        ]
+    },
+
+    // ========== HÀNG き (KI) ==========
+    {
+        id: "ki-01",
+        letter: "き",
+        pattern: "〜きる / 〜きれる / 〜きれない (〜切る / 〜切れる)",
+        category: "Mức độ • Hoàn thành triệt để",
+        meaning: "Làm xong trọn vẹn tới cùng / Không thể nào xuể...",
+        formula: "V-ます (bỏ ます) ＋ 切る / 切れる / 切れない",
+        tip: "💡 Đi kèm các động từ biểu thị số lượng hoặc thể lực (ăn, dùng, đếm, mệt mỏi). V-きれない: Quá nhiều không sao làm xuể.",
+        examples: [
+            {
+                jp: "こんなにたくさんの<ruby>料理<rt>りょうり</rt></ruby>は、とても<ruby>食<rt>た</rt></ruby>べきれません。",
+                vi: "Nhiều món ăn thịnh soạn đến chừng này thì tôi không tài nào ăn hết xuể được."
+            },
+            {
+                jp: "<ruby>長<rt>なが</rt></ruby>いマラソンを<ruby>走<rt>はし</rt></ruby>りきって、<ruby>大<rt>おお</rt></ruby>きな<ruby>達成感<rt>たっせいかん</rt></ruby>を<ruby>得<rt>え</rt></ruby>た。",
+                vi: "Chạy trọn vẹn đến đích chặng marathon dài dằng dặc mang lại cho tôi cảm giác thành tựu lớn lao."
+            }
+        ]
+    },
+
+    // ========== HÀNG く (KU) ==========
+    {
+        id: "ku-01",
+        letter: "く",
+        pattern: "〜くらいだ / 〜ほどだ (〜位だ / 〜程だ)",
+        category: "So sánh mức độ",
+        meaning: "Đến mức mà... / Tới độ...",
+        formula: "Thể thông thường (普通形) / Naな / N ＋ くらいだ / ほどだ",
+        tip: "💡 Dùng một hình ảnh cụ thể, sống động để người nghe hình dung rõ mức độ nghiêm trọng hoặc to lớn của sự việc.",
+        examples: [
+            {
+                jp: "おなかがすいて、<ruby>死<rt>し</rt></ruby>にそうなくらいだ。",
+                vi: "Bụng đói cồn cào đến mức tưởng chừng như sắp lả đi được."
+            },
+            {
+                jp: "<ruby>涙<rt>なみだ</rt></ruby>が<ruby>出<rt>で</rt></ruby>るほど<ruby>嬉<rt>うれ</rt></ruby>しかった。",
+                vi: "Tôi hạnh phúc dâng trào đến độ muốn rơi nước mắt."
+            }
+        ]
+    },
+    {
+        id: "ku-02",
+        letter: "く",
+        pattern: "〜くらいなら… (〜位なら…)",
+        category: "Lựa chọn tiêu cực",
+        meaning: "Nếu phải... thì thà... còn hơn!",
+        formula: "V-る ＋ くらいなら ＋ [Vế sau: Thà làm B / B tốt hơn]",
+        tip: "💡 Vế trước là một phương án rất tệ, khiến người nói thà chọn phương án vế sau dù cũng chẳng mấy dễ chịu.",
+        examples: [
+            {
+                jp: "あんなひどい<ruby>人<rt>ひと</rt></ruby>に<ruby>頭<rt>あたま</rt></ruby>を<ruby>下<rt>さ</rt></ruby>げるくらいなら、<ruby>会社<rt>かいしゃ</rt></ruby>をやめたほうがましだ。",
+                vi: "Nếu phải cúi đầu trước kẻ tồi tệ dường ấy thì thà tôi nộp đơn nghỉ việc còn hơn."
+            },
+            {
+                jp: "<ruby>満員電車<rt>まんいんでんしゃ</rt></ruby>に<ruby>乗<rt>の</rt></ruby>るくらいなら、30<ruby>分<rt>ぷん</rt></ruby><ruby>早<rt>はや</rt></ruby>く<ruby>家<rt>いえ</rt></ruby>を<ruby>出<rt>で</rt></ruby>て<ruby>歩<rt>ある</rt></ruby>く。",
+                vi: "Nếu phải chen chúc trên chuyến tàu điện chật như nêm thì thà tôi rời nhà sớm 30 phút đi bộ."
+            }
+        ]
+    },
+
+    // ========== HÀNG こ (KO) ==========
+    {
+        id: "ko-01",
+        letter: "こ",
+        pattern: "〜ことにしている / 〜ことになっている",
+        category: "Ý chí cá nhân VS Quy định khách quan",
+        meaning: "Duy trì thói quen tự quyết / Được quy định là...",
+        formula: "V-る / V-ない ＋ ことにしている / ことになっている",
+        tip: "💡 〜ことにしている: Thói quen do chính ý chí bản thân đặt ra. 〜ことになっている: Quy định của tập thể, pháp luật, lịch trình đã an bài.",
+        examples: [
+            {
+                jp: "<ruby>健康<rt>けんこう</rt></ruby>のために、<ruby>毎朝<rt>まいあさ</rt></ruby>ジョギングをすることにしている。",
+                vi: "Vì sức khỏe, tôi tự đặt ra nguyên tắc duy trì chạy bộ vào mỗi buổi sáng."
+            },
+            {
+                jp: "この<ruby>部屋<rt>へや</rt></ruby>ではたばこを<ruby>吸<rt>す</rt></ruby>ってはいけないことになっている。",
+                vi: "Căn phòng này theo nội quy chung là tuyệt đối không được phép hút thuốc lá."
+            }
+        ]
+    },
+    {
+        id: "ko-02",
+        letter: "こ",
+        pattern: "〜ことはない",
+        category: "Khuyên bảo • Động viên",
+        meaning: "Không cần thiết phải... / Không việc gì phải...",
+        formula: "V-る ＋ ことはない",
+        tip: "💡 Thường dùng để an ủi, khuyên nhủ đối phương đừng quá lo lắng hay vội vàng.",
+        examples: [
+            {
+                jp: "<ruby>時間<rt>じかん</rt></ruby>はまだたくさんあるから、そんなに<ruby>急<rt>いそ</rt></ruby>ぐことはないよ。",
+                vi: "Thời gian vẫn còn dồi dào lắm, cậu không việc gì phải vội vàng cuống cuồng lên như thế."
+            },
+            {
+                jp: "<ruby>少<rt>すこ</rt></ruby>し<ruby>熱<rt>ねつ</rt></ruby>があるが、ただの風邪だろう。すぐに<ruby>病院<rt>びょういん</rt></ruby>へ<ruby>行<rt>い</rt></ruby>くことはない。",
+                vi: "Hơi sốt nhẹ một chút nhưng chắc chỉ cảm vặt thôi, không cần thiết phải chạy ngay vào viện đâu."
+            }
+        ]
+    },
+
+    // ========== HÀNG さ (SA) ==========
+    {
+        id: "sa-01",
+        letter: "さ",
+        pattern: "〜さえ〜ば (〜さえ〜なら)",
+        category: "Điều kiện duy nhất",
+        meaning: "Chỉ cần... là đủ / Miễn là...",
+        formula: "N ＋ さえ ＋ V-ば / A-ければ / Na・N-なら",
+        tip: "💡 Nhấn mạnh yếu tố cốt tử duy nhất: Chỉ cần đáp ứng được điều kiện tối thiểu này thì mọi chuyện phía sau đều ổn thỏa.",
+        examples: [
+            {
+                jp: "<ruby>薬<rt>くすり</rt></ruby>を<ruby>飲<rt>の</rt></ruby>みさえすれば、すぐに<ruby>治<rt>なお</rt></ruby>りますよ。",
+                vi: "Chỉ cần bạn uống liều thuốc này vào là bệnh tình sẽ thuyên giảm khỏi ngay thôi."
+            },
+            {
+                jp: "<ruby>自分<rt>じぶん</rt></ruby>さえよければ、ほかの<ruby>人<rt>ひと</rt></ruby>はどうなってもいいのか。",
+                vi: "Chẳng lẽ chỉ cần bản thân mình yên ổn là người khác ra sao cũng mặc kệ được hay sao?"
+            }
+        ]
+    },
+
+    // ========== HÀNG し (SHI) ==========
+    {
+        id: "shi-01",
+        letter: "し",
+        pattern: "〜しかない",
+        category: "Tình huống bắt buộc",
+        meaning: "Chỉ còn cách là... / Đành phải...",
+        formula: "V-る ＋ しかない",
+        tip: "💡 Không còn bất kỳ sự lựa chọn nào khác khả dĩ, đành phải chấp nhận con đường duy nhất này.",
+        examples: [
+            {
+                jp: "<ruby>終電<rt>しゅうでん</rt></ruby>がもう<ruby>終<rt>お</rt></ruby>わってしまったので、タクシーで<ruby>帰<rt>かえ</rt></ruby>るしかない。",
+                vi: "Chuyến tàu cuối cùng đã chạy mất rồi, giờ chỉ còn nước bắt taxi đi về thôi."
+            },
+            {
+                jp: "だれも<ruby>手伝<rt>てつだ</rt></ruby>ってくれないなら、<ruby>自分<rt>じぶん</rt></ruby>でやるしかない。",
+                vi: "Nếu chẳng có ai chịu giúp đỡ thì tôi đành phải tự mình gánh vác làm lấy."
+            }
+        ]
+    },
+
+    // ========== HÀNG た (TA) ==========
+    {
+        id: "ta-01",
+        letter: "た",
+        pattern: "〜たばかり VS 〜たところ",
+        category: "Thời điểm hoàn thành",
+        meaning: "Vừa mới làm xong (Tâm lý cảm nhận VS Khoảnh khắc thực tế)",
+        formula: "V-た ＋ ばかり / ところ",
+        tip: "💡 〜たばかり: Cảm nhận chủ quan của người nói (vừa mua xe tuần trước, vừa vào công ty năm ngoái). Có thể bổ nghĩa danh từ bằng の (買ったばかりの車). 〜たところ: Khoảnh khắc thực tế vừa kết thúc tức thì (vừa dứt câu, vừa đặt bút). Không ghép với の.",
+        examples: [
+            {
+                jp: "<ruby>先月<rt>せんげつ</rt></ruby><ruby>日本<rt>にほん</rt></ruby>に<ruby>来<rt>き</rt></ruby>たばかりで、まだ<ruby>道<rt>みち</rt></ruby>がよくわかりません。",
+                vi: "Tôi mới sang Nhật hồi tháng trước nên đường sá vẫn chưa thông thạo lắm."
+            },
+            {
+                jp: "たった<ruby>今<rt>いま</rt></ruby>、<ruby>昼<rt>ひる</rt></ruby>ごはんを<ruby>食<rt>た</rt></ruby>べたところです。",
+                vi: "Đúng ngay lúc này đây tôi vừa mới nuốt xong miếng cơm trưa."
+            }
+        ]
+    },
+    {
+        id: "ta-02",
+        letter: "た",
+        pattern: "〜たびに (〜度に)",
+        category: "Tần suất lặp lại",
+        meaning: "Cứ mỗi lần... là lại luôn...",
+        formula: "V-る / Nの ＋ たびに",
+        tip: "💡 Nhấn mạnh tính quy luật 100%: Cứ hễ hành động A xảy ra thì kết quả B tất yếu lại đi kèm.",
+        examples: [
+            {
+                jp: "この<ruby>写真<rt>しゃしん</rt></ruby>を<ruby>見<rt>み</rt></ruby>るたびに、<ruby>楽<rt>たの</rt></ruby>しかった<ruby>高校時代<rt>こうこうじだい</rt></ruby>を<ruby>思<rt>おも</rt></ruby>い<ruby>出<rt>だ</rt></ruby>す。",
+                vi: "Cứ mỗi bận ngắm nhìn bức ảnh này, tôi lại bồi hồi nhớ về những năm tháng cấp ba tươi đẹp."
+            },
+            {
+                jp: "<ruby>父<rt>ちち</rt></ruby>は<ruby>出張<rt>しゅっちょう</rt></ruby>のたびに、おいしいお<ruby>土産<rt>みやげ</rt></ruby>を<ruby>買<rt>か</rt></ruby>ってきてくれる。",
+                vi: "Bố tôi cứ mỗi lần đi công tác xa là lại mua những món quà bánh đặc sản ngon lành về cho cả nhà."
+            }
+        ]
+    },
+    {
+        id: "ta-03",
+        letter: "た",
+        pattern: "〜だらけだ",
+        category: "Trạng thái tiêu cực",
+        meaning: "Đầy rẫy, ngập tràn toàn là... (sự việc xấu xí, bẩn thỉu)",
+        formula: "N ＋ だらけだ / だらけのN",
+        tip: "💡 Chỉ dùng cho những thứ tiêu cực, bề mặt lấm lem (bùn đất, vết thương, lỗi sai, nợ nần). Không dùng cho việc tích cực.",
+        examples: [
+            {
+                jp: "この<ruby>作文<rt>さくぶん</rt></ruby>は<ruby>間違<rt>まちが</rt></ruby>いだらけで、<ruby>直<rt>なお</rt></ruby>すのが<ruby>大変<rt>たいへん</rt></ruby>だ。",
+                vi: "Bài luận văn này đầy rẫy những lỗi sai ngữ pháp, việc sửa chữa vô cùng vất vả."
+            },
+            {
+                jp: "<ruby>泥<rt>どろ</rt></ruby>だらけになって、サッカーの<ruby>練習<rt>れんしゅう</rt></ruby>をした。",
+                vi: "Cả người lấm lem bùn đất sau buổi tập luyện đá bóng hăng say."
+            }
+        ]
+    },
+
+    // ========== HÀNG て (TE) ==========
+    {
+        id: "te-01",
+        letter: "て",
+        pattern: "〜てくる VS 〜ていく",
+        category: "Góc nhìn không gian • Thời gian",
+        meaning: "Hướng về người nói / Quá khứ đến nay VS Rời xa người nói / Nay đến tương lai",
+        formula: "V-て ＋ くる / いく",
+        tip: "💡 Điểm chốt đề thi N3: Lại gần tầm mắt = てくる (犬が走ってくる); đi xa dần = ていく (飛んでいった). Về thời gian: Thay đổi tích lũy từ quá khứ đến hiện tại = 〜てきた; xu hướng tiếp diễn mai sau = 〜ていく.",
+        examples: [
+            {
+                jp: "コンビニでお<ruby>茶<rt>ちゃ</rt></ruby>を<ruby>買<rt>か</rt></ruby>ってきます。(出発点に戻る)",
+                vi: "Tôi chạy ra cửa hàng tiện lợi mua chai trà rồi quay về ngay nhé."
+            },
+            {
+                jp: "これからは<ruby>寒<rt>さむ</rt></ruby>くなっていくでしょう。(未来への変化)",
+                vi: "Từ thời điểm này trở đi thời tiết có lẽ sẽ ngày càng lạnh dần lên."
+            }
+        ]
+    },
+    {
+        id: "te-02",
+        letter: "て",
+        pattern: "〜てからでないと… / 〜てからでなければ…",
+        category: "Điều kiện tiên quyết",
+        meaning: "Trừ phi làm A xong trước, nếu không thì không thể làm B!",
+        formula: "V-て ＋ からでないと / からでなければ ＋ [Vế sau: Phủ định / Không thể]",
+        tip: "💡 Vế sau bắt buộc luôn ở thể phủ định (không thể làm được, không có tư cách làm...).",
+        examples: [
+            {
+                jp: "<ruby>手続<rt>てつづ</rt></ruby>きが<ruby>終<rt>お</rt></ruby>わってからでないと、この<ruby>部屋<rt>へや</rt></ruby>には<ruby>入<rt>はい</rt></ruby>れません。",
+                vi: "Nếu chưa hoàn tất các thủ tục đăng ký thì bạn chưa được phép bước chân vào phòng này."
+            },
+            {
+                jp: "<ruby>実際<rt>じっさい</rt></ruby>に<ruby>見<rt>み</rt></ruby>てからでなければ、<ruby>買<rt>か</rt></ruby>うかどうか<ruby>決<rt>き</rt></ruby>められない。",
+                vi: "Trừ phi tận mắt nhìn thấy hiện vật, chứ không thì tôi chưa thể quyết định mua hay không."
+            }
+        ]
+    },
+
+    // ========== HÀNG と (TO) ==========
+    {
+        id: "to-01",
+        letter: "と",
+        pattern: "〜とおりだ / 〜どおりだ (〜通りだ)",
+        category: "Tương đồng • Tuân thủ",
+        meaning: "Đúng y như... / Làm theo đúng...",
+        formula: "V-る / V-た ＋ とおりに | N ＋ どおり(に) / のとおり(に)",
+        tip: "💡 Chú ý biến âm: Nếu đi trực tiếp sau Danh từ thì đọc có đục (計画どおり, 予想どおり). Nếu có の thì đọc không đục (計画のとおり).",
+        examples: [
+            {
+                jp: "<ruby>先生<rt>せんせい</rt></ruby>が<ruby>言<rt>い</rt></ruby>ったとおりにやったら、うまくできました。",
+                vi: "Cứ làm y theo lời thầy giáo hướng dẫn là tôi đã hoàn thành một cách êm đẹp."
+            },
+            {
+                jp: "<ruby>計画<rt>けいかく</rt></ruby>どおりに<ruby>仕事<rt>しごと</rt></ruby>が<ruby>進<rt>すす</rt></ruby>んでいる。",
+                vi: "Tiến độ công việc đang tiến triển rất thuận lợi đúng theo như kế hoạch đề ra."
+            }
+        ]
+    },
+    {
+        id: "to-02",
+        letter: "と",
+        pattern: "〜ところだ (〜ところ(＋助詞))",
+        category: "Thời điểm hành động",
+        meaning: "Đúng lúc chuẩn bị làm / Đang làm dở / Vừa mới dứt điểm",
+        formula: "V-る ＋ ところ (sắp làm) | V-ている ＋ ところ (đang làm) | V-た ＋ ところ (vừa làm xong)",
+        tip: "💡 Trợ từ đi kèm: ところを (đúng lúc đang... thì bị bắt gặp/làm phiền), ところへ / に (đúng lúc đang... thì có ai/sự việc ập tới).",
+        examples: [
+            {
+                jp: "今から<ruby>出<rt>で</rt></ruby>かけるところですから、あとで<ruby>電話<rt>でんわ</rt></ruby>します。",
+                vi: "Đúng lúc này tôi đang chuẩn bị bước chân ra ngoài, lát nữa tôi sẽ gọi lại cho bạn nhé."
+            },
+            {
+                jp: "<ruby>授業<rt>じゅぎょう</rt></ruby>中にお<ruby>菓子<rt>かし</rt></ruby>を<ruby>食<rt>た</rt></ruby>べているところを、<ruby>先生<rt>せんせい</rt></ruby>に<ruby>見<rt>み</rt></ruby>つかってしまった。",
+                vi: "Đúng lúc đang lén lút ăn quà vặt trong giờ học thì tôi bị thầy giáo bắt quả tang."
+            }
+        ]
+    },
+
+    // ========== HÀNG な (NA) ==========
+    {
+        id: "na-01",
+        letter: "な",
+        pattern: "〜ないことはない / 〜ないこともない",
+        category: "Khẳng định nhẹ qua hai lần phủ định",
+        meaning: "Không phải là không... (cũng có thể làm được)",
+        formula: "V-ない ＋ ことはない / こともない",
+        tip: "💡 Thể hiện sự ngập ngừng, khiêm tốn hoặc miễn cưỡng: Không hoàn toàn bác bỏ, nếu cố gắng thì vẫn có khả năng.",
+        examples: [
+            {
+                jp: "<ruby>食<rt>た</rt></ruby>べられないことはないが、あまり<ruby>好<rt>す</rt></ruby>きではない。",
+                vi: "Không phải là tôi không ăn được món này, chỉ có điều tôi không thích nó lắm mà thôi."
+            },
+            {
+                jp: "<ruby>走<rt>はし</rt></ruby>れば<ruby>間<rt>ま</rt></ruby>に<ruby>合<rt>あ</rt></ruby>わないこともない。",
+                vi: "Nếu cắm đầu chạy thục mạng thì cũng không phải là không kịp giờ."
+            }
+        ]
+    },
+    {
+        id: "na-02",
+        letter: "な",
+        pattern: "〜ないわけにはいかない",
+        category: "Nghĩa vụ xã hội • Tâm lý",
+        meaning: "Không thể không làm / Đành buộc phải làm!",
+        formula: "V-ない ＋ わけにはいかない",
+        tip: "💡 Bản thân có thể không muốn, nhưng vì đạo đức, quy tắc xã hội hay trách nhiệm bắt buộc phải thực hiện. Đối chiếu với 〜わけにはいかない (Vì lương tâm/nguyên tắc nên KHÔNG ĐƯỢC PHÉP làm).",
+        examples: [
+            {
+                jp: "<ruby>大事<rt>だいじ</rt></ruby>な<ruby>会議<rt>かいぎ</rt></ruby>があるから、かぜをひいても<ruby>休<rt>やす</rt></ruby>むわけにはいかない。",
+                vi: "Vì có cuộc họp then chốt nên dù có bị ốm tôi cũng không thể nghỉ được, buộc phải đi làm."
+            },
+            {
+                jp: "<ruby>親友<rt>しんゆう</rt></ruby>の<ruby>結婚式<rt>けっこんしき</rt></ruby>だから、<ruby>行<rt>い</rt></ruby>かないわけにはいかない。",
+                vi: "Đó là lễ cưới của đứa bạn thân thiết nối khố, tôi không thể nào không đến dự được."
+            }
+        ]
+    },
+
+    // ========== HÀNG に (NI) ==========
+    {
+        id: "ni-01",
+        letter: "に",
+        pattern: "〜にかぎる (〜に限る)",
+        category: "Lời khuyên • Ý kiến chủ quan",
+        meaning: "... Là tốt nhất / Là số một!",
+        formula: "V-る / V-ない / N ＋ に限る",
+        tip: "💡 Thể hiện quan điểm chủ quan tuyệt đối của người nói (không phải quy chuẩn khách quan).",
+        examples: [
+            {
+                jp: "<ruby>暑<rt>あつ</rt></ruby>い<ruby>夏<rt>なつ</rt></ruby>は、冷たいビールを<ruby>飲<rt>の</rt></ruby>むに<ruby>限<rt>かぎ</rt></ruby>る。",
+                vi: "Mùa hè oi bức thì uống một ly bia ướp lạnh là tuyệt vời nhất đời."
+            },
+            {
+                jp: "<ruby>風邪<rt>かぜ</rt></ruby>をひいたときは、<ruby>暖<rt>あたた</rt></ruby>かくして<ruby>寝<rt>ね</rt></ruby>るに<ruby>限<rt>かぎ</rt></ruby>る。",
+                vi: "Khi bị cảm lạnh thì cách tốt nhất là giữ ấm cơ thể rồi ngủ một giấc thật sâu."
+            }
+        ]
+    },
+    {
+        id: "ni-02",
+        letter: "に",
+        pattern: "〜にたいして (〜に対して)",
+        category: "Đối tượng hướng tới • Tương phản",
+        meaning: "Đối với ai đó / Trái ngược lại với...",
+        formula: "N ＋ に対して / に対するN | Thể thông thường (普通形) ＋ のに対して",
+        tip: "💡 Hai ý nghĩa: 1) Hành vi, thái độ hướng tới ai (lịch sự với khách). 2) So sánh tương phản 2 chủ thể (Anh chăm chỉ đối lập em lười biếng).",
+        examples: [
+            {
+                jp: "<ruby>目上<rt>めうえ</rt></ruby>の<ruby>人<rt>ひと</rt></ruby>に<ruby>対<rt>たい</rt></ruby>しては、ていねいな<ruby>言葉<rt>ことば</rt></ruby>を<ruby>使<rt>つか</rt></ruby>いましょう。",
+                vi: "Đối với người bề trên, chúng ta hãy luôn dùng lời lẽ lịch sự, cung kính."
+            },
+            {
+                jp: "<ruby>兄<rt>あに</rt></ruby>が<ruby>活発<rt>かっぱつ</rt></ruby>なのに対して、<ruby>弟<rt>おとうと</rt></ruby>は物静かだ。",
+                vi: "Trái ngược với người anh trai rất hoạt bát năng nổ thì cậu em lại hết sức trầm lặng."
+            }
+        ]
+    },
+    {
+        id: "ni-03",
+        letter: "に",
+        pattern: "〜にとって",
+        category: "Quan điểm • Góc nhìn đánh giá",
+        meaning: "Đối với... (dưới góc nhìn, lập trường của N)",
+        formula: "N ＋ にとって / にとってのN",
+        tip: "💡 Vế sau là câu đánh giá giá trị (quan trọng, khó khăn, cần thiết...). Khác với 〜に対して (hướng hành động trực tiếp vào N).",
+        examples: [
+            {
+                jp: "<ruby>健康<rt>けんこう</rt></ruby>は、だれにとっても<ruby>一番<rt>いちばん</rt></ruby><ruby>大切<rt>たいせつ</rt></ruby>な<ruby>宝物<rt>たからもの</rt></ruby>だ。",
+                vi: "Sức khỏe đối với bất kỳ ai cũng đều là báu vật quan trọng hàng đầu."
+            },
+            {
+                jp: "<ruby>留学生<rt>りゅうがくせい</rt></ruby>にとって、<ruby>漢字<rt>かんじ</rt></ruby>の<ruby>勉強<rt>べんきょう</rt></ruby>はなかなか<ruby>大変<rt>たいへん</rt></ruby>だ。",
+                vi: "Đối với các bạn du học sinh, việc học chữ Hán Kanji là một thử thách khá chông gai."
+            }
+        ]
+    },
+    {
+        id: "ni-04",
+        letter: "に",
+        pattern: "〜によって / 〜による",
+        category: "Nguyên nhân • Phương tiện • Tùy thuộc • Tác giả bị động",
+        meaning: "Do bởi / Bằng phương tiện / Tùy theo / Được tạo bởi",
+        formula: "N ＋ によって / によると / によるN",
+        tip: "💡 Mẫu câu đa năng bậc nhất N3: 1) Vì bão mà đổ cây (Nguyên nhân). 2) Tùy người mà suy nghĩ khác nhau (Tùy thuộc). 3) Giao tiếp bằng cử chỉ (Phương tiện). 4) Tác phẩm được viết bởi tác giả nổi tiếng (Bị động sáng tác).",
+        examples: [
+            {
+                jp: "<ruby>人<rt>ひと</rt></ruby>によって<ruby>考<rt>かんが</rt></ruby>え<ruby>方<rt>かた</rt></ruby>が<ruby>異<rt>こと</rt></ruby>なる。",
+                vi: "Tùy thuộc vào mỗi người khác nhau mà cách suy nghĩ cũng có sự khác biệt."
+            },
+            {
+                jp: "この<ruby>絵<rt>え</rt></ruby>はピカソによって<ruby>描<rt>か</rt></ruby>かれた。",
+                vi: "Bức họa nổi tiếng này đã được vẽ nên bởi danh họa Picasso."
+            }
+        ]
+    },
+
+    // ========== HÀNG は (HA) ==========
+    {
+        id: "ha-01",
+        letter: "は",
+        pattern: "〜はずだ / 〜はずがない",
+        category: "Phán đoán chắc chắn",
+        meaning: "Chắc chắn là... / Chắc chắn không thể nào...",
+        formula: "Thể thông thường (普通形) / Naな / Nの ＋ はずだ / はずがない",
+        tip: "💡 Suy đoán dựa trên căn cứ, lý lẽ logic xác đáng. 〜はずがない = Tuyệt đối 0% khả năng xảy ra.",
+        examples: [
+            {
+                jp: "<ruby>彼<rt>かれ</rt></ruby>は10<ruby>年<rt>ねん</rt></ruby>も<ruby>日本<rt>にほん</rt></ruby>に<ruby>住<rt>す</rt></ruby>んでいたから、<ruby>日本語<rt>にほんご</rt></ruby>が<ruby>上手<rt>じょうず</rt></ruby>なはずだ。",
+                vi: "Anh ấy đã sống ở Nhật tận 10 năm trời nên chắc chắn tiếng Nhật phải rất lưu loát."
+            },
+            {
+                jp: "あんなにまじめな<ruby>田中<rt>たなか</rt></ruby>さんが、うそをつくはずがない。",
+                vi: "Một người đứng đắn nghiêm túc như anh Tanaka thì chắc chắn không bao giờ có chuyện nói dối."
+            }
+        ]
+    },
+
+    // ========== HÀNG ば (BA) ==========
+    {
+        id: "ba-01",
+        letter: "ば",
+        pattern: "〜ばかりだ",
+        category: "Xu hướng tiêu cực / Đã chuẩn bị sẵn sàng",
+        meaning: "Càng ngày càng xấu đi / Chỉ còn chờ... là xong",
+        formula: "V-る ＋ ばかりだ",
+        tip: "💡 Nghĩa 1: Xu hướng xấu tiếp diễn (Bệnh tình cứ nặng dần thêm). Nghĩa 2: Mọi khâu đã sẵn sàng chỉ còn chờ hành động (Cơm nước dọn xong chỉ đợi khách ăn).",
+        examples: [
+            {
+                jp: "<ruby>手術<rt>しゅじゅつ</rt></ruby>が<ruby>終<rt>お</rt></ruby>わったのに、<ruby>傷<rt>きず</rt></ruby>の<ruby>痛<rt>いた</rt></ruby>みは<ruby>増<rt>ま</rt></ruby>すばかりだ。",
+                vi: "Cuộc phẫu thuật đã hoàn thành rồi mà cơn đau vết mổ cứ ngày một tăng thêm."
+            },
+            {
+                jp: "<ruby>旅行<rt>りょこう</rt></ruby>の<ruby>準備<rt>じゅんび</rt></ruby>はすべてできた。あとは<ruby>出発<rt>しゅっぱつ</rt></ruby>するばかりだ。",
+                vi: "Mọi khâu chuẩn bị hành trang chuyến đi đã hoàn tất. Bây giờ chỉ còn chờ giờ xuất phát nữa thôi."
+            }
+        ]
+    },
+    {
+        id: "ba-02",
+        letter: "ば",
+        pattern: "〜ばかりでなく… / 〜だけでなく…",
+        category: "Mở rộng phạm vi",
+        meaning: "Không chỉ A mà hơn thế còn cả B nữa",
+        formula: "Thể thông thường (普通形) / Naな / N ＋ ばかりでなく",
+        tip: "💡 Vế B thường có trợ từ も để nhấn mạnh mức độ mở rộng.",
+        examples: [
+            {
+                jp: "<ruby>彼<rt>かれ</rt></ruby>は<ruby>英語<rt>えいご</rt></ruby>ばかりでなく、フランス<ruby>語<rt>ご</rt></ruby>もペラペラだ。",
+                vi: "Anh ấy không chỉ tiếng Anh mà ngay cả tiếng Pháp cũng nói năng lưu loát như gió."
+            },
+            {
+                jp: "このアパートは<ruby>家賃<rt>やちん</rt></ruby>が<ruby>安<rt>やす</rt></ruby>いばかりでなく、<ruby>駅<rt>えき</rt></ruby>からも<ruby>近<rt>ちか</rt></ruby>い。",
+                vi: "Căn hộ này không những tiền thuê rẻ mà lại còn ở rất gần nhà ga."
+            }
+        ]
+    },
+
+    // ========== HÀNG べ (BE) ==========
+    {
+        id: "be-01",
+        letter: "べ",
+        pattern: "〜べきだ / 〜べきではない",
+        category: "Đạo đức • Lời khuyên chuẩn mực",
+        meaning: "Nên làm / Đương nhiên phải làm (theo lẽ phải đạo đức)",
+        formula: "V-る ＋ べきだ / べきではない (Đặc biệt: する ➔ すべきだ / するべきだ)",
+        tip: "💡 Thể hiện nghĩa vụ đạo lý chung của con người trong xã hội. Không dùng khi người dưới khuyên bảo trực tiếp cấp trên.",
+        examples: [
+            {
+                jp: "<ruby>約束<rt>やくそく</rt></ruby>はどんなことがあっても<ruby>守<rt>まも</rt></ruby>るべきだ。",
+                vi: "Lời hứa thì dù có xảy ra bất cứ chuyện gì cũng đều phải giữ trọn vẹn."
+            },
+            {
+                jp: "<ruby>子<rt>こ</rt></ruby>どもの<ruby>前<rt>まえ</rt></ruby>でそんな<ruby>乱暴<rt>らんぼう</rt></ruby>な<ruby>言葉<rt>ことば</rt></ruby>を<ruby>使<rt>つか</rt></ruby>うべきではない。",
+                vi: "Không nên văng những lời lẽ thô tục cộc cằn ấy trước mặt con trẻ."
+            }
+        ]
+    },
+
+    // ========== HÀNG ほ (HO) ==========
+    {
+        id: "ho-01",
+        letter: "ほ",
+        pattern: "〜(〜ば)〜ほど… / 〜(〜なら)〜ほど…",
+        category: "Tương quan tỷ lệ thuận",
+        meaning: "Càng... thì lại càng...",
+        formula: "V-ば ＋ V-る ＋ ほど | A-ければ ＋ A-い ＋ ほど | Naなら ＋ Naな ＋ ほど",
+        tip: "💡 Mức độ một bên tăng lên kéo theo mức độ bên kia biến thiên tương ứng.",
+        examples: [
+            {
+                jp: "<ruby>外国語<rt>がいこくご</rt></ruby>は<ruby>使<rt>つか</rt></ruby>えば<ruby>使<rt>つか</rt></ruby>うほど、<ruby>上手<rt>じょうず</rt></ruby>になる。",
+                vi: "Ngoại ngữ càng sử dụng thường xuyên bao nhiêu thì sẽ càng tiến bộ bấy nhiêu."
+            },
+            {
+                jp: "<ruby>荷物<rt>にもつ</rt></ruby>は<ruby>軽<rt>かる</rt></ruby>ければ<ruby>軽<rt>かる</rt></ruby>いほどいい。",
+                vi: "Hành lý mang theo người càng nhẹ chừng nào thì càng tốt chừng nấy."
+            }
+        ]
+    },
+
+    // ========== HÀNG ま (MA) ==========
+    {
+        id: "ma-01",
+        letter: "ま",
+        pattern: "〜はもちろん…も",
+        category: "Đương nhiên • Mở rộng",
+        meaning: "A thì là đương nhiên rồi, đến cả B cũng...",
+        formula: "N1 はもちろん N2 も",
+        tip: "💡 Nhấn mạnh N1 là hiển nhiên không bàn cãi, nhưng cái đáng nói là cả N2 cũng tương tự.",
+        examples: [
+            {
+                jp: "<ruby>彼<rt>かれ</rt></ruby>は<ruby>漢字<rt>かんじ</rt></ruby>はもちろん、ひらがなさえ<ruby>読<rt>よ</rt></ruby>めない。",
+                vi: "Anh ta thì chữ Hán chữ tượng hình đương nhiên chẳng biết rồi, đến ngay cả bảng chữ Hiragana cũng đọc không xong."
+            },
+            {
+                jp: "<ruby>空港<rt>くうこう</rt></ruby>の<ruby>中<rt>なか</rt></ruby>にはレストランはもちろん、ホテルもある。",
+                vi: "Bên trong sân bay thì nhà hàng ăn uống đương nhiên sẵn có, thậm chí còn có cả khách sạn lưu trú."
+            }
+        ]
+    },
+
+    // ========== HÀNG わ (WA) ==========
+    {
+        id: "wa-01",
+        letter: "わ",
+        pattern: "〜わけだ / 〜というわけだ",
+        category: "Kết luận tự nhiên • Vỡ lẽ",
+        meaning: "Hèn chi mà... / Thảo nào... / Hóa ra là vậy!",
+        formula: "Thể thông thường (普通形) / Naな / Nな (hoặc の/である) ＋ わけだ",
+        tip: "💡 Dùng khi hiểu ra nguyên nhân logic đằng sau một sự việc thực tế trước mắt (À, đêm qua tuyết rơi hèn chi trời rét cóng!).",
+        examples: [
+            {
+                jp: "<ruby>夜中<rt>よなか</rt></ruby>に<ruby>雪<rt>ゆき</rt></ruby>が<ruby>降<rt>ふ</rt></ruby>ったんですね。それで、きのうの<ruby>夜<rt>よる</rt></ruby>あんなに<ruby>寒<rt>さむ</rt></ruby>かったわけですね。",
+                vi: "Nửa đêm qua tuyết rơi dày nhỉ. Thảo nào mà tối hôm qua trời lại rét buốt đến mức ấy!"
+            },
+            {
+                jp: "あの子は<ruby>日本<rt>にほん</rt></ruby>に5<ruby>年<rt>ねん</rt></ruby>もいたのか。道理で<ruby>日本語<rt>にほんご</rt></ruby>がペラペラなわけだ。",
+                vi: "Đứa bé đó đã ở Nhật tới 5 năm cơ à. Hèn chi mà tiếng Nhật của nó bắn như gió!"
+            }
+        ]
+    },
+    {
+        id: "wa-02",
+        letter: "わ",
+        pattern: "〜わけにはいかない",
+        category: "Ngăn trở tâm lý • Đạo đức",
+        meaning: "Không thể nào làm được (vì lương tâm, quy chuẩn không cho phép)",
+        formula: "V-る ＋ わけにはいかない",
+        tip: "💡 Khác với thể khả năng (できない - do năng lực hay hoàn cảnh vật lý). Ở đây có đủ năng lực nhưng bị ràng buộc bởi đạo đức hoặc tâm lý ngần ngại.",
+        examples: [
+            {
+                jp: "<ruby>今日<rt>きょう</rt></ruby>は<ruby>車<rt>くるま</rt></ruby>で<ruby>来<rt>き</rt></ruby>たんです。お<ruby>酒<rt>さけ</rt></ruby>を<ruby>飲<rt>の</rt></ruby>むわけにはいきません。",
+                vi: "Hôm nay tôi tự lái xe ô tô tới đây. Tôi tuyệt đối không thể nào uống rượu bia được."
+            },
+            {
+                jp: "<ruby>親友<rt>しんゆう</rt></ruby>がお<ruby>金<rt>かね</rt></ruby>に<ruby>困<rt>こま</rt></ruby>っている。断るわけにはいかない。",
+                vi: "Bạn thân nối khố của tôi đang túng quẫn tiền nong. Tôi không thể nào nhẫn tâm từ chối được."
+            }
+        ]
+    },
+    {
+        id: "wa-03",
+        letter: "わ",
+        pattern: "〜わけではない / 〜わけじゃない",
+        category: "Phủ định một phần",
+        meaning: "Không hẳn là... / Không hẳn cứ như thế là...",
+        formula: "Thể thông thường (普通形) / Naな / Nな ＋ わけではない",
+        tip: "💡 Phủ định nhẹ một định kiến, suy nghĩ tuyệt đối của đối phương.",
+        examples: [
+            {
+                jp: "<ruby>日本<rt>にほん</rt></ruby><ruby>料理<rt>りょうり</rt></ruby>が<ruby>嫌<rt>きら</rt></ruby>いなわけではないが、<ruby>生魚<rt>なまざかな</rt></ruby>はあまり<ruby>食<rt>た</rt></ruby>べられない。",
+                vi: "Không hẳn là tôi ghét món ăn Nhật, chỉ là món cá sống tôi không quen ăn cho lắm."
+            },
+            {
+                jp: "<ruby>高<rt>たか</rt></ruby>いものがすべて<ruby>良<rt>よ</rt></ruby>いものだというわけではない。",
+                vi: "Không hẳn cứ là món đồ đắt tiền thì đều là đồ chất lượng tốt."
+            }
+        ]
+    },
+
+    // ========== HÀNG を (WO) ==========
+    {
+        id: "wo-01",
+        letter: "を",
+        pattern: "〜を…として / 〜を…に",
+        category: "Mục đích • Vai trò trung tâm",
+        meaning: "Lấy A làm B (mục tiêu, tiêu chuẩn, khởi điểm)",
+        formula: "N1 を N2 として / に",
+        tip: "💡 Dùng định vị N1 dưới tư cách hoặc phương châm của N2 (Lấy hòa bình làm kim chỉ nam, lấy ví dụ làm đại diện).",
+        examples: [
+            {
+                jp: "<ruby>環境保護<rt>かんきょうほご</rt></ruby>をテーマとして、<ruby>作文<rt>さくぶん</rt></ruby>を<ruby>書<rt>か</rt></ruby>いた。",
+                vi: "Tôi đã viết một bài luận văn lấy việc bảo vệ môi trường làm đề tài trọng tâm."
+            },
+            {
+                jp: "この<ruby>大学<rt>だいがく</rt></ruby>は、<ruby>世界<rt>せかい</rt></ruby>の<ruby>平和<rt>へいわ</rt></ruby>を<ruby>目的<rt>もくてき</rt></ruby>として<ruby>設立<rt>せつりつ</rt></ruby>された。",
+                vi: "Trường đại học này đã được thành lập nên lấy mục tiêu hòa bình thế giới làm tôn chỉ."
+            }
+        ]
+    }
+];
+
+// RENDER FUNCTION
+function renderGrammar(items) {
+    const container = document.getElementById('grammarContainer');
+    const noResult = document.getElementById('noResult');
+    const displayCount = document.getElementById('displayCount');
+
+    displayCount.textContent = items.length;
+
+    if (items.length === 0) {
+        container.innerHTML = '';
+        noResult.style.display = 'block';
+        return;
+    }
+    noResult.style.display = 'none';
+
+    // Group by letter
+    const grouped = {};
+    items.forEach(item => {
+        if (!grouped[item.letter]) grouped[item.letter] = [];
+        grouped[item.letter].push(item);
+    });
+
+    let html = '';
+    const letters = Object.keys(grouped);
+
+    letters.forEach(letter => {
+        const groupItems = grouped[letter];
+        html += `
+            <section class="letter-group" id="sec-${letter}">
+                <div class="letter-header">
+                    <div class="letter-badge">${letter}</div>
+                    <div class="letter-title">Hàng chữ cái 「${letter}」</div>
+                    <span class="letter-count">${groupItems.length} cấu trúc</span>
+                </div>
+                <div class="grammar-list">
+        `;
+
+        groupItems.forEach(g => {
+            html += `
+                <article class="grammar-card" id="${g.id}">
+                    <div class="card-top">
+                        <div class="grammar-title">
+                            <span>${g.pattern}</span>
+                            <span class="grammar-meaning">${g.meaning}</span>
+                        </div>
+                        <span class="badge-cat">${g.category}</span>
+                    </div>
+
+                    <div class="formula-box">
+                        <span class="formula-tag">CÔNG THỨC</span>
+                        <span class="formula-text">${g.formula}</span>
+                    </div>
+
+                    <div class="examples-list">
+                        ${g.examples.map(ex => `
+                            <div class="example-item">
+                                <div class="example-jp">
+                                    <div>${ex.jp}</div>
+                                    <div class="example-actions">
+                                        <button class="btn-audio" onclick="speakText('${stripHtml(ex.jp)}')">🔊 Nghe</button>
+                                        <button class="btn-trans" onclick="toggleTrans(this)">Dịch nghĩa</button>
+                                    </div>
+                                </div>
+                                <div class="example-vi" style="display: none;">${ex.vi}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    ${g.tip ? `
+                        <div class="tip-box">
+                            <div>${g.tip}</div>
+                        </div>
+                    ` : ''}
+                </article>
+            `;
+        });
+
+        html += `
+                </div>
+            </section>
+        `;
+    });
+
+    container.innerHTML = html;
+}
+
+// STRIP HTML FOR TTS
+function stripHtml(html) {
+    const tmp = document.createElement('DIV');
+    tmp.innerHTML = html;
+    // Keep kanji, ignore rt text if needed or just take full text
+    // Using innerText will cleanly extract text
+    return tmp.innerText.replace(/\s+/g, '');
+}
+
+// SPEAK TEXT
+function speakText(text) {
+    if (!window.speechSynthesis) {
+        alert('Trình duyệt không hỗ trợ phát âm!');
+        return;
+    }
+    window.speechSynthesis.cancel();
+    const cleanText = text.replace(/[<ruby><rt><\/rt><\/ruby>]/g, '');
+    const utter = new SpeechSynthesisUtterance(cleanText);
+    utter.lang = 'ja-JP';
+    utter.rate = 0.9;
+    window.speechSynthesis.speak(utter);
+}
+
+// TOGGLE TRANSLATION
+function toggleTrans(btn) {
+    const viBox = btn.closest('.example-item').querySelector('.example-vi');
+    if (viBox.style.display === 'none' || viBox.style.display === '') {
+        viBox.style.display = 'block';
+        btn.textContent = 'Ẩn dịch';
+        btn.style.background = '#e2e8f0';
+    } else {
+        viBox.style.display = 'none';
+        btn.textContent = 'Dịch nghĩa';
+        btn.style.background = 'white';
+    }
+}
+
+// FILTER BY SEARCH
+function filterGrammar() {
+    const query = document.getElementById('searchInput').value.trim().toLowerCase();
+    if (!query) {
+        renderGrammar(grammarData);
+        return;
+    }
+
+    const filtered = grammarData.filter(g => {
+        const textToSearch = [
+            g.pattern,
+            g.meaning,
+            g.category,
+            g.formula,
+            ...g.examples.map(e => e.jp + ' ' + e.vi)
+        ].join(' ').toLowerCase();
+
+        return textToSearch.includes(query);
+    });
+
+    renderGrammar(filtered);
+}
+
+// BUILD ALPHABET NAV
+function buildAlphabetNav() {
+    const nav = document.getElementById('alphabetNav');
+    const letters = [...new Set(grammarData.map(g => g.letter))];
+    
+    let html = `<button class="alpha-btn active" onclick="filterByLetter('all', this)">Tất cả (${grammarData.length})</button>`;
+    letters.forEach(l => {
+        const count = grammarData.filter(g => g.letter === l).length;
+        html += `<button class="alpha-btn" onclick="filterByLetter('${l}', this)">${l} (${count})</button>`;
+    });
+    nav.innerHTML = html;
+}
+
+function filterByLetter(letter, btn) {
+    document.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('searchInput').value = '';
+
+    if (letter === 'all') {
+        renderGrammar(grammarData);
+    } else {
+        const filtered = grammarData.filter(g => g.letter === letter);
+        renderGrammar(filtered);
+    }
+}
+
+// INIT ON LOAD
+window.addEventListener('DOMContentLoaded', () => {
+    buildAlphabetNav();
+    renderGrammar(grammarData);
+});
+</script>
+
+</body>
+</html>
